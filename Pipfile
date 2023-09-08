@@ -11,6 +11,7 @@ sphinx-autobuild = "*"
 sphinx_last_updated_by_git = "*"
 sphinxcontrib-youtube = "*"
 sphinx-sitemap = "*"
+sphinx-copybutton = "*"
 
 [dev-packages]
 

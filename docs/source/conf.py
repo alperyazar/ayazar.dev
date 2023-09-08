@@ -36,7 +36,8 @@ extensions = ['myst_parser',
 'sphinx.ext.todo',
 'sphinx_last_updated_by_git',
 'sphinxcontrib.youtube',
-'sphinx_sitemap'
+'sphinx_sitemap',
+'sphinx_copybutton'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

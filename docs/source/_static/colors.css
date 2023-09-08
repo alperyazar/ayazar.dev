@@ -1,0 +1,16 @@
+/* https://stackoverflow.com/a/54304990 */
+/* https://stackoverflow.com/a/48281750 */
+
+/* Sidebar header (and topbar for mobile) */
+.wy-side-nav-search, .wy-nav-top {
+  background: #6272a4;
+}
+
+/* Sidebar */
+.wy-nav-side {
+  background: #282a36;
+}
+
+a {
+  color: #a5243d;
+}

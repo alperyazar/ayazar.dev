@@ -1,0 +1,20 @@
+image: ubuntu:22.04
+
+pages:
+  script:
+    - apt-get -y update
+    - apt-get -y upgrade
+    - apt-get install -y python3-pip git
+    - pip3 install pipenv
+    - pipenv update
+    - pipenv run sphinx-build -W -A SPHINXPRODUCTION=True docs/source docs/build
+    - date -u +%Y-%m-%d-%T-%Z > docs/build/build.info.txt
+    - cat Pipfile.lock >> docs/build/build.info.txt
+    - rm -rf public
+    - mv docs/build public
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

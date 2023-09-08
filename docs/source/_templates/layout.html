@@ -1,0 +1,29 @@
+{% extends '!layout.html' %}
+
+{% block extrahead %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block footer %}
+{%- if SPHINXPRODUCTION %}
+<!-- Default Statcounter code for defter.ayazar.dev
+https://defter.ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12879445;
+  var sc_invisible=1;
+  var sc_security="b8002a33";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics
+  Made Easy - Statcounter" href="https://statcounter.com/"
+  target="_blank"><img class="statcounter"
+  src="https://c.statcounter.com/12879445/0/b8002a33/1/"
+  alt="Web Analytics Made Easy - Statcounter"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+{%- endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+myst-parser = "*"
+sphinx-rtd-theme = "==1.2.0"
+Sphinx = "*"
+sphinx-autobuild = "*"
+sphinx_last_updated_by_git = "*"
+sphinxcontrib-youtube = "*"
+sphinx-sitemap = "*"
+
+[dev-packages]
+
+[requires]

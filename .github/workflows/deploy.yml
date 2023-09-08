@@ -26,6 +26,7 @@ jobs:
         pipenv run sphinx-build -W -A SPHINXPRODUCTION=True docs/source docs/build
         date -u +%Y-%m-%d-%T-%Z > docs/build/build.info.txt
         cat Pipfile.lock >> docs/build/build.info.txt
+        touch docs/build/.nojekyll
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:

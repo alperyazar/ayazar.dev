@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Update and set up
       run: |
-        apt-get -y update
-        apt-get install -y python3-pip git
+        sudo apt-get -y update
+        sudo apt-get install -y python3-pip git
         pip3 install pipenv
         pipenv update
         pipenv run sphinx-build docs/source docs/build

@@ -77,7 +77,7 @@ html_favicon = 'favicon.ico'
 html_logo = 'logo.png'
 
 # https://stackoverflow.com/a/53288958/1766391
-html_extra_path = ['build.info.txt','robots.txt']
+html_extra_path = ['robots.txt']
 
 html_show_sourcelink = False
 html_copy_source = False

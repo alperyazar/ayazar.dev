@@ -10,6 +10,8 @@ on:
 jobs:
 # Ref: https://github.com/igorshubovych/markdownlint-cli
   build-and-deploy:
+    permissions:
+      contents: write
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3

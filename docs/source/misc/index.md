@@ -9,4 +9,4 @@ maxdepth: 1
 specimen.md
 ```
 
-[Derleme Bilgileri](/build.info.txt)
+[Build Info](https://notes.alperyazar.com/build.info.txt)

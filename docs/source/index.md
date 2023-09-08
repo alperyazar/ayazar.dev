@@ -7,5 +7,6 @@ Personal and public notes of [Alper Yazar](https://www.alperyazar.com/).
 maxdepth: 2
 glob: true
 ---
+p/index.md
 misc/index.md
 ```

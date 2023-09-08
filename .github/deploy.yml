@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+# Ref: https://github.com/igorshubovych/markdownlint-cli
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Update and set up
+      run: |
+        apt-get -y update
+        apt-get install -y python3-pip git
+        pip3 install pipenv
+        pipenv update
+        pipenv run sphinx-build docs/source docs/build
+        date -u +%Y-%m-%d-%T-%Z > docs/build/build.info.txt
+        cat Pipfile.lock >> docs/build/build.info.txt
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        dry-run: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages # The branch the action should deploy to.
+        folder: docs/build # The folder the action should deploy.
+        clean: true # Automatically remove deleted files from the deploy branch
+        single-commit: true # Like push force, keep only the last commit
+        git-config-name: #use username that pushes to master
+        git-config-email: <>

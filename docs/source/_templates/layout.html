@@ -4,25 +4,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap" rel="stylesheet">
+{%- if SPHINXPRODUCTION %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VFPBRE75P1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VFPBRE75P1');
+</script>
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+{%- endif %}
 {% endblock %}
 
 {% block footer %}
 {%- if SPHINXPRODUCTION %}
-<!-- Default Statcounter code for defter.ayazar.dev
-https://defter.ayazar.dev -->
+<!-- Default Statcounter code for notes.alperyazar.com
+https://notes.alperyazar.com -->
 <script type="text/javascript">
-  var sc_project=12879445;
+  var sc_project=12919823;
   var sc_invisible=1;
-  var sc_security="b8002a33";
+  var sc_security="837505e4";
   </script>
   <script type="text/javascript"
   src="https://www.statcounter.com/counter/counter.js"
   async></script>
-  <noscript><div class="statcounter"><a title="Web Analytics
-  Made Easy - Statcounter" href="https://statcounter.com/"
-  target="_blank"><img class="statcounter"
-  src="https://c.statcounter.com/12879445/0/b8002a33/1/"
-  alt="Web Analytics Made Easy - Statcounter"
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12919823/0/837505e4/1/"
+  alt="Web Analytics"
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
   <!-- End of Statcounter Code -->
 {%- endif %}

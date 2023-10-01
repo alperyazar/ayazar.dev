@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Notes'
-copyright = '2023, Alper Yazar. CC BY-SA 4.0'
+copyright = '2023, Alper Yazar. CC BY-NC-SA 4.0'
 author = 'Alper Yazar'
 
 # The full version, including alpha/beta/rc tags

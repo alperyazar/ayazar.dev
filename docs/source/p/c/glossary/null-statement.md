@@ -9,15 +9,15 @@ a null statement.
 x = 5;; //First ; is part of the expression statement, the second ; is a null statement
 ; //null statement
 ;;;;;;; // Lots of null statements
-if (i > 10); //Do nothing when the if statement is evaluated as true
-while(x); //Do nothing inside the while loop
+if (i > 10); //; is null statement. Do nothing when the if statement is evaluated as true
+while(x); //; is null statement. Do nothing inside the while loop
 ```
 
 Typically, the null statement is used in places where a statement is required by
-the rules. We don't want to do anything, we are just satisfying the syntax
+the rules. But we don't want to do anything, we are just satisfying the syntax
 requirements of C.
 
-**Let's do** an example:
+Let's do an example:
 
 In C90, no variable declaration is allowed after a statement. The following
 code is invalid in C90 but valid after C99 (including).

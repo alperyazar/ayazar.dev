@@ -7,3 +7,11 @@ pre {
   font-family: 'JetBrains Mono', monospace !important;
   font-size: smaller !important;
 }
+
+strong {
+  font-size: 1.2rem !important;
+}
+
+em {
+  font-size: 1.1rem !important;
+}

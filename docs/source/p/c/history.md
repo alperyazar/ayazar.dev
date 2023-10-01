@@ -1,9 +1,5 @@
 # 📜 History of C
 
-```{todo}
-This article needs a revision.
-```
-
 C is a pretty old language. C is a byproduct of the UNIX project. UNIX led to
 development of C and C helped UNIX to gain further success. Today, most of the
 programming languages have been designed by broad teams for specific purposes. C
@@ -11,13 +7,16 @@ is different. C was almost improvised during development of UNIX to help the
 UNIX project. I think C has a soul behind it. Maybe the soul behind the language
 made it more successful, who knows…
 
+## 70s
+
 The history of the C programming language dates back to 1969. [Ken
 Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) started to develop a
 language called B (kind of stripped down version of BCPL) around 1969 [^1f]. In
 1971, [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie) started to
-improve the B language and called this new language *New B* or *NB*, in short.
-After several modifications to B, he decided to give a distinct name to this
-modified B language and created the C language in **1972**.
+improve the [B](https://en.wikipedia.org/wiki/B_(programming_language)) language
+and called this new language *New B* or *NB*, in short. After several
+modifications to B, he decided to give a distinct name to this modified B
+language and created the C language in **1972**.
 
 ```{figure} assets/thompson_ritchie_PDP-11.jpg
 :align: center
@@ -65,6 +64,8 @@ printf("hello, world\n");
 The "real" hello world by Brian Kernighan. [Origin](https://commons.wikimedia.org/wiki/File:Hello_World_Brian_Kernighan_1978.jpg)
 ```
 
+## 80s
+
 Around 1983, the first standardization committee was established by [ANSI
 (American National Standards Institute)](https://www.ansi.org/). In 1989, ANSI
 published the first C standard, known as **ANSI C** or **C89**. In 1990, [ISO
@@ -81,27 +82,33 @@ not published any other standard.
 The C version used between birth of C (around 1970) and the first standard
 (1989/1990) is also known as **classic C** or **traditional C**.
 
+## 90s
+
 Several modifications were done to the rules of the language after the first
 standard. The second major standard known as **C99** was published in **1999**.
 Before C99, **C95** was published in **1995**, but there are no significant
-differences between C95 and C99. However, the differences between C90 (ANSI C,
-ISO C or C89, whatever you choose) and C99 are significant.
+differences between C95 and C90. **However, the differences between C90 (ANSI C,
+ISO C or C89, whatever you choose) and C99 are significant.**
 
 ```{hint}
 Today, most of the programmers talk about C99 when they say C.
+I observe that C99 is the dominant version, especially in the embedded world.
+Yes, it is quite old, but this is the case.
 ```
 
-I observe that C99 is the dominant version, especially in the embedded world.
-Yes, it is quite old, but this is the case. The first C++ standard was published
-in 1998 as C++98. Today, the C exists in C++ differs from the C language itself.
-The C++ developers created a modified C within the C++ language. The C supported
-in C++ isn't exactly the same as the C programming language. They fixed some
-ambiguous rules and add new features to C90 while preparing C++98. Since they
-were creating a new language, they had no concerns (almost) like backward
-compatibility, and they were free to do whatever they want. Some suitable
-features and corrections done by C++ developers are [back
-ported](https://en.wikipedia.org/wiki/Backporting) to the C language with C99,
-so to speak.
+## The Birth of C++
+
+The first C++ standard was published in 1998 as C++98. Today, the C exists in
+C++ differs from the C language itself. The C++ developers created a modified C
+within the C++ language. The C supported in C++ isn't exactly the same as the C
+programming language. They fixed some ambiguous rules and add new features to
+C90 while preparing C++98. Since they were creating a new language, they had no
+concerns (almost) like backward compatibility, and they were free to do whatever
+they want. Some suitable features and corrections done by C++ developers are
+[back ported](https://en.wikipedia.org/wiki/Backporting) to the C language with
+C99, so to speak.
+
+## 2000s
 
 In **2011**, the third major standard, **C11**, was published. Some new features
 like **multi-threading** are added to the language with this version.
@@ -110,8 +117,8 @@ In **2018**, **C17** (also known as **C18**) was published. C17 didn't introduce
 new features to the language, and only did some technical corrections and
 clarifications to specifications in C11.
 
-The next version after C17 is called C2x. The new version is expected to be
-published in 2023 as **C23** [^3f], [^4f].
+The next version after C17 is C23. The new version is expected to be
+published in 2024 as **C23** [^3f], [^4f], [^7f].
 
 ## Summary
 
@@ -120,11 +127,20 @@ language was born in 1972.
 
 | Year      | Informal Name(s)        | Formal Standard Name(s)                |
 | --------- | ----------------------- | -------------------------------------- |
+| 1970s     | classic C, traditional C| -                                      |
 | 1978      | K&R C, C78              | -                                      |
 | 1989/1990 | ANSI C, ISO C, C89, C90 | ISO/IEC 9899:1990, ANSI X3.159-1989(?) |
+| 1995      | C95                     | ISO/IEC 9899:1990/AMD1:1995            |
 | 1999      | C99                     | ISO/IEC 9899:1999                      |
 | 2011      | C11                     | ISO/IEC 9899:2011                      |
 | 2018      | C17, C18                | ISO/IEC 9899:2018                      |
+| *2024*    | *C23*                   | *ISO/IEC 9899:2024*                    |
+
+*At that moment, C23 is expected to finalized in 2024.*
+
+```{todo}
+Don't forget to add link to C standards page when it's ready.
+```
 
 ## UNIX and C
 
@@ -169,6 +185,21 @@ architecture dependent assembly code, but most of the code was in portable C.
 In 1978, K&R published The C Programming Language book. Besides being the first
 book on the C language, it also covered UNIX and UNIX programming.
 
+```{todo}
+Don't forget to add link to UNIX history article when it's ready.
+```
+
+In programming languages word, it is common that a language is influenced by its
+predecessors and this is true for C.
+
+In summary:
+
+```text
+  1957    1958    1963    1967   1969   1972   1985    …
+
+FORTRAN → ALGOL →  CPL  → BCPL →   B  →   C   →  C++  → …
+```
+
 ## Personal Computers and C
 
 The personal computer revolution had begun in the early 1980s. For example, IBM
@@ -201,6 +232,7 @@ Brian Kernighan on Computerphile Channel:
 - Personal notes from [Kaan Aslan](https://csystem.org/)'s Unix/Linux System
   Programming Course
 - Personal notes from [Kaan Aslan](https://csystem.org/)'s in-house C training
+- [Bjarne Stroustrup: C++ | Lex Fridman Podcast #48](https://www.youtube.com/watch?v=uTxRF5ag27A)
 
 [^1f]: <https://www.youtube.com/watch?v=de2Hsvxaf8M>
 [^2f]: <https://qr.ae/pvc7Ln>
@@ -208,3 +240,4 @@ Brian Kernighan on Computerphile Channel:
 [^4f]: <https://en.cppreference.com/w/c/23>
 [^5f]: <https://en.wikipedia.org/wiki/The_C_Programming_Language>
 [^6f]: <https://en.wikipedia.org/wiki/Uniplex>
+[^7f]: <https://en.wikipedia.org/wiki/C23_(C_standard_revision)>

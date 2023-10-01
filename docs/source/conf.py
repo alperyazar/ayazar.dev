@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Notes'
+project = '🗒️ Notes'
 copyright = '2023, Alper Yazar. CC BY-NC-SA 4.0'
 author = 'Alper Yazar'
 

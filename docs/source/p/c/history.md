@@ -87,7 +87,9 @@ Before C99, **C95** was published in **1995**, but there are no significant
 differences between C95 and C99. However, the differences between C90 (ANSI C,
 ISO C or C89, whatever you choose) and C99 are significant.
 
-**Today, most of the programmers talk about C99 when they say C.**
+```{hint}
+Today, most of the programmers talk about C99 when they say C.
+```
 
 I observe that C99 is the dominant version, especially in the embedded world.
 Yes, it is quite old, but this is the case. The first C++ standard was published

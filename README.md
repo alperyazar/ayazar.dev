@@ -1,3 +1,4 @@
-# defter.ayazar.dev
+# notes.alperyazar.com
 
-Açık, kişisel not defterim.
+[My](https://www.alperyazar.com) personal (mostly) technical open source
+notebook.

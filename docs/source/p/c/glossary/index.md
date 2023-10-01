@@ -1,4 +1,4 @@
-# Glossary
+# 📖 Glossary
 
 I list terms related to C programming language in `English (Turkish)` format.
 

@@ -4,6 +4,14 @@ Personal and public notes of [Alper Yazar](https://www.alperyazar.com/).
 
 ```{toctree}
 ---
+maxdepth: 1
+glob: true
+---
+highlights/index.md
+```
+
+```{toctree}
+---
 maxdepth: 2
 glob: true
 ---

@@ -1,4 +1,4 @@
-# 🟨 Highlights
+# 👆 Highlights
 
 Highlights of the week.
 

@@ -6,7 +6,7 @@ Helper pages
 ---
 maxdepth: 1
 ---
-todo.md
+todos.md
 specimen.md
 ```
 

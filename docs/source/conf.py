@@ -37,7 +37,8 @@ extensions = ['myst_parser',
 'sphinx_last_updated_by_git',
 'sphinxcontrib.youtube',
 'sphinx_sitemap',
-'sphinx_copybutton'
+'sphinx_copybutton',
+'sphinxext.opengraph'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -78,7 +79,7 @@ html_favicon = 'favicon.ico'
 html_logo = 'logo.png'
 
 # https://stackoverflow.com/a/53288958/1766391
-html_extra_path = ['robots.txt']
+html_extra_path = ['robots.txt', 'extra', 'favicon.ico']
 
 html_show_sourcelink = False
 html_copy_source = False
@@ -104,3 +105,11 @@ html_context = {
 language = 'en'
 
 todo_include_todos = True
+
+# https://github.com/wpilibsuite/sphinxext-opengraph
+ogp_site_url = "http://notes.alperyazar.com"
+
+ogp_social_cards = {
+    "image_mini": "logo.png",
+    "enable": False #disabled. can be enabled after https://github.com/wpilibsuite/sphinxext-opengraph/pull/110 due to emoji
+}

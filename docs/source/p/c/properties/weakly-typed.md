@@ -17,7 +17,7 @@ continuum. Some languages have *stronger* type rules than others. IMHO, this is
 one of the most controversial categories. Considering C, you can find many
 resources on the Internet on this topic. Some of them say that C is weakly typed
 and others say the opposite. Interesting, right? Let's see what the authors of
-The C Programming Language book (K\&R C) about this topic.
+The C Programming Language book (K&R C) about this topic.
 
 > C is not a strongly-typed language in the sense of Pascal or Algol 68. It is
 > relatively permissive about data conversion, although it will not

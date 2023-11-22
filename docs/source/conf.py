@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '🗒️ Notes'
+project = 'ayazar.dev'
 copyright = '2023, Alper Yazar. CC BY-NC-SA 4.0'
 author = 'Alper Yazar'
 
@@ -38,7 +38,8 @@ extensions = ['myst_parser',
 'sphinxcontrib.youtube',
 'sphinx_sitemap',
 'sphinx_copybutton',
-'sphinxext.opengraph'
+'sphinxext.opengraph',
+'sphinx_disqus.disqus'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -97,7 +98,7 @@ html_theme_options = {
 html_context = {
     "display_github" : True,
     "github_user": "alperyazar",
-    "github_repo": "notes",
+    "github_repo": "ayazar.dev",
     "github_version": "master",
     "conf_py_path": "/docs/source/"
 }
@@ -113,3 +114,6 @@ ogp_social_cards = {
     "image_mini": "logo.png",
     "enable": False #disabled. can be enabled after https://github.com/wpilibsuite/sphinxext-opengraph/pull/110 due to emoji
 }
+
+# https://pypi.org/project/sphinx-disqus/
+disqus_shortname = "ayazardev"

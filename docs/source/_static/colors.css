@@ -3,14 +3,14 @@
 
 /* Sidebar header (and topbar for mobile) */
 .wy-side-nav-search, .wy-nav-top {
-  background: #6272a4;
+  background: #2f6a78;
 }
 
 /* Sidebar */
 .wy-nav-side {
-  background: #282a36;
+  background: #343743;
 }
 
 a {
-  color: #a5243d;
+  color: #b91d45;
 }

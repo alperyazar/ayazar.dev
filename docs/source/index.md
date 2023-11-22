@@ -1,14 +1,6 @@
-# 🗒️ Notes
+# ayazar.dev
 
-Personal and public notes of [Alper Yazar](https://www.alperyazar.com/).
-
-```{toctree}
----
-maxdepth: 1
-glob: true
----
-highlights/index.md
-```
+Personal website and public notes of Alper Yazar.
 
 ```{toctree}
 ---

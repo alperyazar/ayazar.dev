@@ -2,6 +2,16 @@
 
 The C programming language.
 
+```{toctree}
+---
+maxdepth: 1
+glob: true
+---
+history.md
+properties/index.md
+glossary/index.md
+```
+
 ## Resources
 
 List of some high quality resources on C programming:

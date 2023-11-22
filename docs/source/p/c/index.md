@@ -10,6 +10,7 @@ glob: true
 history.md
 properties/index.md
 glossary/index.md
+faq.md
 ```
 
 ## Resources

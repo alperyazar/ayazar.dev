@@ -37,11 +37,11 @@ that are removed from the standard library.
 When a feature is to be removed from the language, they are not removed
 immediately. Features to be removed are usually marked as **deprecated** in
 advance. If a feature is marked as deprecated in a new standard, we as
-programmers need to stop using them. Because these features may be removed in
-the future.
+programmers need to stop using them. Because these features will be completely
+removed in the near or distant future.
 
-With compilers, the issue is little bit different. Compilers can often be even
-more "lenient" about backwards compatibility. Even if various features are
+With compilers, the topic is little bit different. Compilers can often be even
+more *lenient* about backwards compatibility. Even if various features are
 removed from the language, compilers can act as if these features are still
 supported in their new versions. Of course, this behavior of compilers (strictly
 adhering to standards or turning a blind eye to certain things) is usually

@@ -1,4 +1,3 @@
-# notes.alperyazar.com
+# ayazar.dev
 
-[My](https://www.alperyazar.com) personal (mostly) technical open source
-notebook.
+[My](https://ayazar.dev) personal web page + notes

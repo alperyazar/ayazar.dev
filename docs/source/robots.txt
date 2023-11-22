@@ -1,4 +1,4 @@
-Sitemap: https://notes.alperyazar.com/sitemap.xml
+Sitemap: https://ayazar.dev/sitemap.xml
 
 User-Agent: *
 Allow: /

@@ -57,7 +57,7 @@ sitemap_url_scheme = "{link}"
 
 # sphinx-sitemap için gerekli
 # https://pypi.org/project/sphinx-sitemap/
-html_baseurl = 'https://notes.alperyazar.com/'
+html_baseurl = 'https://ayazar.dev/'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -107,7 +107,7 @@ language = 'en'
 todo_include_todos = True
 
 # https://github.com/wpilibsuite/sphinxext-opengraph
-ogp_site_url = "http://notes.alperyazar.com"
+ogp_site_url = "https://ayazar.dev"
 
 ogp_social_cards = {
     "image_mini": "logo.png",

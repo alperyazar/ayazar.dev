@@ -19,6 +19,7 @@
 
 project = 'ayazar.dev'
 copyright = '2023, Alper Yazar. CC BY-NC-SA 4.0'
+html_title = "ayazar.dev"
 author = 'Alper Yazar'
 
 # The full version, including alpha/beta/rc tags

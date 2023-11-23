@@ -1,3 +1,7 @@
+---
+og:description: This is a sample page and this is a meta description.
+---
+
 # Specimen
 
 Test page
@@ -57,6 +61,8 @@ I'm ready! I'm ready! I'm ready!
 ## YouTube
 
 ```{youtube} KqReMkKTe8c
+:align: center
+:width: 100%
 ```
 
 ## Disqus

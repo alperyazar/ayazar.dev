@@ -111,6 +111,9 @@ todo_include_todos = True
 # https://github.com/wpilibsuite/sphinxext-opengraph
 ogp_site_url = "https://ayazar.dev"
 
+# Should be disabled to override description per page basis
+ogp_enable_meta_description = False
+
 ogp_social_cards = {
     "image_mini": "logo.png",
     "enable": False #disabled. can be enabled after https://github.com/wpilibsuite/sphinxext-opengraph/pull/110 due to emoji

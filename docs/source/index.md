@@ -1,14 +1,17 @@
 # ayazar.dev
 
-Personal website and public notes of Alper Yazar (ayazar).
+Personal website and public notes of [Alper Yazar](about.md) (ayazar).
 
 ```{toctree}
 ---
-maxdepth: 2
+maxdepth: 1
 glob: true
 ---
+about.md
+blog/index.md
 p/index.md
 misc/index.md
+follow.md
 ```
 
 Moving from:

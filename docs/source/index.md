@@ -1,6 +1,6 @@
-# ayazar.dev
+# Alper Yazar (ayazar)
 
-Personal website and public notes of [Alper Yazar](about.md) (ayazar).
+Personal website and public notes of [me](about.md).
 
 ```{toctree}
 ---

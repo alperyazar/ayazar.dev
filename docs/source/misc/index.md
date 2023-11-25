@@ -10,4 +10,5 @@ todos.md
 specimen.md
 ```
 
-[Build Info](https://ayazar.dev/build.info.txt)
+- [Build Info](https://ayazar.dev/build.info.txt)
+- [CDN Info](https://ayazar.dev/cdn-cgi/trace)

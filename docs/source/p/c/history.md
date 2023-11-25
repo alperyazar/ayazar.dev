@@ -96,7 +96,7 @@ I observe that C99 is the dominant version, especially in the embedded world.
 Yes, it is quite old, but this is the case.
 ```
 
-## The Birth of C++
+## C++ and C
 
 The first C++ standard was published in 1998 as C++98. Today, the C exists in
 C++ differs from the C language itself. The C++ developers created a modified C
@@ -153,30 +153,33 @@ computers. This is the famous [Multics ("MULTiplexed Information and Computing
 Service")](https://en.wikipedia.org/wiki/Multics) operating system project.
 There were 3 big players in the project: MIT, General Electric and Bell Labs.
 One of the participants from Bell Labs was Ken Thompson. After some time and for
-some reason, Bell Labs withdrew from the project and they decided to design
-their own operating system. The name of this project is
-[UNIX](https://en.wikipedia.org/wiki/Unix). The word Unix is sort of a word
-joke, M in Multics stands for "Multiplexed" and U stands for "Uniplexed"
-although both of them target multi-user usage [^6f].
+some (probably economical) reason, Bell Labs withdrew from the project and they
+decided to design their own operating system. The name of this project is
+[UNIX](https://en.wikipedia.org/wiki/Unix), well actually "Unics" (UNiplexed
+Information and Computing System) [^8f]. The word Unix is sort of a word joke, M
+in Multics stands for "Multiplexed" and U stands for "Uniplexed" although both
+of them target multi-user usage [^6f].
 
-Thompson and his colleagues started to work on DEC PDP-7. First, they started to
+In 1969 (the same year that Linus Torvalds was born), Thompson and his
+colleagues started to work on DEC PDP-7 and they implemented the UNIX. In 1970,
+UNIX was rewritten for for DEC PDP-11, again in assembly. First, they started to
 write UNIX in assembly language after then they thought that getting help from a
 higher level language could be a good idea. In those days, BCPL was a popular
 system programming language. BCPL had been derived from CPL and CPL is successor
 of Algol. While working with BCPL, Ken Thompson created a B language and then
 Dennis Ritchie continued to work on B and created the C language. So, we can say
 that Algol is the ancestor of C. Even they got help from higher languages, the
-team was still writing UNIX in assembly. In 1971, the first version of UNIX was
-released. This was before creation of the C.
+team was still writing UNIX in assembly. Notice that the UNIX project is older
+than the C language.
 
-After a couple of years, the UNIX team started to port the operating system to
-DEC PDP-11. But at that time, they decided to rewrite the whole project in C.
-This is the first biggest success of the C programming language. In 1973, UNIX
-was rewritten in C. Today, most of us would say that C is a low level language
-like assembly because we know higher level languages like Python, C#. But back
-in those days, writing an operating system in a high level language like C was
-revolutionary. Before C the main language of operating systems was assembly. Can
-you feel the pain? Porting an assembly program to another architecture is
+After a couple of years, C was mature enough and they decided to rewrite the
+whole project in C. This is the first biggest success of the C programming
+language. In 1973, UNIX (Version 4) was rewritten in C. Today, most of us would
+say that C is a low level language like assembly because we know higher level
+languages like Python, C#. But back in those days, writing an operating system
+in a high level language like C was revolutionary. Before C the main language of
+operating systems was assembly. Can you feel the pain? Porting an assembly
+program to another architecture is
 [PITA](https://en.wiktionary.org/wiki/pain_in_the_ass). But once you write a
 program in C and if you have a compiler for the target architecture, then you
 can easily port the program. UNIX is not an exception, it had a little
@@ -233,6 +236,12 @@ Brian Kernighan on Computerphile Channel:
   Programming Course
 - Personal notes from [Kaan Aslan](https://csystem.org/)'s in-house C training
 - [Bjarne Stroustrup: C++ | Lex Fridman Podcast #48](https://www.youtube.com/watch?v=uTxRF5ag27A)
+- The Linux Programming Interface, Michael Kerrisk,
+  *A Brief History of UNIX and C*
+
+## Changelog
+
+- 2023-11-25. Corrections and additions to *UNIX and C*.
 
 [^1f]: <https://www.youtube.com/watch?v=de2Hsvxaf8M>
 [^2f]: <https://qr.ae/pvc7Ln>
@@ -241,3 +250,4 @@ Brian Kernighan on Computerphile Channel:
 [^5f]: <https://en.wikipedia.org/wiki/The_C_Programming_Language>
 [^6f]: <https://en.wikipedia.org/wiki/Uniplex>
 [^7f]: <https://en.wikipedia.org/wiki/C23_(C_standard_revision)>
+[^8f]: <http://ibgwww.colorado.edu/~lessem/psyc5112/usail/concepts/hx-of-unix/unixhx.html>

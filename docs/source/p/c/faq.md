@@ -48,6 +48,29 @@ adhering to standards or turning a blind eye to certain things) is usually
 controllable externally (with compiler switches, not mentioning about `switch`
 in `switch case`).
 
+## Is C in C++ language the same as "the C programming language?"
+
+C++ is a much larger programming language than C. We can say that there is a "C
+core" in C++. We can write codes in C++ as if we were writing in C. But C in C++
+and the separate programming language we call "C" are not exactly the same.
+Still, it wouldn't be wrong to say that there is a 70-80% similarity. Some of
+the features added to the C language, especially with C99, are not available in
+C++. Therefore, we must be careful when writing C-style code in C++ and when
+transferring C-style codes written in C++ to the C language.
+C++ **is NOT** a new version of C. C++ is a separate language.
+
+## What is MISRA C?
+
+ChatGPT:
+
+> MISRA C is a set of software development guidelines for the C programming
+> language developed by MISRA (Motor Industry Software Reliability Association).
+> Originally created for the automotive industry, MISRA C has gained widespread
+> use in various safety-critical and high-integrity systems across industries such
+> as aerospace, medical devices, and industrial automation.
+
+[Wikipedia](https://en.wikipedia.org/wiki/MISRA_C)
+
 ```{disqus}
 :disqus_identifier: 8866bf49-9bce-4bce-9c51-b189ef04aeb5
 ```

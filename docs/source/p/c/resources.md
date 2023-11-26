@@ -62,6 +62,9 @@ The order within each section is random.
   tarafından hazırlanmış kurs notları. Not: kKurs notlarının içeriği konusunda
   bir bilgim yok, incelemedim, notlar Necati Hoca tarafından hazırlanmış
   değildir.
+- 🇹🇷 Necati Ergin'in [YouTube kanalı](https://www.youtube.com/@necatiergin),
+  [Medium](https://necatiergin2019.medium.com/) ve [blog yazıları (Wayback
+  Machine)](https://web.archive.org/web/20230329185405/http://plepa.com/category/c-calisma-sorulari/).
 - [C Book by Wikibooks project](https://en.wikibooks.org/wiki/C_Programming)
   Sometimes I use it, but I didn't make enough observations about its accuracy.
 - [comp.lang.c Frequently Asked Questions](http://mathdesc.fr/documents/c-faq/faq.html)

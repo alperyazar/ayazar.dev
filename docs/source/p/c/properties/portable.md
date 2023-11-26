@@ -11,11 +11,7 @@ crucial step for UNIX history back in the 70s because it made porting the
 operating system to other architectures much easier (comparing to porting an
 operating system purely written in assembly).
 
-Recommended: `History of C 🔗`
-
-```{todo}
-Fix the not exist link in the upper paragraph.
-```
+Recommended: [](../history.md)
 
 **C is a source-level portable language.** When a C program is compiled, it is
 compiled for a specific platform or architecture. In general, the final

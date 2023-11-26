@@ -42,6 +42,8 @@ Fix the not exist link in the upper paragraph.
 - The close relation between C and machine language:
 
 ```{youtube} yOyaJXpAYZQ
+:align: center
+:width: 100%
 ```
 
 ## References

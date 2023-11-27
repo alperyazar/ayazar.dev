@@ -44,3 +44,7 @@ statement*. At the end of the day, the exact category name is not so critical.
 - <https://en.wikibooks.org/wiki/C\_Programming/Statements>
 - <https://learn.microsoft.com/en-us/cpp/c-language/overview-of-c-statements?view=msvc-170>
 - Personal Notes
+
+```{disqus}
+:disqus_identifier: b1fae336-164d-408b-9926-eab2d822e038
+```

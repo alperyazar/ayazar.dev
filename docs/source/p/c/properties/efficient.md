@@ -20,3 +20,7 @@ is the best or the most efficient in every aspect.
 Due to its efficiency and closeness to (medium-low) hardware both in terms of
 efficiency and level, the C language is one of the ideal languages for system
 programming or writing operating systems.
+
+```{disqus}
+:disqus_identifier: b9d1c943-70db-46be-a715-4290bf75a669
+```

@@ -11,3 +11,7 @@ x      //non-constant expression
 x + 5  //non-constant expression
 foo()  //non-constant expression
 ```
+
+```{disqus}
+:disqus_identifier: 0427928c-212b-482b-beda-6701dcabdf34
+```

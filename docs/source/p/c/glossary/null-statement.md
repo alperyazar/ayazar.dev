@@ -49,3 +49,7 @@ int x = 20;; //The second ; is not a part of variable declaration, it is a null 
 int y = 10;
 }
 ```
+
+```{disqus}
+:disqus_identifier: 978012cd-b0a1-4afa-90dc-e2a5aeb7e286
+```

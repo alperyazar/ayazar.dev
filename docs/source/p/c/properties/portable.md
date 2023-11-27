@@ -57,3 +57,7 @@ different compilers for portability.
 - Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
 - Personal notes from [Kaan Aslan](https://csystem.org/)'s Unix/Linux System
   Programming Course
+
+```{disqus}
+:disqus_identifier: 26064ba0-766f-438a-b8d3-ec4fc66222d5
+```

@@ -184,3 +184,7 @@ Good and short explanation
 [^2f]: <https://developer.mozilla.org/en-US/docs/Glossary/Static_typing>
 [^3f]: <http://www.robertgamble.net/2012/01/c11-generic-selections.html>
 [^4f]: <https://stackoverflow.com/a/17290414/1766391>
+
+```{disqus}
+:disqus_identifier: a872244f-d897-4432-923d-efc25d11375f
+```

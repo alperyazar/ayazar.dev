@@ -30,3 +30,7 @@ History of C standards are explained in [](../history.md).
 ## Resources
 
 - Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
+
+```{disqus}
+:disqus_identifier: cd766833-6cf9-4260-a5f4-889e2e0d4dc8
+```

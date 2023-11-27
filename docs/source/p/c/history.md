@@ -251,3 +251,7 @@ Brian Kernighan on Computerphile Channel:
 [^6f]: <https://en.wikipedia.org/wiki/Uniplex>
 [^7f]: <https://en.wikipedia.org/wiki/C23_(C_standard_revision)>
 [^8f]: <http://ibgwww.colorado.edu/~lessem/psyc5112/usail/concepts/hx-of-unix/unixhx.html>
+
+```{disqus}
+:disqus_identifier: 16bb8ea0-6ed7-4c5c-9718-41a6a39001ce
+```

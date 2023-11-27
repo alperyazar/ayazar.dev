@@ -10,3 +10,7 @@ Python are non-proprietary languages. Their development is guided by a
 committee, not by a single company.
 
 **C is a non-proprietary language.**
+
+```{disqus}
+:disqus_identifier: 8b1c8ebb-ff1d-4bea-a597-8ff1d5a7d061
+```

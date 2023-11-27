@@ -103,3 +103,7 @@ category. The key point that, the features should be native in that language.
 
 [^1f]: <https://en.wikipedia.org/wiki/C_(programming_language)>
 [^2f]: <https://www.educative.io/blog/declarative-vs-imperative-programming>
+
+```{disqus}
+:disqus_identifier: 3cbe4fd2-cc82-496a-9c3b-b020d824187f
+```

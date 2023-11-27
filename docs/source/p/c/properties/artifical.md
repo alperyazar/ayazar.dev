@@ -55,3 +55,7 @@ languages, C is closer to a machine than a human.
 ## Resources
 
 - Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
+
+```{disqus}
+:disqus_identifier: 2bd601f8-fcfe-43d9-ad90-73b43fde0ceb
+```

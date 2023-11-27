@@ -136,3 +136,7 @@ paradigm.**
 [^1f]: <https://en.wikipedia.org/wiki/Procedural_programming>
 [^2f]: <https://en.wikipedia.org/wiki/Object-oriented_programming>
 [^3f]: <https://learn.microsoft.com/en-us/archive/msdn-magazine/2012/august/c-functional-style-programming-in-c>
+
+```{disqus}
+:disqus_identifier: f69499cf-a57f-466d-a778-e7cdab51c44b
+```

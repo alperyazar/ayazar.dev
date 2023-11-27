@@ -43,3 +43,7 @@ Expressions have:
 - <https://raw.githubusercontent.com/CSD-1993/KursNotlari/master/C.pdf>
 - <https://en.cppreference.com/w/c/language/expressions>
 - Personal Notes
+
+```{disqus}
+:disqus_identifier: 953d8973-0ba0-4368-90a6-d39c3ed40bb3
+```

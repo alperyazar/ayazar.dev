@@ -49,3 +49,7 @@ Fix the not exist link in the upper paragraph.
 ## References
 
 - Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
+
+```{disqus}
+:disqus_identifier: e40b576c-0bd7-4280-90d8-cec9c587553e
+```

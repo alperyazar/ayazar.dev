@@ -96,3 +96,7 @@ error: variable length arrays are a C99 feature [-Werror,-Wvla-extension]
 
 AFAIK, in C++ this rules is different from C. In this case, since `x` is a
 `const int`, `x` is a constant expression. But in C, it is not!
+
+```{disqus}
+:disqus_identifier: c92b221d-d3bf-4648-8608-4d0fd33bcafc
+```

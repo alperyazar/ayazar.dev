@@ -124,3 +124,7 @@ Other than that, I would say don't worry too much about the popularity numbers.
 - [A Hacker News discussion on TIOBE Index](https://news.ycombinator.com/item?id=19767725)
 
 [^1f]: <https://www.tiobe.com/tiobe-index/programminglanguages_definition/>
+
+```{disqus}
+:disqus_identifier: 8ad0d052-e480-4569-85ee-ae0af186957b
+```

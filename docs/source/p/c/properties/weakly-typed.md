@@ -115,3 +115,7 @@ Good and short explanation
 - <https://stackoverflow.com/a/46118248>
 - <https://en.wikipedia.org/wiki/Type_system>
 - <https://en.wikipedia.org/wiki/Strong_and_weak_typing>
+
+```{disqus}
+:disqus_identifier: 7e3d401d-a852-4fbd-8572-63e353ff00be
+```

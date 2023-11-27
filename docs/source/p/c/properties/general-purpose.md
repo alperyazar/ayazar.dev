@@ -22,3 +22,7 @@ languages like Verilog, VHDL are DSL examples.
 ## References
 
 - Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
+
+```{disqus}
+:disqus_identifier: 6ee194a8-c1f9-488c-b7cc-2aa0cca21bc8
+```

@@ -9,3 +9,7 @@ straightforward manner, making C a powerful language. Its influence can be seen
 in many programming languages. If you're interested in this topic, you can also
 [read this
 article.](https://www.embedded.com/expressive-vs-permissive-languages-is-that-the-question/)
+
+```{disqus}
+:disqus_identifier: 5b3309ae-21d8-4c2e-be46-d6f36db6d26e
+```

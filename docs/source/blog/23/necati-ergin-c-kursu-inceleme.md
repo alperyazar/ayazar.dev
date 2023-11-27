@@ -1,8 +1,14 @@
+---
+og:image: assets/social/blog/23/c-220.jpg
+---
+
 # 🇹🇷 220 Saat C dersi alınır mı? (Necati Ergin C kursu)
 
-```{todo}
-Yazıyı tamamla
+```{figure} /extra/assets/social/blog/23/c-220.jpg
+:align: center
 ```
+
+---
 
 Necati Ergin Bey, 30 yıldan fazla tecrübesi olan bir C/C++ eğitmeni. Özellikle
 C ve C++ olmak üzere programlama ile ilgilenen birçok kişinin, bu ismi ve
@@ -140,6 +146,13 @@ ayrı bir yazı yazabilirim, o yüzden pek detaya girmiyorum. Daha sonra da
 dosyaları derleyip, statik bir HTML site oluşturuyorum. Aslında böyle yönetmeye
 çalıştığım kişisel bir wikimsi bir kaynağım var, ders notları da bunun bir
 parçası oldu.
+
+```{note}
+Şu an bu yazıyı okuduğunuz site ve sayfa da [Sphinx](https://www.sphinx-doc.org/en/master/)
+ile üretilmiş durumda (C notlarım ayrı bir Sphinx projesinde, burada değil).
+Nasılmış diye bakmak isterseniz bu sitenin kaynak kodlarına
+[bakabilirsiniz.](https://github.com/alperyazar/ayazar.dev)
+```
 
 ```{figure} assets/necati-akis.png
 :align: center
@@ -295,7 +308,174 @@ kullandım.
 | 2020 | 170 | ? | ? |
 | 2023 | 200 | 1.1 | 480 |
 
-## vs Doulos
+Necati Bey'in Ocak 2024'te başlayacak [kursunun](https://github.com/necatiergin/OCAK_2024_ONLINE_C_KURSU)
+belirlenmiş fiyatı 18000 TL. Henüz o gün gelmediği ve kur bilgisi gibi bilgiler
+elimde olmadığı için tabloya eklemedim.
+
+Kurs fiyatının zamanla değişimine bakarsanız yeni fiyatlar ucuz da gelebilir,
+pahalı da. Elbette son yıllarda kurslar online olarak verildiği için katılımcı
+sayısı muhtemelen çok daha fazla eskiye göre. Benim gözlemlediğim kadarıyla CSD
+ve Necati Bey'in kurslarına en az 100 kişi kayıt oluyor. Bu yüzden "sürümden
+kazanacak" şekilde kurs fiyatları USD cinsinden eskiye nazaran düşürülmüş
+olabilir. Bir de KDV/öğrenci veya "tam" konusu var. Artık o detaylara kursu
+almak isterseniz siz bakarsınız. Onun dışında fiyatın pahalı olduğunu da
+düşünebilirsiniz, Udemy'nin fiyatlarına bakarsanız haksızsınız diyemem ama kurs
+içeriği vs. bir sürü parametre var. Özellikle bireysel katılım için az bir para
+değil elbette. Bu konuyu bir sonraki başlık altında biraz daha irdeleyeceğim.
+
+Bir de dikkat ederseniz kurs zamanla uzamış, güncel durumda 200 saat açılıyor
+umarım daha da uzamaz. Bir ara 30 saatlik "C standardı" kursu ayrı veriliyormuş
+gördüğüm kadarıyla. Burada C99 standardları ayrıca anlatılıyor diye anlıyorum.
+Zamanında bu 30 saatlik kursun saatlik fiyatı 150 ya da 160 saatlik ana kursun
+saatlik fiyatının birkaç katıymış. Aslında bu 30 saatlik kursu eklemezseniz
+tablodaki toplam fiyatlar fena olmayan bir oranda düşüyor ama günümüzdeki kurslarda
+bu konular kursa dahil edilip tek kurs olarak anlatıldığı için eklemeyi uygun
+gördüm.
+
+C dilinin en büyük değişimi C99 ile yaşadığını söylemek herhalde yanlış olmaz.
+Kulağa biraz garip gelebilir ama ilerleyen yıllardaki standartlarla eklenen ve
+günümüzde yaygın olarak kullanılan çok sayıda özellik var diyemeyiz. Yani dil
+o kadar da büyümez iken ders niye sürekli uzuyor bilmiyorum. Belki eğitmenler
+daha çok soru çözüyordur, sınıf kalabalıklaşınca eğitmene gelen soru sayısı
+artıyordur ve akış yavaşlıyordur artık onu bilemiyorum ama 200 saat'i geçmesin,
+biraz psikolojik bir sınır bence.
+
+## Kurs pahalı ve uzun mu? Diğer kurumsal kurslar? Udemy?
+
+[Hakkımda](/about.md) kısmına veya [Linkedin](https://www.linkedin.com/in/alperyazar/)
+profilime bakarsanız bu kurstan önce [PLC2](https://plc2.com/) ve
+[Doulos](https://www.doulos.com/) gibi kurumsal eğitim firmalarından çeşitli
+konularda kurslar aldığımı görebilirsiniz. Biraz bu tarz kursları da göz
+önünde bulundurarak bir kıyaslama yapmak istiyorum.
+
+Bildiğim kadarıyla bahsettiğim firmalardaki kursların en uzunları 40 saat oluyor.
+Buradan bir gömülü C kursu aldığınız zaman genelde kursun bir da lab kısmı oluyor,
+örneğin bir mikrokontrolcü kartında yapabileceğiniz yaklaşık 10 adet alıştırma.
+Kursun kabaca 20-30 saati ders, 10-20 saati de lab olarak işleniyor diyebilirim.
+Bu kursların fiyatları ise kur ile değişmek ile beraber 200 saatlik C kursunun
+iyimser bir tahminle en az 2-3 katı. Ayrıca Necati ve Kaan Bey kadar dile bu
+kadar hakim birilerine denk gelmeniz de pek olası değil. Eğer bir iş veren
+olsaydım ve çalışanlarıma 200 saatlik C kursunu aldırsaydım bunu ekonomik bulurdum.
+Bu kursu hakkını vererek tamamlayan bir çalışan zaten daha az hatalı kod yazarak,
+daha hızlı kod yazarak kendi kurs parasını rahatlıkla çıkaracaktır. Buradaki
+esas problem zaman. 200 saat gerçekten uzun bir süre. Bir de not tutuyorsanız,
+ödevleri çözüyorsanız ve ek çalışma yapıyorsanız belki bir 200 saat daha
+harcarsınız. Kursların mesai saatleri dışında olduğunu belirtmiştim. Yine bir
+iş veren olsam ve çalışanım bu kursu mesai saatleri dışında alacağım dese ona
+hem kursu aldırır hem de bir kurs parasını da ona teşvik olarak verirdi belki 😬.
+*İşte bu yüzden iş kurarsam batacağımı biliyorum. 🙄* Yani özetle kurumsal
+açıdan fiyatlar bence kabul edilebilir seviyede, piyasa koşullarında. Ha çıkıp
+Udemy diyebilirsiniz, o size kalmış artık, bütün kursları alıp kıyaslayacak
+halim yok.
+
+Gelelim bireysel katılımcılara. Eğer bir çalışansanız ve kendi cebinizden
+alacaksanız hala alınabilir diye düşünüyorum. Profesyonel yaşantıda para
+kazandığınız şeye yatırım yapmanız gerekiyor. Bu bir yazılım olabilir, donanım
+olabilir ya da kendiniz olabilirsiniz. Bu yatırımlar her zaman ya da hemen
+paraya dönüşmeyebilir. Ama bu işten para kazanıyorsanız ve uzun yıllar çalışmayı
+düşünüyorsanız kendinize yatırım açısından düşünülebilir. Bu kursun bir iş ya da
+terfi garantisi elbette yok ama böyle bir duruma yardımcı olursa zaten parasını
+çıkaracaktır.
+
+Öğrenci arkadaşlarımız için kursta bir miktar indirim oluyor ama kurs hala
+muhtemelen pahalı kalacaktır. Bu ve katıldığım başka kurslarda üniversite, lise
+öğrencileri ile hatta daha küçük kardeşlerimizle karşılaştım. Lisede okuyup,
+CSD'den üçüncü kursunu alan bir arkadaşımızı hatırlıyorum. Açıkça bu vizyon ve
+azimlerini takdir ettiğimi söylemek isterim. Bizim zamanımızda online kurslar
+yoktu böyle ama hani şimdi okuyor olsam yine bunu almayı akıl eder miydim
+bilmiyorum. Bu arkadaşların kendilerine çok iyi bir yatırım yaptıklarını
+söyleyebilirim. Ama buna heves edip maddi durumu yetmeyen arkadaşların
+üzülmemesi gerekiyor. Öğrenci iken ailenizin imkanı olmayabilir bu paraları
+vermeye. Kariyer çok uzun bir yol, bu kursu ya da eksiklerinizi para kazanmaya
+başladıktan bir süre sonra hevesiniz var ise yine tamamlayabilirsiniz, çok da
+üzülecek bir durum yok bence. Eldeki imkanlara göre kendimize bir yol çizmemiz
+gerekiyor, kendimizi fazla üzmeden ve yıpratmadan... Yani alabiliyorsanız çok
+iyi ama alamıyorsanız da üzülecek bir şey yok, belki işe girdiğiniz firma bile
+size bu eğitimi aldırtabilir 😉.
+
+## Kurumsal mı bireysel mi almalı?
+
+## Gömülü (Embedded) C anlatılıyor mu?
+
+C'yi kullanan veya öğrenmek isteyen kitlenin önemli bir kısmı gömülü sistemler
+alanında çalışıyor. Peki bu dersin içeriği bu tarz işlerde çalışan kişilere
+uygun mu? Genelde *Gömülü C* ile ilgili bir konu açıldığında her ne kadar çoğu
+insan da yanlış bir algı olmasa da öncelikle şunu vurgulama ihtiyacı
+hissediyorum: C dili *Gömülü C* ve *Normal C* olarak ikiye ayrılmıyor. Yani
+Gömülü C diye ayrı bir dil yok, öncelikle bunu vurgulamakta fayda var. Ha
+elbette gömülü sistemler için yazılmış C kodları ile örneğin bir Linux işletim
+sistemi üzerinde çalışacak şekilde yazılmış C kodları arasında belli başlı
+farklar olabiliyor. Bir programlama dilini bize çeşitli araçlar sunan bir araç
+kutusu olarak düşünebiliriz. C dili de bundan farklı değil. Programcı olarak
+kullanabileceğimiz bir çok araç seti yer alıyor. Belki gömülü sistemler için
+söyleyebileceğimiz şey, bazı araçların daha sık bazı araçların ise daha az
+kullanılması olabilir. Ama kullandığımız dil bir adet: C.
+
+Örneğin gömülü sistemler için yazılmış bir C kodunda, doğrudan bellekte belirli
+bir adresi gösteren pointerları, `struct` ve `union` gibi anahtar kelimeleri,
+bit işlemlerini, function pointer kullanımını bir tık daha sık görebiliriz. Buna
+karşılık birçok gömülü sistemde dinamik bellek kullanımı tavsiye edilmediği ya
+da desteklenmediği için `malloc/free` türevi fonksiyon çağrılarını da daha az
+görebiliriz. Yine gömülü sistemlerde bellek limitinden dolayı bellek alanının
+(stack ve global alan) verimli kullanımı için bazı teknikler kullanılıyor
+olabilir. Ama bu tekniklere Linux üzerinde koşacak *sistem programları*nda da
+rastlamak mümkün. Yani benim tavsiyem gömülü sistemlerde çalışıyor olsanız da C
+dilini genel bir öğrenin. Elbette zamanla bazı kısımlarını daha sık bazı
+kısımlarını da daha seyrek kullanacaksınız. Ayrıca gömülü sistemlerde C diline
+hakimiyet önemli bir artı olsa da bu tek başına genelde yeterli değil. Buna ek
+olarak, temel bir elektronik bilgisi, I2C/SPI/UART gibi temel iletişim
+protokolleri hakkında bilgi, bir osiloskop ile kart üzerinden ölçüm alabilme,
+bilgisayar mimarileri ve işlemciler hakkında bilgi, bir miktar assembly bilgisi
+aranan yetkinlikler arasında yer alıyor. Bu yüzden iyi bir C bilgisi çok işinize
+yarayacaktır ama diğer konularda da kendinizi geliştirmeniz beklenecektir.
+
+Derse gelecek olursak, gömülü sistemlerde sık kullanılan araçlar olmak üzere dilin
+tüm araçları anlatıldığı için bu açıdan bir eksiğiniz kalmayacaktır. Ayrıca
+Necati Bey dersin birçok noktasında yazdığı kodlar üzerinden bir kodun daha verimli
+(hız veya bellek alanı gibi) nasıl yazılabileceğini defalarca anlatmaktadır.
+Ben de C'yi ağırlıklı gömülü tarafta kullanan biri olarak verilen örneklerden
+oldukça tatmin oldum. Ama dediğim gibi gömülü yazılım işi sadece C'den ibaret
+değil, fakat önemli bir kısmı.
+
+Çeşitli kurumlarda ve internette C'yi mikrokontrolcü gibi bir gömülü sistem
+üzerinden anlatan kurslar bulmak mümkün. Bu böyle bir kurs değil, onu da
+belirtmiş olayım.
+
+UYGUN YERE EKLE: https://www.linkedin.com/posts/amar-mahmutbegovic_there-is-no-such-thing-as-embedded-c-contrary-activity-7133390058153238528-_sCw?utm_source=share&utm_medium=member_desktop
+
+## Mülakatlara hazırlık
+
+## Okula faydası olur mu?
+
+Okulda aldığınız C dersini geçmek için bu kursu almanıza hiç gerek yok. Kurs
+zaten uzun sürdüğü için okuldaki C dersinizde belki 1 dönem önce buna başlamanız
+gerekecektir. Zaten okulda aldığınız C dersinde hocanızın ve asistanların
+C'yi muhtemelen pek de iyi bilmediğini göreceksiniz. Bu kurs, profesyonel anlamda
+C ile uğraşan ya da uğraşacak kişiler için uygun. Okuldaki C için YouTube
+dersleri ve Udemy fazlasıyla yeterli olacaktır. Öğrenci iseniz almayın demiyorum,
+zaten yukarıda bahsettim bu konudan ama sırf ders geçmek için almayın. Böyle
+alırsanız tam bir *overengineering* yapmış olursunuz. Ama diyelim ki aldınız,
+okulda size muhtemelen C'yi az ya da çok yanlış öğretecekleri için sinirleriniz
+bile bozulabilir derste, benden söylemesi...
+
+## Kaan Aslan ve Necati Ergin
+
+- mülakat
+- formal vs informal
+- not tutma
+- içerik farkı (ileri C, comp arch)
+
+## Yeni başlayanlar için uygun mu?
+
+## Kurs zamanında bitiyor mu?
+
+## Eksiler
+
+## Dersi alacaklara öneriler
+
+## Kapanış
+
+600 vs
 
 [^1f]: <https://en.wikipedia.org/wiki/Characters_per_line>
 

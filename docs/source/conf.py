@@ -88,7 +88,7 @@ html_copy_source = False
 
 # https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 html_theme_options = {
-    'analytics_id': 'G-VFPBRE75P1',
+    'analytics_id': 'G-FHLWHCPSG0',
     'display_version': True,
     'style_external_links': True,
     'prev_next_buttons_location': 'both',

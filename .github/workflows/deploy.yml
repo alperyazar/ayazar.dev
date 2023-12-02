@@ -28,7 +28,7 @@ jobs:
         cat Pipfile.lock >> docs/build/build.info.txt
         touch docs/build/.nojekyll
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.4.3
+      uses: JamesIves/github-pages-deploy-action@v4.5.0
       with:
         dry-run: false
         token: ${{ secrets.GITHUB_TOKEN }}

@@ -161,7 +161,7 @@ each standard is designated an official name, they are commonly known by their
 informal names. It's important to note again that the C23 standard has not been
 officially finalized. Now, let's embark on a final journey back in time to 1964
 and delve deeper into the relationship between UNIX and C, as we briefly touched
-upon at the start of this video.
+upon at the start of this article.
 
 | Year      | Informal Name(s)        | Formal Standard Name(s)                |
 | --------- | ----------------------- | -------------------------------------- |

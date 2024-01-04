@@ -1,49 +1,54 @@
 # 📜 History of C
 
-C is a pretty old language. C is a byproduct of the UNIX project. UNIX led to
-development of C and C helped UNIX to gain further success. Today, most of the
-programming languages have been designed by broad teams for specific purposes. C
-is different. C was almost improvised during development of UNIX to help the
-UNIX project. I think C has a soul behind it. Maybe the soul behind the language
-made it more successful, who knows…
+C, is a pretty old language. It was developed during the UNIX project. The
+development of UNIX led to the creation of C, and in turn, C played a
+significant role in the success of UNIX.
+
+Now let's go back 55 years, to 1969…
 
 ## 70s
 
-The history of the C programming language dates back to 1969. [Ken
-Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) started to develop a
-language called B (kind of stripped down version of BCPL) around 1969 [^1f]. In
-1971, [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie) started to
-improve the [B](https://en.wikipedia.org/wiki/B_(programming_language)) language
-and called this new language *New B* or *NB*, in short. After several
-modifications to B, he decided to give a distinct name to this modified B
-language and created the C language in **1972**.
+In 1969, [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) began
+creating a programming language named **B**, which was a simpler version of an
+existing language called **BCPL** [^1f]. Then, in 1971, Dennis Ritchie took over
+and started enhancing B. He first called his improved version **New B** or
+**NB** for short. After making several changes, Ritchie realized his version was
+distinct enough to deserve its own name.
 
-```{figure} assets/thompson_ritchie_PDP-11.jpg
+```{figure} assets/466px-Dennis_Ritchie_2011.jpg
 :align: center
 
-Ken Thompson (sitting) and Dennis Ritchie at PDP-11. [Origin](https://commons.wikimedia.org/wiki/File:Ken_Thompson_(sitting)_and_Dennis_Ritchie_at_PDP-11_(2876612463).jpg)
+Dennis Ritchie at Japan Prize Foundation ceremony in May 2011. [Link](https://commons.wikimedia.org/wiki/File:Dennis_Ritchie_2011.jpg)
 ```
 
-But why the name C? It is believed that Ritchie selected the letter C (the next
-letter after B in the English alphabet) because the language actually was
-derived from the B programming language [^2f]. Another less common theory is as
-follows. We know that B had derived from BCPL. Ritchie chose the name C because
-the letter after B is C in B**C**PL. If there was a third language after C, that
-would be P language, not D. We are not sure about the reason because as far as I
-know, Ritchie didn't explain the rationale behind selecting this name. By the
-way, there is a D programming language, but it is not considered as successor of
-C. The language derived from C is C++.
+**So, in 1972, he named it C, marking the birth of the C language we know
+today.**
 
-6 years after the birth of C, in **1978**, [Brian
-Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) and Ritchie published
-[The C Programming
-Language](https://en.wikipedia.org/wiki/C_(programming_language)) book.
-This book is very well known and still very famous today. It is the *bible* of
-C. The version of C explained in that book is known as **K&R C** (notice that K
-and R are initials of surnames of the authors). At that time, the C language was
-not yet standardized as it is today. This book considered as the standard for
-the language that was not standardized formally in 1978. The C version described
-in this book can also be called as **C78**, although it is very uncommon.
+**But, why the name C?**
+
+To my best knowledge, it is commonly thought that Dennis Ritchie chose the name
+'C' because it follows 'B' in the alphabet, and C evolved from the B programming
+language [^2f]. Another less common theory is as follows. We know that B had
+derived from BCPL. Ritchie chose the name C because the letter after B is C in
+B**C**PL. If there was a third language after C, that would be P language, not
+D. Incidentally, while there is a D programming language, it isn't regarded as a
+direct successor to C. The language that directly derives from and builds upon C
+is C++.
+
+Just six years after C was created, in 1978, [Brian
+Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) and Dennis Ritchie
+released [The C Programming
+Language](https://en.wikipedia.org/wiki/The_C_Programming_Language) book.
+
+```{figure} assets/Brian_Kernighan_in_2012_at_Bell_Labs_1.jpg
+:align: center
+
+Brian Kernighan speaks at a tribute to Dennis Ritchie at Bells Labs in 2012. [Link](https://commons.wikimedia.org/wiki/File:Brian_Kernighan_in_2012_at_Bell_Labs_1(cropped).jpg)
+```
+
+This book remains famous even today. The version of C it explains is known as
+**K&R C**. Since C wasn't standardized back then like it is today, this book became
+the unofficial standard.
 
 ```{figure} assets/The_C_Programming_Language,_First_Edition_Cover.svg.png
 :align: center
@@ -51,8 +56,9 @@ in this book can also be called as **C78**, although it is very uncommon.
 The C Programming Language, first edition, 1978. [Origin](https://commons.wikimedia.org/wiki/File:The_C_Programming_Language,_First_Edition_Cover.svg)
 ```
 
-This is one of the first programming books having the classical *Hello World*
-example.
+Sometimes, the C version in this book is referred to as
+**C78**, although this term is rarely used. Notably, this is one of the first
+programming books to feature the classical *Hello World* example.
 
 ```c
 printf("hello, world\n");
@@ -64,66 +70,96 @@ printf("hello, world\n");
 The "real" hello world by Brian Kernighan. [Origin](https://commons.wikimedia.org/wiki/File:Hello_World_Brian_Kernighan_1978.jpg)
 ```
 
+Now, let's move forward in time to the 11th year of C, a few years before the
+release of the CD-ROM [^10f], to the year 1983.
+
 ## 80s
 
-Around 1983, the first standardization committee was established by [ANSI
-(American National Standards Institute)](https://www.ansi.org/). In 1989, ANSI
-published the first C standard, known as **ANSI C** or **C89**. In 1990, [ISO
-(International Organization for Standardization)](https://www.ansi.org/) adopted
-the ANSI C standard, did non-technical modifications and published **ISO C** or
-**C90** standard. Indeed, all four of them (ANSI C, C89, ISO C and C90) refer to
-the same standard, and today they are used interchangeably. Until publication of
-the first standard in 1989, K&R C (the C explained in the book) was the *de
-facto* standard. In 1988, the same authors (K&R) published the second and the
-last version of The C Programming Language [^5f]. This edition covers the ANSI C
-standard. The following standards have only been published by ISO, and ANSI has
-not published any other standard.
+Back in **1983**, the [American National Standards Institute
+(ANSI)](https://www.ansi.org/) set up the first committee to create a standard
+for the C programming language. By **1989**, they released the first official C
+standard, also known as **C89**. The following year, in **1990**, the
+[International Organization for Standardization (ISO)](https://www.iso.org)
+adopted this standard. They made some minor changes and released their version
+also known as **C90**. Interestingly, four of them refer to the same standard,
+and nowadays, people use these terms interchangeably.
 
-The C version used between birth of C (around 1970) and the first standard
-(1989/1990) is also known as **classic C** or **traditional C**.
+**ANSI C ≡ C89 ≡ ISO C ≡ C90**
+
+Before 1989, the C programming language was primarily defined by the version in
+'The C Programming Language' book, often referred to as K&R C. The authors of
+this book released a second edition in 1988, which included details about the
+C89 standard [^5f].
+
+```{figure} assets/The-C-2nd-edition.jpg
+:align: center
+
+The C Programming Language, second edition, 1988.
+```
+
+It's important to note that, following the first standard, all subsequent C
+standards have been published exclusively by the International Organization for
+Standardization (ISO), with the American National Standards Institute (ANSI) not
+releasing any more.
+
+The version of C used from its inception around 1970 until the first official
+standard in 1989 is often referred to as **classic C** or **traditional C**.
+
+Now we fast forward about 10 years to one year after the publication of the
+first C++ standard, arriving in 1999.
 
 ## 90s
 
-Several modifications were done to the rules of the language after the first
-standard. The second major standard known as **C99** was published in **1999**.
-Before C99, **C95** was published in **1995**, but there are no significant
-differences between C95 and C90. **However, the differences between C90 (ANSI C,
-ISO C or C89, whatever you choose) and C99 are significant.**
+Four years earlier, in **1995**, the **C95** standard was released. This
+standard introduced several **internationalization features**, including
+improved support for
+[multi-byte](https://en.wikipedia.org/wiki/Variable-width_encoding) and [wide
+characters](https://en.wikipedia.org/wiki/Wide_character), which was a
+significant addition for handling diverse character sets in C programming. Apart
+from these additions, there were no major changes in the language.
 
-```{hint}
-Today, most of the programmers talk about C99 when they say C.
-I observe that C99 is the dominant version, especially in the embedded world.
-Yes, it is quite old, but this is the case.
+**C95 ≈ C90**
+
+In contrast, the C99 standard, published in 1999, introduced many significant
+changes and additions to the language. As a result, it is widely recognized that
+the first major revision of the language after C90 occurred with the advent of
+C99.
+
+One reason for this is that some features present in the first official release
+of C++, C++98, were added to the C language. C++ was built on top of C, and some
+features defined in C++ also officially came to the C language with C99.
+
+```{important}
+Please note that the C supported in C++ isn't exactly the same as the C
+programming language.
 ```
-
-## C++ and C
-
-The first C++ standard was published in 1998 as C++98. Today, the C exists in
-C++ differs from the C language itself. The C++ developers created a modified C
-within the C++ language. The C supported in C++ isn't exactly the same as the C
-programming language. They fixed some ambiguous rules and add new features to
-C90 while preparing C++98. Since they were creating a new language, they had no
-concerns (almost) like backward compatibility, and they were free to do whatever
-they want. Some suitable features and corrections done by C++ developers are
-[back ported](https://en.wikipedia.org/wiki/Backporting) to the C language with
-C99, so to speak.
 
 ## 2000s
 
-In **2011**, the third major standard, **C11**, was published. Some new features
-like **multi-threading** are added to the language with this version.
+The C11 standard, the third major update to the C programming language, was
+launched in 2011, a full 12 years after C99. The introduction of features like
+multi-threading support in C11 was a step towards updating the language,
+enhancing its safety, adaptability, and alignment with current programming
+trends and technological advancements. However, a significant portion of C
+programming, particularly in the embedded systems sector, remains consistent
+with either C99 or the older C89 standard. Therefore, a significant portion of C
+projects do not use or have the features introduced with C11.
 
-In **2018**, **C17** (also known as **C18**) was published. C17 didn't introduce
-new features to the language, and only did some technical corrections and
-clarifications to specifications in C11.
+The C17 standard, an update to the C programming language standard, was
+officially published in 2018. C17 is primarily a bug-fix release and does not
+introduce new language features. It was intended to correct various defects in
+the C11 standard. From a technical perspective, these two standards are
+considered to be the same.
 
-The next version after C17 is C23. The new version is expected to be
-published in 2024 as **C23** [^3f], [^4f], [^7f].
+The next standard following C17 is C23, which is nearing its finalization. It is
+anticipated to be officially published in 2024 [^3f], [^4f], [^7f].
 
-## Summary
-
-The standards can be summarized as follows. Please keep in mind that the C
-language was born in 1972.
+In the table provided, you'll find a concise summary of all the standards. While
+each standard is designated an official name, they are commonly known by their
+informal names. It's important to note again that the C23 standard has not been
+officially finalized. Now, let's embark on a final journey back in time to 1964
+and delve deeper into the relationship between UNIX and C, as we briefly touched
+upon at the start of this video.
 
 | Year      | Informal Name(s)        | Formal Standard Name(s)                |
 | --------- | ----------------------- | -------------------------------------- |
@@ -138,79 +174,114 @@ language was born in 1972.
 
 *At that moment, C23 is expected to finalized in 2024.*
 
-```{todo}
-Don't forget to add link to C standards page when it's ready.
-```
-
 ## UNIX and C
 
-At the beginning, I said that C is a byproduct of the UNIX project. Now, let's
-look at the history of UNIX briefly.
+In 1964, [MIT](https://web.mit.edu/multics-history/) initiated the
+[Multics](https://en.wikipedia.org/wiki/Multics) project with the primary goal
+of developing a time-sharing operating system. This system aimed to maximize the
+utilization of expensive computer resources by allowing multiple users to access
+the computer simultaneously. The Multics project was a collaboration among three
+major entities: [MIT](https://www.mit.edu/), [General
+Electric](https://www.ge.com/), and [Bell Labs](https://www.bell-labs.com/).
+[Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) was one of the key
+contributors from Bell Labs. However, in 1969 [^9f], after a period of
+involvement, Bell Labs, possibly due to economic reasons, withdrew from the
+Multics project. Subsequently, they embarked on their own endeavor to develop a
+distinct operating system, which eventually led to the creation of **UNIX**, well
+actually "Unics"(UNiplexed Information and Computing System) [^8f].
 
-In 1964, MIT started to a new project. The main aim of this project was creating
-a time-sharing operating system to allow multiple users to use expensive
-computers. This is the famous [Multics ("MULTiplexed Information and Computing
-Service")](https://en.wikipedia.org/wiki/Multics) operating system project.
-There were 3 big players in the project: MIT, General Electric and Bell Labs.
-One of the participants from Bell Labs was Ken Thompson. After some time and for
-some (probably economical) reason, Bell Labs withdrew from the project and they
-decided to design their own operating system. The name of this project is
-[UNIX](https://en.wikipedia.org/wiki/Unix), well actually "Unics" (UNiplexed
-Information and Computing System) [^8f]. The word Unix is sort of a word joke, M
-in Multics stands for "Multiplexed" and U stands for "Uniplexed" although both
-of them target multi-user usage [^6f].
+```{figure} assets/Ken-Thompson-2019.png
+:align: center
 
-In 1969 (the same year that Linus Torvalds was born), Thompson and his
-colleagues started to work on DEC PDP-7 and they implemented the UNIX. In 1970,
-UNIX was rewritten for for DEC PDP-11, again in assembly. First, they started to
-write UNIX in assembly language after then they thought that getting help from a
-higher level language could be a good idea. In those days, BCPL was a popular
-system programming language. BCPL had been derived from CPL and CPL is successor
-of Algol. While working with BCPL, Ken Thompson created a B language and then
-Dennis Ritchie continued to work on B and created the C language. So, we can say
-that Algol is the ancestor of C. Even they got help from higher languages, the
-team was still writing UNIX in assembly. Notice that the UNIX project is older
-than the C language.
-
-After a couple of years, C was mature enough and they decided to rewrite the
-whole project in C. This is the first biggest success of the C programming
-language. In 1973, UNIX (Version 4) was rewritten in C. Today, most of us would
-say that C is a low level language like assembly because we know higher level
-languages like Python, C#. But back in those days, writing an operating system
-in a high level language like C was revolutionary. Before C the main language of
-operating systems was assembly. Can you feel the pain? Porting an assembly
-program to another architecture is
-[PITA](https://en.wiktionary.org/wiki/pain_in_the_ass). But once you write a
-program in C and if you have a compiler for the target architecture, then you
-can easily port the program. UNIX is not an exception, it had a little
-architecture dependent assembly code, but most of the code was in portable C.
-
-In 1978, K&R published The C Programming Language book. Besides being the first
-book on the C language, it also covered UNIX and UNIX programming.
-
-```{todo}
-Don't forget to add link to UNIX history article when it's ready.
+Ken Thompson from a National Inventors Hall of Fame video about him and Dennis Ritchie in 2019. [Link](https://commons.wikimedia.org/wiki/File:Ken-Thompson-2019.png)
 ```
 
-In programming languages word, it is common that a language is influenced by its
-predecessors and this is true for C.
+The name 'Unix' is indeed a kind of wordplay or pun. The 'Uni' in Unix was
+intended as a contrast to the 'Multi' in 'Multics,' where 'Multi' stood for
+'Multiplexed.' While Multics was a complex project aimed at creating a
+multi-user, multi-tasking operating system, Unix was originally developed as a
+simpler, less complex alternative. The 'Uni' in Unix humorously suggests a more
+'uniplexed' or singular approach, even though Unix was also designed for
+multi-user environments [^6f]. Thus, the naming reflects a play on words while
+highlighting the difference in design philosophy between Unix and Multics.
 
-In summary:
+In **1969**, **the same year Linus Torvalds was born**, Ken Thompson and his
+colleagues at Bell Labs began working on the DEC PDP-7, where they initially
+implemented UNIX in assembly language. The following year, in 1970, UNIX was
+rewritten for the DEC PDP-11, once again in assembly. While assembly language
+was used for the core components, the development of system and application
+software, which did not require direct hardware interaction, called for a
+higher-level language. At that time, BCPL, a language renowned for its use in
+operating systems, was quite popular. BCPL itself was derived from CPL, which is
+a successor of Algol.
 
-```text
-  1957    1958    1963    1967   1969   1972   1985    …
+```{figure} assets/thompson_ritchie_PDP-11.jpg
+:align: center
 
-FORTRAN → ALGOL →  CPL  → BCPL →   B  →   C   →  C++  → …
+Ken Thompson (sitting) and Dennis Ritchie at PDP-11 in 1972. [Origin](https://www.bell-labs.com/usr/dmr/www/picture.html)
 ```
 
-## Personal Computers and C
+Ken Thompson, during his involvement in the Multics project, created the B
+language, influenced by his experience with BCPL. Later at Bell Labs, Dennis
+Ritchie evolved the B language into the C language. This development marked a
+significant step in programming, linking back to Algol as an ancestral language.
+It's notable that during these early stages, even with the advent of
+higher-level languages, key parts of UNIX were still being written in assembly.
+This underscores the fact that the UNIX project predates the C language,
+highlighting its evolutionary journey in computing history.
 
-The personal computer revolution had begun in the early 1980s. For example, IBM
-released their famous Personal Computer (PC) in those years. Nowadays, the C
-language is mainly used in embedded world, operating systems and system
-programming. But with personal computer revolution, C was preferred for almost
-all kind of programs. C became a great choice not only for operating system
-programmers but for all programmers.
+A few years after its inception, the C language had matured sufficiently,
+prompting the decision to rewrite the entire UNIX operating system using it.
+This rewrite, completed with **UNIX Fourth Edition** (**UNIX V4**) in **1973**,
+stands as a landmark achievement for C [^11f]. In the contemporary landscape,
+many consider C a low-level language, especially when compared to higher-level
+languages like Python and C#. However, in the context of its time, employing C
+for most parts of an operating system was a groundbreaking move.
+
+Historically, porting an operating system written in assembly language to a
+different architecture was a daunting task, often fraught with time-consuming,
+error-prone challenges. In contrast, C offered a more portable solution. Once a
+C compiler was created for the target architecture, it became significantly
+easier to port programs. UNIX exemplified this advantage. Although it contained
+some architecture-dependent assembly code, the bulk of the system was written in
+portable C, a strategic choice that greatly facilitated its adaptation and
+spread across different computing environments.
+
+Since UNIX and C developed in tandem, the first authoritative book on C, 'The C
+Programming Language' by Brian Kernighan and Dennis Ritchie, commonly referred
+to as K&R, published in 1978, not only covers the C language but also delves
+into UNIX programming. This book, written by the creators of C and key
+developers of UNIX at Bell Labs, became a seminal guide in the field. It
+effectively demonstrates the use of C for system programming, particularly in
+the UNIX environment, reflecting the intertwined evolution of the language and
+the operating system.
+
+If we delve into the history of programming languages, it's evident that most
+are influenced by their predecessors. Tracing back the lineage of C, we
+encounter FORTRAN, a foundational language in this evolutionary chain. Just as C
+was shaped by its ancestors like FORTRAN, it has in turn influenced many
+contemporary programming languages. This includes, but is not limited to, C++,
+Java, Python, and C#. Each of these modern languages has inherited features from
+C, demonstrating its enduring impact on the world of programming.
+
+```{figure} assets/fortran-to-c.png
+:align: center
+
+FORTRAN to C
+```
+
+## Long live C!
+
+Today, in 2024, the C programming language celebrates its 52nd year. Despite its
+age, C remains vibrantly alive, continually evolving through new standards.
+Crafted by some of the most brilliant minds in programming, with precision,
+foresight, and impeccable timing, C has proven to be a language not just of the
+past, but of the present and future. It is the powerhouse behind the world's
+most critical technologies, underpinning nearly every operating system, forming
+the backbone of the Internet, and playing a crucial role in space exploration,
+healthcare, and the vast realm of embedded systems. C is still a fundamental
+part of education for students and newcomers to programming. Long may it
+continue to shape our world. **Long live C!**
 
 ## Related
 
@@ -222,10 +293,7 @@ Brian Kernighan on Computerphile Channel:
 ```{youtube} de2Hsvxaf8M
 ```
 
-[Brian Kernighan and Lex Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo):
-
-```{youtube} O9upVbGSBFo
-```
+You can also check out this interview: [Brian Kernighan and Lex Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo)
 
 ## Resources
 
@@ -242,6 +310,7 @@ Brian Kernighan on Computerphile Channel:
 ## Changelog
 
 - 2023-11-25. Corrections and additions to *UNIX and C*.
+- 2024-01-04. Rewritten and reorganized form scratch
 
 [^1f]: <https://www.youtube.com/watch?v=de2Hsvxaf8M>
 [^2f]: <https://qr.ae/pvc7Ln>
@@ -251,6 +320,9 @@ Brian Kernighan on Computerphile Channel:
 [^6f]: <https://en.wikipedia.org/wiki/Uniplex>
 [^7f]: <https://en.wikipedia.org/wiki/C23_(C_standard_revision)>
 [^8f]: <http://ibgwww.colorado.edu/~lessem/psyc5112/usail/concepts/hx-of-unix/unixhx.html>
+[^9f]: <https://web.mit.edu/multics-history/>
+[^10f]: <https://en.wikipedia.org/wiki/CD-ROM>
+[^11f]: <https://gunkies.org/wiki/UNIX_Fourth_Edition>
 
 ```{disqus}
 :disqus_identifier: 16bb8ea0-6ed7-4c5c-9718-41a6a39001ce

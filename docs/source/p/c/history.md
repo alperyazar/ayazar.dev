@@ -151,6 +151,8 @@ introduce new language features. It was intended to correct various defects in
 the C11 standard. From a technical perspective, these two standards are
 considered to be the same.
 
+**C17 ≈ C11**
+
 The next standard following C17 is C23, which is nearing its finalization. It is
 anticipated to be officially published in 2024 [^3f], [^4f], [^7f].
 

@@ -295,6 +295,11 @@ Brian Kernighan on Computerphile Channel:
 
 You can also check out this interview: [Brian Kernighan and Lex Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo)
 
+For those interested in the history of computing, I highly recommend visiting
+[the personal page of Dennis M. Ritchie](https://www.bell-labs.com/usr/dmr/www/)
+on the Bell Labs website. It's a valuable resource for insights into the
+development of key technologies.
+
 ## Resources
 
 - <https://en.wikipedia.org/wiki/The_C_Programming_Language>

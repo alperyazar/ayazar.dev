@@ -6,10 +6,10 @@ C is an **artificial language**. You might say
 > interesting, it should be artificial since it is a programming language, a
 > language for computers not for humans, right?
 
-Yes, this argument makes sense.
-However, some programming languages are closer to natural languages (human
-languages, like English or Turkish) than others. Consider our old friend
-[COBOL](https://en.wikipedia.org/wiki/COBOL), from the 60s.
+Indeed, this argument holds merit. However, it's noteworthy that some
+programming languages bear a closer resemblance to natural languages, such as
+English or Turkish, compared to others. Take, for instance, our venerable
+[COBOL](https://en.wikipedia.org/wiki/COBOL), which dates back to the 1960s.
 
 ```cobol
 ADD 1 TO x

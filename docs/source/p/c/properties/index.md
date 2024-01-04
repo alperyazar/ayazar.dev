@@ -1,14 +1,15 @@
 # 🌈 Properties of C
 
-**What kind of language is C?** Any programming language can be categorized from
-different perspectives. These categories are also called as **paradigms**.
-Properties of C and the paradigms that C belong are listed below.
+**What kind of language is C?** Programming languages can be categorized from
+various perspectives, often referred to as **paradigms**. The characteristics of
+the C programming language and the paradigms it belongs to are listed below.
 
-As in real life, a property is not 0/1. Most of them lay on a scale. For a
-feature x, one can say that "C language is not as much x as language Y".
-Furthermore, in another resource, C can be said belonging to different paradigm
-or category. Some of them are open to discussion. The followings reflect my personal
-understanding.
+Just as in real life, characteristics of programming languages aren't simply
+binary (0/1); they often exist on a spectrum. For a given feature 'x', one might
+say, 'The C language doesn't embody feature x as strongly as language Y.'
+Moreover, different sources might classify C under varying paradigms or
+categories, and some of these classifications can be subjective. The following
+points reflect my personal understanding of these aspects.
 
 ```{toctree}
 ---

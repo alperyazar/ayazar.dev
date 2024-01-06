@@ -4,20 +4,26 @@
 I recommend reading [](statically-typed.md) first if you haven't read it yet.
 ```
 
-Almost all languages do some type checking and apply type related rules. Some
-languages are more *paranoid* on types. They have strict rules and want
-programmers to explicitly indicate type conversions and do minimal implicit type
-conversions. They are **strongly typed** languages. On the other hand, **weakly
-typed** languages are more permissive towards type rules, they do not hesitate
-to do an implicit conversion wherever it is needed. This is related to a concept
-called [type safety](https://en.wikipedia.org/wiki/Type_safety) concept.
+Nearly all programming languages implement some form of type-checking and
+enforce type-related rules, but they vary in the degree of strictness with which
+they do so. Languages that are more *paranoid* about types tend to have
+stringent rules. These **strongly typed languages** require programmers to
+explicitly declare type conversions and minimize implicit type conversions. In
+contrast, **weakly typed languages** take a more lenient approach to type rules.
+They readily perform implicit conversions as needed, often prioritizing
+convenience or flexibility over strict type adherence. This distinction ties
+into the broader concept of [type
+safety](https://en.wikipedia.org/wiki/Type_safety), which concerns how a
+language prevents type errors and manages conversions between different types.
 
-Unlike most of the categories and paradigms, *strength* of the type system is a
-continuum. Some languages have *stronger* type rules than others. IMHO, this is
-one of the most controversial categories. Considering C, you can find many
-resources on the Internet on this topic. Some of them say that C is weakly typed
-and others say the opposite. Interesting, right? Let's see what the authors of
-The C Programming Language book (K&R C) about this topic.
+The concept of a type system's *strength* in programming languages exists on a
+continuum, with some languages enforcing *stronger* type rules than others. This
+categorization can be quite controversial. When it comes to C, for instance,
+you'll find a diverse range of opinions online. Some sources categorize C as
+weakly typed, while others assert it is strongly typed. This disparity in views
+makes the discussion particularly interesting. To gain a clearer understanding,
+let's explore what the authors of The C Programming Language book (often
+referred to as K&R C) have to say on this topic.
 
 > C is not a strongly-typed language in the sense of Pascal or Algol 68. It is
 > relatively permissive about data conversion, although it will not
@@ -25,41 +31,57 @@ The C Programming Language book (K&R C) about this topic.
 > compilers provide no run-time checking of array subscripts, argument types,
 > etc.
 
-This quote is from the 3rd page of the first edition (1978) of the book.
+The quote we'll be examining is from the third page of the first edition (1978)
+of The C Programming Language book.
 
-As we can see that the *bosses* didn't put C in the strongly typed languages.
-But also, they didn't tag the C language as a weakly typed language explicitly.
-In the book, they suggest usage of
-[linter](https://en.wikipedia.org/wiki/Lint_(software)) tools to make the
-type system and type checking rules stronger.
+From the authors' perspective, it is clear that they did not categorize C as a
+strongly typed language. However, it's also noteworthy that they did not
+explicitly label C as a weakly typed language either. In 'The C Programming
+Language' book, they recommend the use of [linter
+tools](https://en.wikipedia.org/wiki/Lint_(software)) to enhance the strength of
+the type system and type checking rules in C. This suggests an acknowledgment of
+C’s flexibility in type enforcement, and the potential to bolster its type
+safety through additional tools.
 
-The second edition of the book was published in 1988 and this edition almost
-covers ANSI C. In that book, the authors say that
+The second edition of The C Programming Language published in 1988, aligns
+closely with the ANSI C standard. In this edition, the authors provide updated
+insights and perspectives that reflect the developments and standardizations in
+C programming. They state:
 
 > C is not a strongly-typed language, but as it has evolved, its type-checking
 > has been strengthened.
 
-After that, improvements taken to make the language type system stronger are
-explained.
-
-The C language set the programmer free as much as possible. The programmer has
-the highest responsibility. The language itself doesn't check what the
-programmer is doing too much. Since it is designed to write an operating system
-and very low level tools, the programmer should be able to do some memory
-tricks. This is the philosophy behind the language. The book follows as:
+In the subsequent sections, the book delves into the enhancements made to
+strengthen the type system in C. One of the core philosophies of the C language
+is to offer maximum freedom to the programmer, which, in turn, places a high
+degree of responsibility on them. C does not extensively police the programmer's
+actions. This design choice is rooted in C's intended use for developing
+operating systems and low-level tools, where the ability to perform memory
+manipulation and other advanced techniques is crucial. The book continues to
+explain this philosophy, stating:
 
 > Nevertheless, C retains the basic philosophy that programmers know what they
 > are doing; it only requires that they state their intentions explicitly.
 
-As you see, if you program in C you should know what are you doing.
-
-**If we think of a line with two ends, the C language is positioned close to the
-weak end. So, C is a weakly typed language.**
+As highlighted, programming in C requires a deep understanding of what you are
+doing, given the language's design philosophy. If we envision a continuum
+representing type system strength, with *strongly typed* at one end and *weakly
+typed* at the other, C would be placed nearer to the *weakly typed* end.
+Therefore, **it can be characterized as a weakly typed language**, reflecting its
+emphasis on programmer freedom and responsibility, rather than stringent type
+enforcement.
 
 ```{important}
-Please keep in mind that this topic isn't related to being a statically typed or
-dynamically typed language. Python is a dynamically and strongly typed language,
-whereas C is a statically and weakly typed language.
+It's important to remember that the concept of a language being 'strongly' or
+'weakly' typed is distinct from it being 'statically' or 'dynamically' typed.
+These are separate dimensions of classifying programming languages. For
+instance, Python is categorized as a dynamically typed language, yet it is also
+considered strongly typed due to its strict enforcement of type rules at
+runtime. On the other hand, C is a statically typed language, as types are
+determined at compile time, but it is often viewed as weakly typed because of
+its more permissive approach to type conversions and enforcement. Understanding
+this distinction helps in comprehensively grasping the type systems of various
+programming languages.
 ```
 
 C is considered as a weakly typed language because it does some implicit type
@@ -98,6 +120,10 @@ see JavaScript.
 ## Related
 
 - <https://medium.com/android-news/magic-lies-here-statically-typed-vs-dynamically-typed-languages-d151c7f95e2b>
+  There is one point about this article that puzzles me. My knowledge of C++ is
+  limited, but I don't think that C++ is more weakly typed than C, as indicated
+  in this article. C++ has stricter rules regarding implicit type conversion
+  compared to C.
 
 The following video is about JavaScript but explains the concepts well.
 

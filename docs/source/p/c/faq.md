@@ -1,30 +1,26 @@
 # ❓ FAQ
 
-On this page, I will be answering frequently asked questions that I come across
-(that I have been asked directly or that I have heard being asked).
+On this page, I will answer frequently asked questions that I've encountered,
+either through direct queries or from discussions I've heard.
 
-## Can I learn C from reading the standards?
+## Is it possible to learn C by studying the standards?
 
-**Probably not.** C standard documentation is written in a way that people who
-know C can understand it. The main target audience of these documents is people
-or institutions that write C compilers. Standard documents are not prepared to
-explain the language step by step to people learning the language. Even if you
-know the C language, there will be many moments when you will have difficulty
-reading the standards. Even the English used in these documents makes it
-difficult to understand. For example, just as we ordinary people cannot
-understand legal concepts and terms without being a lawyer, even if they are in
-English, it is not easy for C programmers to understand standard documents. It
-is not surprising to see discussions where there is no full consensus on
-standards, even in expert environments such as Stack Overflow. Even standards
-may have parts that are explained incompletely. Even though their accuracy is
-very high, they do not serve "the absolute truth."
+**Probably not.** The C standard documentation is tailored for individuals who
+already have a grasp of the C language. Its primary audience is those involved
+in writing C compilers, not beginners learning the language. Even for someone
+familiar with C, the standards can be challenging to understand. The technical
+language and complex terminology used in these documents are akin to legal
+texts, which can be difficult to comprehend without specialized knowledge. This
+complexity often leads to discussions and debates among experts, even on
+platforms like Stack Overflow, indicating that the standards can be open to
+interpretation and may contain ambiguously explained sections.
 
-**In summary:** It is not practically possible for a person who wants to learn C
-to learn the language by reading the standards. Standard documents are reference
-documents that can be understood after learning the language and are consulted
-not too frequently.
+**In summary:** For someone looking to learn C, it's not practical to rely
+solely on the standard documents. These are reference materials best utilized
+for consultation and deeper understanding once the language has been learned,
+rather than as primary learning resources.
 
-## Are C standards backward compatible?
+## Do C standards maintain backward compatibility?
 
 *Can I smoothly compile and run a program I wrote in accordance with an old
 standard with a compiler that works in accordance with a new standard?* question

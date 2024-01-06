@@ -156,6 +156,8 @@ considered to be the same.
 The next standard following C17 is C23, which is nearing its finalization. It is
 anticipated to be officially published in 2024 [^3f], [^4f], [^7f].
 
+## Standards Summarized
+
 In the table provided, you'll find a concise summary of all the standards. While
 each standard is designated an official name, they are commonly known by their
 informal names. It's important to note again that the C23 standard has not been

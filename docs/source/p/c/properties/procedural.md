@@ -1,15 +1,20 @@
 # 〽 procedural
 
-**Procedural programming** (**prosedürel programlama** in Turkish) paradigm is a
-subset of imperative programming paradigm. Another famous paradigm under
-imperative programming is **object-oriented programming** (**OOP**) (**nesne
-yönelimli programlama** in Turkish) [^2f]. **C is a very good example of
-procedural programming [^1f].**
+The procedural programming paradigm, known as 'prosedürel programlama' in
+Turkish, is a subset of the broader imperative programming paradigm. Another
+well-known category under imperative programming is object-oriented programming
+(OOP), or 'nesne yönelimli programlama' in Turkish [^2f]. C serves as a prime
+example of procedural programming, illustrating the paradigm's characteristics
+effectively [^1f].
 
-Procedural programming is a paradigm based on [functional
-decomposition](https://www.investopedia.com/terms/f/functional-decomposition.asp)
-idea. Procedural programming reflects the [divide and
-conquer](https://en.wikipedia.org/wiki/Divide_and_rule) approach.
+Procedural programming is a programming paradigm that embodies the idea of
+[functional
+decomposition](https://www.investopedia.com/terms/f/functional-decomposition.asp).
+This approach is akin to the [divide and
+conquer](https://en.wikipedia.org/wiki/Divide_and_rule) strategy, where larger
+problems are broken down into smaller, more manageable functions or procedures.
+Each of these functions addresses a specific part of the task, working together
+to solve the overall problem.
 
 ```{figure} assets/Philip-ii-of-macedon.jpg
 :align: center
@@ -17,17 +22,23 @@ conquer](https://en.wikipedia.org/wiki/Divide_and_rule) approach.
 Philip II of Macedon: "Did somebody say divide and conquer?" [Origin](https://upload.wikimedia.org/wikipedia/commons/a/a5/Philip-ii-of-macedon.jpg)
 ```
 
-As programmers programming in C, we take the problem and break it down to
-smaller problems. Then we write C functions to solve each smaller problem.
-Finally, these C functions which solve a smaller part of the original problem
-are combined to solve the given original problem. Depending on programming
-language, part of the program that solves the smaller problem can be called
-*function* (as in C), *procedure*, *routine*, *subroutine*, *method*, etc.
+When programming in C, programmers typically approach a problem by breaking it
+down into smaller, more manageable components. For each of these smaller
+problems, specific C functions are written. These functions, each addressing a
+distinct segment of the original problem, are then combined to form a complete
+solution. It's worth noting that in different programming languages, the parts
+of the program that solve these smaller problems may be referred to by various
+terms, such as *function* (as in C), *procedure*, *routine*, *subroutine*, or
+*method*.
 
-For example, let's say that our problem is getting an integer from the user and
-printing `true` if the given value is divisible by 3 and `false` otherwise.
-Although this is a very simple example, we can divide it into sub-problems and
-write a C function for each sub-problem.
+Consider a simple task: we need to write a program that takes an integer input
+from the user and prints 'true' if the number is divisible by 3, and 'false'
+otherwise. Even though this is a straightforward example, it can still be
+divided into sub-problems. For each sub-problem, we can create a dedicated C
+function. These sub-problems could include functions for getting the user input,
+checking divisibility by 3, and displaying the result. By addressing each of
+these aspects separately, we effectively apply the procedural programming
+approach in C.
 
 ```c
 #include <stdio.h>
@@ -53,44 +64,51 @@ int main(void) {
 }
 ```
 
-As you can see, we write C functions (procedures) to get an integer from user
-and check divisibility by 3. Then we *call* the functions from main flow to
-solve the original problem. Calling procedures by controlling flow is the
-fundamental idea behind procedural programming. For example, `get_input()` asks
-the user to enter a number and returns that number. This is a part of the
-problem, getting a number from the user. The other function, `isDivisibleby3()`,
-solves another part of the problem: checking divisibility of a number by 3.
-These two functions are completely independent of each other, and they are not
-aware about other's existence. In `main()`, there are called in a logical order.
-This is the main motivation behind the procedural programming: divide, conquer
-and build the solution.
+In this procedural programming example, we create separate C functions (or
+procedures) to handle different aspects of the problem. One function,
+`get_input()`, is responsible for obtaining an integer from the user. This
+addresses the sub-problem of user input. Another function, `isDivisibleby3()`,
+checks whether the given number is divisible by 3, tackling another aspect of
+the problem. These two functions operate independently; they do not interact
+with or are aware of each other.
 
-Along with Procedural Programming there are many [programming
-paradigms](https://en.wikipedia.org/wiki/Programming_paradigm) like [Object
-Oriented
-Programming](https://en.wikipedia.org/wiki/Object-oriented_programming) (kind
-of imperative programming), [Functional
-Programming](https://en.wikipedia.org/wiki/Functional_programming) (declarative
-programming), etc. Notice that a programming language can support coding in
-multiple paradigms. For example, one can write C programming style C++ codes
-following procedural programming practices. However, C++ is a very well-known
-object-oriented language. Furthermore, C++ supports some functional programming
-features [^3f]. There is even a [separate book
-](https://www.amazon.com/Functional-Programming-programs-functional-techniques/dp/1617293814)for
-that. Most of the programming languages like C++, Python, PHP are
-*multi-paradigm languages.* But we can say that some languages like
-[Smalltalk](https://en.wikipedia.org/wiki/Smalltalk) are intended to use with a
-single paradigm. For example,
-[Smalltalk](https://en.wikipedia.org/wiki/Smalltalk) is a *pure* object-oriented
-programming language.
+In the `main()` function, we call these procedures in a logical sequence to
+solve the original task. The essence of procedural programming lies in this
+methodology: break down the problem into smaller, manageable units (**divide**),
+solve each unit separately (**conquer**)**, and then integrate these solutions
+to address the overall problem (**build**). This approach allows for clear,
+organized, and modular programming.
 
-It is the language designer's choice that a programming language will or will
-not support a certain paradigm. For a given language, programming in a supported
-paradigm is easier because the language is designed to support that paradigm.
-But this doesn't mean that one can't write a program in not natively supported
-paradigm. For example, C is not an object-oriented programming language. But one
-can write C programs with object-oriented approach. There is even a book for
-that!
+Alongside Procedural Programming, there are several other [programming
+paradigms](https://en.wikipedia.org/wiki/Programming_paradigm), such as [Object
+Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
+(a form of imperative programming) and [Functional
+Programming](https://en.wikipedia.org/wiki/Functional_programming) (a type of
+declarative programming). It's important to note that many programming languages
+support multiple paradigms. For instance, although C++ is renowned for its
+object-oriented capabilities, it is possible to write C-style code in C++
+adhering to procedural programming practices. Moreover, C++ incorporates some
+functional programming features [^3f], which are even the subject of a
+[dedicated
+book.](https://www.amazon.com/Functional-Programming-programs-functional-techniques/dp/1617293814)
+
+Similarly, languages like Python and PHP are also *multi-paradigm*, allowing
+programmers to choose the most suitable approach for their needs. However, some
+languages are designed with a specific paradigm in mind. A prime example is
+[Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), which is purely
+object-oriented. This illustrates that while many modern languages offer
+versatility in programming styles, some are still tailored for a singular
+paradigmatic approach.
+
+The decision to support certain programming paradigms within a language rests
+with its designers. When a language is specifically designed for a particular
+paradigm, programming within that style is typically more straightforward.
+However, this doesn't mean that programmers are restricted to only the paradigms
+natively supported by the language. Take C, for instance. Although it's not
+inherently an object-oriented programming language, it's still possible to adopt
+an object-oriented approach in C programming. This versatility is exemplified by
+the existence of books and resources dedicated to object-oriented programming in
+C.
 
 ```{figure} assets/procedural-oop-with-c.jpg
 :align: center
@@ -98,40 +116,39 @@ that!
 Object-Oriented Programming With ANSI-C by Axel Schreiner
 ```
 
-Of course if the main aim is programming with object-oriented approach then C
-isn't a good choice because this approach is not *native* in C. But you can make
-it work…
+Indeed, if the primary goal is to employ an object-oriented approach, C might
+not be the ideal choice. This is because object-oriented programming is not a
+*native* feature of C. However, with some effort and adaptation, it is possible
+to make object-oriented programming work within the context of C.
 
 ## Computer Architecture and Procedural Programming
 
-Previously, I said that imperative programming paradigm is a natural way of
-programming if we consider processor architectures.
+Earlier, I mentioned that the imperative programming paradigm aligns naturally
+with the way processor architectures are designed. This perspective considers
+the sequential and direct order-driven nature of processor operations, which
+is characteristic of imperative programming.
 
 ```{note}
 Recommended: [](imperative.md)
 ```
 
-This is also true for procedural programming. All processors (including ancient
-ones) natively support routines (functions in C). Almost all processors have
-instructions like `GOSUB` (go to subroutine) or `RET` (return from subroutine).
-If we write an assembly code, that program will consist of (imperative)
-instructions and some subroutines (procedures). At the end of the day,
-programming in C is similar to programming in assembly but of course much
-easier.
+Procedural programming, like imperative programming, naturally fits with how
+processors operate. Processors, even the earliest models, inherently support
+routines, akin to functions in C. Instructions such as `GOSUB` (go to subroutine)
+or `RET` (return from subroutine) are commonplace in processor instruction sets.
+Writing in assembly involves using these imperative instructions and organizing
+code into subroutines or procedures. In essence, programming in C is similar to
+assembly programming, but with a much higher level of abstraction and ease.
 
-Comparing to object-oriented programming, procedural programming are more native
-way of programming considering computer architecture. However, as I said
-previously, this doesn't mean that one is a better way of programming than the
-other. It solely depends on your needs.
+When compared to object-oriented programming, procedural programming can be seen
+as more in line with the native functioning of computer architecture. However,
+as I've previously mentioned, this doesn't imply that one paradigm is inherently
+superior to the other. The choice largely depends on the specific requirements
+of your project.
 
-**In summary, C is a programming language that supports procedural programming
-paradigm.**
-
-## Resources
-
-- <https://en.wikipedia.org/wiki/C_(programming_language)>
-- Personal notes from [Necati Ergin](https://github.com/necatiergin/)'s C
-  course.
+To summarize, C is a language that fundamentally supports the procedural
+programming paradigm, aligning closely with the underlying architecture of
+processors.
 
 [^1f]: <https://en.wikipedia.org/wiki/Procedural_programming>
 [^2f]: <https://en.wikipedia.org/wiki/Object-oriented_programming>

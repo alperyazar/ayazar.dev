@@ -1,5 +1,12 @@
 # Miscellaneous
 
+```{toctree}
+---
+maxdepth: 1
+---
+disclaimer.md
+```
+
 Helper pages
 
 ```{toctree}

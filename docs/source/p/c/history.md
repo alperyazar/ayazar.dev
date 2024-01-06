@@ -293,6 +293,8 @@ bit of history.
 Brian Kernighan on Computerphile Channel:
 
 ```{youtube} de2Hsvxaf8M
+:align: center
+:width: 100%
 ```
 
 You can also check out this interview: [Brian Kernighan and Lex Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo)

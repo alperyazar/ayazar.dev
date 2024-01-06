@@ -1,45 +1,53 @@
 # 👜 portable
 
-Portability is a measure of easiness of porting a program written for an
-architecture/platform to another architecture/platform. One of the least
-portable languages is assembly language. Assembly programs are considered to be
-non-portable since Instruction Set Architecture (ISA) of each processor family
-is different. C is different. In general, most C programs can be ported easily
-(with relatively low effort) to another platform/processor, as long as there is
-a compiler for the target system. This is why rewriting UNIX in C was a very
-crucial step for UNIX history back in the 70s because it made porting the
-operating system to other architectures much easier (comparing to porting an
-operating system purely written in assembly).
+Portability refers to how easily a program written for one architecture or
+platform can be transferred to another. Assembly language is typically at the
+lower end of the portability spectrum. This is because assembly programs are
+closely tied to the Instruction Set Architecture (ISA) of specific processor
+families, which varies greatly. C, on the other hand, stands in stark contrast.
+Generally, most C programs can be relatively easily ported to different
+platforms or processors, provided there's a compatible compiler available for
+the target system. This characteristic of C was a pivotal factor in the history
+of UNIX. In the 1970s, rewriting UNIX in C was a critical step, as it
+significantly simplified the process of porting the operating system to various
+architectures, unlike an operating system written purely in assembly.
 
 Recommended: [](../history.md)
 
-**C is a source-level portable language.** When a C program is compiled, it is
-compiled for a specific platform or architecture. In general, the final
-executable binary file is only compatible for the target system. For example, a
-binary compiled for an x86/Windows system won't run x86/Linux or any ARM
-architecture. The same source code has to be compiled for all target systems
-separately with little or no modification. This is why C is portable at source
-code level. Since C is a relatively low level language, sometime it is called as
-a **portable assembly language**.
+C is characterized as a source-level portable language. This means that while a
+C program must be compiled for a specific platform or architecture, the original
+source code itself is highly portable. The compiled executable, however, is
+typically only compatible with the target system for which it was compiled. For
+instance, a binary file compiled for an x86/Windows system will not run on
+x86/Linux or any ARM architecture. To make the program run on different systems,
+the same source code needs to be compiled separately for each target system,
+usually with little to no modification. This attribute is why C is considered
+portable at the source code level. Given its relatively low-level nature, C is
+sometimes referred to as a **portable assembly language.**
 
 ```{warning}
-Keep in mind that, in theory C is portable, but in
-practice due to different natures of operating systems, architectural details
-and implementation defined behaviors of compilers, porting a fairly complex C
-program is not as easy as it sounds.
+While C is theoretically a portable language, the practicalities of porting a
+complex C program can be challenging due to several factors. These include
+differences in operating systems, specific architectural details, and the
+implementation-defined behaviors of various compilers. As a result, while the
+core language is designed for portability, the real-world process of adapting a
+C program for different systems might not be as straightforward as it initially
+seems.
 ```
 
 Recommended: [](middle-low-level.md)
 
-Source code level portability was a *miracle* for assembly programmers. However,
-the industry has invented other portability levels. For example, programs
-written in C# and Java are called binary portable languages. Compilers of those
-languages create machine-independent intermediate code. Then, it is run by a
-sort of runtime software (like Java Runtime Environment) on the target platform.
-This makes running the same binary file on different platforms possible. Of
-course, binary portable languages need different runtime software for each
-target platform, just as different source-level portable languages need
-different compilers for portability.
+The concept of source code level portability, as seen in C, was revolutionary
+for programmers accustomed to assembly language. However, the industry has since
+developed other levels of portability. For instance, languages like C# and Java
+are known for their binary portability. The compilers for these languages
+generate machine-independent intermediate code, which is then executed on the
+target platform by a runtime environment, such as the Java Runtime Environment.
+This approach enables the same binary file to run across different platforms.
+It's important to note, however, that just as source-level portable languages
+like C require different compilers for each target platform, binary portable
+languages like C# and Java need specific runtime environments for each platform
+to ensure their portability.
 
 ## Related
 
@@ -51,12 +59,6 @@ different compilers for portability.
   anywhere](https://en.wikipedia.org/wiki/Write_once,_compile_anywhere)
 - [Write once, run anywhere (WORA)](https://en.wikipedia.org/wiki/Write_once,_compile_anywhere)
   Not a term for C, but for Java.
-
-## References
-
-- Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
-- Personal notes from [Kaan Aslan](https://csystem.org/)'s Unix/Linux System
-  Programming Course
 
 ```{disqus}
 :disqus_identifier: 26064ba0-766f-438a-b8d3-ec4fc66222d5

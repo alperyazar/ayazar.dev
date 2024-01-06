@@ -1,27 +1,24 @@
 # ⭕ general purpose
 
-**C is a** [**General-purpose programming
-language**](https://en.wikipedia.org/wiki/General-purpose_programming_language).
-It can be used to solve different problems on many platforms (embedded,
-Windows/Linux, x86/ARM/RISC-V, etc.) efficiently. This is true because C is not
-designed and optimized for a specific problem type or an architecture. Almost
-all known languages like C, C++, C#, Java, JavaScript, Python are in that
-category.
+C is a [General-purpose programming
+language](https://en.wikipedia.org/wiki/General-purpose_programming_language).
+Its efficiency across various platforms — including embedded systems,
+Windows/Linux operating systems, and diverse architectures like x86, ARM, and
+RISC-V — and various problems stems from its design. Unlike languages tailored
+for specific problem types or architectures, C is broadly applicable. This
+characteristic is shared by many well-known languages such as C++, C#, Java,
+JavaScript, and Python, all of which fall under the general-purpose category.
 
-However, some languages are created to solve some specific domain problems or to
-program some special pieces of hardware, like FPGAs. These languages are called
-[Domain-specific languages
-(DSL)](https://en.wikipedia.org/wiki/Domain-specific_language). SQL and HDL
-languages like Verilog, VHDL are DSL examples.
+However, there are languages specifically designed for certain domains or to
+program specialized hardware, such as FPGAs. These are known as [Domain-Specific
+Languages (DSLs)](https://en.wikipedia.org/wiki/Domain-specific_language). For
+instance, SQL is tailored for database queries, while HDLs like Verilog and VHDL
+are used for programming FPGAs.
 
 ## Related
 
 - [List of some domain-specific
   languages](https://en.wikipedia.org/wiki/Category:Domain-specific_programming_languages)
-
-## References
-
-- Personal notes from [Necati Ergin](https://github.com/necatiergin)'s C course
 
 ```{disqus}
 :disqus_identifier: 6ee194a8-c1f9-488c-b7cc-2aa0cca21bc8

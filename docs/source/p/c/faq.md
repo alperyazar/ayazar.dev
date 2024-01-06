@@ -22,38 +22,36 @@ rather than as primary learning resources.
 
 ## Do C standards maintain backward compatibility?
 
-*Can I smoothly compile and run a program I wrote in accordance with an old
-standard with a compiler that works in accordance with a new standard?* question
-is a different way of asking this question. Although C standards are very
-sensitive about backward compatibility, it would not be correct to call it
-"absolutely backwards compatible". There may also be features that are removed
-from the language with new standards. Similarly, there may be some components
-that are removed from the standard library.
+Another way to ask about C standards' backward compatibility is: *Can a program
+written in accordance with an older standard be smoothly compiled and run using
+a compiler that adheres to a newer standard?* While C standards are generally
+careful to maintain backward compatibility, it wouldn't be accurate to describe
+them as 'absolutely backwards compatible'. There are instances where features
+are removed from the language or standard library in new standards.
 
-When a feature is to be removed from the language, they are not removed
-immediately. Features to be removed are usually marked as **deprecated** in
-advance. If a feature is marked as deprecated in a new standard, we as
-programmers need to stop using them. Because these features will be completely
-removed in the near or distant future.
+Before a feature is completely removed, it is typically marked as **deprecated**
+in the newer standard. This marking serves as a warning to programmers to cease
+using these features, as they are slated for eventual removal in future updates.
 
-With compilers, the topic is little bit different. Compilers can often be even
-more *lenient* about backwards compatibility. Even if various features are
-removed from the language, compilers can act as if these features are still
-supported in their new versions. Of course, this behavior of compilers (strictly
-adhering to standards or turning a blind eye to certain things) is usually
-controllable externally (with compiler switches, not mentioning about `switch`
-in `switch case`).
+The approach of compilers to backward compatibility can differ slightly. Often,
+compilers are more *lenient* in this regard. They may continue to support
+features that have been removed from the language in their newer versions. This
+behavior, whether it's a strict adherence to the latest standards or a more
+flexible approach, can usually be controlled externally through compiler
+switches (not to be confused with the `switch` statement in `switch case`).
 
-## Is C in C++ language the same as "the C programming language?"
+## Does the C included in C++ correspond exactly to 'the C programming language'?
 
-C++ is a much larger programming language than C. We can say that there is a "C
-core" in C++. We can write codes in C++ as if we were writing in C. But C in C++
-and the separate programming language we call "C" are not exactly the same.
-Still, it wouldn't be wrong to say that there is a 70-80% similarity. Some of
-the features added to the C language, especially with C99, are not available in
-C++. Therefore, we must be careful when writing C-style code in C++ and when
-transferring C-style codes written in C++ to the C language.
-C++ **is NOT** a new version of C. C++ is a separate language.
+C++ is a more expansive programming language compared to C. It includes a 'C
+core', meaning that codes can be written in C++ in a way that is *reminiscent* of
+writing in C. However, it's important to understand that the 'C' within C++ and
+the standalone C programming language are not identical. Roughly speaking, there
+is about a 70-80% similarity between them. Notably, some features introduced in
+C99 are not incorporated into C++, which requires careful consideration when
+writing C-style code in C++ or transferring such code from C++ to C.
+
+It's crucial to recognize that C++ is **not** merely an updated version of C; it
+is a distinct language with its own set of rules and features.
 
 ## What is MISRA C?
 

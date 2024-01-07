@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <meta property="article:modified_time" content="2024-01-06T10:34:14+00:00" /><meta property="og:title" content="⚓ statically typed" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ayazar.dev/p/c/properties/statically-typed.html" />
+<meta property="og:site_name" content="ayazar.dev" />
+<meta property="og:description" content="Almost all programming languages feature a type system, referred to as ‘tür’ in Turkish. For example, variables and constants have types associated with them. Most of the languages have rules regar..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚓ statically typed &mdash; ayazar.dev</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/colors.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/table.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/font.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/width.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://ayazar.dev/p/c/properties/statically-typed.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/disqus.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="🏗️ structured" href="structured.html" />
+    <link rel="prev" title="📓 standard" href="standard.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+<!-- Hotjar Tracking Code for ayazar.dev -->
+<script>
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:3813856,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- Buy me a coffee -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ayazar.dev
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                Alper Yazar
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#contact">✉️ Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#education">Education</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#work-experience">Work Experience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#publications">Publications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#patent">Patent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#thesis">Thesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#conference">Conference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#poster">Poster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#lecture-note">Lecture Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#project">Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#funded">Funded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#hobby">Hobby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#phd">PhD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#msc">MSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#bsc">BSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#attended-trainings">Attended Trainings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#embedded-software">Embedded/Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#digital-fpga">Digital/FPGA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#honor-award">Honor &amp; Award</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#membership">Membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#follow">Follow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#site-info">Site Info</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../blog/index.html">Blog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../blog/23/index.html">2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html">🇹🇷 220 saatlik C kursu alınır mı?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#aldigim-kurs">Aldığım kurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#c-ve-sistem-programcilari-dernegi-csd">C ve Sistem Programcıları Derneği (CSD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-kimler-icin-uygun-ve-degil">Kurs kimler için uygun ve değil? 🤷‍♂️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-tarihcesi">Kurs tarihçesi ⏳</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-pahali-ve-uzun-mu-diger-kurumsal-kurslar-udemy">Kurs pahalı 💰 ve uzun mu ⏱️? Diğer kurumsal kurslar? Udemy?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurumsal-ozel-sinif-ders">Kurumsal, özel sınıf ders 🏢</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#gomulu-embedded-c-anlatiliyor-mu">Gömülü (Embedded) C anlatılıyor mu?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#okula-faydasi-olur-mu">Okula faydası olur mu? 🏫</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#mulakatlara-hazirlik">Mülakatlara hazırlık 👔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#programlamayi-yeni-ogrenenler-icin">Programlamayı yeni öğrenenler için? 🐣</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kaan-aslan-vs-necati-ergin">Kaan Aslan vs Necati Ergin ⚔️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#olasi-mutsuzluklar">Olası mutsuzluklar 😔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kursu-alacaklara-oneriler">Kursu alacaklara öneriler 💡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#meraklilara">Meraklılara… 🔍</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Programming</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../history.html">📜 History of C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#s">70s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id4">80s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id6">90s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id7">2000s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#standards-summarized">Standards Summarized</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#unix-and-c">UNIX and C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#long-live-c">Long live C!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#related">Related</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#resources">Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#changelog">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">🌈 Properties of C</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="artifical.html">🤖 artificial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compiled.html">🔨 compiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="efficient.html">💚 efficient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expressive.html">🎨 expressive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="general-purpose.html">⭕ general purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imperative.html">👮 imperative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="middle-low-level.html">⬇ middle-low level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="non-proprietary.html">🆓 non-proprietary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="popuplar.html">🎊 popular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="portable.html">👜 portable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="procedural.html">〽 procedural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard.html">📓 standard</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">⚓ statically typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structured.html">🏗️ structured</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weakly-typed.html">〰 weakly typed</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../glossary/index.html">📖 Glossary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/conforming-compiler.html">conforming compiler (uyan derleyici ?)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/constant-expression.html">constant expression (sabit ifade)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/expression.html">expression (ifade)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/expression-statement.html">expression statement (ifade deyimi)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/non-constant-expression.html">non-constant expression (sabit olmayan ifade)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/null-statement.html">null statement (boş deyim)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../glossary/statement.html">statement (deyim)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../resources.html">📚 Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#standard-documents">Standard Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#web">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#online-compilers">Online Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#exercise">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#books">Books</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html">❓ FAQ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#is-it-possible-to-learn-c-by-studying-the-standards">Is it possible to learn C by studying the standards?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#do-c-standards-maintain-backward-compatibility">Do C standards maintain backward compatibility?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#does-the-c-included-in-c-correspond-exactly-to-the-c-programming-language">Does the C included in C++ correspond exactly to ‘the C programming language’?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#what-is-misra-c">What is MISRA C?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">Miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/disclaimer.html">❗ Disclaimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/todos.html">Todo List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/specimen.html">Specimen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#admonition">Admonition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#todo">Todo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#visual">Visual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#youtube">YouTube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#disqus">Disqus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../follow.html">#️⃣ Follow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ayazar.dev</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Programming</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C</a></li>
+          <li class="breadcrumb-item"><a href="index.html">🌈 Properties of C</a></li>
+      <li class="breadcrumb-item active">⚓ statically typed</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/alperyazar/ayazar.dev/blob/master/docs/source/p/c/properties/statically-typed.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="standard.html" class="btn btn-neutral float-left" title="📓 standard" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structured.html" class="btn btn-neutral float-right" title="🏗️ structured" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="statically-typed">
+<h1>⚓ statically typed<a class="headerlink" href="#statically-typed" title="Permalink to this heading"></a></h1>
+<p>Almost all programming languages feature a <strong>type system</strong>, referred to as ‘tür’
+in Turkish. For example, variables and constants have types associated with
+them. Most of the languages have rules regarding type system, like type
+conversion rules. These rules can be checked at different times. Generally, in
+<strong>compiled languages</strong>, the types of objects are determined and type rules are
+checked during the compilation phase. In contrast, for <strong>interpreted languages</strong>,
+these steps are performed at runtime.</p>
+<p>Therefore, if a language determines object types and enforces type rules at
+compile time, it is classified as a <strong>statically typed language</strong>. Conversely,
+if these steps occur at runtime, the language is considered <strong>dynamically
+typed</strong>. This distinction is crucial in understanding how different languages
+manage and apply their type systems.</p>
+<p>In statically typed languages, the types of objects, such as variables, are
+determined at compile time, and these types remain constant throughout the
+runtime. Once a variable’s type is set, it does not change, regardless of the
+type of value subsequently assigned to it. This consistency in variable types is
+a defining characteristic of statically typed languages.</p>
+<p>Conversely, in dynamically typed languages, a variable’s type is typically
+established with its first assignment. The variable assumes the type of the
+initial value assigned to it. However, unlike in statically typed languages,
+this type can change during execution. If a value of a different type is later
+assigned to the same variable, the variable’s type will adjust to reflect this
+new assignment. This flexibility in variable types is a key feature of
+dynamically typed languages.</p>
+<p>In statically typed languages, because the types of objects remain constant,
+compilers are able to verify the language’s type rules during the compilation
+process. This capability allows for the detection and resolution of most
+type-related errors before the program is even run. On the other hand,
+dynamically typed languages typically perform their type rule checks at runtime.
+As a result, these languages may encounter and throw exceptions during execution
+when a rule violation occurs.</p>
+<p><strong>C is a statically typed language.</strong></p>
+<p>C, C++, and Java are examples of statically typed languages. In these languages,
+the types of variables are determined at compile time and remain unchanged
+during execution. On the other hand, JavaScript, Python, and PHP are dynamically
+typed languages. In these languages, variable types are determined at runtime
+and can change as the program executes <a class="footnote-reference brackets" href="#f" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>Let’s delve into examples to better understand dynamically typed languages,
+starting with Python. In Python, you can use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to determine
+the type of an object. This feature is particularly useful in a dynamically
+typed language, as it allows us to observe how the types of variables can change
+at runtime. Let’s explore some Python code snippets to see this functionality in
+action.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;alper&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot; yazar&quot;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot; yazar&quot;</span>
+</pre></div>
+</div>
+<p>The following output is produced when the program runs</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 8, in &lt;module&gt;
+TypeError: unsupported operand type(s) for +: &#39;float&#39; and &#39;str&#39;
+</pre></div>
+</div>
+<p>In this Python example, we can observe how the type of the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> changes
+implicitly during execution, or at runtime, through assignment of values of
+different types. Consider the expression <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">yazar&quot;</span></code> appearing on both
+line 4 and line 8. Initially, this operation is successful because, at that
+point, <code class="docutils literal notranslate"><span class="pre">x</span></code> is of type <code class="docutils literal notranslate"><span class="pre">str</span></code>, and concatenating (<em>adding</em>) two strings is
+permissible. However, by the time we reach the last line, the type of <code class="docutils literal notranslate"><span class="pre">x</span></code> has
+changed to <code class="docutils literal notranslate"><span class="pre">float</span></code>, and Python does not allow adding a <code class="docutils literal notranslate"><span class="pre">str</span></code> to a <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
+<p>This change in <code class="docutils literal notranslate"><span class="pre">x</span></code>’s type and the resulting <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> on the last line
+underscore Python’s dynamically typed nature. The error is only caught when the
+program is executed and reaches that line, not at the start. This is because
+Python, being dynamically typed, enforces type-related rules during runtime.</p>
+<p>Now, let’s shift our focus to a statically typed language: C. In C, determining
+the type of a variable isn’t as straightforward as in Python, since C lacks a
+built-in function akin to Python’s <code class="docutils literal notranslate"><span class="pre">type()</span></code>. Nevertheless, with the introduction
+of C11, C gained support for <em>generic selection expressions</em>, which, when
+combined with macro definitions, can be used to achieve something similar to
+Python’s <code class="docutils literal notranslate"><span class="pre">type()</span></code> functionality. This approach allows us to infer the type of a
+variable in a way that aligns with C’s statically typed nature <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<p>Let’s examine the following example of a C program. It’s not necessary to
+understand every line in detail. The primary focus is to illustrate how certain
+concepts are implemented in C, particularly in the context of a statically typed
+language. This example will provide insights into how C handles types and other
+programming constructs, even if you’re not fully familiar with all the aspects
+of the language.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// See: https://stackoverflow.com/a/17290414/1766391</span>
+<span class="c1">// Tested with x86-64 gcc 12.2 with default flags on https://godbolt.org/</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+
+<span class="cp">#define typename(x) _Generic((x),        </span><span class="cm">/* Get the name of a type */</span><span class="cp">             \</span>
+<span class="cp">                                                                                  \</span>
+<span class="cp">        _Bool: &quot;_Bool&quot;,                  unsigned char: &quot;unsigned char&quot;,          \</span>
+<span class="cp">         char: &quot;char&quot;,                     signed char: &quot;signed char&quot;,            \</span>
+<span class="cp">    short int: &quot;short int&quot;,         unsigned short int: &quot;unsigned short int&quot;,     \</span>
+<span class="cp">          int: &quot;int&quot;,                     unsigned int: &quot;unsigned int&quot;,           \</span>
+<span class="cp">     long int: &quot;long int&quot;,           unsigned long int: &quot;unsigned long int&quot;,      \</span>
+<span class="cp">long long int: &quot;long long int&quot;, unsigned long long int: &quot;unsigned long long int&quot;, \</span>
+<span class="cp">        float: &quot;float&quot;,                         double: &quot;double&quot;,                 \</span>
+<span class="cp">  long double: &quot;long double&quot;,                   char *: &quot;pointer to char&quot;,        \</span>
+<span class="cp">       void *: &quot;pointer to void&quot;,                int *: &quot;pointer to int&quot;,         \</span>
+<span class="cp">      default: &quot;other&quot;)</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;x is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">typename</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;y is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">typename</span><span class="p">(</span><span class="n">y</span><span class="p">));</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="c1">//Why not error?</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;x is still %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">typename</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;x = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>x is int
+y is double
+x is still int
+x = 3
+</pre></div>
+</div>
+<p>In this C program, we define two variables: <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. Right from the start,
+their types are explicitly declared: <code class="docutils literal notranslate"><span class="pre">x</span></code> is an <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> is a <code class="docutils literal notranslate"><span class="pre">double</span></code>. These
+types remain unchanged throughout the program’s execution. Interestingly,
+partway through the program, we assign the value of <code class="docutils literal notranslate"><span class="pre">y</span></code> (which is a <code class="docutils literal notranslate"><span class="pre">double</span></code>) to
+<code class="docutils literal notranslate"><span class="pre">x</span></code> (an <code class="docutils literal notranslate"><span class="pre">int</span></code> type variable). Why doesn’t this cause an error, either at
+compilation or runtime?</p>
+<p>The reason is C’s handling of implicit type conversion. During the assignment,
+the <code class="docutils literal notranslate"><span class="pre">double</span></code> value 3.4 is implicitly converted to an <code class="docutils literal notranslate"><span class="pre">int</span></code>. This results in a
+<em>hidden</em> and <em>temporary</em> integer object with the value 3. This implicit
+conversion aligns with C’s type rules and is distinct from the concept of static
+type checking. It’s crucial to note that despite this value assignment, the type
+of <code class="docutils literal notranslate"><span class="pre">x</span></code> remains <code class="docutils literal notranslate"><span class="pre">int</span></code>, showcasing the constancy of types in statically typed
+languages.</p>
+<p>Let’s examine another C programming example where the code fails to compile. In
+this case, we encounter an error that prevents the creation of an executable
+file, stopping us from even testing the code.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Tested with x86-64 gcc 12.2 with default flags on https://godbolt.org/</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">p3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output from the compiler (not the output of the program) follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;source&gt;: In function &#39;main&#39;:
+&lt;source&gt;:3:13: error: invalid operands to binary + (have &#39;int *&#39; and &#39;int *&#39;)
+    3 |     p3 = p1 + p2;
+      |             ^
+ASM generation compiler returned: 1
+</pre></div>
+</div>
+<p>The reason this C program is invalid lies in the attempted operation: adding two
+pointers. In C, pointer addition is not a valid operation. While the underlying
+rationale for this is beyond the current scope, the key takeaway is that this
+violation is caught during the compilation phase. As C is a statically typed
+language, its compiler is able to check and enforce type-related rules during
+compilation. This means that errors can be identified and addressed before the
+program even reaches the execution stage.</p>
+<section id="related">
+<h2>Related<a class="headerlink" href="#related" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.baeldung.com/cs/statically-vs-dynamically-typed-languages">https://www.baeldung.com/cs/statically-vs-dynamically-typed-languages</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/android-news/magic-lies-here-statically-typed-vs-dynamically-typed-languages-d151c7f95e2b">https://medium.com/android-news/magic-lies-here-statically-typed-vs-dynamically-typed-languages-d151c7f95e2b</a>
+There is one point about this article that puzzles me. My knowledge of C++ is
+limited, but I don’t think that C++ is more weakly typed than C, as indicated
+in this article. C++ has stricter rules regarding implicit type conversion
+compared to C.</p></li>
+</ul>
+<p>The following video is about JavaScript but explains the concepts well.</p>
+<div class="video_wrapper align-center" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; text-align: center; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/C5fr0LZLMAs" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div><p>Good and short explanation</p>
+<div data-disqus-identifier="a872244f-d897-4432-923d-efc25d11375f" data-disqus-shortname="ayazardev" id="disqus_thread"></div><hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://stackoverflow.com/a/1517670/1766391">https://stackoverflow.com/a/1517670/1766391</a></p>
+</aside>
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Glossary/Static_typing">https://developer.mozilla.org/en-US/docs/Glossary/Static_typing</a></p>
+</aside>
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://www.robertgamble.net/2012/01/c11-generic-selections.html">http://www.robertgamble.net/2012/01/c11-generic-selections.html</a></p>
+</aside>
+<aside class="footnote brackets" id="id7" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://stackoverflow.com/a/17290414/1766391">https://stackoverflow.com/a/17290414/1766391</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+             <div class="articleComments">
+<hr>
+<p><center><h3>❤️ Like it ?</h3></center></p>
+<p><center>Then, may be you can</center></p>
+<p><center><a href="https://www.buymeacoffee.com/ayazar" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a></center></p>
+<p><center>and share this page with your friends.</center></p>
+
+             </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="standard.html" class="btn btn-neutral float-left" title="📓 standard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structured.html" class="btn btn-neutral float-right" title="🏗️ structured" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alper Yazar. CC BY-NC-SA 4.0.
+      <span class="lastupdated">Last updated on Jan 06, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHLWHCPSG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FHLWHCPSG0', {
+          'anonymize_ip': false,
+      });
+    </script>
+<!-- Default Statcounter code for ayazar.dev
+https://ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12886228;
+  var sc_invisible=1;
+  var sc_security="027dedf0";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12886228/0/027dedf0/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+
+
+</body>
+</html>

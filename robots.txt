@@ -1,0 +1,4 @@
+Sitemap: https://ayazar.dev/sitemap.xml
+
+User-Agent: *
+Allow: /

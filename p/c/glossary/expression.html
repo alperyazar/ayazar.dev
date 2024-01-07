@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <meta property="article:modified_time" content="2023-11-27T16:15:39+00:00" /><meta property="og:title" content="expression (ifade)" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ayazar.dev/p/c/glossary/expression.html" />
+<meta property="og:site_name" content="ayazar.dev" />
+<meta property="og:description" content="Expression can be defined as a combination of variables (could be extended to identifiers), constants, and operators. An operator without any operand isn’t an expression. Let’s see some examples: N..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>expression (ifade) &mdash; ayazar.dev</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/colors.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/table.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/font.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/width.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://ayazar.dev/p/c/glossary/expression.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/disqus.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="expression statement (ifade deyimi)" href="expression-statement.html" />
+    <link rel="prev" title="constant expression (sabit ifade)" href="constant-expression.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+<!-- Hotjar Tracking Code for ayazar.dev -->
+<script>
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:3813856,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- Buy me a coffee -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ayazar.dev
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                Alper Yazar
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#contact">✉️ Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#education">Education</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#work-experience">Work Experience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#publications">Publications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#patent">Patent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#thesis">Thesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#conference">Conference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#poster">Poster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#lecture-note">Lecture Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#project">Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#funded">Funded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#hobby">Hobby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#phd">PhD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#msc">MSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../about.html#bsc">BSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#attended-trainings">Attended Trainings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#embedded-software">Embedded/Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about.html#digital-fpga">Digital/FPGA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#honor-award">Honor &amp; Award</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#membership">Membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#follow">Follow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about.html#site-info">Site Info</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../blog/index.html">Blog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../blog/23/index.html">2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html">🇹🇷 220 saatlik C kursu alınır mı?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#aldigim-kurs">Aldığım kurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#c-ve-sistem-programcilari-dernegi-csd">C ve Sistem Programcıları Derneği (CSD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-kimler-icin-uygun-ve-degil">Kurs kimler için uygun ve değil? 🤷‍♂️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-tarihcesi">Kurs tarihçesi ⏳</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurs-pahali-ve-uzun-mu-diger-kurumsal-kurslar-udemy">Kurs pahalı 💰 ve uzun mu ⏱️? Diğer kurumsal kurslar? Udemy?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kurumsal-ozel-sinif-ders">Kurumsal, özel sınıf ders 🏢</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#gomulu-embedded-c-anlatiliyor-mu">Gömülü (Embedded) C anlatılıyor mu?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#okula-faydasi-olur-mu">Okula faydası olur mu? 🏫</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#mulakatlara-hazirlik">Mülakatlara hazırlık 👔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#programlamayi-yeni-ogrenenler-icin">Programlamayı yeni öğrenenler için? 🐣</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kaan-aslan-vs-necati-ergin">Kaan Aslan vs Necati Ergin ⚔️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#olasi-mutsuzluklar">Olası mutsuzluklar 😔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#kursu-alacaklara-oneriler">Kursu alacaklara öneriler 💡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../blog/23/220-saatlik-c-kursu-alinir-mi.html#meraklilara">Meraklılara… 🔍</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Programming</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../history.html">📜 History of C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#s">70s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id4">80s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id6">90s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#id7">2000s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#standards-summarized">Standards Summarized</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#unix-and-c">UNIX and C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#long-live-c">Long live C!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#related">Related</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#resources">Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../history.html#changelog">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">🌈 Properties of C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../properties/artifical.html">🤖 artificial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/compiled.html">🔨 compiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/efficient.html">💚 efficient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/expressive.html">🎨 expressive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/general-purpose.html">⭕ general purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/imperative.html">👮 imperative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/middle-low-level.html">⬇ middle-low level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/non-proprietary.html">🆓 non-proprietary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/popuplar.html">🎊 popular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/portable.html">👜 portable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/procedural.html">〽 procedural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/standard.html">📓 standard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/statically-typed.html">⚓ statically typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/structured.html">🏗️ structured</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/weakly-typed.html">〰 weakly typed</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">📖 Glossary</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="conforming-compiler.html">conforming compiler (uyan derleyici ?)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="constant-expression.html">constant expression (sabit ifade)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">expression (ifade)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression-statement.html">expression statement (ifade deyimi)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="non-constant-expression.html">non-constant expression (sabit olmayan ifade)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="null-statement.html">null statement (boş deyim)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="statement.html">statement (deyim)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../resources.html">📚 Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#standard-documents">Standard Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#web">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#online-compilers">Online Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#exercise">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resources.html#books">Books</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html">❓ FAQ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#is-it-possible-to-learn-c-by-studying-the-standards">Is it possible to learn C by studying the standards?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#do-c-standards-maintain-backward-compatibility">Do C standards maintain backward compatibility?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#does-the-c-included-in-c-correspond-exactly-to-the-c-programming-language">Does the C included in C++ correspond exactly to ‘the C programming language’?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faq.html#what-is-misra-c">What is MISRA C?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">Miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/disclaimer.html">❗ Disclaimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/todos.html">Todo List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../misc/specimen.html">Specimen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#admonition">Admonition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#todo">Todo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#visual">Visual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#youtube">YouTube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../misc/specimen.html#disqus">Disqus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../follow.html">#️⃣ Follow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ayazar.dev</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Programming</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C</a></li>
+          <li class="breadcrumb-item"><a href="index.html">📖 Glossary</a></li>
+      <li class="breadcrumb-item active">expression (ifade)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/alperyazar/ayazar.dev/blob/master/docs/source/p/c/glossary/expression.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="constant-expression.html" class="btn btn-neutral float-left" title="constant expression (sabit ifade)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="expression-statement.html" class="btn btn-neutral float-right" title="expression statement (ifade deyimi)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="expression-ifade">
+<h1>expression (ifade)<a class="headerlink" href="#expression-ifade" title="Permalink to this heading"></a></h1>
+<p>Expression can be defined as a combination of variables (could be extended to
+identifiers), constants, and operators. An operator without any operand isn’t an
+expression. Let’s see some examples:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//Each line is an expression</span>
+<span class="n">a</span><span class="w">           </span><span class="c1">//Assume that a is a variable</span>
+<span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w">      </span><span class="c1">//Assume that a is a variable</span>
+<span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="w">  </span><span class="c1">//Assume that a and b are variables.</span>
+<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">        </span><span class="c1">//Assume that c and i are variables.</span>
+<span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w">       </span><span class="c1">//Assume that e and f are variables.</span>
+<span class="mi">20</span>
+<span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">foo</span><span class="p">()</span><span class="w">       </span><span class="c1">//Assume that foo is a function identifier. Remember that in this context</span>
+<span class="w">            </span><span class="c1">//() is an operator called function call operator.</span>
+
+<span class="o">+</span><span class="w">           </span><span class="c1">//NOT an expression</span>
+<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">       </span><span class="c1">//NOT an expression. NOT a combination of variable, constant, operator.</span>
+<span class="w">            </span><span class="c1">//if is a reserved word. This is a part of if statement syntax.</span>
+</pre></div>
+</div>
+<p>Notice that there is no semicolon (terminator), <code class="docutils literal notranslate"><span class="pre">;</span></code>, at the end of the lines. Do
+not confuse <a class="reference internal" href="statement.html"><span class="std std-doc">statement (deyim)</span></a> with expression!. If we put a <code class="docutils literal notranslate"><span class="pre">;</span></code> after an
+expression then we get an <strong>expression statement</strong>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w">      </span><span class="c1">//expression</span>
+<span class="n">a</span><span class="p">;</span><span class="w">     </span><span class="c1">//expression statement</span>
+<span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w">  </span><span class="c1">//expression</span>
+<span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"> </span><span class="c1">//expression statement</span>
+</pre></div>
+</div>
+<p>Expressions have:</p>
+<ul class="simple">
+<li><p>a type</p></li>
+<li><p>a value (except expressions with <code class="docutils literal notranslate"><span class="pre">void</span></code> type)</p></li>
+<li><p>a value category (L-Value or R-Value)</p></li>
+</ul>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/CSD-1993/KursNotlari/master/C.pdf">https://raw.githubusercontent.com/CSD-1993/KursNotlari/master/C.pdf</a></p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/c/language/expressions">https://en.cppreference.com/w/c/language/expressions</a></p></li>
+<li><p>Personal Notes</p></li>
+</ul>
+<div data-disqus-identifier="953d8973-0ba0-4368-90a6-d39c3ed40bb3" data-disqus-shortname="ayazardev" id="disqus_thread"></div></section>
+</section>
+
+
+           </div>
+             <div class="articleComments">
+<hr>
+<p><center><h3>❤️ Like it ?</h3></center></p>
+<p><center>Then, may be you can</center></p>
+<p><center><a href="https://www.buymeacoffee.com/ayazar" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a></center></p>
+<p><center>and share this page with your friends.</center></p>
+
+             </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="constant-expression.html" class="btn btn-neutral float-left" title="constant expression (sabit ifade)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="expression-statement.html" class="btn btn-neutral float-right" title="expression statement (ifade deyimi)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alper Yazar. CC BY-NC-SA 4.0.
+      <span class="lastupdated">Last updated on Nov 27, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHLWHCPSG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FHLWHCPSG0', {
+          'anonymize_ip': false,
+      });
+    </script>
+<!-- Default Statcounter code for ayazar.dev
+https://ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12886228;
+  var sc_invisible=1;
+  var sc_security="027dedf0";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12886228/0/027dedf0/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+
+
+</body>
+</html>

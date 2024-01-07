@@ -4,6 +4,13 @@
 various perspectives, often referred to as **paradigms**. The characteristics of
 the C programming language and the paradigms it belongs to are listed below.
 
+```{youtube} E5cKCCX5w2o
+:align: center
+:width: 100%
+```
+
+---
+
 Just as in real life, characteristics of programming languages aren't simply
 binary (0/1); they often exist on a spectrum. For a given feature 'x', one might
 say, 'The C language doesn't embody feature x as strongly as language Y.'

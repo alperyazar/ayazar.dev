@@ -9,10 +9,11 @@ og:description: I am Alper Yazar, a "full stack" electronics engineer working ma
 
 ```{figure} me.png
 :align: center
+:figclass: thmbnl
 
-**Alper Yazar** (**ayazar**)
+Alper Yazar (ayazar)
 
-*"Full Stack" Electronics Engineer*
+"Full Stack" Electronics Engineer
 ```
 
 I got my BSc and MSc degrees from the same department,

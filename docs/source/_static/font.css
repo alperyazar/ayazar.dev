@@ -1,7 +1,6 @@
 /* Ref: https://about.gitlab.com/blog/2023/01/17/new-typefaces-in-gitlab/ */
 body {
   font-family: 'Inter', sans-serif;
-  line-height: 2 !important;
   text-rendering: geometricPrecision !important;
 }
 
@@ -10,10 +9,47 @@ pre {
   font-size: smaller !important;
 }
 
-strong {
-  font-size: 1.1rem !important;
+p b, p strong {
+  background-color: yellow; /* Color of the marker */
+  font-weight: bold; /* Ensure the text is bold */
+  padding: 0.2em 0.4em; /* Adds padding around the text */
+  border-radius: 0.5em; /* Rounds the corners */
+  box-decoration-break: clone; /* Ensures the background and border-radius are applied to each line in multi-line text */
+  font-size: 1.10rem !important;
+}
+
+p a {
+  font-weight: bold;   /* Makes the text bold */
 }
 
 em {
-  font-size: 1.0rem !important;
+  font-size: 1.10rem !important;
 }
+
+p {
+  line-height: 1.8 !important;
+  font-size: 1.1rem !important;
+}
+
+.rst-content code {
+  font-size: 85% !important;
+}
+
+.rst-content img {
+  margin: 6px;
+  border: 2px dashed #404040; /* Solid black border, 2px thick */
+  border-radius: 10px;       /* Rounded corners */
+  padding: 4px;              /* Spacing between the image and the border */
+  display: inline-block;     /* Allows the padding and border to take effect properly */
+}
+
+/* https://stackoverflow.com/a/5790911 */
+figure.thmbnl img {
+  border: 2px solid transparent
+}
+
+/*
+.document h1, .document h2, .document h3, .document h4, .document h5, .document h6 {
+  font-size: 115%;
+}
+*/

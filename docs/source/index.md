@@ -10,6 +10,7 @@ glob: true
 about.md
 blog/index.md
 p/index.md
+os/index.md
 misc/index.md
 follow.md
 ```

@@ -27,6 +27,6 @@ Videoda bahsettiğim bağlantılar aşağıda verilmiştir.
 - [Eğitim sayfası, materyaller](https://bootlin.com/training/buildroot/)
 - [Sunumların LaTeX kaynak
   kodları](https://github.com/bootlin/training-materials)
-- Firmanın 2008 yılında Free Electron'dan Bootlin ismine geçiş
+- Firmanın 2018 yılında Free Electron'dan Bootlin ismine geçiş
   [hikayesi.](https://bootlin.com/blog/free-electrons-becomes-bootlin/)
 - [Elixir Cross Referencer](https://elixir.bootlin.com/linux/latest/source)

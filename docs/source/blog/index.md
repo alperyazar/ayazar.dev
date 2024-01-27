@@ -7,5 +7,6 @@ Personal and random content
 maxdepth: 2
 glob: true
 ---
+24/index.md
 23/index.md
 ```

@@ -14,6 +14,7 @@ sphinx-sitemap = "*"
 sphinx-copybutton = "*"
 sphinxext-opengraph = "*"
 sphinx-disqus = "*"
+"sphinxcontrib.asciinema" = "*"
 
 [dev-packages]
 

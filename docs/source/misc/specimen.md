@@ -60,7 +60,7 @@ I'm ready! I'm ready! I'm ready!
 
 ## YouTube
 
-```{youtube} KqReMkKTe8c
+```{youtube} Y3GuFzJnRGc
 :align: center
 :width: 100%
 ```
@@ -68,6 +68,29 @@ I'm ready! I'm ready! I'm ready!
 ## Disqus
 
 See the bottom.
+
+## Asciinema
+
+[The Plugin](https://github.com/divi255/sphinxcontrib.asciinema)
+
+Online (`asciinema.org`):
+
+```{asciinema} 633779
+:cols: 80
+```
+
+and self hosted:
+
+```{asciinema} /assets/asciinema/zsh.cast
+:cols: 80
+```
+
+Not working? direct embed:
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633779" src="https://asciinema.org/a/633779.js"></script>
+
+---
 
 ```{disqus}
 :disqus_identifier: 7b1852ac-ee33-474e-87ac-a4e75b9c35e1

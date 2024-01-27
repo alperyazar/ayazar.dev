@@ -18,7 +18,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Update, set up and build
+    - name: Update and set up
       run: |
         sudo apt-get -y update
         sudo apt-get install -y python3-pip git

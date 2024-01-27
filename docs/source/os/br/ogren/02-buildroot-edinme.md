@@ -128,3 +128,176 @@ $ du -sh buildroot
 O yüzden `git clone` yapabiliyorsanız `tar.xz` ile hiç uğraşmayın, `git` ile
 çekin gitsin.
 
+`git clone` ile projenin çekilip, `git tag` ile sürümlerin bakılması şu şekilde
+olmaktadır:
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633812" src="https://asciinema.org/a/633812.js"></script>
+
+İnternet hızınıza ve bir miktar bilgisayarınızın gücüne (git objelerinin açılması)
+bağlı olsa da tüm clone işlemi bende 1 dakika 16 saniye sürmüştür.
+
+## Geliştirme Ortamının Oluşturulması
+
+**Buildroot ile çalışmak için bir Linux dağıtımında olmanız gekmektedir.**
+
+Buildroot, dağıtıma özel bir araç kullanmadığı ve genel Linux araçlarını kullandığı
+için hangi dağıtımı tercih ettiğimiz önemli değil [^1f]. Ben muhtemelen bu seri
+boyunca iki farklı bilgisayar kullanacağım, birinde **Ubuntu 22.04** diğerinde
+ise **Linux Mint** kurulu (sürümünü şu an bilmiyorum, en güncel diye düşünelim,
+bakabilince yazarım). Herhangi bir dağıtımında problem yaşayacağınızı zannetmiyorum.
+
+**Windows kullanıcıları** ise dilerlerse bilgisayarlarında Virtualbox gibi
+araçlarla sanal Linux makine çalıştırabilirler. **Windows Subsytem for Linux
+(WSL)** ile kısa bir deneme yaptığımda Buildroot'un `make` dediği zaman çeşitli
+uyarlılar verdiğini (`pts` vs gibi konularda) gördüm. Açıkçası WSL ile
+çalışabilmesini beklerim, son zamanlarda oluyor gibi duruyor ama ben Linux
+üzerinden devam edeceğim [^2f], [^3f]. **Sizlere de imkanınız varsa sanal
+makinede Linux ya da doğrudan Linux üzerinde çalışmanızı öneririm.**
+
+### Paketlerin Kurulması
+
+Buildroot'un çalışabilmesi için derleme yapacağımız sistemde olması gereken
+**zorunlu** ve **opsyionel** yazılımlar vardır [^1f].
+
+Zorunlu paketler:
+
+`which sed make bintuilt build-essential diffutils gcc g++ bash patch gzip bzip2
+perl tar cpio unzip rsync file bc findutils wget`
+
+araçlardır. Bunlardan
+
+- `make` versiyonu 3.81'den büyük
+- `build-essential` sadece Debian tabanlı sistemlerde (Ubuntu ve Linux Mint gibi)
+- `gcc` versiyonu 4.8'den büyük
+- `g++` versiyonu 4.8'den büyük
+- `perl` versiyonu 5.8.7'den büyük
+- `file` ise `/usr/bin/file` da olmalıdır (buna neden gerek duyuyor anlamadım).
+
+Yine bunlar dışında çeşitli yardımcı araçların çalışması için önerilen araçlar
+vardır, isimlerini tek tek yazmıyorum burada, Buildroot'un sitesinde varlar
+[^1f].
+
+Bootlin firması aşağıdaki komut ile Debian tabanlı sistemlerde doğru geliştirme
+ortamını sağlayacağımız söylüyor:
+
+```console
+sudo apt install sed make binutils gcc g++ bash patch \
+gzip bzip2 perl tar cpio python unzip rsync wget libncurses-dev
+```
+
+Burada şöyle bir problem var. Ubuntu'da `python` paketini kurmak istediğiniz
+zaman bu başarısız oluyor, ya `python2` ya da `python3` seçmek gerekiyor.
+Buildroot'un sayfasında opsiyonel olarak belirtilen Python yazılımının hangi
+versiyonunun istendiği yazmıyor. Ama tahmin ediyorum ki Python 2 değildir çünkü
+Python 2'ye, 1 Ocak 2020'de "çivi çakılmama" kararı alındı [^4f] ve yazılımlar
+zaten çok daha önceden Python 2'den Python 3'e geçmeye başlamıştı. Bu yüzden
+Buildroot'un Python 2'ye bağımlı bir bileşen içerdiğini düşünmüyorum. O yüzden
+üstteki komuttaki `python` paketini `python3` paketi ile değiştirince bende
+eksik bir paket olmadığını görüyorum.
+
+`python3` düzeltilmiş komut:
+
+```console
+sudo apt install sed make binutils gcc g++ bash patch \
+gzip bzip2 perl tar cpio python3 unzip rsync wget libncurses-dev
+```
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633819" src="https://asciinema.org/a/633819.js"></script>
+
+Son olarak yukarıda belirtilen versiyon ve `file` programının
+konum koşullarını sağlayıp sağlamadığımıza bakalım:
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633822" src="https://asciinema.org/a/633822.js"></script>
+
+Evet görüldüğü üzere artık hazırız!
+
+## Buildroot'u Kullanmaya Başlama
+
+Buildroot'un yaptığımız ayarları tutmak ve bunlara uygun derlemeler yapmak için
+kullandığı temel bir iki araç var:
+
+- `make`. İleride detaylı bakacağız ama çok eskiden beri (70'ler) olan bir yazılım.
+  Temelde derleyiciler ya da çeşitli programları bir hedef dosyayı oluşturmak
+  için doğru sırada, gerektiği kadar ve doğru şekilde çağırmaya yarıyor.
+- Çeşitli scriptler. Birkaç yardımcı script (BASH scripti ?) işleri kolaylaştırmak
+  için kullanılıyor
+- `Kconfig`. Linux, U-boot, Busybox gibi çeşitli projeler tarafından kullanılmaktdır.
+  İlk olarak `Kbuild` ile beraber Linux projesi için geliştirilmiş olup temelde
+  metin tabanlı olan `Kconfig` dosyaları ile Buildroot'un birçok ayarını tutmaya
+  yarar. `Kconfig` dosyalarının kendine özgü fakat basit bir sentaksı vardır.
+  Buildroot'un birçok bileşen arasındaki bağımlılıkları yönetmesine yardımcı olur.
+  İleride tekrar değineceğiz, o yüzden biraz yüzeysel geçiyorum şimdilik.
+- Konfigurasyon Araçları. `Kconfig` dosyalarının bir metin görüntüleyici ile
+  okunup, ondan elle düzgün konfigürasyonlar üretmek pek pratik değildir.
+  Onun yerine elimizde bu konfigürasyon dosyalarındaki ayarlar ve seçenkleri
+  okuyup, görsel ve doğru bir şekilde (bağımlılıklara dikkat ederek) ayar yapma
+  ve nihai konfigürasyon ayarlarını (dosyalarını) üretmeyi sağlayan çeşitli
+  araçlar vardı. Buildroot tarafından `menuconfig`, `nconfig`, `xconfig`, `gconfig`
+  araçları destekliyor. Bu 4 aracın da ortak özelliği bizlerin görsel yani kolay
+  ve doğru şekilde bir derleme konfigürasyonu oluşturmamızı sağlamak. İşte
+  Buildroot'u bu araçlar ile konfigüre edeceğiz. Bu araçlardan `menuconfig` ve
+  `nconfig` terminal tabanlı araçlar. Yani konsol içerisinde çalışıyorlar.
+  Bunlara **Text-based User Interface (TUI)** tarzı araçlar diyebiliriz [^5f].
+  `xconfig` QT kütüphanesi, `gconfig` ise GTK kütüphanesini kullanan
+  **Graphical User Interface (GUI)** araçlardır [^6f]. Terminal tabanlı olması
+  sebebiyle pratikliğinden, GUI kütüphaneleri gerektirmemesinden
+  (`libncurses-dev` yeterlidir) dolayı SSH gibi bağlantılar üzerinden de
+  sorunsuz çalışabilmesinden (uzak bir geliştirme bilgisayarına SSH ile
+  bağlısınız ve Buildroot orada çalışıyor diyelim) dolayı `menuconfig` ve
+  `nconfig` araçları gözlemlerime göre daha sık kullanılmaktadır.
+
+Şimdi Buildroot'u biraz kurcalayalım, şu konfigürasyon araçlarına bakalım:
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633824" src="https://asciinema.org/a/633824.js"></script>
+
+Burada ilk olarak `git checkout -b bootlin 2022.02` komutu ile `2022.02`
+versiyonuna gidiyor ve bu geçtiğimiz noktada bir de `bootlin` isimli bir imaj
+oluşturuyoruz. `make help` ile Buildroot'un desteklediği işlemlere
+bakıyoruz. `make clean` eğer varsa kalmış ara dosyaların temizlenmesini sağlıyor.
+Biz zaten ilk defa çalışmaya başladığımız için bu işlem aslında gerekli değil
+bu aşamada. `make menuconfig` ile, `menuconfig` aracını çalıştırıp Buildroot
+ile beraber gelen `Kconfig` dosyalarına göre konfigürasyonu görüyoruz. Burada
+ok, `Enter`, `ESC` ve `TAB` tuşları ile gezinebiliyoruz. Benzer şekilde
+`make nconfig` ile `nconfig` aracını gösteriyorum. Dikkat ederseniz ikinci
+`make menuconfig` komutu hemen çalışıyor ama `make clean` dersek, `make menuconfig`
+tarafından kullanılan dosyalar da silineceği için tekrar `make menuconfig` dediğim
+zaman menünün açılması zaman alıyor.
+
+**BURADA KALDIM**
+
+```{figure} assets/02-xconfig.png
+:align: center
+
+xconfig
+```
+
+```{figure} assets/02-gconfig.png
+:align: center
+
+gconfig
+```
+
+<!-- markdownlint-disable-next-line -->
+<script async id="asciicast-633840" src="https://asciinema.org/a/633840.js"></script>
+
+```console
+sudo apt install libgtk2.0-dev libglib2.0-dev libglade2-dev
+
+sudo apt install libqt5-dev # çalışmadı
+sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+```
+
+```{disqus}
+:disqus_identifier: 0e601187-a184-4ea5-9f8a-373c5dfa53e8
+```
+
+[^1f]: <https://buildroot.org/downloads/manual/manual.html#requirement>
+[^2f]: <https://blog.mjjames.co.uk/2019/06/can-you-use-buildroot-with-windows.html>
+[^3f]: <https://www.reddit.com/r/embedded/comments/fgnw1u/is_buildroot_or_yocto_or_alternatives_available/>
+[^4f]: <https://www.python.org/doc/sunset-python-2/>
+[^5f]: <https://en.wikipedia.org/wiki/Text-based_user_interface>
+[^6f]: <https://en.wikipedia.org/wiki/Graphical_user_interface>

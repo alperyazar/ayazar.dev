@@ -40,7 +40,8 @@ extensions = ['myst_parser',
 'sphinx_sitemap',
 'sphinx_copybutton',
 'sphinxext.opengraph',
-'sphinx_disqus.disqus'
+'sphinx_disqus.disqus',
+'sphinxcontrib.asciinema'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

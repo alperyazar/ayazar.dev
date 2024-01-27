@@ -9,3 +9,4 @@
 *.gif binary
 *.ico binary
 *.7z binary
+*.cast text eol=lf

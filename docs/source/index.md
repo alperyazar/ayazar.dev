@@ -2,6 +2,9 @@
 
 Personal website and public notes by [me](about.md).
 
+[📺 YouTube](https://www.youtube.com/@ayazar)
+[💼 LinkedIn](https://www.linkedin.com/in/alperyazar)
+
 ```{toctree}
 ---
 maxdepth: 1

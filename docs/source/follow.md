@@ -1,8 +1,9 @@
-# #️⃣ Follow
+# ➡️ Follow
 
-I recommend following me on [LinkedIn](https://www.linkedin.com/in/alperyazar)
-or [mastodon](https://mastodon.social/@ayazar). I usually share my posts on these
-platforms.
+I recommend following me on [LinkedIn](https://www.linkedin.com/in/alperyazar).
+I usually share my posts on that platform.
+
+Looking for my e-mail address? Please visit the [About](about.md) page.
 
 Here the list of my profiles on some platforms:
 

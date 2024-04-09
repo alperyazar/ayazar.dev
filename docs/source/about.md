@@ -1,5 +1,5 @@
 ---
-og:description: I am Alper Yazar, a "full stack" electronics engineer working mainly on embedded systems and FPGAs
+og:description: I am Alper Yazar, a "full stack electronics" engineer working mainly on embedded systems and FPGAs
 ---
 
 <!-- markdownlint-capture -->
@@ -11,9 +11,9 @@ og:description: I am Alper Yazar, a "full stack" electronics engineer working ma
 :align: center
 :figclass: thmbnl
 
-Alper Yazar (ayazar)
+**Alper Yazar** (ayazar)
 
-"Full Stack" Electronics Engineer
+*"Full Stack Electronics" Engineer*
 ```
 
 I got my BSc and MSc degrees from the same department,

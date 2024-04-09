@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 myst-parser = "*"
 sphinx-rtd-theme = "==2.0.0"
-Sphinx = "==7.2.6"
+Sphinx = "*"
 sphinx-autobuild = "*"
 sphinx_last_updated_by_git = "*"
 sphinxcontrib-youtube = "*"

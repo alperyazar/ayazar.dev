@@ -6,7 +6,7 @@ List of some *high quality* resources on C programming.
 
 ```{hint}
 If you don't know what a C standard mean I recommend you reading [](history.md)
-and [](properties/standard.md) first.
+and [](properties.md) first.
 ```
 
 C standard documents (`ISO/IEC 9899:xxxx`) are available for a fee. For example,

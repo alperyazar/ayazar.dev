@@ -17,7 +17,6 @@ distinct enough to deserve its own name.
 
 ```{figure} assets/466px-Dennis_Ritchie_2011.jpg
 :align: center
-:loading: lazy
 
 Dennis Ritchie at Japan Prize Foundation ceremony in May 2011. [Link](https://commons.wikimedia.org/wiki/File:Dennis_Ritchie_2011.jpg)
 ```

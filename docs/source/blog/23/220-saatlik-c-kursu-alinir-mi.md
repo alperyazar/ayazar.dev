@@ -2,7 +2,7 @@
 og:image: assets/social/blog/23/c-220.jpg
 ---
 
-# 220 saatlik C kursu alınır mı? [TR]
+# 🇹🇷 220 saatlik C kursu alınır mı?
 
 ```{figure} /extra/assets/social/blog/23/c-220.jpg
 :align: center

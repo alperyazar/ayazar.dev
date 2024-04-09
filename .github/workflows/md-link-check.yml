@@ -1,0 +1,32 @@
+# Ref: https://github.com/lycheeverse/lychee-action
+# Ref: https://github.com/selfhostedshow/wiki/blob/master/.github/workflows/brokenLinks.yml
+name: Check markdown links
+
+on:
+  schedule:
+    # UTC Time, At 15:00 on day-of-month 1.
+    - cron: "0 15 1 * *"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  linkChecker:
+    permissions:
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.3
+        with:
+          args: --verbose './**/*.md'
+
+      - name: Create Issue From File
+        if: env.lychee_exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Link Checker Report
+          content-filepath: ./lychee/out.md
+          labels: report, automated issue, broken-link
+          assignees: alperyazar

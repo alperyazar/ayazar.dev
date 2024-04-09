@@ -3,7 +3,7 @@ og:description: Programlama dillerini öğrenirken ve onları kıyaslarken bu en
 og:image: assets/social/blog/23/tiobe-index.jpg
 ---
 
-# TIOBE Index nedir? Güvenebilir miyiz? [TR]
+# 🇹🇷 TIOBE Index nedir? Güvenebilir miyiz?
 
 ```{figure} /extra/assets/social/blog/23/tiobe-index.jpg
 :align: center

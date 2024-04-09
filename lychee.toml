@@ -1,0 +1,27 @@
+#Ref: https://github.com/lycheeverse/lychee/blob/master/lychee.example.toml
+
+# See: https://github.com/alperyazar/ayazar.dev/issues/7
+exclude = [ '.*aselsan.com.tr\.*', '.*researchgate.net\.*', '.*twitter.com\.*', '.*linkedin.com\.*']
+
+# Verbose program output
+# verbose = true
+
+# Maximum number of concurrent link checks.
+max_concurrency = 4
+
+# Maximum number of allowed retries before a link is declared dead.
+max_retries = 3
+
+# Minimum wait time in seconds between retries of failed requests.
+retry_wait_time = 4
+
+# Website timeout from connect to response finished.
+timeout = 16
+
+# Exclude all private IPs from checking.
+# Equivalent to setting `exclude_private`, `exclude_link_local`, and
+# `exclude_loopback` to true.
+exclude_all_private = true
+
+# Exclude all mail addresses from checking.
+exclude_mail = true

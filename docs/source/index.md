@@ -1,8 +1,8 @@
 # Alper Yazar (ayazar)
 
-Personal website and public notes by [me](about.md).
+*"Full Stack Electronics" Engineer*
 
-[📺 YouTube](https://www.youtube.com/@ayazar)
+Personal website and public notes by [me](about.md).
 [💼 LinkedIn](https://www.linkedin.com/in/alperyazar)
 
 ```{toctree}
@@ -12,8 +12,8 @@ glob: true
 ---
 about.md
 blog/index.md
-p/index.md
-os/index.md
+br/index.md
+c/index.md
 misc/index.md
 follow.md
 ```

@@ -10,7 +10,7 @@ pre {
 }
 
 p b, p strong {
-  background-color: yellow; /* Color of the marker */
+  background-color: #fabfc8; /* Color of the marker */
   font-weight: bold; /* Ensure the text is bold */
   padding: 0.2em 0.4em; /* Adds padding around the text */
   border-radius: 0.5em; /* Rounds the corners */
@@ -46,6 +46,22 @@ p {
 /* https://stackoverflow.com/a/5790911 */
 figure.thmbnl img {
   border: 2px solid transparent
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: #f35a72;
+  z-index: 9999;
+  width: 0%;
+}
+
+/* https://stackoverflow.com/a/52058198/1766391 */
+a[target="_blank"]::after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
 }
 
 /*

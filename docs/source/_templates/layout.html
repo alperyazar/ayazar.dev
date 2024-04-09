@@ -24,7 +24,32 @@ crossorigin="anonymous"></script>
 {%- endif %}
 {% endblock %}
 
+{% block extrabody %}
+{% endblock %}
+
 {% block footer %}
+
+<div id="progressBar" class="progress-bar"></div>
+
+<script>
+  // Listen for scroll events on the window
+window.onscroll = function() {
+  // Call the function to update the progress bar
+  updateProgressBar();
+};
+
+function updateProgressBar() {
+  // Get the total height of the page
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  // Get the current scroll position
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // Calculate the scroll percentage
+  var scrollPercentage = (scrollTop / scrollHeight) * 100;
+  // Update the width of the progress bar
+  document.getElementById("progressBar").style.width = scrollPercentage + "%";
+}
+</script>
+
 {%- if SPHINXPRODUCTION %}
 <!-- Default Statcounter code for ayazar.dev
 https://ayazar.dev -->

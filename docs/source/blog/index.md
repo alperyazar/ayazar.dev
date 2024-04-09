@@ -1,4 +1,4 @@
-# Blog
+# 📝 Blog
 
 Personal and random content
 

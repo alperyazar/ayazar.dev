@@ -1,4 +1,4 @@
-# Miscellaneous
+# 🌀 Miscellaneous
 
 ```{toctree}
 ---

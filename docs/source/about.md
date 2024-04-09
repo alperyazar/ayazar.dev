@@ -5,7 +5,7 @@ og:description: I am Alper Yazar, a "full stack" electronics engineer working ma
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable MD005 MD007 -->
 
-# About
+# 🤓 About
 
 ```{figure} me.png
 :align: center

@@ -1,4 +1,4 @@
-# 📚 Resources
+# Resources
 
 Here are some useful resources about Linux System Programming.
 

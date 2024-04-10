@@ -19,3 +19,5 @@ specimen.md
 
 - [Build Info](https://ayazar.dev/build.info.txt)
 - [CDN Info](https://ayazar.dev/cdn-cgi/trace)
+- [robots.txt](https://ayazar.dev/robots.txt)
+- [sitemap.xml](https://ayazar.dev/sitemap.xml)

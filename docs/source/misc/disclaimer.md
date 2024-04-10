@@ -21,5 +21,3 @@ ensure transparency and your comfort while you're here:
   inadvertently occur. Your discretion is advised.
 
 Happy reading, and I hope you enjoy your time on my blog!
-
-Updated on: 2024-01-06

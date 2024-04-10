@@ -17,14 +17,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'ayazar.dev'
+project = 'Alper Yazar'
 copyright = '2023-2024, Alper Yazar. CC BY-SA 4.0'
 html_title = "ayazar.dev"
 author = 'Alper Yazar'
 
 # The full version, including alpha/beta/rc tags
 release = ''
-version = 'Alper Yazar'
+version = 'ayazar.dev'
 
 
 # -- General configuration ---------------------------------------------------

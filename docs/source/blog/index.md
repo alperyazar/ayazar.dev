@@ -1,6 +1,6 @@
 # 📝 Blog
 
-Personal and random content
+Personal and random content, in English or in Turkish (🇹🇷).
 
 ```{toctree}
 ---

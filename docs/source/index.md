@@ -1,8 +1,15 @@
 # Alper Yazar (ayazar)
 
-*"Full Stack Electronics" Engineer*
+```{figure} me.png
+:align: center
+:figclass: thmbnl
 
-Personal website and public notes by [me](about.md).
+Me
+```
+
+Personal website and public notes by [me](about.md), in English or in Turkish
+(🇹🇷).
+
 [💼 LinkedIn](https://www.linkedin.com/in/alperyazar)
 
 ```{toctree}
@@ -14,6 +21,8 @@ about.md
 blog/index.md
 br/index.md
 c/index.md
+sys/index.md
 misc/index.md
+misc/disclaimer.md
 follow.md
 ```

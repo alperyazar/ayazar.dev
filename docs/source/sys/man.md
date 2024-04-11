@@ -121,6 +121,8 @@ a list of additional online man pages on the [](resources.md) page.
   (YT)](https://www.youtube.com/watch?v=cnmtKv2kUXs)
 - [Introduction to Linux
   (LFS101x)](https://training.linuxfoundation.org/training/introduction-to-linux/)
+- [Linux Experts Read 'info' Pages (NOT 'man' pages)
+  (YT)](https://www.youtube.com/watch?v=vnBCnd2L0dY)
 
 [^1f]: <https://www.kernel.org/doc/man-pages/>
 [^2f]: <https://en.wikipedia.org/wiki/Man_page>

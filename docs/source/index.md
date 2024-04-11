@@ -22,6 +22,7 @@ blog/index.md
 br/index.md
 c/index.md
 sys/index.md
+xilinx/index.md
 misc/index.md
 misc/disclaimer.md
 follow.md

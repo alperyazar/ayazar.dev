@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Alper Yazar'
-copyright = '2023-2024, Alper Yazar. CC BY-SA 4.0'
+copyright = '2011-2024, Alper Yazar. CC BY-SA 4.0'
 html_title = "ayazar.dev"
 author = 'Alper Yazar'
 

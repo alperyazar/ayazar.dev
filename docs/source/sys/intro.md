@@ -56,3 +56,7 @@ sections, I'll also introduce and explain what POSIX standards mean.
 
 - [](resources.md)
 - [Systems programming (Wikipedia)](https://en.wikipedia.org/wiki/Systems_programming)
+
+```{disqus}
+:disqus_identifier: 5cb38afb-1edd-40ce-a597-0039ffeec672
+```

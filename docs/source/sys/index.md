@@ -11,6 +11,17 @@ glob: true
 ---
 intro.md
 interface.md
+posix.md
+```
+
+## ❓ How to
+
+```{toctree}
+---
+maxdepth: 1
+glob: true
+---
+man.md
 ```
 
 ## 📚 Resources

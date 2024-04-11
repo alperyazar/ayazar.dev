@@ -191,7 +191,10 @@ that best fits your needs.
 - [POSIX (Wikipedia)](https://en.wikipedia.org/wiki/POSIX)
 - [Windows API (Wikipedia)](https://en.wikipedia.org/wiki/Windows_API)
 
-
 [^1f]: <https://yarchive.net/comp/linux/gcc_vs_kernel_stability.html>
 [^2f]: <https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/>
 [^3f]: <https://linuxreviews.org/WE_DO_NOT_BREAK_USERSPACE>
+
+```{disqus}
+:disqus_identifier: d20c7d25-996f-4e29-8c4b-b36ef1898686
+```

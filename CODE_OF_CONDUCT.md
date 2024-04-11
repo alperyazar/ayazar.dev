@@ -1,0 +1,3 @@
+# Code of Conduct
+
+Be a nice person...

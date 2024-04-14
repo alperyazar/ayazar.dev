@@ -2,7 +2,7 @@
 og:description: "Dili Türkçe olan Ubuntu'da MATLAB'ı çalıştırmak için ufak bir destek gerekebilir."
 ---
 
-# 🇹🇷 Türkçe Ubuntu Üzerinde MATLAB Çalıştırma Problemi ve Çözümü
+# Türkçe Ubuntu Üzerinde MATLAB Çalıştırma Problemi ve Çözümü
 
 Geçen günlerde Ubuntu 10.04 nam-ı diğer "Lucid Lynx" üzerine MATLAB R2010b
 kurdum.

@@ -2,7 +2,7 @@
 og:description: "Jekyll'den Sphinx'e geçtim."
 ---
 
-# 🇹🇷 Merhaba Sphinx!
+# Merhaba Sphinx!
 
 Blogumla son yıllarda neredeyse hiç ilgilenemiyorum. En son yazımı tam 14 ay
 önce yazmışım. Her yazımda daha sık yazmalıyım diye düşünsem de bunu uygulamaya

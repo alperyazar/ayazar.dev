@@ -3,7 +3,7 @@ og:description: "Sumatra PDF, Windows için tasarlanmış, hafif, hızlı bir PD
 og:image: assets/social/blog/21/sumatra.png
 ---
 
-# 🇹🇷 Sumatra PDF
+# Sumatra PDF
 
 ```{figure} /extra/assets/social/blog/21/sumatra.png
 :align: center

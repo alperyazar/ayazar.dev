@@ -7,8 +7,7 @@
 Me
 ```
 
-Personal website and public notes by [me](about.md), in English or in Turkish
-(🇹🇷).
+Personal website and public notes by [me](about.md), in English or in Turkish.
 
 [💼 LinkedIn](https://www.linkedin.com/in/alperyazar)
 

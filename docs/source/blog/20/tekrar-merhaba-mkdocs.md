@@ -2,7 +2,7 @@
 og:description: "Dokuwiki'den MkDocs'a geçiş"
 ---
 
-# 🇹🇷 Tekrar Merhaba MkDocs!
+# Tekrar Merhaba MkDocs!
 
 Tekrar MkDocs'a geri döndüm. Bu sefer kendi temamı kullanıyorum, çok basit bir
 tema. Dokuwiki güzel ama bir şeyleri "host" etmek yerine Github Pages gibi bir

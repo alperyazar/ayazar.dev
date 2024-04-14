@@ -2,7 +2,7 @@
 og:description: "Yeni aldığım Altera DE0 FPGA kartının kutu açılışını yapıyorum."
 ---
 
-# 🇹🇷 Altera DE0 FPGA Geliştirme Kiti
+# Altera DE0 FPGA Geliştirme Kiti
 
 Elektronik malzemelerimin arasına en son katılan kartın adı Altera DE0. Kart,
 bir FPGA geliştirme kiti. terasIC tarafından üretilen kartın üzerinde yer alan

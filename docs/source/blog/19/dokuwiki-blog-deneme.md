@@ -2,7 +2,7 @@
 og:description: "Sphinx'ten Dokuwiki'ye geçiş"
 ---
 
-# 🇹🇷 Dokuwiki ile Blog Deneme
+# Dokuwiki ile Blog Deneme
 
 Burada blog tarzı bir şey tutulabilir mi?
 

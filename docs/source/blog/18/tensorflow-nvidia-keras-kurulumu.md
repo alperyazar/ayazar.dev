@@ -2,7 +2,7 @@
 og:description: "GPU desteği ile Tensorflow ve Keras'ın Windows'a nasıl kurulabileceğini ve olası problem ve çözümleri anlatıyorum."
 ---
 
-# 🇹🇷 Tensorflow (NVIDIA GPU Desteği ile) ve Keras Kurulumu
+# Tensorflow (NVIDIA GPU Desteği ile) ve Keras Kurulumu
 
 ```{attention}
 ⚠️ **Dikkat! Eski içerik.** Bu yazı 2018'de yazılmış olup içerikte önemli bir

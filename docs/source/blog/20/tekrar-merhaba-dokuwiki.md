@@ -2,7 +2,7 @@
 og:description: "MkDocs'tan Dokuwiki'ye geçiş"
 ---
 
-# 🇹🇷 Tekrar Merhaba DokuWiki!
+# Tekrar Merhaba DokuWiki!
 
 Tekrar DokuWiki'ye döndüm 😃
 

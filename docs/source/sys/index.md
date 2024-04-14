@@ -1,20 +1,21 @@
-# Linux System Programming
+# Linux Sistem Programlama
 
-The art of talking to [The Kernel](https://kernel.org/)
+[Kernel](https://kernel.org/) ile konuşma sanatı
 
-## 🧠 Concepts and Fundamentals
+## 🧠 Kavramlar ve Temeller
 
 ```{toctree}
 ---
 maxdepth: 1
 glob: true
 ---
-intro.md
-interface.md
+giris.md
+arayuz.md
 posix.md
+kernel-arayuz.md
 ```
 
-## ❓ How to
+## ❓ Nasıl Yapılır
 
 ```{toctree}
 ---
@@ -22,14 +23,15 @@ maxdepth: 1
 glob: true
 ---
 man.md
+merhaba-dunya.md
 ```
 
-## 📚 Resources
+## 📚 Kaynaklar
 
 ```{toctree}
 ---
 maxdepth: 2
 glob: true
 ---
-resources.md
+kaynak.md
 ```

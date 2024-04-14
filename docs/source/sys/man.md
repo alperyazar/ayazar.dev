@@ -1,18 +1,12 @@
-# Finding and Reading MAN Pages
+# man Sayfalarında Yolumuzu Bulma
 
-As [mentioned earlier](posix.md), Linux—both the kernel and distributions—are
-not completely but mostly POSIX compliant. There are instances where POSIX
-functions may not be fully supported by Linux, and there are also times when
-Linux extends or enhances some POSIX functions. If you, like me, aim to write
-programs that will run solely on Linux without considering their operation on
-other Unix-like systems, then it's possible to set aside POSIX standards and
-concentrate exclusively on the Linux programming environment. This doesn't mean
-to "forget POSIX" entirely—POSIX documentation should still be accessible to
-you, but you might consider Linux-specific resources as your primary reference.
+```{note}
+Okumadıysanız [](posix.md) ve [](kernel-arayuz.md) sayfalarına önce bakmanızı
+öneririm.
+```
 
-## man-pages
-
-Linux man-pages project aims to document the kernel and userspace C API [^1f]:
+Linux projesi kapsamında yürütülen **man-pages** projesinin amacı programcılara
+sunulan C API'ını dokümante etmektir [^1f]:
 
 > The Linux man-pages project documents the Linux kernel and C library
 > interfaces that are employed by user-space programs. With respect to the C
@@ -20,32 +14,43 @@ Linux man-pages project aims to document the kernel and userspace C API [^1f]:
 > known, documentation of variations in other C libraries available for Linux is
 > also included.
 
-If we aim to interact with the kernel through C programs, then we should consult
-the man pages. The current maintainer of the Linux man-pages project (since
-2004) is [Michael Kerrisk](https://man7.org/mtk/), who is also the author of the
-renowned book *The Linux Programming Interface.* The concept of man pages, or
-manual pages, has a long history, tracing back to the early days of Unix [^2f].
-These pages provide documentation for both programmers and users. Next, let's
-explore how to locate and navigate these pages effectively.
+Linux sistem programlama yapacaksak man sayfaları hep önümüzde durmalı.
+*man-pages* ayrı bir proje ve bu proje 2004 yılından beri *The Linux Programming
+Interface* kitabının yazarı [Michael Kerrisk](https://man7.org/mtk/) tarafından
+yürütülmektedir. man sayfası kavramı Linux'a özgü değil, Unix zamanından beri
+hayatımızda [^2f]. *man*, *manual* kelimesinin kısaltılması, yani *kullanım
+kılvauzu* olarak düşünebiliriz. Bu sayfalar hem programcılara hem de
+kullanıcılara doküman sağlıyorlar. Hadi gelin bakalım!
 
-## Local man-pages
+## Yerel man sayfaları
 
-Most Linux distributions come with man-pages installed locally. To check, type
-`man` in your shell. If the command doesn't work, you'll need to look up how to
-install man pages for your specific distribution. For a quick start, try `man ls`
-to view the manual page for the `ls` command. Once there, press `h` to see
-navigation help and learn shortcuts. Use `/` to search within the page. Curious
-about the `man` command itself? Just type `man man` to read its manual page.
+Ubuntu gibi birçok Linux dağıtımı man sayfaları yüklü olarak gelmektedir. Eğer
+BASH gibi bir shell'i açıp, `man` yadığınız zaman bir hata almıyor ve önünüze
+çeşitli seçenekler dokülüyorsa sizde `man` programı ve muhtemelen ilgili
+dokümanlar yüklü demektir. Eğer hata alıyorsanız kullandığınız dağıtım ile
+ilgili internette bir arama yapın. `man` programı ile *man-pages* içerisinde
+kolayca gezinip, arama yapabileceğiz.
 
-## Sections
+`man ls` yazdığınız zaman `ls` komutunun dokümantasyonunu görüyorsunuz örneğin.
+Doküman açıldıktan sonra `h` tuşuna basarak `man` programının içerisinde yani
+dokümanların içerisinde gezinme ile ilgili yardım alabilirsiniz. `/` ile de
+doküman içerisinde arama yapabilirsiniz. `man man` yazarak da `man` programı
+hakkında bilgi alabilirsiniz (manception ?).
 
-Man pages are organized into sections because a single keyword might appear in
-more than one section. If a keyword exists in multiple sections, the `man`
-command displays the first entry it finds, searching through the sections in a
-predefined order. The order is defined in `/etc/manpath.config` (at least in
-Ubuntu).
+## Section(s)
 
-Here are the section numbers and their corresponding meanings:
+Man sayfaları *section* denen bölümlere ayrılmıştır. Bir kelime birden fazla
+section'da geçebilir. Eğer `man` programı, aynı kelimeyi birden fazla yerde
+bulursa tek bir sonuç döner ve nereden sonuç döneceği ise (yani hangi sırada
+arama yapacağı) `/etc/manpath.config` içerisinde belirtilmiştir (en azından
+Ubuntu'da bu dosya belirtiliyor.)
+
+```{attention}
+`man` sayfasının ilk sonucu dönmesi yanıltıcı olabilir, diğer dokümanları
+göremeyebilirsiniz, o yüzden okumaya devam edin...
+```
+
+Her section'nun bir numarası vardır. Ad ve açıklamalar şu şekildedir:
 
 ```text
 1   Executable programs or shell commands
@@ -61,14 +66,51 @@ Here are the section numbers and their corresponding meanings:
 ```
 
 ```{note}
-Note that the main sections are numbered, and there might be additional sections
-like `3perl`, but these are generally not our primary focus. For system
-programming, we'll mainly use sections 1 to 3.
+Bunlar temel section isimleridir. `3perl` gibi başka section isimleri olabilir ama
+biz genelde section 1, 2, 3 dokümanları kullanacağız. 2 numaralı section kernele
+yapabileceğimiz sistem çağrılarını anlatmaktadır.
 ```
 
-For example, `man 1 chmod` shows the manual page for `chmod` command whereas
-`man 2 chmod` gives the documentation about `chmod()` C function. To list
-sections for a word, we may use:
+Örneğin `man 1 chmod` bizlere `chmod` isimli kabuk komutunu anlatırken
+`man 2 chmod` ise C API tarafından sunulan `chmod()` fonksiyonunu anlatmaktadır.
+
+`man 2 chmod`:
+
+```text
+CHMOD(2)                   Linux Programmer's Manual                  CHMOD(2)
+
+NAME
+       chmod, fchmod, fchmodat - change permissions of a file
+
+SYNOPSIS
+       #include <sys/stat.h>
+
+       int chmod(const char *pathname, mode_t mode);
+       int fchmod(int fd, mode_t mode);
+...
+```
+
+`CHMOD(2)` içerisindeki `2`, bize section numarasını gösteriyor.
+
+`man 1 chmod`:
+
+```text
+CHMOD(1)                         User Commands                        CHMOD(1)
+
+NAME
+       chmod - change file mode bits
+
+SYNOPSIS
+       chmod [OPTION]... MODE[,MODE]... FILE...
+       chmod [OPTION]... OCTAL-MODE FILE...
+       chmod [OPTION]... --reference=RFILE FILE...
+
+DESCRIPTION
+       This manual page documents the GNU version of chmod.  chmod changes the
+       file mode bits of each given file according to mode, which can  be  ei‐
+```
+
+Bir kelime ile ilgili tüm section'ları farklı biçimlerde bulabiliriz:
 
 ```text
 $ man -f chmod
@@ -86,35 +128,41 @@ fchmod (2)           - change permissions of a file
 fchmodat (2)         - change permissions of a file
 ```
 
-`man -f` is equivalent to `whatis` and `man -k` is equivalent to `apropos`.
-Use `man -a chmod` to see all documentation on `chmod` sequentially.
+`man -f` ile `whatis` ve `man -k` ile `aprops` aynı anlamdadır. `man -a chmod`
+derseniz `chmod` ile ilgili tüm dokümanları arka arkaya okuyabilirsiniz.
 
-## The GNU Info System
+## GNU Info System
 
-The GNU Info System, while not as widely used as man pages (based on my
-observations), does offer some advantages over them [^3f]. Created in 1986,
-before the advent of HTML, info pages are interconnected with links. To see what
-GNU Info looks like, type `info ls` in your shell. It can be particularly useful
-for getting help with GNU tools, such as `make`. For example, try `info make`.
+man sayfaları kadar yaygın olmasa da **GNU Info System** bir başka dokümantasyon
+aracıdır. man'a göre sunduğu çeşitli avantajlar da vardır. [^3f] HTML'in
+icadından önce, 1986 yılında ortaya çıkmasına rağmen buradaki dokümanlar
+birbirleri ile linkler üzerinden bağlıdır. `info ls` yazarak neye benzediğini
+görebilirsiniz. Özellikle `make` gibi GNU araçlarında `info make` yazmak daha
+iyi bir dokümantasyon sunabilir.
 
-## GUI Tools
+`x` in dokümanında `man x` yeterli gelmiyorsa, `info x` ile bakmakta fayda var.
+Daha iyisi bazen çıkıyor. GNU Info en kötü `man` sayfasını gösteriyor.
 
-If you are on GNOME, try `yelp man:chmod.2` or `yelp info:cpio` (for GNU Info).
-If you are on Plasma (KDE), try `khelpcenter`. But personally, I don't use these
-GUI tools.
+## GUI Yardım Araçları
+
+GNOME üzerindeyseniz `yelp man:chmod.2` veya `yelp info:cpio` (GNU Info)
+yazabilirsiniz. Plasma (KDE) üzerindeyseniz `khelpcenter` kullanabilirsiniz.
+Şahsen GUI yardım araçlarını pek kullanmıyorum. Klasik man pages
+kullanmayacaksam online olaranlar daha çok hoşuma gidiyor.
 
 ## Online
 
-There are many online man pages available on the internet.
-[man7.org](https://man7.org/linux/man-pages/index.html) serves as an *official*
-online man page resource for Linux. Personally, I prefer using
+man sayfalarına online olarak da (hem de güzel formatlanmış şekilde) erişmek
+mümkün. Örneğin [man7.org](https://man7.org/linux/man-pages/index.html) sayfası
+*resmi* online Linux man sayfasıdır. Kişisel olarak
 [mankier.com](https://www.mankier.com/), [tldr](https://tldr.inbrowser.app/),
-and [the Arch Linux online man pages](https://man.archlinux.org/). You can find
-a list of additional online man pages on the [](resources.md) page.
+and [the Arch Linux online man pages](https://man.archlinux.org/) sitelerini de
+beğeniyorum. [](kaynak.md) kısmında daha geniş ve güncel bir liste tutmaya
+çalışıyorum.
 
-## Resources
+## Kaynaklar
 
-- [](resources.md)
+- [](kaynak.md)
 - [List available man page sections for an application
   (SO)](https://unix.stackexchange.com/questions/256205/list-available-man-page-sections-for-an-application)
 - [STOP Using 'man' Pages Incorrectly!

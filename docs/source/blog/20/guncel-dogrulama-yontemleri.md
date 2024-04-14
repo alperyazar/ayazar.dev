@@ -2,7 +2,7 @@
 og:description: "FPGA (veya ASIC) doğrulamasındaki güncel yöntemler"
 ---
 
-# 🇹🇷 Güncel (Sayısal Tasarım) Doğrulama Yöntemleri ve Araçları
+# Güncel (Sayısal Tasarım) Doğrulama Yöntemleri ve Araçları
 
 Mentor'a ait [Verification Academy](https://verificationacademy.com/)
 sitesine üye olurken sorduğu birçok soru vardı. Bu sorulardan güncel FPGA veya

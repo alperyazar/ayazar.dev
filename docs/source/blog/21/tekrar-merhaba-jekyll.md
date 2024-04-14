@@ -2,7 +2,7 @@
 og:description: "Döndüm dolaştım yine Jekyll'ye geçtim."
 ---
 
-# 🇹🇷 Tekrar Merhaba Jekyll!
+# Tekrar Merhaba Jekyll!
 
 Web sitem ve blogumla ilgili değişmeyen tek bir şey var, o da sitenin
 altyapısını sürekli değiştirmem. Bu harcadığım zamanı içeriğe harcasam güzel

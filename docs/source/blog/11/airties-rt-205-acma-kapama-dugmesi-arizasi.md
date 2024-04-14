@@ -2,7 +2,7 @@
 og:description: "AirTies modemimde oluşan güç düğmesi arızasını çözüyorum."
 ---
 
-# 🇹🇷 AirTies RT-205 Açma - Kapama Düğmesi Arızası
+# AirTies RT-205 Açma - Kapama Düğmesi Arızası
 
 ```{note}
 ✅ Bu işlemi deneyen okuyucular sadece AirTies RT-205 için değil AirTies RT-206

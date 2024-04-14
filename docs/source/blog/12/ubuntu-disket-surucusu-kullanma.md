@@ -2,7 +2,7 @@
 og:description: "udisks komutu ile bağlanmayan disketlere çözüm"
 ---
 
-# 🇹🇷 Ubuntu Üzerinde Disket Sürücüsünü Kullanma
+# Ubuntu Üzerinde Disket Sürücüsünü Kullanma
 
 "Bu çağda disket mi kaldı kardeşim, disketi ne yapalım?" demeniz çok normal.
 Fakat bazı kişilerin hala disket sürücüsü olan masaüstü bilgisayarları olabilir.

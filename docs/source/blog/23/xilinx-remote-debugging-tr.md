@@ -3,7 +3,7 @@ og:description: Karta yapılan JTAG bağlantısına ağ üzerinden başka bilgis
 og:image: assets/social/blog/23/xilinx-remote-debugging.png
 ---
 
-# 🇹🇷 Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?
+# Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?
 
 ```{figure} /extra/assets/social/blog/23/xilinx-remote-debugging.png
 :align: center

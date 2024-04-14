@@ -2,7 +2,7 @@
 og:description: "Bir şeyler yazmak isteyenlere öneriler"
 ---
 
-# 🇹🇷 Yazamayanlara
+# Yazamayanlara
 
 Twitter’da doktora tezini, makalesini yazamayanlar ya da yazacak kişiler için
 bir kitap önerisi "flood"una denk geldim. Bir bakacağım:

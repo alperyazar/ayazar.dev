@@ -2,7 +2,7 @@
 og:description: "Dual boot çalışan bilgisayarın Windows güncellemesi ile bozulan disk düzenini tamir ediyoruz."
 ---
 
-# 🇹🇷 Windows 10 1803->1903 Yükseltmesi Sırasında GRUB'un Bozulması
+# Windows 10 1803->1903 Yükseltmesi Sırasında GRUB'un Bozulması
 
 ## Sorun
 

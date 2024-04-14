@@ -2,7 +2,7 @@
 og:description: "LaTeX'in sunduğu otomatik hecelemeyi her zaman istemeyebiliriz."
 ---
 
-# 🇹🇷 LaTeX'te Otomatik Hecelemeyi Kapatma
+# LaTeX'te Otomatik Hecelemeyi Kapatma
 
 Bu aralar biraz LaTeX ile uğraşmam gerekti. Yaklaşık bir sene önce bir rapor
 yazarken ilk olarak kullanmıştım LaTeX'i. Gerçekte istediğiniz formatta rahatça

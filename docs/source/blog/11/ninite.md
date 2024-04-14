@@ -2,7 +2,7 @@
 og:description: "Bilgisayarınıza Toplu Program Yüklemek İçin Güzel Bir Araç"
 ---
 
-# 🇹🇷 Ninite
+# Ninite
 
 *Ninite: Bilgisayarınıza Toplu Program Yüklemek İçin Güzel Bir Araç*
 

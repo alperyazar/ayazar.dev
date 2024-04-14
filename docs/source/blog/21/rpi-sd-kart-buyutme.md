@@ -3,7 +3,7 @@ og:description: "Kullandığınız SD kartı aynı boy ya da daha büyük bir ka
 og:image: assets/social/blog/21/rpi.jpg
 ---
 
-# 🇹🇷 Raspberry Pi SD kart taşıma ve büyütme
+# Raspberry Pi SD kart taşıma ve büyütme
 
 ```{figure} /extra/assets/social/blog/21/rpi.jpg
 :align: center

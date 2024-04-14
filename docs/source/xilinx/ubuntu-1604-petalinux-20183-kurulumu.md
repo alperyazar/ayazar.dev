@@ -2,7 +2,7 @@
 og:description: "Ubuntu 16.04'e Petalinux 2018.3'ü kurarken çıkan sorunları çözüyoruz."
 ---
 
-# 🇹🇷 Ubuntu 16.04.5 Üzerinde Petalinux 2018.3 Kurulumu
+# Ubuntu 16.04.5 Üzerinde Petalinux 2018.3 Kurulumu
 
 Yeni kurulmuş (sanal makina, VirtualBox üzerinde) petalinux 2018.3 kurarken
 kurduğum adımları yazacağım. Öncesinde bu bilgisayara Vivado 2018.3 kurdum, bu

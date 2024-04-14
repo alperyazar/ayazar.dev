@@ -50,10 +50,10 @@ The order within each section is random.
   browsing.
 - [C Language Reference by
   Microsoft](https://learn.microsoft.com/en-us/cpp/c-language/c-language-reference)
-- 🇹🇷 [C ve Sistem Programcıları Derneği](https://csystem.org/), Kaan Aslan
+- [C ve Sistem Programcıları Derneği](https://csystem.org/), Kaan Aslan
   tarafından hazırlanmış
   [notlar](https://github.com/CSD-1993/KursNotlari/blob/master/C.pdf).
-- 🇹🇷 [Necati Ergin](https://github.com/necatiergin) tarafından kendisi
+- [Necati Ergin](https://github.com/necatiergin) tarafından kendisi
   tarafından verilen C kursu kapsamında hazırlanmış repolar: [Kursta Geçen
   Kodlar](https://github.com/necatiergin/C_LANGUAGE_COURSE_CODE),
   [Ödevler](https://github.com/necatiergin/C_PROGRAMLAMA_DILI_ODEVLERI) ve [Umut
@@ -62,7 +62,7 @@ The order within each section is random.
   tarafından hazırlanmış kurs notları. Not: kKurs notlarının içeriği konusunda
   bir bilgim yok, incelemedim, notlar Necati Hoca tarafından hazırlanmış
   değildir.
-- 🇹🇷 Necati Ergin'in [YouTube kanalı](https://www.youtube.com/@necatiergin),
+- Necati Ergin'in [YouTube kanalı](https://www.youtube.com/@necatiergin),
   [Medium](https://necatiergin2019.medium.com/) ve [blog yazıları (Wayback
   Machine)](https://web.archive.org/web/20230329185405/http://plepa.com/category/c-calisma-sorulari/).
 - [C Book by Wikibooks project](https://en.wikibooks.org/wiki/C_Programming)

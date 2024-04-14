@@ -1,62 +1,89 @@
-# POSIX, SUS and LSB
+# POSIX, SUS ve LSB
 
-System programming on Linux often involves many POSIX functions. So, what is
-POSIX? As you explore POSIX, you'll encounter two more terms: SUS and LSB.
-There's a history behind these terms, but I'm not particularly focused on their
-detailed history at this moment, so I'll stick to some key points. If you're
-interested in diving deeper, you might want to check out the first chapters of
-[The Linux Programming Interface](https://man7.org/tlpi/) by Michael Kerrisk.
+*Linux sistem programlama* konuşulmaya başlandığı zaman masaya hemen "POSIX"
+kelimesi gelecektir, kaldı ki [bir önceki yazıda](arayuz.md) ben de bahsettim
+durdum. POSIX ile beraber anılan iki terim daha var: SUS ve LSB. Bu yazıda, bu
+kavramlardan bahsedeceğim.
 
-The late 70s and early 80s were a golden era for Unix and Unix-like operating
-systems [^1f]. However, each Unix-like system had its own interface for
-programmers, such as APIs, and command-line utilities for users. Writing a
-single program that worked on all Unix-like systems without issues was
-challenging. One of the earliest efforts to create a standard programming
-interface was **POSIX**, or **Portable Operating System Interface**, by IEEE.
-The first POSIX standard, POSIX.1, initially drew from an unofficial standard
-from 1984, produced by a consortium of UNIX vendors known as `/usr/group`.
-POSIX.1 was officially recognized as an IEEE standard in 1988 under the
-designation **IEEE 1003** and as an ISO standard in 1990 as **ISO/IEC
-9945-1:1990.** The name POSIX was suggested by Richard Stallman.
+Her bir terimin bir tarihi var. İşin doğrusu tarihleri ile şu aşamada çok ilgili
+değilim. Biraz okumaya anlamaya çalıştım fakat maşallah bir Türk dizisi kadar
+karışıklar. O yüzden ben de çok kısa özet geçeceğim. Dilerseniz Michael
+Kerrisk'in [The Linux Programming Interface](https://man7.org/tlpi/) kitabının
+ilk ünitelerine bakabilirsiniz.
 
-Today, POSIX sets standards not just for C programming APIs but also for shell
-utilities like `cat`, `chmod`, `cp`, `tee`, and others. An operating system must
-pass automated conformance tests to earn the official *POSIX compliant* badge.
-**While most of the Linux distros aren't officially recognized as POSIX
-compliant, they practically adhere closely to POSIX standards.** It's important
-to note that the `UNIX` trademark isn't owned by IEEE but by [The Open
-Group](https://unix.org/trademark.html). As a result, IEEE doesn't have the
-authority to officially declare any operating system as UNIX compliant.
+70lerin sonu, 80li yılların başı Unix ve Unix türevi işletim sistemler için
+altın zamanlardır. Piyasada birçok Unix türevi işletim sistemi bulunuyordu
+[^1f]. `Nerede çokluk orada ...` ilkesinden yola çıkarsak bu çeşitlilik hemen
+bir takım problemler doğurmuştu. Her işletim sisteminin kullanıcıya sunduğu
+komutlar, programcılara sunduğu arayüzler birbirinden farklıydı. Tamam, belki
+tamamen ayrı değildi ama bu farklılıklar taşınabilir programların yazılmasının
+önüne geçiyordu. Bu da Unix ekosisteminde hem işletim sistemi satan hem de
+program geliştiren firmalar için bir problemdi. Hemen bir standartlaşma yoluna
+gidilmeye çalışıldı. İşte bu girişimlerin ilklerinden biri IEEE tarafından
+yürütülen **POSIX**, or **Portable Operating System Interface** olmuştu. Resmi
+olmasa da daha önceleri UNIX üreticileri `/usr/group` isimli bir topluluk
+altında bir şeyleri standartlaştırmaya çalışıyordu. İlk POSIX standartı,
+POSIX.1'in çalışmalarına 1984 yılında bu grup altındaki kurallar baz alınarak
+başlanıldı. 1988 yılında IEEE tarafından resmi olarak tanındı ve **IEEE 1003**
+kodunu aldı. 1990 yılında ise ISO tarafından **ISO/IEC 9945-1:1990** olarak
+tanındı. POSIX ismi, GNU'nun yaratıcısı Richard Stallman tarafından
+önerilmiştir.
 
-**SUS**, or **Single Unix Specification**, is a standard similar to POSIX. For
-operating system developers wishing to earn the UNIX trademark for their OS,
-adherence to SUS is required, along with paying a significant licensing fee to
-obtain the UNIX certification.
+POSIX, sadece C programcıları için standart arayüz fonksiyonları, API,
+tanınmlamamktadır. Sık kullandığımız kabuk komutları (`cat`, `chmod`, `cp`,
+`tee` gibi) ve bu komutların argümanları da POSIX tarafından
+standartlaştırılmıştır. Bir işletim sisteminin **POSIX uyumlu (compliant)**
+olması için çeşitli otonom kabul testlerini geçmesi gerekmektedir. Ayrıca
+sertifika için iyi miktarda bir ücret de gerekmektedir. **Linux dağıtımlarının
+çok büyük bir kısmı resmi olarak POSIX uyumlu değildir.** Fakat Linux
+dağıtımları, POSIX kurallarını çok sıkı şekilde takip ederler. POSIX
+kurallarının bir kısmı Linux tarafından gerçekleştirilmemiştir. Bazen de Linux,
+POSIX'te olmayan ek özellikleri programcılara sunar.
 
-**LSB**, or **Linux Standard Base**, represents a similar endeavor to POSIX and
-SUS but focuses on standardizing Linux distributions. By building on the
-foundations of POSIX and SUS, LSB seeks to standardize various aspects,
-including libraries and filesystem hierarchy [^2f].
+Günümüzde **UNIX** markası IEEE'ye değil [The Open
+Group](https://unix.org/trademark.html) isimli oluşuma aittir. Bu yüzden IEEE,
+herhangi bir işletim sistemine resmi olarak *UNIX* ya da *UNIX uyumlu*
+diyememektedir.
 
-**Ultimately, the goal of all these standardization efforts is to create an
-interoperable environment that benefits both users and programmers.**
+**SUS** ya da **Single Unix Specification** ise burada devreye girmektedir,
+POSIX'e benzemektedir. Eğer geliştirdiğiniz işletim sistemine resmi olarak *UNIX
+uyumlu* ya da *UNIX* demek istiyorsanız işletim sisteminizin bu standarta uyması
+ve sertifikasyon süresini geçmesi gerekmektedir. Elbette sertifika için para da
+ödemelisiniz...
+
+**LSB** ya da **Linux Standard Base** karşımıza çıkabilecek bir diğer kavramdır.
+Çıkış amacı POSIX ve SUS'a benzemektedir fakat Linux dağıtımlarının
+standartlaşması için ortaya çıkmıştır. POSIX ve SUS'un üzerine kurulmuştur ve
+daha geniş kapsamda (kütüphaneler, dosya sistemi düzeni gibi) bir standart
+oluşturmaya çalışır [^2f].
+
+**Tarihsel olarak baktığımızda tüm bu girişimlerin amacı hem kullanıcıların hem
+uygulama geliştiricilerin hem de işletim sistemi geliştiricilerin daha az
+korkuyla çalışabileceği uyumlu bir ortam yaratmakır.**
 
 ---
 
-With this series, my personal goal is to provide a resource specifically for
-system programming on Linux, rather than focusing on other Unix-like systems
-like macOS. I'm not concerned with interoperability between different operating
-systems. My interest lies solely in Linux system programming. I've mentioned
-standards only for the sake of completeness.
+POSIX gibi standartların amacı Linux, macOS gibi Unix türevi işletim sistemlerin
+arasında taşınabilir kodlar yazmaktır. Bu seride benim kişisel amacım sadece
+Linux üzerinde çalışacak kodlar yazmaktır. O yüzden şahsen POSIX ile taşınabilir
+kod yazmayı fazla önemsemiyorum. Konu bütünlüğü olması açısından standartlardan
+biraz bahsetmek istedim.
 
-As of now, the latest POSIX and SUS standards essentially refer to the same
-document, which can be accessed
-[here](https://pubs.opengroup.org/onlinepubs/9699919799/). Moving forward in
-this series, I will primarily refer to the [MAN pages.](man.md)
+Günümüzde, son POSIX ve SUS sürümü pratikte aynı düşünülmektedir. Buradan son
+standarta erişebilirsiniz. Ben ise genelde POSIX veya SUS dokümanları yerine
+*man Sayfaları* na bakacağım.
 
-## Resources
+## Özet
 
-- [](resources.md)
+- Linux bir UNIX işletim sistemi değildir. UNIX türevi olarak bazı açılardan
+  düşünülebilir. UNIX felsefesi ve yaklaşımı baz alınarak tasarlandığından UNIX
+  sistemlere benzer.
+- Linux sistemlerin büyük bir çoğunluğu POSIX, SUS ya da LSB uyumlu değildir.
+  Pratikte çok büyük ölçüde uyumludur.
+
+## Kaynaklar
+
+- [](kaynak.md)
 - [What is Linux? Unix? POSIX? (YouTube)](https://www.youtube.com/watch?v=hy4OeVCLGZ4)
 - [What is the meaning of "POSIX"? (SO)](https://stackoverflow.com/questions/1780599/what-is-the-meaning-of-posix)
 - [What exactly is POSIX? (SO)](https://unix.stackexchange.com/q/11983)

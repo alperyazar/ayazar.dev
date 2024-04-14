@@ -2,7 +2,7 @@
 og:description: "Uyku dediğin derin olur!"
 ---
 
-# 🇹🇷 Windows'un Sunduğu 'Hazırda Beklet' ve 'Uyku' Seçeneklerini Sürekli Ters Algılamam
+# Windows'un Sunduğu 'Hazırda Beklet' ve 'Uyku' Seçeneklerini Sürekli Ters Algılamam
 
 ```{figure} assets/windows-a.png
 :align: center

@@ -2,7 +2,7 @@
 og:description: "Elektro gitar ve amfi aldım!"
 ---
 
-# 🇹🇷 Yeni Enstrüman: Elektro Gitar + Amfi 🎵
+# Yeni Enstrüman: Elektro Gitar + Amfi 🎵
 
 Blogumun açıklamasında "Müzik" kelimesi geçse de bu konuyla ilgili bir yazı
 yazamamıştım, nihayet yazabiliyorum. Bu yazımda yeni heves ile aldığım elektro

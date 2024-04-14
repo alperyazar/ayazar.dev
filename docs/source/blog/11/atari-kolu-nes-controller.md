@@ -2,7 +2,7 @@
 og:description: "Atari kolunu kendi projelerimizde nasıl kullanır, tuşları nasıl okuruz?"
 ---
 
-# 🇹🇷 Atari Kolu (NES Controller) Arayüzü
+# Atari Kolu (NES Controller) Arayüzü
 
 Benim yaşımdakiler için herhalde çocukluğunda atari ile karşılaşmamış kişi pek
 yoktur. Atari ismi bildiğim kadarı ile Atari firmasının ürettiği bir "oyun

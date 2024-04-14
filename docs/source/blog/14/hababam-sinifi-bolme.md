@@ -2,7 +2,7 @@
 og:description: "Hababam Sınıfı"
 ---
 
-# 🇹🇷 235.000'in 9.000'e Tam Olarak Bölünmemesi
+# 235.000'in 9.000'e Tam Olarak Bölünmemesi
 
 Habam Sınıfı'nı ne zaman dinlesem bu bölümün tam sayı çıkmama sebini düşünürüm.
 Neden acaba? 😃

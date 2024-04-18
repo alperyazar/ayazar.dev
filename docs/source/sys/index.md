@@ -2,7 +2,7 @@
 
 [Kernel](https://kernel.org/) ile konuşma sanatı
 
-## 🧠 Kavramlar ve Temeller
+## 📝 Günlük
 
 ```{toctree}
 ---
@@ -13,15 +13,6 @@ giris.md
 arayuz.md
 posix.md
 kernel-arayuz.md
-```
-
-## ❓ Nasıl Yapılır
-
-```{toctree}
----
-maxdepth: 1
-glob: true
----
 man.md
 merhaba-dunya.md
 ```

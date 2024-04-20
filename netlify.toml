@@ -1,0 +1,6 @@
+[build]
+  command = "sphinx-build docs/source docs/build && echo -e \"User-agent: *\nDisallow: /\" > docs/build/robots.txt"
+  publish = "docs/build"
+
+[build.environment]
+  PYTHON_VERSION = "3.10"

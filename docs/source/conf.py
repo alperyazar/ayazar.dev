@@ -33,7 +33,6 @@ version = 'ayazar.dev'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['myst_parser',
-'sphinx_rtd_theme',
 'sphinx.ext.todo',
 'sphinx_last_updated_by_git',
 'sphinxcontrib.youtube',

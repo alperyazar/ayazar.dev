@@ -136,9 +136,109 @@ ile çalıştığını görebiliriz. Yine bizim kodlamadığımız kısımlar va
 neyse şimdilik onlara takılmayalım. Ama statik linkediğimiz zaman syscall
 sayımız azaldı, bunu gözlemledik.
 
-```{todo}
-Assembly ile sadece ret yapan program yaz. Bu syscall, strace overheadi olabilir mi?
+**Bu fazla syscall'lar strace kaynaklı olabilir mi? syscall sayısını 1'e
+indirebilir miyiz?**
+
+Bu kadar fazla syscall oluşmaması gerekiyor. Muhtemelen C standart kütüphanesi,
+libc, açılış sırasında çeşitli syscall'lar yapıyor. Sonuçta bizim `main()`
+fonksiyonumuz çalışmadan önce libc'nin standard fonksiyonları çalışıyor.
+libc kullanmadan bir program yazalım. Programımız hemen çıksın.
+
+Bir process de bir syscall çağrısı yaparak hayatına son verebilir. Bunun için
+[syscall()](https://man7.org/linux/man-pages/man2/syscall.2.html) fonksiyonunu
+kullanabiliriz.
+
+```c
+#include <unistd.h>
+
+int main(void)
+{
+  syscall(60, 6);
+}
 ```
+
+Peki 60 ve 6 nedir? Ben bu denemeyi Intel 64-bit mimarideki bir bilgisayarda (aslında
+AMD işlemci var) yapıyorum. x86_64 için baktığımızda `exit` syscall'ının numarası
+`60` olarak verilmiş [^4f]. Bu sycall bir adet de parametre alıyor, o da `error_code`
+yani process'in çıkış kodu. Ben burada `6` yazmayı tercih ettim, rastgele.
+Yukarıdaki kodu çalıştırdığımızda processimiz bu kod ile çıkış yapıyor.
+
+```text
+ay@dsklin:~/tmp/sys$ ./a.out
+ay@dsklin:~/tmp/sys$ echo $?
+6
+```
+
+`$?` ile BASH üzerinde son sonlanmış olan komutun, process'in, çıkış koduna
+bakabiliyoruz. Bakalım `strace` çıktısı nasıl? Yine `gcc --static` ile derledim.
+
+```text
+execve("./a.out", ["./a.out"], 0x7ffce99eed90 /* 64 vars */) = 0
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffff55a7730) = -1 EINVAL (Invalid argument)
+brk(NULL)                               = 0x1f81000
+brk(0x1f81dc0)                          = 0x1f81dc0
+arch_prctl(ARCH_SET_FS, 0x1f813c0)      = 0
+set_tid_address(0x1f81690)              = 14908
+set_robust_list(0x1f816a0, 24)          = 0
+rseq(0x1f81d60, 0x20, 0, 0x53053053)    = 0
+uname({sysname="Linux", nodename="dsklin", ...}) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+readlink("/proc/self/exe", "/home/ay/tmp/sys/a.out", 4096) = 22
+getrandom("\x86\xef\x09\x1f\x8b\xd5\xc0\x4d", 8, GRND_NONBLOCK) = 8
+brk(0x1fa2dc0)                          = 0x1fa2dc0
+brk(0x1fa3000)                          = 0x1fa3000
+mprotect(0x4c1000, 16384, PROT_READ)    = 0
+exit(6)                                 = ?
++++ exited with 6 +++
+```
+
+En sondaki `exit()` bizimki fakat baştakiler libc kaynaklı olmalı. Mesela
+`getrandom()`. Muhtemelen libc'nin random fonksiyonları için çağrılıyor.
+Her ne kadar bizim açımızdan program `main()` ile başlasa da tipik olarak
+çalışan ilk fonksiyon `_start()` oluyor, bu da libc tarafından sağlanıyor.
+Linker ayarları ile programımızın başlangıç noktasını değiştirebiliriz.
+Bunun için `-Wl,-emain` dememiz yeterli.
+
+```text
+ay@dsklin:~/tmp/sys$ gcc -Wl,-emain --static test.c
+ay@dsklin:~/tmp/sys$ strace ./a.out
+execve("./a.out", ["./a.out"], 0x7ffc433b6f20 /* 64 vars */) = 0
+exit(6)                                 = ?
++++ exited with 6 +++
+ay@dsklin:~/tmp/sys$ echo $?
+6
+```
+
+Elbette bu noktada libc'nin rutinleri çalışmadığı için libc fonksiyonlarını
+kullanmak pek sağlıklı değil. Ama kullandığımız `syscall()` fonksiyonu *basit*
+bir fonksiyon olduğu için problem yaşamadık. Fakat `printf()` de bile
+patlayabiliriz bu şekilde derlersek:
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+  printf("Merhaba Dunya!");
+}
+```
+
+```text
+ay@dsklin:~/tmp/sys$ gcc -Wl,-emain --static test.c
+ay@dsklin:~/tmp/sys$ ./a.out
+Segmentation fault (core dumped)
+```
+
+Neden? Çünkü görece karmaşık bir libc fonksiyonu kullandık ve muhtemelen `printf()`
+in kullandığı bellek alanı gibi yerler biz `_start()` ın çalışmasına imkan
+vermediğimiz için ayarlanmamış oldu ve segfault yedik. Bunu `gdb` ile debug
+edebiliriz, `strace` pek işimize yaramayacaktır.
+
+```{todo}
+İyi bir egzersiz olabilir. 🤔
+```
+
+---
 
 Konumuza geri dönecek olursak trace çıktısının en son kısımlarında
 
@@ -248,3 +348,4 @@ bunu sağlayan `stdin` girişi de yine aynı yere bağlı.
 [^1f]: <https://en.wikipedia.org/wiki/Everything_is_a_file>
 [^2f]: <https://www.youtube.com/watch?v=0yUYYohSXpc>
 [^3f]: <https://www.youtube.com/watch?v=KLLt3izCIo4>
+[^4f]: <https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md>

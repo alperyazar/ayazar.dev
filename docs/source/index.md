@@ -20,7 +20,7 @@ glob: true
 ---
 about.md
 blog/index.md
-radar/index.md
+log/index.md
 br/index.md
 c/index.md
 sys/index.md

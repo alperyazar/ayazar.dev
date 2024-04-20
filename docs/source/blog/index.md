@@ -1,9 +1,9 @@
-# 📝 Blog
+# 📼 Karışık
 
-Personal and random content, in English or in Turkish (🇹🇷).
+Ortaya karışık içerikler.
 
 ```{todo}
-This section is under construction 🚧
+Yapım aşamasındadır 🚧
 ```
 
 ```{toctree}

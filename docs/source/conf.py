@@ -103,7 +103,7 @@ html_theme_options = {
     }
 }
 
-language = 'en'
+language = 'tr'
 
 todo_include_todos = True
 

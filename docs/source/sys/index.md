@@ -1,4 +1,4 @@
-# Linux Sistem Programlama
+# 🐧 Linux Sistem Programlama
 
 [Kernel](https://kernel.org/) ile konuşma sanatı
 

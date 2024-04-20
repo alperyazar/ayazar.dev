@@ -1,4 +1,4 @@
-# Xilinx
+# ✖️ Xilinx
 
 This subsection is dedicated to Xilinx related things: Vivado, Vitis, FPGAs and
 SOCs, etc.

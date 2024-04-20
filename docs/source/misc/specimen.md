@@ -4,7 +4,7 @@ og:description: This is a sample page and this is a meta description.
 
 # Specimen
 
-Test page
+Test page. Also see [theme documentation](https://pradyunsg.me/furo/reference/)
 
 ## Admonition
 

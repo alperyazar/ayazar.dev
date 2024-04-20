@@ -2,7 +2,7 @@
 
 [Kernel](https://kernel.org/) ile konuşma sanatı
 
-## 📝 Günlük
+## 📝 Notlarım
 
 ```{toctree}
 ---

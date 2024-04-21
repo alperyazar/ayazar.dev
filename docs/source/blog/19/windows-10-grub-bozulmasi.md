@@ -138,4 +138,3 @@ dual boot olma ihtimalini düşünmemiş olabilir.
 [Lanet olsun sebebi neydi ki?](https://www.youtube.com/watch?v=cEsocsQPVmw)
 
 *İlk yayın: 2019-08-17*
-

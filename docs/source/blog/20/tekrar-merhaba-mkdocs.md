@@ -12,4 +12,3 @@ içeriğin Git ile kontrol edilmesi de hoşuma gittiğinden statik site üretici
 olan MkDocs'a geri döndüm.
 
 *İlk yayın: 2020-09-27*
-

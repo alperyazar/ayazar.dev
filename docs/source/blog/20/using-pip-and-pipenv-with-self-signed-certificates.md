@@ -54,4 +54,3 @@ $ export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.
 [^3f]: <https://github.com/pypa/pipenv/issues/2979>
 
 *Published on: 2020-11-20*
-

@@ -170,4 +170,3 @@ WARNING: petalinux-user-image-1.0-r0 do_rootfs: [log_check] petalinux-user-image
 Xilinx'e göre bu ihmal edilebilir. Ref:
 [Link](https://www.xilinx.com/support/answers/71110.html) (Ref ZynqMP üzerine
 ama bence benzer durum)
-

@@ -19,4 +19,3 @@ aldım. Kayıt olması için aşağıya koyuyorum. 10 Şubat 2020'de almışım.
 ```
 
 *İlk yayın: 2020-03-15*
-

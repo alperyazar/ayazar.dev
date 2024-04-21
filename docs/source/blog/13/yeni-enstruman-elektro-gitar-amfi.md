@@ -145,4 +145,3 @@ Merak edenler için, beyaz kapağın altında tremolo sistemini tutan ve tremolo
 bıraktıktan sonra köprünün tekrar geri dönmesini sağlayan yay sistemi bulunuyor.
 
 *İlk yayın: 2013-08-11*
-

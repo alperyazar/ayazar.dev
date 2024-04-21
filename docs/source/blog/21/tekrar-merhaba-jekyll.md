@@ -97,4 +97,3 @@ tecrübelerimi de katarak daha kapsamlı bir karşılaştırma yazısı
 hazırlayabilirim.
 
 *İlk yayın: 2021-03-21*
-

@@ -159,4 +159,3 @@ yapmış (bizim durumda bu python.exe oluyor). Net bir çözümü yok, biraz do�
 yapmak gerekecek böyle bir sorunda.
 
 *İlk yayın: 2018-02-10*
-

@@ -14,4 +14,3 @@ umarak MkDocs kullanmaya başlıyorum. Bu yazıyı da bir deneme yazısı olarak
 ve tarihe not düşmek için yazdım.
 
 *İlk yayın: 2020-01-19*
-

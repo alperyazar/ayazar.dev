@@ -44,4 +44,3 @@ be `eth0` and you should have licensed Vivado 2016.4.
 
 - [1](https://www.xilinx.com/support/answers/60510.html)
 - [2](https://askubuntu.com/a/785442)
-

@@ -179,4 +179,3 @@ sistemlerinden haberdar yöntemlerle taşımak istiyorsanız internetteki diğer
 çözümlere bakabilirsiniz.
 
 *İlk yayın: 2021-03-28*
-

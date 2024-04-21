@@ -157,4 +157,3 @@ corresponding output of your cursor position. In SumatraPDF, double-clicking
 shows corresponding LaTeX code in TeXstudio.
 
 *Published on: 2021-10-30*
-

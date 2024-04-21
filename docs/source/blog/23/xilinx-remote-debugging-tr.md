@@ -420,4 +420,3 @@ kullanıyordum. Labta çalıştığını bildiğim bir arkadaşın bilgisayarın
 `hw_server` ına kendi bilgisayarımdaki Vivado'dan bağlanıp FPGA'e zamansız
 resetler atarak labtan gelen *Ya kart durup duruken reset atıyor, ne alaka
 ya???* serzenişlerini dinliyordum. 😈 Yine de siz kararını kaçırmayın. 😇
-

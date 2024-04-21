@@ -96,4 +96,3 @@ performance-critical code, I find skimming over the generated assembly code by
 the compiler time-to-time beneficial.
 
 See you! 🙋‍♂️
-

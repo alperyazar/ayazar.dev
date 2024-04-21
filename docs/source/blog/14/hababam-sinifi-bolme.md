@@ -20,4 +20,3 @@ Zaman: `1:02:21`
 26.11 öğrenci ediyor.
 
 *İlk yayın: 2014-12-20*
-

@@ -70,4 +70,3 @@ Here is a video that shows all features of ZofzPCB:
 ```
 
 *Published on: 2014-12-21*
-

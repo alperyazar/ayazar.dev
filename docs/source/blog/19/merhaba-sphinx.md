@@ -44,4 +44,3 @@ Umuyorum ki ReST'in ve Sphinx'in kullanımı, bu geçişten sonra kullanımdan
 kalkmaz ve ben biraz daha sık bir şeyler yazabilirim.
 
 *İlk yayın: 2019-04-28*
-

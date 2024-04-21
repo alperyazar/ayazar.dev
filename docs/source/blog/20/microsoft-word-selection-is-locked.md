@@ -37,4 +37,3 @@ Design Mode
 [^1]: [The solution worked for me](https://answers.microsoft.com/en-us/msoffice/forum/all/microsoft-word-message-you-cant-make-this-change/341971aa-ec61-4984-8af2-105c2032bb56)
 
 *Published on: 2020-03-06*
-

@@ -133,4 +133,3 @@ ile sorunsuz da çalışıyor. Linux dağıtımlarda aslında Sumatra PDF'in tü
 [^1f]: <https://web.archive.org/web/20120303132633/http://forums.fofou.org/sumatrapdf/topic?id=3392&comments=2>
 
 *İlk yayın: 2021-10-29*
-

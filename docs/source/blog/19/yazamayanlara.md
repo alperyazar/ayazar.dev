@@ -10,4 +10,3 @@ bir kitap önerisi "flood"una denk geldim. Bir bakacağım:
 [Link](https://twitter.com/koseozlem/status/1169174168149123077?s=19)
 
 *İlk yayın: 2019-09-05*
-

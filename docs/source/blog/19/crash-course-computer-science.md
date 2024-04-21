@@ -18,4 +18,3 @@ giscus: de084e00-3fbd-4d6d-95f8-340ec42ac0a1
   [Link](https://m.9gag.com/gag/aqg2nM7)
 
 *İlk yayın: 2019-09-03*
-

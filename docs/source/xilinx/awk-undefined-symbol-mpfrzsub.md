@@ -41,4 +41,3 @@ may be a better solution.
 
 - [1](https://forums.xilinx.com/t5/Installation-and-Licensing/Vivado-2016-4-on-Ubuntu-16-04-LTS-quot-awk-symbol-lookup-error/m-p/756779/highlight/true#M17778)
 - [2](https://forums.xilinx.com/t5/Installation-and-Licensing/XSCT-symbol-lookup-error-awk-undefined-symbol-mpfr-z-sub/td-p/741141)
-

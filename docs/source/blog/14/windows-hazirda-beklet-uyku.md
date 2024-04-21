@@ -46,4 +46,3 @@ Her seferinde yaptığı çeviriden dolayı beni yanılttığı için yanlış s
 seçtiğimde de Microsoft'u anıyorum. 😅
 
 *İlk yayın: 2014-08-20*
-

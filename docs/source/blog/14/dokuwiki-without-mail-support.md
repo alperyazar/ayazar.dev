@@ -33,4 +33,3 @@ Don't forget that DokuWiki still is not able to send mails. This steps just
 allow us to skip checking mailing feature on installation.
 
 *Published on: 2014-12-31*
-

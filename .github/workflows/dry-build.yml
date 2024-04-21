@@ -18,24 +18,18 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pipenv'
-        cache-dependency-path: 'Pipfile'
-
-    - name: Install pipenv
+    - name: Update and set up
       run: |
-        curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        pipenv install
+        sudo apt-get -y update
+        sudo apt-get install -y python3-pip git
+        pip3 install pipenv
 
-# git is already installed with Ubuntu 22.04
-#    - name: Install git
-#      run: |
-#        sudo apt-get -y update
-#        sudo apt-get install -y git
+    - uses: actions/cache@v3
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-python-pipenv-${{ hashFiles('Pipfile') }}
 
     - name: Build
-      run:
-#        pipenv update # Install pipenv did that already!
+      run: |
+        pipenv update
         pipenv run sphinx-build --fail-on-warning --keep-going --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build

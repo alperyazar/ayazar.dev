@@ -88,7 +88,7 @@ html_copy_source = False
 
 # https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 html_theme_options = {
-#    'announcement': 'Moving from alperyazar.com...',
+    'announcement': 'Web sitemi tekrar düzenliyorum. Eksik içerikler, çalışmayan bağlantılar olabilir. 😇',
     'source_repository': 'https://github.com/alperyazar/ayazar.dev/',
     'source_branch': 'master',
     'source_directory': 'docs/source/',

@@ -4,10 +4,6 @@ giscus: c6945529-ff36-4f4e-a4e6-eccfc09e0734
 
 # Merhaba Dünya!
 
-```{todo}
-Bu yazı henüz tamamlanmamıştır.
-```
-
 Önceki kısımlarda Linux çekirdeğinin bizlere sunduğu 300'den fazla sistem
 çağrısı olduğundan bahsetmiştim. Bunların hepsini öğrenecek miyiz? Belki,
 bilemiyorum. Hepsini olmasa da çoğuna bakarız. Fonksiyonların kendisini öğrenmek
@@ -675,18 +671,11 @@ sayısı saymak için ve hata iletmek için kullanılıyor, `-1` i tutabilmesini
 gereği buradan yani hata durumu tutabilme gereğinden geliyor. Mesela baktığım
 glibc kaynak kodunda `ssize_t` türü, `int` olarak
 [tanımlanmış.](https://elixir.bootlin.com/glibc/glibc-2.39/source/posix/bits/types.h#L118)
-Sisteminizdeki `SSIZE_MAX` değerini de öğrenebilirsiniz:
-
-```text
-ay@dsklin:~$ getconf -a | grep SSIZE_MAX
-SSIZE_MAX                          32767
-_POSIX_SSIZE_MAX                   32767
-```
 
 `ssize_t` türü, `size_t` nin işaretli tam sayı karşılığı olarak düşünülmüş
 [^12f]. Bir implementasyon isterse, `size_t` türünü ne seçtiyse onun işaretli
 versiyonunu `ssize_t` olarak kullanabilir, örneğin `size_t` türü `unsigned int`
-ise, `size_t` `signed_int` oluyor. POSIX standartlarına göre, tek bir `write()`
+ise, `size_t` `signed_int` olabilir. POSIX standartlarına göre, tek bir `write()`
 işlemi ile `SSIZE_MAX` değerinden daha fazla yazma yapılması beklenmiyor. Aksi
 taktirde `write()` geri dönüş olarak yazılan byte sayısını dönerken bu değeri
 `ssize_t` içerisine sığdıramayabilir.
@@ -721,9 +710,116 @@ int main(void)
 }
 ```
 
-```{todo}
-Buradayım
+Yukarıdaki kodda `write()` fonksiyonu ile doğrudan syscall yaparak aynı işi
+yapıyoruz. Standart `strlen()` fonksiyonun geri dönüş değerinin türü `size_t`
+olmaktadır, bu yüzden `write()` fonksiyonuna doğrudan verebiliriz çekinmeden.
+`msg_c` yi yazdırırken alternatif olarak `sizeof` operatörü ile boyut hesaplaması
+yaptırdım. `sizeof` ile yapılan hesaplamada NULL termination karakteri de
+dahil olacağı için `strlen()` ile aynı değeri vermesi için 1 çıkardım.
+
+`write()` fonksiyonu, başarısızlık durumunda `-1` dönüyor. Fakat `write()` ile
+istenen tüm byte'ların yazılmaması durumu da olabilir. O yüzden `write()` fonksiyonu
+yazabildiği byte sayısını dönüyor. Diskte bir dosyaya yazıyorsak, disk dolu ise
+böyle bir durum olabilir yani kısmi yazma durumu. Ya da socket programlamada
+benzer durumlar olabiliyor. Biz burada aslında gerçek bir dosyaya yazmadığımız
+için böyle bir problemle karşılaşmamız pek mümkün değil. Yani `-1` dönmüyorsa
+kısmi yazma sanki olmamalı, en azından bu basit örnekte. Fakat ben yine de
+dönüş değeri tam olarak yazdığımız byte sayısına eşit mi diye kontrol etmek istedim.
+
+Elbette burada başka problemler var fakat bunlara sonraki yazılarda değineceğim.
+Örneğin, `size_t` türünden bir değer ile `ssize_t` türünü karşılaştırıyoruz.
+Bu türlerin boyutları ile ilgili durumlar biraz karışık fakat bu yazıda
+değinmeyeceğim, sonraki yazılara kalsın.
+
+### Assembly ile write
+
+Son olarak assemblyde benzer bir şey yapalım. Yukarıda `exit` syscall'ı için
+assembly ile bir uygulama yapmıştık, şimdi de `write` için yapalım. `x86_64`
+bir bilgisayarda `write` ın syscall numarası `1` [^4f].
+
+```asm
+.section .data
+message:
+  .ascii "Merhaba Dunya!\n"
+
+.global _start
+
+.section .text
+_start:
+  mov $1,        %rax
+  mov $1,        %rdi
+  mov $message,  %rsi
+  mov $15,       %rdx
+  syscall
+
+  mov $60, %rax
+  mov $0,  %rdi
+  syscall
 ```
+
+Yukarıdaki kodu `gcc -nostartfiles -static test.s` şeklinde derliyoruz.
+`-nostartfiles`, `-nostdlib` ile benzer bir etki gösteriyor, alternatif olarak
+verdim.
+
+```text
+ay@dsklin:~/tmp/sys$ ./a.out
+Merhaba Dunya!
+
+ay@dsklin:~/tmp/sys$ echo $?
+0
+
+ay@dsklin:~/tmp/sys$ strace ./a.out
+execve("./a.out", ["./a.out"], 0x7ffe5b2e8d70 /* 64 vars */) = 0
+write(1, "Merhaba Dunya!\n", 15Merhaba Dunya!
+)        = 15
+exit(0)                                 = ?
++++ exited with 0 +++
+```
+
+İlk `syscall` ile `write` yapıyoruz 1 nolu fd'ye, yani `stdout` a. Hangi register'a
+ne yazacağımız calling convention/ABI ile önceden belirlenmiş durumda [^4f].
+`message` bizim mesaj *array* imizin başını gösteren adeta bir pointer durumunda.
+
+```text
+ay@dsklin:~/tmp/sys$ objdump -d a.out
+
+a.out:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000401000 <_start>:
+  401000: 48 c7 c0 01 00 00 00  mov    $0x1,%rax
+  401007: 48 c7 c7 01 00 00 00  mov    $0x1,%rdi
+  40100e: 48 c7 c6 00 20 40 00  mov    $0x402000,%rsi
+  401015: 48 c7 c2 0f 00 00 00  mov    $0xf,%rdx
+  40101c: 0f 05                 syscall
+  40101e: 48 c7 c0 3c 00 00 00  mov    $0x3c,%rax
+  401025: 48 c7 c7 00 00 00 00  mov    $0x0,%rdi
+  40102c: 0f 05                 syscall
+```
+
+Nihai kodda `0x40200` adresine erişim görüyoruz.
+
+```text
+ay@dsklin:~/tmp/sys$ objdump -s -j .data a.out
+
+a.out:     file format elf64-x86-64
+
+Contents of section .data:
+ 402000 4d657268 61626120 44756e79 61210a    Merhaba Dunya!.
+```
+
+Bu adres, `40200`, yazımızın derleyici tarafından yerleştirildiği yer.
+
+Son olarak da bu sefer 0 çıkış kodu ile çıkıyoruz.
+
+## Özet
+
+Bu yazıda **sistem çağrısı yani syscall nedir, nasıl yapılır, assembly dilinde
+nasıl yapılır, libc ile ilişkisi nedir?** bu tarz soruları cevaplamaya çalıştım.
+Biraz karışık gittik ama arka planda ne olup bittiğiniz biraz daha anladık
+bence. Bundan sonraki yazılarda sanıyorum dibine bu kadar girmem 🤞.
 
 ## İlgili Kaynaklar
 

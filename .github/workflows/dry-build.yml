@@ -29,12 +29,13 @@ jobs:
         curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
         pipenv install
 
-    - name: Install git
-      run: |
-        sudo apt-get -y update
-        sudo apt-get install -y git
+# git is already installed with Ubuntu 22.04
+#    - name: Install git
+#      run: |
+#        sudo apt-get -y update
+#        sudo apt-get install -y git
 
     - name: Build
-      run: |
-        pipenv update
+      run:
+#        pipenv update # Install pipenv did that already!
         pipenv run sphinx-build --fail-on-warning --keep-going --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build

@@ -1,3 +1,7 @@
+---
+giscus: d20c7d25-996f-4e29-8c4b-b36ef1898686
+---
+
 # Soyutlama Katmanları, Arayüzler ve Standart C Kütüphanesi
 
 Bilgisayar sistemleri (bilgisayarların kendisi, bilgisayarlar arası ağlar gibi),
@@ -132,9 +136,8 @@ organizasyonu nasıl olacak? gibi sorular da ABI kapsamında yanıtlanıyor. ABI
 bir şekilde nasıl çalışacağını olabilecek en düşük seviyede tarifliyor olması. O
 yüzden *binary* arayüz olarak geçmektedir. **ABI doğrudan programcılar
 tarafından kod yazılırken kullanılan "insanlar için tasarlanmış" arayüzler
-değilleridir.**
+değillerdir.**
 
-giscus: d20c7d25-996f-4e29-8c4b-b36ef1898686
 ---
 
 Linux kerneli, ilk olarak 1991 yılında yayınlanmıştır. Günümüze gelen kadar
@@ -316,4 +319,3 @@ bunu aktarmaya çalışacağım.
 [^2f]: <https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/>
 [^3f]: <https://linuxreviews.org/WE_DO_NOT_BREAK_USERSPACE>
 [^4f]: <https://wiki.c2.com/?PrematureOptimization>
-

@@ -46,4 +46,3 @@ musunuz denemedim.** Sadece Babel'e özgü olabilir, bilemiyorum. Denerseniz ban
 da haber verirseniz sevinirim.
 
 *İlk yayın: 2012-06-03*
-

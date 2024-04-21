@@ -66,7 +66,7 @@ I'm ready! I'm ready! I'm ready!
 :width: 100%
 ```
 
-## Disqus
+## giscus
 
 See the bottom.
 

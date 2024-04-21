@@ -40,4 +40,3 @@ komutu ile disketimizi güvenle kaldırıp, çıkarabiliyoruz.
 Bol Linux'lu günler dileği ile..
 
 *İlk yayın: 2012-07-28*
-

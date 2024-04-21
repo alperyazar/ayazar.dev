@@ -23,13 +23,8 @@ jobs:
         sudo apt-get -y update
         sudo apt-get install -y python3-pip git
         pip3 install pipenv
-
-    - uses: actions/cache@v3
-      with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-pipenv-${{ hashFiles('Pipfile') }}
+        pipenv update
 
     - name: Build
       run: |
-        pipenv update
-        pipenv run sphinx-build --fail-on-warning --keep-going --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build
+        pipenv run sphinx-build --fail-on-warning --keep-going --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build > /dev/null

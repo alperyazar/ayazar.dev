@@ -1,5 +1,6 @@
 ---
 og:description: This is a sample page and this is a meta description.
+giscus: 7b1852ac-ee33-474e-87ac-a4e75b9c35e1
 ---
 
 # Specimen
@@ -92,6 +93,3 @@ Not working? direct embed:
 
 ---
 
-```{disqus}
-:disqus_identifier: 7b1852ac-ee33-474e-87ac-a4e75b9c35e1
-```

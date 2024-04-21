@@ -1,6 +1,7 @@
 ---
 og:description: "Sumatra PDF, Windows için tasarlanmış, hafif, hızlı bir PDF okuyucusu."
 og:image: assets/social/blog/21/sumatra.png
+giscus: 280d2a03-2f2b-4f6c-8e96-224f342340a6
 ---
 
 # Sumatra PDF
@@ -133,6 +134,3 @@ ile sorunsuz da çalışıyor. Linux dağıtımlarda aslında Sumatra PDF'in tü
 
 *İlk yayın: 2021-10-29*
 
-```{disqus}
-:disqus_identifier: 280d2a03-2f2b-4f6c-8e96-224f342340a6
-```

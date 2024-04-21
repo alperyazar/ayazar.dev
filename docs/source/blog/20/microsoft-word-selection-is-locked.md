@@ -1,5 +1,6 @@
 ---
 og:description: "Try this solution if you get that error."
+giscus: 9137bb15-c72b-49bf-93bf-78f3587741ae
 ---
 
 # Microsoft Word: 'You can't make this change because this selection is locked.'
@@ -37,6 +38,3 @@ Design Mode
 
 *Published on: 2020-03-06*
 
-```{disqus}
-:disqus_identifier: 9137bb15-c72b-49bf-93bf-78f3587741ae
-```

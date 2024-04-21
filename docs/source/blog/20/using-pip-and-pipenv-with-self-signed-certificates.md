@@ -1,5 +1,6 @@
 ---
 og:description: "Use pip and pipenv with self signed SSL certificates"
+giscus: 2474fd4e-38ae-455f-b7d4-9eb86a98b1b4
 ---
 
 # Use pip and pipenv with self signed SSL certificates
@@ -54,6 +55,3 @@ $ export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.
 
 *Published on: 2020-11-20*
 
-```{disqus}
-:disqus_identifier: 2474fd4e-38ae-455f-b7d4-9eb86a98b1b4
-```

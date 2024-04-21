@@ -1,5 +1,6 @@
 ---
 og:description: "Vivado 2016.4 is obsessed with NIC naming"
+giscus: f9516cf1-9c1c-4e6b-9c08-1720de6ba3f0
 ---
 
 # Vivado 2016.4 Node Locked License Not Working on Ubuntu 16.04
@@ -44,6 +45,3 @@ be `eth0` and you should have licensed Vivado 2016.4.
 - [1](https://www.xilinx.com/support/answers/60510.html)
 - [2](https://askubuntu.com/a/785442)
 
-```{disqus}
-:disqus_identifier: f9516cf1-9c1c-4e6b-9c08-1720de6ba3f0
-```

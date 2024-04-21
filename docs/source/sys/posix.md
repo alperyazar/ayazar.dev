@@ -96,4 +96,5 @@ standarta erişebilirsiniz. Ben ise genelde POSIX veya SUS dokümanları yerine
 
 ```{disqus}
 :disqus_identifier: df2203f1-d317-47df-b174-913d50457ccc
+giscus: df2203f1-d317-47df-b174-913d50457ccc
 ```

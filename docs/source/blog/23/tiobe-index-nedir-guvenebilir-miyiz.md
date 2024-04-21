@@ -1,6 +1,7 @@
 ---
 og:description: Programlama dillerini öğrenirken ve onları kıyaslarken bu endeks karşımıza çıkmaktadır. Peki nedir? Güvenilir midir?
 og:image: assets/social/blog/23/tiobe-index.jpg
+giscus: c1a09e21-f9a6-4a88-b80b-aa6e7e2f05ec
 ---
 
 # TIOBE Index nedir? Güvenebilir miyiz?
@@ -305,6 +306,3 @@ Görüşmek üzere... 🙋‍♂️
 [^2f]: [TIOBE Programming Community Index
     Definition](https://www.tiobe.com/tiobe-index/programminglanguages_definition/)
 
-```{disqus}
-:disqus_identifier: c1a09e21-f9a6-4a88-b80b-aa6e7e2f05ec
-```

@@ -1,5 +1,6 @@
 ---
 og:description: "Döndüm dolaştım yine Jekyll'ye geçtim."
+giscus: 7a9b1455-adf0-44be-bbf9-b21fed20d6eb
 ---
 
 # Tekrar Merhaba Jekyll!
@@ -97,6 +98,3 @@ hazırlayabilirim.
 
 *İlk yayın: 2021-03-21*
 
-```{disqus}
-:disqus_identifier: 7a9b1455-adf0-44be-bbf9-b21fed20d6eb
-```

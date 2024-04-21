@@ -1,3 +1,6 @@
+---
+giscus: 11da052a-c73f-4705-92d8-cefce5f02c87
+---
 # Kaynaklar
 
 Linux Sistem Programlama ile ilgili olduğunu düşündüğüm çeşitli kaynaklar
@@ -47,6 +50,3 @@ Linux Sistem Programlama ile ilgili olduğunu düşündüğüm çeşitli kaynakl
 - <https://terimler.org/>
 - Kaan Aslan, Necati Ergin, Murat Demirten, Prof. Dr. Oğuz Ergin kaynakları
 
-```{disqus}
-:disqus_identifier: 11da052a-c73f-4705-92d8-cefce5f02c87
-```

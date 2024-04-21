@@ -1,5 +1,6 @@
 ---
 og:description: "Ubuntu 16.04'e Petalinux 2018.3'ü kurarken çıkan sorunları çözüyoruz."
+giscus: 7b37f315-cf1e-468b-bb25-f4a7e177de45
 ---
 
 # Ubuntu 16.04.5 Üzerinde Petalinux 2018.3 Kurulumu
@@ -170,6 +171,3 @@ Xilinx'e göre bu ihmal edilebilir. Ref:
 [Link](https://www.xilinx.com/support/answers/71110.html) (Ref ZynqMP üzerine
 ama bence benzer durum)
 
-```{disqus}
-:disqus_identifier: 7b37f315-cf1e-468b-bb25-f4a7e177de45
-```

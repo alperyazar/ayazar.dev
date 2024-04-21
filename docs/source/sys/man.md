@@ -1,3 +1,6 @@
+---
+giscus: 05503364-0731-4523-928d-c62906c29e86
+---
 # man Sayfalarında Yolumuzu Bulma
 
 ```{note}
@@ -176,6 +179,3 @@ beğeniyorum. [](kaynak.md) kısmında daha geniş ve güncel bir liste tutmaya
 [^2f]: <https://en.wikipedia.org/wiki/Man_page>
 [^3f]: <https://unix.stackexchange.com/a/77561>
 
-```{disqus}
-:disqus_identifier: 05503364-0731-4523-928d-c62906c29e86
-```

@@ -1,5 +1,6 @@
 ---
 og:description: "Dokuwiki'den MkDocs'a geçiş"
+giscus: c81b14cf-c895-482b-8846-e6748ed9c30e
 ---
 
 # Tekrar Merhaba MkDocs!
@@ -12,6 +13,3 @@ olan MkDocs'a geri döndüm.
 
 *İlk yayın: 2020-09-27*
 
-```{disqus}
-:disqus_identifier: c81b14cf-c895-482b-8846-e6748ed9c30e
-```

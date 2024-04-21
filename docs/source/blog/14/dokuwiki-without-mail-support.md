@@ -1,5 +1,6 @@
 ---
 og:description: "Installing DokuWiki on a mail disabled server requires a little modification"
+giscus: 34d4f976-82d7-40cb-b3ee-6b88b8218c50
 ---
 
 # Install DokuWiki without Mail Support
@@ -33,6 +34,3 @@ allow us to skip checking mailing feature on installation.
 
 *Published on: 2014-12-31*
 
-```{disqus}
-:disqus_identifier: 34d4f976-82d7-40cb-b3ee-6b88b8218c50
-```

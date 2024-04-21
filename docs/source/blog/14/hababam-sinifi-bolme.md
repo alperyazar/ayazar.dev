@@ -1,5 +1,6 @@
 ---
 og:description: "Hababam Sınıfı"
+giscus: 661c7217-feaa-4bfa-8980-066e5e671a96
 ---
 
 # 235.000'in 9.000'e Tam Olarak Bölünmemesi
@@ -20,6 +21,3 @@ Zaman: `1:02:21`
 
 *İlk yayın: 2014-12-20*
 
-```{disqus}
-:disqus_identifier: 661c7217-feaa-4bfa-8980-066e5e671a96
-```

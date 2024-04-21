@@ -1,3 +1,6 @@
+---
+giscus: 16bb8ea0-6ed7-4c5c-9718-41a6a39001ce
+---
 # 📜 History of C
 
 C, is a pretty old language. It was developed during the UNIX project. The
@@ -335,6 +338,3 @@ development of key technologies.
 [^10f]: <https://en.wikipedia.org/wiki/CD-ROM>
 [^11f]: <https://gunkies.org/wiki/UNIX_Fourth_Edition>
 
-```{disqus}
-:disqus_identifier: 16bb8ea0-6ed7-4c5c-9718-41a6a39001ce
-```

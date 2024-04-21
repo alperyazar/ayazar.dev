@@ -1,5 +1,6 @@
 ---
 og:description: "Uyku dediğin derin olur!"
+giscus: 21dc1827-d7f4-480a-bc0f-6d4ffc0cefa8
 ---
 
 # Windows'un Sunduğu 'Hazırda Beklet' ve 'Uyku' Seçeneklerini Sürekli Ters Algılamam
@@ -46,6 +47,3 @@ seçtiğimde de Microsoft'u anıyorum. 😅
 
 *İlk yayın: 2014-08-20*
 
-```{disqus}
-:disqus_identifier: 21dc1827-d7f4-480a-bc0f-6d4ffc0cefa8
-```

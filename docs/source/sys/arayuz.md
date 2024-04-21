@@ -134,6 +134,7 @@ yüzden *binary* arayüz olarak geçmektedir. **ABI doğrudan programcılar
 tarafından kod yazılırken kullanılan "insanlar için tasarlanmış" arayüzler
 değilleridir.**
 
+giscus: d20c7d25-996f-4e29-8c4b-b36ef1898686
 ---
 
 Linux kerneli, ilk olarak 1991 yılında yayınlanmıştır. Günümüze gelen kadar
@@ -316,6 +317,3 @@ bunu aktarmaya çalışacağım.
 [^3f]: <https://linuxreviews.org/WE_DO_NOT_BREAK_USERSPACE>
 [^4f]: <https://wiki.c2.com/?PrematureOptimization>
 
-```{disqus}
-:disqus_identifier: d20c7d25-996f-4e29-8c4b-b36ef1898686
-```

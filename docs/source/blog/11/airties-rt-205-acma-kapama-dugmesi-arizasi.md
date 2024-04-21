@@ -1,5 +1,6 @@
 ---
 og:description: "AirTies modemimde oluşan güç düğmesi arızasını çözüyorum."
+giscus: 754d740f-6297-4c26-a717-68ea4e0a9448
 ---
 
 # AirTies RT-205 Açma - Kapama Düğmesi Arızası
@@ -140,7 +141,3 @@ Sorunsuz günler dileği ile…
 Bu yöntem sizin de probleminizi çözdüyse siz de iletebilirsiniz.
 
 *İlk yayın: 2011-02-16*
-
-```{disqus}
-:disqus_identifier: 754d740f-6297-4c26-a717-68ea4e0a9448
-```

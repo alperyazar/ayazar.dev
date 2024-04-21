@@ -1,6 +1,7 @@
 ---
 og:description: "SyncTeX enables us to create a bidirectional search relation between these two software."
 og:image: assets/social/blog/21/sumatra-link.png
+giscus: d567a817-abc3-46d7-b3d0-633c91782cb4
 ---
 
 # Create search link between SumatraPDF and TeXstudio with SyncTeX
@@ -157,6 +158,3 @@ shows corresponding LaTeX code in TeXstudio.
 
 *Published on: 2021-10-30*
 
-```{disqus}
-:disqus_identifier: d567a817-abc3-46d7-b3d0-633c91782cb4
-```

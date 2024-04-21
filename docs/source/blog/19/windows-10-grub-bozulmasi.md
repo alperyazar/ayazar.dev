@@ -1,5 +1,6 @@
 ---
 og:description: "Dual boot çalışan bilgisayarın Windows güncellemesi ile bozulan disk düzenini tamir ediyoruz."
+giscus: a751a9a1-d774-48e1-a7aa-3e7659dc10f8
 ---
 
 # Windows 10 1803->1903 Yükseltmesi Sırasında GRUB'un Bozulması
@@ -138,6 +139,3 @@ dual boot olma ihtimalini düşünmemiş olabilir.
 
 *İlk yayın: 2019-08-17*
 
-```{disqus}
-:disqus_identifier: a751a9a1-d774-48e1-a7aa-3e7659dc10f8
-```

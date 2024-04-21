@@ -1,5 +1,6 @@
 ---
 og:description: "Bilgisayarınıza Toplu Program Yüklemek İçin Güzel Bir Araç"
+giscus: 59886b41-f67d-4684-bfac-f1630a323d1a
 ---
 
 # Ninite
@@ -41,7 +42,3 @@ Ninite Windows kullananlar için daha gerekli bir araç.
 yüklemek istiyorsanız Ninite'nin listesine bir bakmanızı öneririm.
 
 *İlk yayın: 2011-04-02*
-
-```{disqus}
-:disqus_identifier: 59886b41-f67d-4684-bfac-f1630a323d1a
-```

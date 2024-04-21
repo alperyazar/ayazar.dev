@@ -1,3 +1,6 @@
+---
+giscus: 5cb38afb-1edd-40ce-a597-0039ffeec672
+---
 # Linux Sistem Programlama nedir? + bazı SSS
 
 Bu sayfada Linux Sistem Programlama ile ilgili çeşitli kavramları ve bazı
@@ -66,6 +69,3 @@ Fark ettiğiniz hatalı kısımları benimle paylaşırsanız çok sevinirim.
 - [](kaynak.md)
 - [Systems programming (Wikipedia)](https://en.wikipedia.org/wiki/Systems_programming)
 
-```{disqus}
-:disqus_identifier: 5cb38afb-1edd-40ce-a597-0039ffeec672
-```

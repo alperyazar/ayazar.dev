@@ -1,5 +1,6 @@
 ---
 og:description: "Free, 3D Gerber constructor and viewer for PCBs"
+giscus: c246bc9f-5c8b-4747-addc-dfc687176f09
 ---
 
 # ZofzPCB
@@ -70,6 +71,3 @@ Here is a video that shows all features of ZofzPCB:
 
 *Published on: 2014-12-21*
 
-```{disqus}
-:disqus_identifier: c246bc9f-5c8b-4747-addc-dfc687176f09
-```

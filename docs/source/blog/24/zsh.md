@@ -1,3 +1,6 @@
+---
+giscus: 9f5ddc12-67c0-4b75-9da8-4d6748b34cb0
+---
 # My Zsh Setup
 
 Quick notes on installing and customizing [Zsh](https://www.zsh.org/) on Ubuntu
@@ -141,6 +144,3 @@ Still can't see?? Download
 
 *First Published: 2024-01-27*
 
-```{disqus}
-:disqus_identifier: 9f5ddc12-67c0-4b75-9da8-4d6748b34cb0
-```

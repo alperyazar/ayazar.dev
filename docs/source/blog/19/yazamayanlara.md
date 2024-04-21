@@ -1,5 +1,6 @@
 ---
 og:description: "Bir şeyler yazmak isteyenlere öneriler"
+giscus: 59b30cbb-8539-4ec9-a58a-eb8d05bb9f5c
 ---
 
 # Yazamayanlara
@@ -10,6 +11,3 @@ bir kitap önerisi "flood"una denk geldim. Bir bakacağım:
 
 *İlk yayın: 2019-09-05*
 
-```{disqus}
-:disqus_identifier: 59b30cbb-8539-4ec9-a58a-eb8d05bb9f5c
-```

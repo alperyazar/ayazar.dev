@@ -1,6 +1,7 @@
 ---
 og:description: "How to install WSL on a Windows machine not connected to the Internet"
 og:image: assets/social/blog/21/wsl.jpg
+giscus: cacb191f-bed5-4927-80ba-8a1e3c8a436f
 ---
 
 # Using WSL on an offline Windows machine
@@ -157,6 +158,3 @@ update. So if you are planning to use be ready for possible future problems.
 
 *Published on: 2021-03-16*
 
-```{disqus}
-:disqus_identifier: cacb191f-bed5-4927-80ba-8a1e3c8a436f
-```

@@ -1,5 +1,6 @@
 ---
 og:description: "Yeni aldığım Altera DE0 FPGA kartının kutu açılışını yapıyorum."
+giscus: 2bbebb29-3f3e-4f58-9dba-618300efe738
 ---
 
 # Altera DE0 FPGA Geliştirme Kiti
@@ -172,7 +173,3 @@ paylaşmak istedim. Umarım FPGA kartı alma arifesinde olanlara yardımcı
 olabilmişimdir.
 
 *İlk yayın: 2011-07-24*
-
-```{disqus}
-:disqus_identifier: 2bbebb29-3f3e-4f58-9dba-618300efe738
-```

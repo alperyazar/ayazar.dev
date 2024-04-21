@@ -1,5 +1,6 @@
 ---
 og:description: "A problem running Vivado 2016.4 on Ubuntu 16.04"
+giscus: 5631761e-a5b4-4e6d-a6e9-d38d99bfb3d4
 ---
 
 # awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
@@ -40,7 +41,3 @@ may be a better solution.
 
 - [1](https://forums.xilinx.com/t5/Installation-and-Licensing/Vivado-2016-4-on-Ubuntu-16-04-LTS-quot-awk-symbol-lookup-error/m-p/756779/highlight/true#M17778)
 - [2](https://forums.xilinx.com/t5/Installation-and-Licensing/XSCT-symbol-lookup-error-awk-undefined-symbol-mpfr-z-sub/td-p/741141)
-
-```{disqus}
-:disqus_identifier: 5631761e-a5b4-4e6d-a6e9-d38d99bfb3d4
-```

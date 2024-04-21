@@ -1,3 +1,6 @@
+---
+giscus: 9c943900-1367-47b7-a01c-cc06f9fdf214
+---
 # Do not let the structure padding ruin your day
 
 *Be careful with the memory alignment, a True 🇨 story*
@@ -93,7 +96,3 @@ performance-critical code, I find skimming over the generated assembly code by
 the compiler time-to-time beneficial.
 
 See you! 🙋‍♂️
-
-```{disqus}
-:disqus_identifier: 9c943900-1367-47b7-a01c-cc06f9fdf214
-```

@@ -1,3 +1,7 @@
+---
+giscus: 6e87a078-15cd-40a1-8406-ffbf98d73b2d
+---
+
 # Linux Kernel Arayüzü
 
 [Bir önceki yazıda](posix.md) POSIX, SUS ve LSB gibi kavramlardan bahsetmiştim.
@@ -55,9 +59,5 @@ derleyemezsiniz ya da kodunuz çalışmaz ama vakit kaybetmeyin.
 
 - [](kaynak.md)
 - [man-pages](https://www.kernel.org/doc/man-pages/)
-
-```{disqus}
-:disqus_identifier: 6e87a078-15cd-40a1-8406-ffbf98d73b2d
-```
 
 [^1f]: <https://en.wikipedia.org/wiki/Linux_kernel_interfaces>

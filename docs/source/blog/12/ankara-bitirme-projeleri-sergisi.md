@@ -1,5 +1,6 @@
 ---
 og:description: "EMO ve ODTÜ'nün düzenlediği Bitirme Projeleri Sergisi'ne katılıyoruz."
+giscus: 1038def1-4854-47fd-babf-5e3f0ac76221
 ---
 
 # Ankara Bitirme Projeleri Sergisi 29 Haziran - 1 Temmuz 2012
@@ -31,7 +32,3 @@ edinebilirsiniz. Organizasyonda emeğe geçen tüm kuruluş ve kişilere ben de
 teşekkürlerimi sunarım.
 
 *İlk yayın: 2012-05-24*
-
-```{disqus}
-:disqus_identifier: 1038def1-4854-47fd-babf-5e3f0ac76221
-```

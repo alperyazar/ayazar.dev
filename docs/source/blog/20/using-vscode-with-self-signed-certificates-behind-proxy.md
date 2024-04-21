@@ -1,5 +1,6 @@
 ---
 og:description: "How to work with VS Code behind proxy with self signed SSL certificates"
+giscus: 3a8ff637-6397-4a0d-a4ce-087660d906df
 ---
 
 # Using VS Code with self signed SSL certificates behind proxy
@@ -74,9 +75,3 @@ Without using GUI, in `settings.json` set
 `"http.proxy":"http://<ip.addr>:<port>"`
 
 *Published on: 2020-11-26*
-
-```{disqus}
-:disqus_identifier: 3a8ff637-6397-4a0d-a4ce-087660d906df
-```
-
-[^1f]: <https://github.com/microsoft/vscode/issues/84845#issuecomment-558952807>

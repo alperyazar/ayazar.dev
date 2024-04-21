@@ -1,5 +1,6 @@
 ---
 og:description: "Jekyll'den Sphinx'e geçtim."
+giscus: 98d18402-a68c-4b68-91c1-9720d6bec693
 ---
 
 # Merhaba Sphinx!
@@ -43,7 +44,3 @@ Umuyorum ki ReST'in ve Sphinx'in kullanımı, bu geçişten sonra kullanımdan
 kalkmaz ve ben biraz daha sık bir şeyler yazabilirim.
 
 *İlk yayın: 2019-04-28*
-
-```{disqus}
-:disqus_identifier: 98d18402-a68c-4b68-91c1-9720d6bec693
-```

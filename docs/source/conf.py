@@ -39,7 +39,6 @@ extensions = ['myst_parser',
 'sphinx_sitemap',
 'sphinx_copybutton',
 'sphinxext.opengraph',
-'sphinx_disqus.disqus',
 'sphinxcontrib.asciinema'
 ]
 

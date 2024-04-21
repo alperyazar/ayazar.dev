@@ -1,5 +1,6 @@
 ---
 og:description: "FPGA (veya ASIC) doğrulamasındaki güncel yöntemler"
+giscus: 1574197e-9168-4186-9b45-a16486fc7146
 ---
 
 # Güncel (Sayısal Tasarım) Doğrulama Yöntemleri ve Araçları
@@ -18,7 +19,3 @@ aldım. Kayıt olması için aşağıya koyuyorum. 10 Şubat 2020'de almışım.
 ```
 
 *İlk yayın: 2020-03-15*
-
-```{disqus}
-:disqus_identifier: 1574197e-9168-4186-9b45-a16486fc7146
-```

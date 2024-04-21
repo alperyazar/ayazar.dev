@@ -1,6 +1,7 @@
 ---
 og:description: "Kullandığınız SD kartı aynı boy ya da daha büyük bir karta nasıl taşıyabileceğinizi anlatıyorum."
 og:image: assets/social/blog/21/rpi.jpg
+giscus: 35598bae-d784-4a38-aa32-3564bb7dd994
 ---
 
 # Raspberry Pi SD kart taşıma ve büyütme
@@ -178,7 +179,3 @@ sistemlerinden haberdar yöntemlerle taşımak istiyorsanız internetteki diğer
 çözümlere bakabilirsiniz.
 
 *İlk yayın: 2021-03-28*
-
-```{disqus}
-:disqus_identifier: 35598bae-d784-4a38-aa32-3564bb7dd994
-```

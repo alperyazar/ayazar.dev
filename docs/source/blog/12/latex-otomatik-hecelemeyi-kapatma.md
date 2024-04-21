@@ -1,5 +1,6 @@
 ---
 og:description: "LaTeX'in sunduğu otomatik hecelemeyi her zaman istemeyebiliriz."
+giscus: 532754c1-0672-4091-9bd6-72a13690e314
 ---
 
 # LaTeX'te Otomatik Hecelemeyi Kapatma
@@ -45,7 +46,3 @@ musunuz denemedim.** Sadece Babel'e özgü olabilir, bilemiyorum. Denerseniz ban
 da haber verirseniz sevinirim.
 
 *İlk yayın: 2012-06-03*
-
-```{disqus}
-:disqus_identifier: 532754c1-0672-4091-9bd6-72a13690e314
-```

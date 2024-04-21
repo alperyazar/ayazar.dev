@@ -1,5 +1,6 @@
 ---
 og:description: "Dokuwiki'den MkDocs'a geçiş"
+giscus: 5b72835b-3060-4244-b0b9-72f85059487e
 ---
 
 # Merhaba MkDocs!
@@ -13,7 +14,3 @@ umarak MkDocs kullanmaya başlıyorum. Bu yazıyı da bir deneme yazısı olarak
 ve tarihe not düşmek için yazdım.
 
 *İlk yayın: 2020-01-19*
-
-```{disqus}
-:disqus_identifier: 5b72835b-3060-4244-b0b9-72f85059487e
-```

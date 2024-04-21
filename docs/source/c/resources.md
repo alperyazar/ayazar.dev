@@ -1,3 +1,7 @@
+---
+giscus: 6cc94a10-4083-41e5-a487-99a9ef30afb9
+---
+
 # 📚 Resources
 
 List of some *high quality* resources on C programming.
@@ -89,7 +93,3 @@ The order within each section is random.
 
 - [CRACKING the CODING INTERVIEW](https://www.crackingthecodinginterview.com/)
   The famous book for preparing an interview.
-
-```{disqus}
-:disqus_identifier: 6cc94a10-4083-41e5-a487-99a9ef30afb9
-```

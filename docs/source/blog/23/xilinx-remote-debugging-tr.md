@@ -1,6 +1,7 @@
 ---
 og:description: Karta yapılan JTAG bağlantısına ağ üzerinden başka bilgisayardan erişip, kod atma, hata ayıklama gibi tüm işleri karta bağlıymış gibi yapabilirsiniz.
 og:image: assets/social/blog/23/xilinx-remote-debugging.png
+giscus: a993e68b-6e51-4dab-8c05-cffe1b3ea138
 ---
 
 # Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?
@@ -419,7 +420,3 @@ kullanıyordum. Labta çalıştığını bildiğim bir arkadaşın bilgisayarın
 `hw_server` ına kendi bilgisayarımdaki Vivado'dan bağlanıp FPGA'e zamansız
 resetler atarak labtan gelen *Ya kart durup duruken reset atıyor, ne alaka
 ya???* serzenişlerini dinliyordum. 😈 Yine de siz kararını kaçırmayın. 😇
-
-```{disqus}
-:disqus_identifier: a993e68b-6e51-4dab-8c05-cffe1b3ea138
-```

@@ -1,5 +1,6 @@
 ---
 og:description: This is a sample page and this is a meta description.
+giscus: 7b1852ac-ee33-474e-87ac-a4e75b9c35e1
 ---
 
 # Specimen
@@ -65,7 +66,7 @@ I'm ready! I'm ready! I'm ready!
 :width: 100%
 ```
 
-## Disqus
+## giscus
 
 See the bottom.
 
@@ -89,9 +90,3 @@ Not working? direct embed:
 
 <!-- markdownlint-disable-next-line -->
 <script async id="asciicast-633779" src="https://asciinema.org/a/633779.js"></script>
-
----
-
-```{disqus}
-:disqus_identifier: 7b1852ac-ee33-474e-87ac-a4e75b9c35e1
-```

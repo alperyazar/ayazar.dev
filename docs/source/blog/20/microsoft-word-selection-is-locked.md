@@ -1,5 +1,6 @@
 ---
 og:description: "Try this solution if you get that error."
+giscus: 9137bb15-c72b-49bf-93bf-78f3587741ae
 ---
 
 # Microsoft Word: 'You can't make this change because this selection is locked.'
@@ -36,7 +37,3 @@ Design Mode
 [^1]: [The solution worked for me](https://answers.microsoft.com/en-us/msoffice/forum/all/microsoft-word-message-you-cant-make-this-change/341971aa-ec61-4984-8af2-105c2032bb56)
 
 *Published on: 2020-03-06*
-
-```{disqus}
-:disqus_identifier: 9137bb15-c72b-49bf-93bf-78f3587741ae
-```

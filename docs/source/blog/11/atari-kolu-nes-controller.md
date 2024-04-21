@@ -1,5 +1,6 @@
 ---
 og:description: "Atari kolunu kendi projelerimizde nasıl kullanır, tuşları nasıl okuruz?"
+giscus: 60622c1b-5955-4cb3-b267-2bb3c1c6773e
 ---
 
 # Atari Kolu (NES Controller) Arayüzü
@@ -305,7 +306,3 @@ Bu kodun çalışması şu videodaki gibi olmaktadır:
 - <http://davr.org/snes/joystick.txt>
 
 *İlk yayın: 2011-09-25*
-
-```{disqus}
-:disqus_identifier: 60622c1b-5955-4cb3-b267-2bb3c1c6773e
-```

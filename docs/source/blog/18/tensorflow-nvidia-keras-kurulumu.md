@@ -1,5 +1,6 @@
 ---
 og:description: "GPU desteği ile Tensorflow ve Keras'ın Windows'a nasıl kurulabileceğini ve olası problem ve çözümleri anlatıyorum."
+giscus: bb323257-54b5-4c9b-82f5-995182351d20
 ---
 
 # Tensorflow (NVIDIA GPU Desteği ile) ve Keras Kurulumu
@@ -158,7 +159,3 @@ yapmış (bizim durumda bu python.exe oluyor). Net bir çözümü yok, biraz do�
 yapmak gerekecek böyle bir sorunda.
 
 *İlk yayın: 2018-02-10*
-
-```{disqus}
-:disqus_identifier: bb323257-54b5-4c9b-82f5-995182351d20
-```

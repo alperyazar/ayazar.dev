@@ -1,5 +1,6 @@
 ---
 og:description: "Recover damaged camcorder DVD with photorec on Ubuntu"
+giscus: 59cbb91f-830e-4cfd-a164-f0dc18dc3746
 ---
 
 # Camcorder DVD Video Recovery on Ubuntu with photorec
@@ -261,7 +262,3 @@ I hope this post helps you. If you like
 donation to the author of the tool!](http://www.cgsecurity.org/wiki/Donation)
 
 *Published on: 2017-06-28*
-
-```{disqus}
-:disqus_identifier: 59cbb91f-830e-4cfd-a164-f0dc18dc3746
-```

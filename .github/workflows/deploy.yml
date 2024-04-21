@@ -8,7 +8,6 @@ on:
       - master
 
 jobs:
-# Ref: https://github.com/igorshubovych/markdownlint-cli
   build-and-deploy:
     permissions:
       contents: write
@@ -31,7 +30,7 @@ jobs:
       run: |
         pip3 install pipenv
         pipenv update
-        pipenv run sphinx-build -W -A SPHINXPRODUCTION=True docs/source docs/build
+        pipenv run sphinx-build --fail-on-warning --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build
         date -u +%Y-%m-%d-%T-%Z > docs/build/build.info.txt
         cat Pipfile.lock >> docs/build/build.info.txt
         touch docs/build/.nojekyll

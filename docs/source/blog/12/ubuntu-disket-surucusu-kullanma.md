@@ -1,5 +1,6 @@
 ---
 og:description: "udisks komutu ile bağlanmayan disketlere çözüm"
+giscus: 5c7f0505-abe1-4510-87bd-2d579b36387a
 ---
 
 # Ubuntu Üzerinde Disket Sürücüsünü Kullanma
@@ -39,7 +40,3 @@ komutu ile disketimizi güvenle kaldırıp, çıkarabiliyoruz.
 Bol Linux'lu günler dileği ile..
 
 *İlk yayın: 2012-07-28*
-
-```{disqus}
-:disqus_identifier: 5c7f0505-abe1-4510-87bd-2d579b36387a
-```

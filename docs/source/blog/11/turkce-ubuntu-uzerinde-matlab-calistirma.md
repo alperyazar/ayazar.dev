@@ -1,5 +1,6 @@
 ---
 og:description: "Dili Türkçe olan Ubuntu'da MATLAB'ı çalıştırmak için ufak bir destek gerekebilir."
+giscus: 842fed77-bae0-43c4-bea7-8016e2fdf2ca
 ---
 
 # Türkçe Ubuntu Üzerinde MATLAB Çalıştırma Problemi ve Çözümü
@@ -81,7 +82,3 @@ Bakınız:
 [Link](http://www.linuxquestions.org/questions/fedora-35/c-locale-and-system-locale-304562/)
 
 *İlk yayın: 2011-03-20*
-
-```{disqus}
-:disqus_identifier: 842fed77-bae0-43c4-bea7-8016e2fdf2ca
-```

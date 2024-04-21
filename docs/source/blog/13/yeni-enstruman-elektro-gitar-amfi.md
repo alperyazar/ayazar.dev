@@ -1,5 +1,6 @@
 ---
 og:description: "Elektro gitar ve amfi aldım!"
+giscus: 89ebdbc6-65d7-4462-8303-d2b3f9c1e9e8
 ---
 
 # Yeni Enstrüman: Elektro Gitar + Amfi 🎵
@@ -144,7 +145,3 @@ Merak edenler için, beyaz kapağın altında tremolo sistemini tutan ve tremolo
 bıraktıktan sonra köprünün tekrar geri dönmesini sağlayan yay sistemi bulunuyor.
 
 *İlk yayın: 2013-08-11*
-
-```{disqus}
-:disqus_identifier: 89ebdbc6-65d7-4462-8303-d2b3f9c1e9e8
-```

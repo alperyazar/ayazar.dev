@@ -1,3 +1,7 @@
+---
+giscus: c6945529-ff36-4f4e-a4e6-eccfc09e0734
+---
+
 # Merhaba Dünya!
 
 ```{todo}
@@ -732,10 +736,6 @@ Buradayım
 - [Will write(2) always write less than or equal to
   SSIZE_MAX?](https://stackoverflow.com/q/29722999/1766391)
 - [](kaynak.md)
-
-```{disqus}
-:disqus_identifier: c6945529-ff36-4f4e-a4e6-eccfc09e0734
-```
 
 [^1f]: <https://en.wikipedia.org/wiki/Everything_is_a_file>
 [^2f]: <https://www.youtube.com/watch?v=0yUYYohSXpc>

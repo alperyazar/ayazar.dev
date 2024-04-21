@@ -22,9 +22,9 @@ jobs:
         sudo apt-get -y update
         sudo apt-get install -y python3-pip git
 
-    - name: Disqus identifier check
+    - name: giscus identifier check
       run: |
-        python3 scripts/disqus-uuid-check.py docs/source
+        python3 scripts/giscus-uuid-check.py docs/source > /dev/null
 
     - name: Build
       run: |

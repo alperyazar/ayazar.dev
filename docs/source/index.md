@@ -25,6 +25,7 @@ br/index.md
 c/index.md
 sys/index.md
 xilinx/index.md
+xv6/index.md
 misc/index.md
 misc/disclaimer.md
 follow.md

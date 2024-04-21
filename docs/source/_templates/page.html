@@ -1,0 +1,32 @@
+{% extends '!page.html' %}
+
+{% block footer -%}
+{% if meta %}
+{% if meta.giscus %}
+<div class="gicus_comments" style="border-top: 2px dashed; margin-bottom: 5px;"">
+  <h2>💭 Yorumlar</h2>
+  <p>ℹ️ Yorum altyapısı <a href="https://giscus.app/">giscus</a> tarafından sağlanmaktadır.
+    Yorum yapmak için <a href="https://github.com/">GitHub</a> hesabınızı kullanmalısınız.
+    Yorumlar <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions</a> altyapısında saklanmaktadır.</p>
+  <script src="https://giscus.app/client.js"
+        data-repo="alperyazar/ayazar.dev"
+        data-repo-id="R_kgDOKRKm6w"
+        data-category="Comments"
+        data-category-id="DIC_kwDOKRKm684Ce1FN"
+        data-mapping="specific"
+        data-term="{{ meta.giscus }}"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="tr"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+{% endif %}
+{% endif %}
+{{ super() }}
+{% endblock %}

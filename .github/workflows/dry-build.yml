@@ -1,0 +1,40 @@
+name: Dry Build
+
+on:
+  schedule:
+    # UTC Time, At 15:00 on day-of-month 20.
+    - cron: "0 15 20 * *"
+  workflow_dispatch:
+  repository_dispatch:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  dry-build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pipenv'
+        cache-dependency-path: 'Pipfile'
+
+    - name: Install pipenv
+      run: |
+        curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        pipenv install
+
+    - name: Install git
+      run: |
+        sudo apt-get -y update
+        sudo apt-get install -y git
+
+    - name: Build
+      run: |
+        pipenv update
+        pipenv run sphinx-build --fail-on-warning --keep-going --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build

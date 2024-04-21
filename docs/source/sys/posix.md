@@ -1,3 +1,7 @@
+---
+giscus: df2203f1-d317-47df-b174-913d50457ccc
+---
+
 # POSIX, SUS ve LSB
 
 *Linux sistem programlama* konuşulmaya başlandığı zaman masaya hemen "POSIX"
@@ -93,8 +97,3 @@ standarta erişebilirsiniz. Ben ise genelde POSIX veya SUS dokümanları yerine
 
 [^1f]: <https://en.wikipedia.org/wiki/List_of_Unix_systems>
 [^2f]: <https://en.wikipedia.org/wiki/Linux_Standard_Base>
-
-```{disqus}
-:disqus_identifier: df2203f1-d317-47df-b174-913d50457ccc
-giscus: df2203f1-d317-47df-b174-913d50457ccc
-```

@@ -1,5 +1,5 @@
 ---
-giscus: acca3c53-47c2-463c-98c5-60203bed1d5e
+giscus: 0736237c-2071-4fef-973c-692cc59d87ca
 ---
 
 # Merhaba Dünya!

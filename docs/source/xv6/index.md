@@ -4,39 +4,52 @@ giscus: acca3c53-47c2-463c-98c5-60203bed1d5e
 
 # xv6
 
-```{todo}
-Yazı henüz tamamlanmamıştır.
-```
-
-xv6, MIT tarafından (sanıyorum günümüzde [CSAIL, Computer Science & Artificial
+xv6, MIT tarafından ( günümüzde [CSAIL, Computer Science & Artificial
 Intelligence Laboratory](https://pdos.csail.mit.edu/) altında duran [PDOS,
 Parallel & Distributed Operating Systems Group](https://pdos.csail.mit.edu/)
 tarafından, evet tarafından! [^3f]) İşletim Sistemi ders(ler)i için eğitim
-amaçlı geliştirilmiş mini bir işletim sistemidir [^1f]. İlk olarak 2006 yılında
-x86 işlemciler için geliştirilmiştir. Fakat 2019 yılında RISC-V mimarisine port
-edilmiştir [^11f]. Orijinal x86 sürümü artık geliştirilmemektedir, x86 sürümüne
-son commit 2020 yılında yapılmıştır [^2f]. Gerçi hoş RISC-V sürümüne de son
-commit 2022 yılında yapılmıştır [^16f]. RISC-V için olan sürümü, `xv6-riscv`
-olarak da anılmaktadır. Ben kısaca `xv6` diyeceğim.
+amaçlı geliştirilmiş mini bir işletim sistemidir [^1f]. Unix baz alınarak
+tasarlanmıştır. İlk olarak **2006** yılında x86 işlemciler için
+geliştirilmiştir. Fakat **2019** yılında RISC-V mimarisine port edilmiştir
+[^11f]. Orijinal x86 sürümü artık geliştirilmemektedir, x86 sürümüne son commit
+2020 yılında yapılmıştır [^2f]. Gerçi hoş RISC-V sürümüne de son commit 2022
+yılında yapılmıştır [^16f]. RISC-V için olan sürümü, `xv6-riscv` olarak da
+anılmaktadır. Ben kısaca `xv6` diyeceğim.
 
 xv6, [Version 6 Unix, v6](https://en.wikipedia.org/wiki/Version_6_Unix) dan
 esinlenerek tasarlanmıştır. Meşhur [A Commentary on the UNIX Operating System,
 Lions' Commentary on UNIX 6th
 Edition](https://en.wikipedia.org/wiki/A_Commentary_on_the_UNIX_Operating_System)
-kitabı gibi bir dokümantasyonu vardır. Yani UNIX tarzı bir işletim sistemidir.
-2006 yılında xv6'nın tasarlanma amacı orijinal Unix v6'nın standart olmayan bir
-C dili ile, PDP-11 gibi çok eski ve adeta tarihi eser bir makine için
-tasarlanmış olmasıymış [^13f]. Adamlar da güncel bir donanımda, x86'da,
-çalışabilecek ve standart bir C ile (ANSI C, 1989, eski ama standart) yazılmış
-benzer bir işletim sistemi yapmışlar sınıfta göstermek için.
+kitabı gibi bir dokümantasyonu vardır. 2006 yılında xv6'nın tasarlanma amacı
+orijinal Unix v6'nın standart olmayan bir C dili ile, PDP-11 gibi çok eski ve
+adeta tarihi eser bir makine için tasarlanmış olmasıymış [^13f]. Adamlar da
+güncel bir donanımda, x86'da, çalışabilecek ve standart bir C ile (ANSI C, 1989,
+eski ama standart) yazılmış benzer bir işletim sistemi yapmışlar sınıfta
+göstermek için.
 
-Ben de bir süredir bu konudaki içeriklere bakmak istiyordum. Bakarken de sitemde
-notlar almaya karar verdim, belki sizler de faydalanırsınız.
-
-## MIT İşletim Sistemi Kursları
+## MIT İşletim Sistemi Kursları ve Tarihçesi
 
 Kısa bir arama yapınca bile MIT'de verilen farklı kodlarda birçok işletim
-sistemi dersleri çıkıyor, biraz kafam karıştı. Bulduklarımı özetliyorum:
+sistemi dersleri çıkıyor, biraz karışık, bulduklarımı özetliyorum.
+
+MIT'de uzun yıllar boyunca işletim sistemi kursu olmamış (çok ilginç, adamlar
+*exokernel* diye bir çekirdek icat ediyorlar ama kusları mı yok?). İlk kurs 2002
+yılında açılmış [^17f]. Bulabildiğim kadarıyla açılan bu kursun kodu ve adı
+**6.097 Operating System Engineering**[^15f]. Bu kursta öğrencilere Lion's
+Commentary kitabi ile klasik meşhur Unix v6 anlatılıyormuş. Labların sonunda da
+öğrenciler x86 için Jos isminde bir
+[exokernel](https://en.wikipedia.org/wiki/Exokernel) yazıyorlarmış. Derste hem
+Unix görmek hem de exokernel yazmak geniş bir örnek görmek açısından iyi
+oluyormuş. Fakat Unix v6 1975 yılında çıkan PDP-11 için yazılmış bir işletim
+sistemi. Meşhur K&R C kitabının 1978 yılında yayınlandığını unutmamak lazım.
+İşletim sisteminin hem *tarihi eser* bir donanım, PDP-11 için olması hem de
+standart C'den önce, hatta K&R C'den önce (ilk C standartı olan ANSI C 1989
+yılında yayınlanmıştır) olan bir C ile yazılmış olması öğrenciler açısından pek
+motive edici olmuyormuş. Lablardan dolayı da x86'nın detaylarını öğrenmeleri
+gerekiyormuş. Bu tarz problemlerin önüne geçmek için 2006 yılında Unix v6'dan
+esinlenerek ANSI C'de x86 için Xv6 işletim sistemi yazılmış.
+
+Yeniden eskiye doğru kurs tarihçesi ile ilgili bulabildiğim bilgiler:
 
 - **6.1810 Operating System Engineering** Güncel durumda xv6 bu derste
   kullanılıyor, lisans dersi. [Link](https://pdos.csail.mit.edu/6.1810/2023/)
@@ -62,14 +75,39 @@ sistemi dersleri çıkıyor, biraz kafam karıştı. Bulduklarımı özetliyorum
   İlk olarak 2002 yılında verilmiş [^15f]. 2003 yılında 6.828 var demiştik zaten
   [^12f], herhalde 6.097'in yerine 6.828 geçmiş.
 
-🤔 Zaman içerisinde neden habire kurs kodu değişmiş, pek anlamadım.
+🤔 Zaman içerisinde neden habire kurs kodu değişmiş, pek anlamadım. Günümüzdeki
+güncel kurs numarası **6.1810**
+
+## Diğer Üniversitelerdeki Kurslar
+
+xv6'nın [Wikipedia sayfasına](https://en.wikipedia.org/wiki/Xv6) göre bu işletim
+sistemi birçok üniversitede ders içeriği olarak kullanılmış. Benim dikkatimi
+çeken kurslardan biri [Harvey Mudd College](https://www.hmc.edu/)'ta Neil Rhodes
+tarafından verilen CS 134 oldu, çünkü YouTube'ta [videoları
+var.](https://www.youtube.com/playlist?list=PLJJuQ2QZniL7LjcUD2G2BkizgxsfCkTSE)
+Sanıyorum x86 için.
+
+## Bu İçerik Hakkında
+
+xv6'ya bir süredir bakmak istiyordum. Sitemin bu kısmında aldığım notları
+sizlerle paylaşacağım. **Aksini belirtmediğim sürece xv6-riscv üzerinden devam
+edeceğim.** Aldığım notlar:
+
+```{toctree}
+---
+maxdepth: 1
+glob: true
+---
+merhaba-dunya.md
+```
 
 ## 📚 Kaynaklar
 
 Konu ile ilgili kaynaklar
 
 - `xv6-riscv` kaynak kod: <https://github.com/mit-pdos/xv6-riscv>
-- 📖 xv6 book, rev3: <https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf>
+- 📖 xv6 book, rev3:
+  <https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf>
 - `xv6-riscv-book` kaynak kod: <https://github.com/mit-pdos/xv6-riscv-book>
 - `xv6` kaynak kod (x86, obsolete): <https://github.com/mit-pdos/xv6-public>
 - **MIT 6.1810 Operating System Engineering** [kurs
@@ -77,9 +115,26 @@ Konu ile ilgili kaynaklar
 - **MIT OCW 6.828 Operating System Engineering, Fall 2012 Grad** [kurs
   sayfası](https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/)
   xv6 var fakat x86 için.
+- **HMC CS 134 Operating Systems** MIT'nin kursu benzeri bir yapısı var fakat
+  [references](https://www.cs.hmc.edu/~rhodes/courses/cs134/fa20/reference.html)
+  kısmında daha çok kaynak var gibi
 - 📺 2014 yılında, 6.828 kursuna ait [ders
   videoları](https://www.youtube.com/playlist?list=PLfciLKR3SgqNJKKIKUliWoNBBH1VHL3AP)
   xv6 var fakat x86 için
+- 📺 Neil Rhodes, CS 134 [ders
+  videoları](https://www.youtube.com/playlist?list=PLJJuQ2QZniL7LjcUD2G2BkizgxsfCkTSE)
+  fakat x86 xv6 anlatılıyor.
+- 📺 [Harry H. Porter III](http://web.cecs.pdx.edu/~harry/),
+  [hhp3](https://www.youtube.com/@hhp3) tarafından hazırlanmış [xv6-riscv
+  videoları](https://www.youtube.com/playlist?list=PLbtzT1TYeoMhTPzyTZboW_j7TPAnjv9XB)
+- 📺 [Low Byte Productions](https://www.youtube.com/@LowByteProductions)
+  tarafından hazırlanmış xv6-riscv üzerine birkaç
+  [video](https://www.youtube.com/playlist?list=PLP29wDx6QmW4Mw8mgvP87Zk33LRcKA9bl)
+
+### RISC-V
+
+- [RISC-V An Overview of the
+  ISA](http://web.cecs.pdx.edu/~harry/riscv/RISCV-Summary.pdf) by hhp3
 
 İlginç geldi: MIT CSAIL'den çıkan
 [spin-offlar](https://www.csail.mit.edu/about/spin-offs)
@@ -100,3 +155,4 @@ Konu ile ilgili kaynaklar
 [^14f]: <https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/>
 [^15f]: <https://pdos.csail.mit.edu/archive/6.097/>
 [^16f]: <https://github.com/mit-pdos/xv6-riscv>
+[^17f]: <https://pdos.csail.mit.edu/6.828/2012/xv6.html>

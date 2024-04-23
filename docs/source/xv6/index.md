@@ -87,6 +87,38 @@ tarafından verilen CS 134 oldu, çünkü YouTube'ta [videoları
 var.](https://www.youtube.com/playlist?list=PLJJuQ2QZniL7LjcUD2G2BkizgxsfCkTSE)
 Sanıyorum x86 için.
 
+## Kitap Hakkında
+
+xv6'nın bir de ders için yazılmış bir kitabı bulunuyor, bağlantısını aşağıda
+`Kaynaklar` altında verdim. Bu kitapta temel işletim sistemi kavramları ve
+xv6'nın tasarımından bahsediliyor. Kitabın yazarlarını araştırmak istedim.
+
+**Russ Cox** Google çalışanı, Go dilinin yaratıcılarından biri. Daha fazla bir
+şey demeye gerek yok sanırım 🙂. [Kişisel sitesi](https://swtch.com/~rsc/) ve
+[YouTube](https://www.youtube.com/@rscgolang)
+
+**Frans Kaashoek** MIT'de hoca. [Kişisel
+sitesi](https://people.csail.mit.edu/kaashoek/)
+
+**Robert (Tappan) Morris** MIT'de hoca. [Kişisel
+sitesi](http://nil.lcs.mit.edu/rtm/) ve
+[Wikipedia](https://en.wikipedia.org/wiki/Robert_Tappan_Morris). Wikipedia'ya
+göre meşhur [Hacker News](https://news.ycombinator.com/) servisini sağlayan [Y
+Combinator](https://en.wikipedia.org/wiki/Y_Combinator) oluşumunun
+partnerlerinden birisiymiş. [Morris
+worm](https://en.wikipedia.org/wiki/Morris_worm) u yapan kişi. Ayrıca babası
+[Robert Morris](https://en.wikipedia.org/wiki/Robert_Morris_(cryptographer))
+60'lı yıllarda Bell Labs'ta Multics ve Unix üzerine çalışmış, babadan oğla geçen
+işletim sistemi sevdası adeta.
+[Derslerde](https://pdos.csail.mit.edu/6.828/2023/schedule.html), `rtm` olarak
+geçen kişi bu abimiz olmalı.
+
+---
+
+**Adam Belay** Kitap yazarlarından değil ama
+[derslerde](https://pdos.csail.mit.edu/6.828/2023/schedule.html) `ab` olarak
+geçen kişi bu kişi olmalı. [Kişisel sitesi](http://www.abelay.me/)
+
 ## Bu İçerik Hakkında
 
 xv6'ya bir süredir bakmak istiyordum. Sitemin bu kısmında aldığım notları
@@ -99,6 +131,7 @@ maxdepth: 1
 glob: true
 ---
 merhaba-dunya.md
+isletim-sistemi.md
 ```
 
 ## 📚 Kaynaklar
@@ -110,14 +143,17 @@ Konu ile ilgili kaynaklar
   <https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf>
 - `xv6-riscv-book` kaynak kod: <https://github.com/mit-pdos/xv6-riscv-book>
 - `xv6` kaynak kod (x86, obsolete): <https://github.com/mit-pdos/xv6-public>
+- `xv6-annotated` x86 olan için ama iyi: <https://github.com/palladian1/xv6-annotated>
 - **MIT 6.1810 Operating System Engineering** [kurs
-  sayfası](https://pdos.csail.mit.edu/6.828/2023/index.html)
+  sayfası](https://pdos.csail.mit.edu/6.828/2023/schedule.html)
 - **MIT OCW 6.828 Operating System Engineering, Fall 2012 Grad** [kurs
   sayfası](https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/)
   xv6 var fakat x86 için.
 - **HMC CS 134 Operating Systems** MIT'nin kursu benzeri bir yapısı var fakat
-  [references](https://www.cs.hmc.edu/~rhodes/courses/cs134/fa20/reference.html)
-  kısmında daha çok kaynak var gibi
+  [sitede daha çok içerik var](https://www.cs.hmc.edu/~rhodes/cs134/schedule.html)
+  Fakat x86 için, RISC-v değil.
+- <https://ops-class.org/> genel olarak sevdiğim ve baktığım bir site
+- <https://wiki.osdev.org/Xv6> OSDev
 - 📺 2014 yılında, 6.828 kursuna ait [ders
   videoları](https://www.youtube.com/playlist?list=PLfciLKR3SgqNJKKIKUliWoNBBH1VHL3AP)
   xv6 var fakat x86 için

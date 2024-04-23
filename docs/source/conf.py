@@ -68,10 +68,10 @@ html_theme = 'furo'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
 
 # https://stackoverflow.com/a/64106835
-# html_css_files = ["colors.css","table.css","font.css","width.css"]
+html_css_files = ["custom.css"]
 
 # https://stackoverflow.com/a/54665517/1766391
 html_favicon = 'favicon.ico'
@@ -93,12 +93,18 @@ html_theme_options = {
     'source_branch': 'master',
     'source_directory': 'docs/source/',
     "light_css_variables": {
+      "font-stack": "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
+      "font-stack--monospace": "\"JetBrains Mono\", \"SFMono-Regular\", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
       "color-brand-primary": "#b91d45",
       "color-brand-content": "#b91d45",
+      "ayazardev-bold": "#fabfc8",
+      "ayazardev-em": "#c0eeff"
     },
     "dark_css_variables": {
       "color-brand-primary": "#fabfc8",
       "color-brand-content": "#fabfc8",
+      "ayazardev-bold": "#995d6d",
+      "ayazardev-em": "#266173"
     }
 }
 

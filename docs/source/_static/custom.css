@@ -1,0 +1,16 @@
+p b, p strong {
+  background-color: var(--ayazardev-bold); /* Color of the marker */
+  font-weight: bold; /* Ensure the text is bold */
+  padding: 0.2em 0.4em; /* Adds padding around the text */
+  border-radius: 0.5em; /* Rounds the corners */
+  box-decoration-break: clone; /* Ensures the background and border-radius are applied to each line in multi-line text */
+ /* font-size: 1.10rem !important; */
+}
+
+p em {
+  background-color: var(--ayazardev-em); /* Color of the marker */
+  padding: 0.2em 0.4em; /* Adds padding around the text */
+  border-radius: 0.5em; /* Rounds the corners */
+  box-decoration-break: clone; /* Ensures the background and border-radius are applied to each line in multi-line text */
+ /* font-size: 1.10rem !important; */
+}

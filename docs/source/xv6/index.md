@@ -119,7 +119,7 @@ geçen kişi bu abimiz olmalı.
 [derslerde](https://pdos.csail.mit.edu/6.828/2023/schedule.html) `ab` olarak
 geçen kişi bu kişi olmalı. [Kişisel sitesi](http://www.abelay.me/)
 
-## Bu İçerik Hakkında
+## 📝 Notlarım
 
 xv6'ya bir süredir bakmak istiyordum. Sitemin bu kısmında aldığım notları
 sizlerle paylaşacağım. **Aksini belirtmediğim sürece xv6-riscv üzerinden devam
@@ -133,6 +133,7 @@ glob: true
 merhaba-dunya.md
 isletim-sistemi.md
 user-space-giris.md
+gdb-ile-debug.md
 ```
 
 ## 📚 Kaynaklar

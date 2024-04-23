@@ -70,6 +70,29 @@ I'm ready! I'm ready! I'm ready!
 
 See the bottom.
 
+## reST Specific
+
+[Ref](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html)
+
+### Code Block
+
+```{code-block} c
+:lineno-start: 33
+:emphasize-lines: 8
+:caption: kernel/console.c
+
+void
+consputc(int c)
+{
+  if(c == BACKSPACE){
+    // if the user typed backspace, overwrite with a space.
+    uartputc_sync('\b'); uartputc_sync(' '); uartputc_sync('\b');
+  } else {
+    uartputc_sync(c);
+  }
+}
+```
+
 ## Asciinema
 
 [The Plugin](https://github.com/divi255/sphinxcontrib.asciinema)

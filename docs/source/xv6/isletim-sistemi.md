@@ -4,18 +4,18 @@ giscus: cc32c812-9f88-4c7f-8072-c18e6d7015e6
 
 # İşletim Sistemi nedir? + Unix
 
-Adettindir, işletim sistemi nedir bir konuşalım, kısa keseceğim.
+Adettendir, işletim sistemi nedir bir konuşalım, kısa keseceğim.
 
 En altta donanım var, üstte kullanıcı yazılımları arada da işletim sistemi, OS.
 
 İşletim sisteminin kalbine kernel deniyor. OS'un yaptığı temel şeylerden biri
 her şeyi sanallaştırmak. Buradaki sanallaştırmayı Virtual Box, VMWare gibi
 şeylerle karıştırmayın. Aslında tüm çalışan uygulamalara *Bilgisayarda bir tek
-sen çalışıyorsun, tüm uygulamalar senin, valla bak!* şeklinde yalan söylemeye
+sen çalışıyorsun, tüm donanım ve kaynaklar senin, valla bak!* şeklinde yalan söylemeye
 yarıyor. Yani tüm uygulamalar bütün bellek kendisindeymiş, tüm CPU
 kendisindeymiş gibi çalışıyor. Yani işlemci, bellek gibi donanımların
 sanallaştırılmasını sağlıyor. Bunun yanında dosya sistemi, file system FS, gibi
-hizmetleri sunuyor. Ayrıca TCP/IP katmanı gibi ağ protoklleri de yine kernel
+hizmetleri sunuyor. Ayrıca TCP/IP katmanı gibi ağ protokolleri de yine kernel
 tarafından implement ediliyor. Elbette bunlar genel geçer laflar, xv6 bu kadar
 yetenekli değil.
 
@@ -28,7 +28,7 @@ Bknz: [](../sys/arayuz.md)
 
 OS *policy* belirler fakat tipik olarak *implementation* donanım tarafından
 yapılır. Yani OS, *Şu program buralara erişsin başka yere erişemesin* diye
-kuralı koyar ama bu kuralı çoğu zaman donanım konrol eder, CPU veya MMU
+kuralı koyar ama bu kuralı çoğu zaman donanım kontrol eder, CPU veya MMU
 mekanizmaları ile. İzin verilmeyen işlemleri donanım durdurur, OS'a ispiyonlar
 *Bak şu process şunu yaptı* diye. Kararı OS verir. Mesela erişmemesi gereken bir
 belleğe bir process erişirse işlemci bu erişim durdurur, OS'a haber verir, OS da
@@ -48,7 +48,7 @@ Bu arayüzler
 - güvenli
 - esnek
 - ileriye ve geriye dönük uyumlu
-- karmaşık işlerin yapılmasına izin vermeli
+- karmaşık işlerin yapılmasına izin veren
 
 olmalı. Bu kolay bir iş değil.
 
@@ -66,19 +66,19 @@ Altta duran **kernel**, programlara kullanabileceği servisler sunar. Çalışan
 programa **process** diyoruz. Her process'in bir bellek alanı var. Burada
 çalışacak **komutlar (instructions)**, **data** ve **stack** alanı var.
 
-Process kernelden bir şey istemek iin **system call** ya da kısca **syscall**
+Process kernelden bir şey istemek iin **system call** ya da kısaca **syscall**
 yapmalı. Bir process'in çalışma zamanının bir kısmı **user space** içerisinde
 geçiyor bir kısmı da **kernel space** içerisinde geçiyor. Yani bazen
-(çoğunlukla) kullanıcının programı çalışıyor ama syscall yaparsa o program o
+(çoğunlukla) kullanıcının yazdığı kod çalışıyor ama syscall yaparsa o program o
 syscall kernel fonksiyonlarını çalıştırdığı için kernel kodlarında da zaman
 geçiyor.
 
 ```{figure} assets/os.png
 :align: center
 
-shell, cat bunlar kullanıcı uygulamaları, user space'te. kernel space'te bir
-tek kernel var (sürpriz). user space uygulamaları syscall yaparak kernel ile
-konuşuyor.
+`shell`, `cat` bunlar kullanıcı uygulamaları, user space'te. kernel space'te bir
+tek kernel var (hiç aklınıza gelmemişti di mi). user space uygulamaları syscall
+yaparak kernel ile konuşuyor.
 [Kaynak](https://github.com/mit-pdos/xv6-riscv-book/blob/xv6-riscv/fig/os.pdf)
 ```
 
@@ -92,7 +92,7 @@ kernel tarafından yapılması gerekir.
 
 Kernel bir syscall seti sunar, kullanıcı bunu kullanabilir. xv6, Unix tarzı
 syscall'ları destekler. Kitapta `Figure 1.2` olarak verilmiş ben tek tek
-yazmıyorum. Ama başlıcaları **fork, exit, open, write, read, exec** gibi
+yazmıyorum. Ama başlıcaları: **fork, exit, open, write, read, exec**
 
 ### shell
 
@@ -109,6 +109,6 @@ xv6'da Unix Bourne shell'den esinlenilmiş basit bir
 
 - <https://pdos.csail.mit.edu/6.828/2023/lec/l-overview.txt>
 - <https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf> Chapter 1
-- Ayrıca bknz [genel kaynaklar](index.md)
+- Ayrıca bknz: [genel kaynaklar](index.md)
 
 [^1f]: <https://en.wikipedia.org/wiki/Unix_philosophy>

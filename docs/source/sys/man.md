@@ -23,13 +23,13 @@ Linux sistem programlama yapacaksak man sayfaları hep önümüzde durmalı.
 Interface* kitabının yazarı [Michael Kerrisk](https://man7.org/mtk/) tarafından
 yürütülmektedir. man sayfası kavramı Linux'a özgü değil, Unix zamanından beri
 hayatımızda [^2f]. *man*, *manual* kelimesinin kısaltılması, yani *kullanım
-kılvauzu* olarak düşünebiliriz. Bu sayfalar hem programcılara hem de
+kılavuzu* olarak düşünebiliriz. Bu sayfalar hem programcılara hem de
 kullanıcılara doküman sağlıyorlar. Hadi gelin bakalım!
 
 ## Yerel man sayfaları
 
 Ubuntu gibi birçok Linux dağıtımı man sayfaları yüklü olarak gelmektedir. Eğer
-BASH gibi bir shell'i açıp, `man` yadığınız zaman bir hata almıyor ve önünüze
+BASH gibi bir shell'i açıp, `man` yazdığınız zaman bir hata almıyor ve önünüze
 çeşitli seçenekler dokülüyorsa sizde `man` programı ve muhtemelen ilgili
 dokümanlar yüklü demektir. Eğer hata alıyorsanız kullandığınız dağıtım ile
 ilgili internette bir arama yapın. `man` programı ile *man-pages* içerisinde
@@ -152,7 +152,7 @@ Daha iyisi bazen çıkıyor. GNU Info en kötü `man` sayfasını gösteriyor.
 GNOME üzerindeyseniz `yelp man:chmod.2` veya `yelp info:cpio` (GNU Info)
 yazabilirsiniz. Plasma (KDE) üzerindeyseniz `khelpcenter` kullanabilirsiniz.
 Şahsen GUI yardım araçlarını pek kullanmıyorum. Klasik man pages
-kullanmayacaksam online olaranlar daha çok hoşuma gidiyor.
+kullanmayacaksam online olanlar daha çok hoşuma gidiyor.
 
 ## Online
 

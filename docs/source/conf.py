@@ -94,7 +94,7 @@ html_theme_options = {
     'source_directory': 'docs/source/',
     "light_css_variables": {
       "font-stack": "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
-      "font-stack--monospace": "\"JetBrains Mono\", \"SFMono-Regular\", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
+      "font-stack--monospace": "\"Reddit Mono\", \"SFMono-Regular\", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
       "color-brand-primary": "#b91d45",
       "color-brand-content": "#b91d45",
       "ayazardev-bold": "#fabfc8",

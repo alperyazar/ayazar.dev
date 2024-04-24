@@ -14,3 +14,7 @@ p em {
   box-decoration-break: clone; /* Ensures the background and border-radius are applied to each line in multi-line text */
  /* font-size: 1.10rem !important; */
 }
+
+article p {
+  line-height: 170%;
+}

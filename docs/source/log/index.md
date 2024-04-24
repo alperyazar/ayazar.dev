@@ -1,6 +1,6 @@
-# 📋 Kayıtlar
+# 📋 Olan Biten
 
-Arada sırada alığım *kayıtlar*, dikkatimi çeken şeyler vs.
+Arada sırada alığım kayıtlar, dikkatimi çeken şeyler vs.
 
 ```{toctree}
 ---

@@ -2,7 +2,7 @@
 giscus: acca3c53-47c2-463c-98c5-60203bed1d5e
 ---
 
-# 🇻6️⃣ xv6
+# 6️⃣ xv6
 
 xv6, MIT tarafından ( günümüzde [CSAIL, Computer Science & Artificial
 Intelligence Laboratory](https://pdos.csail.mit.edu/) altında duran [PDOS,

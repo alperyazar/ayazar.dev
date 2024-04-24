@@ -1,3 +1,7 @@
+---
+og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da çalışıyorum. Ağırlıklı gömülü sistemler ile ilgileniyorum.
+---
+
 # 🏠 Home
 
 ```{figure} me.png

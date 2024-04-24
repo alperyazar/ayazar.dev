@@ -7,6 +7,10 @@ p b, p strong {
  /* font-size: 1.10rem !important; */
 }
 
+p {
+  color: #343743;
+}
+
 p em {
   background-color: var(--ayazardev-em); /* Color of the marker */
   padding: 0.2em 0.4em; /* Adds padding around the text */
@@ -17,4 +21,10 @@ p em {
 
 article p {
   line-height: 170%;
+}
+
+/* https://stackoverflow.com/a/52058198/1766391 */
+a[target="_blank"]::after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
 }

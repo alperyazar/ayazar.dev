@@ -1,12 +1,12 @@
-# 📋 Kayıt
+# 📋 Kayıtlar
 
-Haftalık/aylık özetler…
+Arada sırada alığım *kayıtlar*, dikkatimi çeken şeyler vs.
 
 ```{toctree}
 ---
-maxdepth: 2
+maxdepth: 1
 glob: true
+reversed: true
 ---
-24/index.md
-22/index.md
+*
 ```

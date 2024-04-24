@@ -4,7 +4,7 @@
 ---
 maxdepth: 1
 glob: true
-reversed: true
 ---
-*
+merhaba-hugo.md
+windirstat.md
 ```

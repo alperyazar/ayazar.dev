@@ -13,6 +13,7 @@ glob: true
 ---
 24/index.md
 23/index.md
+22/index.md
 21/index.md
 20/index.md
 19/index.md

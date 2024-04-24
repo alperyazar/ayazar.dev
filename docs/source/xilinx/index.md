@@ -10,6 +10,7 @@ SOCs, etc.
 maxdepth: 1
 glob: true
 ---
+petalinux-offline.md
 ubuntu-1604-petalinux-20183-kurulumu.md
 ```
 

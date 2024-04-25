@@ -14,7 +14,7 @@ giscus: 1058066d-67b6-4ccd-9635-f944a96d10e2
 ---
 
 Belki dikkatinizi çekmiştir. Bir süredir kendimi, sitemdeki [profil
-sayfamda](about.md) ve [LinkedIn
+sayfamda](/about.md) ve [LinkedIn
 profilimde](https://www.linkedin.com/in/alperyazar) **Full Stack Electronics
 Engineer** olarak tanıtıyorum. Adı geçtiği zaman piyasada yaptığı iş anlaşılan
 **Full Stack Developer** veya **Full Stack Engineer** adında bir iş tanımı var.

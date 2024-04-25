@@ -1,11 +1,10 @@
 ---
-og:image: assets/social/blog/23/c-220.jpg
 giscus: b96a82d4-022a-458e-ae9d-067d3848d409
 ---
 
 # 220 saatlik C kursu alınır mı?
 
-```{figure} /extra/assets/social/blog/23/c-220.jpg
+```{figure} assets/c-220.jpg
 :align: center
 :figclass: thmbnl
 ```
@@ -837,6 +836,8 @@ Görüşmek üzere... 👋
 > Not: Bu okuduğunuz yazı, derste aldığım notlardaki gibi bir satırı 80 karakter
 > ile limitleyince Markdown formatında 826 satır tutuyor. 60 derste tuttuğum
 > notların ortalaması 618 satır ediyor. Bu da böyle bir istatistik…
+
+*İlk yayın: 2023-12-29*
 
 [^1f]: [Wikipedia - Characters per line](https://en.wikipedia.org/wiki/Characters_per_line)
 [^2f]: [Necati Ergin ile C ve C++ Dilleri: Nasıl Öğrenmeli ? - Mühendislik Sohbetleri](https://www.youtube.com/live/iQwPbEokS4w?si=A_O4af4xaJkEpgTY&t=4074) 1:07:54

@@ -5,8 +5,9 @@
 maxdepth: 1
 glob: true
 ---
-220-saatlik-c-kursu-alinir-mi.md
-xilinx-remote-debugging-tr.md
 tiobe-index-nedir-guvenebilir-miyiz.md
-c-struct-padding-packed.md
+muhendislik-yapabilirim.md
+full-stack-elektronik.md
+ctf.md
+lychee.md
 ```

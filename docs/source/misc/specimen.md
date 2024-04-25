@@ -66,6 +66,17 @@ I'm ready! I'm ready! I'm ready!
 :width: 100%
 ```
 
+## giphy
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD013 MD033 -->
+<center>
+<iframe src="https://giphy.com/embed/ule4vhcY1xEKQ" width="360" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/reactionseditor-cat-typing-ule4vhcY1xEKQ">via GIPHY</a></p>
+
+<mark>Type derken bunu kastetmiyoruz…</mark> catly typed languages 🐈
+</center>
+<!-- markdownlint-restore -->
+
 ## giscus
 
 See the bottom.

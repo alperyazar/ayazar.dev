@@ -302,6 +302,8 @@ Görüşmek üzere... 🙋‍♂️
 - [Kapak fotoğrafı
   hakkında](https://knowyourmeme.com/memes/la-noire-doubt-press-x-to-doubt)
 
+*İlk yayın: 2023-12-16*
+
 [^1f]: [About us - TIOBE](https://www.tiobe.com/about-us/)
 [^2f]: [TIOBE Programming Community Index
     Definition](https://www.tiobe.com/tiobe-index/programminglanguages_definition/)

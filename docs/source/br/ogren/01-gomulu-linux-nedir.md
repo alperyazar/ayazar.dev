@@ -36,7 +36,7 @@
   (Reddit)](https://www.reddit.com/r/linuxmasterrace/comments/36jcfa/it_should_be_ie_gnusystemdlinux_discuss)
 - Necati Ergin Bey'den aldığım C kursunu değerlendirdiğim ve neden Embedded C
   yani Gömülü C diye ayrı bir C dili olmadığından da bahsettiğim yazım:
-  [](/blog/23/220-saatlik-c-kursu-alinir-mi.md)
+  [](/c/220-saatlik-c-kursu-alinir-mi.md)
 - [BIOS (Wikipedia)](https://en.wikipedia.org/wiki/BIOS)
 - [Devicetree (Wikipedia)](https://en.wikipedia.org/wiki/Devicetree)
 - <https://distrowatch.com/>

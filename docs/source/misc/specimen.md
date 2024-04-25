@@ -116,7 +116,7 @@ Online (`asciinema.org`):
 
 and self hosted:
 
-```{asciinema} /assets/asciinema/zsh.cast
+```{asciinema} assets/zsh.cast
 :cols: 80
 ```
 

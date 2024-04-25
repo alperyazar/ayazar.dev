@@ -123,5 +123,3 @@ ogp_social_cards = {
     "enable": False #disabled. can be enabled after https://github.com/wpilibsuite/sphinxext-opengraph/pull/110 due to emoji
 }
 
-# https://pypi.org/project/sphinx-disqus/
-disqus_shortname = "ayazardev"

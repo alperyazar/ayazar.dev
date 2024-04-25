@@ -1,3 +1,7 @@
+---
+giscus: d1529605-d45e-4969-a41c-197e37314f9e
+---
+
 # Buildroot İle Gömülü Linux: Başlıyoruz!
 
 ```{youtube} 3Y2P9UmT5xY

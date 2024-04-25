@@ -25,7 +25,7 @@ glob: true
 about.md
 blog/index.md
 log/index.md
-br/index.md
+buildroot/index.md
 c/index.md
 sys/index.md
 xilinx/index.md

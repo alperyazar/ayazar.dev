@@ -82,11 +82,12 @@ release of the CD-ROM [^10f], to the year 1983.
 Back in **1983**, the [American National Standards Institute
 (ANSI)](https://www.ansi.org/) set up the first committee to create a standard
 for the C programming language. By **1989**, they released the first official C
-standard, also known as **C89**. The following year, in **1990**, the
-[International Organization for Standardization (ISO)](https://www.iso.org)
-adopted this standard. They made some minor changes and released their version
-also known as **C90**. Interestingly, four of them refer to the same standard,
-and nowadays, people use these terms interchangeably.
+standard, also known as **C89** or as **ANSI C**. The following year, in
+**1990**, the [International Organization for Standardization
+(ISO)](https://www.iso.org) adopted this standard. They made some minor changes
+and released their version also known as **C90** or as **ISO C**. Interestingly,
+four of them refer to the same standard, and nowadays, people use these terms
+interchangeably.
 
 **ANSI C ≡ C89 ≡ ISO C ≡ C90**
 
@@ -134,7 +135,7 @@ of C++, C++98, were added to the C language. C++ was built on top of C, and some
 features defined in C++ also officially came to the C language with C99.
 
 ```{important}
-Please note that the C supported in C++ isn't exactly the same as the C
+❗ Please note that the C supported in C++ isn't exactly the same as the C
 programming language.
 ```
 
@@ -201,7 +202,9 @@ actually "Unics"(UNiplexed Information and Computing System) [^8f].
 ```{figure} assets/Ken-Thompson-2019.png
 :align: center
 
-Ken Thompson from a National Inventors Hall of Fame video about him and Dennis Ritchie in 2019. [Link](https://commons.wikimedia.org/wiki/File:Ken-Thompson-2019.png)
+Ken Thompson from a National Inventors Hall of Fame video about him and
+Dennis Ritchie in 2019.
+[Link](https://commons.wikimedia.org/wiki/File:Ken-Thompson-2019.png)
 ```
 
 The name 'Unix' is indeed a kind of wordplay or pun. The 'Uni' in Unix was
@@ -226,7 +229,8 @@ a successor of Algol.
 ```{figure} assets/thompson_ritchie_PDP-11.jpg
 :align: center
 
-Ken Thompson (sitting) and Dennis Ritchie at PDP-11 in 1972. [Origin](https://www.bell-labs.com/usr/dmr/www/picture.html)
+Ken Thompson (sitting) and Dennis Ritchie at PDP-11 in 1972.
+[Origin](https://www.bell-labs.com/usr/dmr/www/picture.html)
 ```
 
 Ken Thompson, during his involvement in the Multics project, created the B
@@ -303,7 +307,8 @@ Brian Kernighan on Computerphile Channel:
 :width: 100%
 ```
 
-You can also check out this interview: [Brian Kernighan and Lex Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo)
+You can also check out this interview: [Brian Kernighan and Lex
+Fridman](https://www.youtube.com/watch?v=O9upVbGSBFo)
 
 For those interested in the history of computing, I highly recommend visiting
 [the personal page of Dennis M. Ritchie](https://www.bell-labs.com/usr/dmr/www/)
@@ -324,8 +329,9 @@ development of key technologies.
 
 ## Changelog
 
-- 2023-11-25. Corrections and additions to *UNIX and C*.
+- 2024-04-25. Minor corrections
 - 2024-01-04. Rewritten and reorganized form scratch
+- 2023-11-25. Corrections and additions to *UNIX and C*.
 
 [^1f]: <https://www.youtube.com/watch?v=de2Hsvxaf8M>
 [^2f]: <https://qr.ae/pvc7Ln>

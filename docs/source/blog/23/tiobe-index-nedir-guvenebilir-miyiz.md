@@ -290,7 +290,7 @@ gibi. Yani birilerini bir dilin popüler olduğuna ikna etmek istiyorsanız
 kullanabileceğini bir kaynak. O dil listede yoksa (HDL dilleri) gibi TIOBE Index
 konusunu hiç açmayabilirsiniz de 🙊 (akademik dünyayı özetledim).
 
-Buraya kadar okduğunuz için teşekkür ederim. **Varsa görüşlerinizi yorum olarak
+Buraya kadar okuduğunuz için teşekkür ederim. **Varsa görüşlerinizi yorum olarak
 iletebilirsiniz.**
 
 Görüşmek üzere... 🙋‍♂️

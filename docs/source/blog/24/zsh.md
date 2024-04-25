@@ -132,15 +132,9 @@ plugins=(git git-prompt sudo zsh-autosuggestions you-should-use zsh-syntax-highl
 
 My theme and plugins in action:
 
-<!-- markdownlint-disable-next-line -->
-<script async id="asciicast-633779" src="https://asciinema.org/a/633779.js"></script>
-
 Can't see? May be this?:
 
-```{asciinema} /assets/asciinema/zsh.cast
+```{asciinema} assets/zsh.cast
 ```
 
-Still can't see?? Download
-[asciinema record (.cast)](/extra/assets/asciinema/zsh.cast)
-
-*First Published: 2024-01-27*
+*Published on: 2024-01-27*

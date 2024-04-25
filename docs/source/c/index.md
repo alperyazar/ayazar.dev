@@ -11,8 +11,6 @@ glob: true
 ---
 history.md
 properties.md
-c-is-procedural
-c-is-imperative
 resources.md
 ```
 
@@ -28,4 +26,6 @@ c-struct-padding-packed
 c-programlamada-en-cok-yapilan-hata
 statik-dinamik-tur-kavrami.md
 yoda-notation.md
+c-is-procedural
+c-is-imperative
 ```

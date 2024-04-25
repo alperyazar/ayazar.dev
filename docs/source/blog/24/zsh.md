@@ -7,7 +7,7 @@ giscus: 9f5ddc12-67c0-4b75-9da8-4d6748b34cb0
 Quick notes on installing and customizing [Zsh](https://www.zsh.org/) on Ubuntu
 22.04 (or any Linux machine).
 
-```console
+```shell
 sudo apt install zsh
 ```
 
@@ -17,7 +17,7 @@ Let's improve its look and functionality via [Oh My Zsh](https://ohmyz.sh)
 
 Open BASH:
 
-```console
+```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -50,7 +50,7 @@ Download all 4 `.ttf` files.
 
 Install fonts locally:
 
-```console
+```shell
 mkdir -p ~/.fonts
 cp *.ttf ~/.fonts/
 fc-cache
@@ -68,7 +68,7 @@ GNOME Terminal instances and relaunch a terminal window.
 
 Then download the theme for Oh My Zsh:
 
-```console
+```shell
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
@@ -131,8 +131,6 @@ plugins=(git git-prompt sudo zsh-autosuggestions you-should-use zsh-syntax-highl
 ## In action
 
 My theme and plugins in action:
-
-Can't see? May be this?:
 
 ```{asciinema} assets/zsh.cast
 ```

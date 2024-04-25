@@ -13,7 +13,7 @@ history.md
 properties.md
 c-is-procedural
 c-is-imperative
-s.md
+resources.md
 ```
 
 ## Diğer İçerikler

@@ -25,6 +25,23 @@ Beni diğer sitelerde [takip edebilir](follow.md), bana ulaşmak ve hakkımda da
 
 ---
 
+Bu site, açık kaynak kodlu bir sitedir ve kaynak koduna Github üzerinden
+erişilebilir: [alperyazar/ayazar.dev](https://github.com/alperyazar/ayazar.dev)
+
+İçeriği kendi çalışmalarınız için kullanabilirsiniz veya gördüğünüz
+hatalar için *Pull Request* açabilirsiniz (çok memnun olurum). Sadece [lisans
+şartlarına](https://creativecommons.org/licenses/by-sa/4.0/deed.tr) uymanızı
+rica ediyorum.
+
+Site, [Sphinx](https://www.sphinx-doc.org) aracı ile, ufak değişiklikler
+yaptığım ile [Furo](https://github.com/pradyunsg/furo) teması ile derlenen
+[statik bir websitesidir.](https://en.wikipedia.org/wiki/Static_web_page)
+Altyapıda [Github Pages](https://pages.github.com/),
+[Cloudflare](https://www.cloudflare.com) ve [giscus](https://giscus.app/)
+kullanılmaktadır.
+
+---
+
 ```{toctree}
 ---
 hidden: true

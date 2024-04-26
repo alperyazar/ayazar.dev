@@ -7,7 +7,7 @@ p b, p strong {
  /* font-size: 1.10rem !important; */
 }
 
-p {
+article {
   color: #343743;
 }
 
@@ -27,4 +27,19 @@ article p {
 a[target="_blank"]::after {
   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
   margin: 0 3px 0 5px;
+}
+
+
+article img {
+  margin: 4px;
+  margin-bottom: 2px;
+  border: 2px dashed #404040; /* Solid black border, 2px thick */
+  border-radius: 10px;       /* Rounded corners */
+  padding: 4px;              /* Spacing between the image and the border */
+  display: inline-block;     /* Allows the padding and border to take effect properly */
+}
+
+/* https://stackoverflow.com/a/5790911 */
+figure.thmbnl img {
+  border: 2px solid transparent !important
 }

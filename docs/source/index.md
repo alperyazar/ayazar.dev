@@ -2,40 +2,62 @@
 og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da çalışıyorum. Ağırlıklı gömülü sistemler ile ilgileniyorum.
 ---
 
-# 🏠 Home
+# 🏠 Ana Sayfa
 
 ```{figure} me.png
 :align: center
 :figclass: thmbnl
-
-Me
 ```
 
-Personal website and public notes by [me](about.md), in English or in Turkish.
+Merhaba, ben **Alper Yazar**, 2012 yılından itibaren elektronik mühendisi olarak
+çalışmaktayım.
 
-[💼 LinkedIn](https://www.linkedin.com/in/alperyazar)
+[💼 LinkedIn profilim](https://www.linkedin.com/in/alperyazar)
+
+Şu an ziyaret ettiğiniz kişisel sitemde Türkçe ve İngilizce içerikler
+bulabilirsiniz. Ağırlıklı olarak teknik konularda oluşturduğum notları
+paylaşıyorum. İçeriklere menülerden ulaşabilirsiniz.
+
+Beni diğer sitelerde [takip edebilir](follow.md), bana ulaşmak ve hakkımda daha
+çok bilgi edinmek için [hakkımda](about.md) sayfasına bakabilirsiniz.
+
+İyi gezintiler…
 
 ---
 
 ```{toctree}
 ---
-maxdepth: 1
-glob: true
+hidden: true
 ---
+
 about.md
 blog/index.md
 log/index.md
+follow.md
+```
+
+```{toctree}
+---
+caption: Notlarım
+hidden: true
+---
+
 buildroot/index.md
 c/index.md
 sys/index.md
 xilinx/index.md
 xv6/index.md
-misc/index.md
-misc/disclaimer.md
-follow.md
 ```
 
+```{toctree}
 ---
+caption: Diğer
+hidden: True
+---
+
+misc/index.md
+misc/disclaimer.md
+```
 
 ```{figure} cc-by-sa.png
 :align: center

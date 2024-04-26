@@ -16,7 +16,6 @@ eğitimini](https://bootlin.com/training/buildroot/) temel alarak başlatmışt�
 ```{toctree}
 ---
 maxdepth: 1
-glob: true
 ---
 basliyoruz.md
 gomulu-linux-nedir

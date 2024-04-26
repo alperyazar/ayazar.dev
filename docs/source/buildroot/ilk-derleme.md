@@ -164,7 +164,8 @@ https://git.buildroot.net/buildroot` komutunu çalıştıralım. Eğer minimal b
 kurulum yaptıysanız `git` kurulmamış olabilir, bu durumda hata alıyorsanız
 öncesinde `sudo apt install git` ile `git` kurulumu yapınız.
 
-{% asciicast 9ULE3zYW4U4s7tpuWkRgls2RZ %}
+```{asciinema} assets/ilk-derleme-636835.cast
+```
 
 clone işleminin süresi bağlantı hızınıza ve bir miktar bilgisayarınızın gücüne
 göre değişecektir. 20-25 Mbps bir internet bağlantısı ve görece zayıf bir
@@ -233,12 +234,14 @@ sudo apt install sed make binutils gcc g++ bash patch \
 gzip bzip2 perl tar cpio python3 unzip rsync wget libncurses-dev
 ```
 
-{% asciicast G0whSD1KFQsBVKzxG43w7sLRt %}
+```{asciinema} assets/ilk-derleme-636604.cast
+```
 
 Son olarak yukarıda belirtilen versiyon ve `file` programının
 konum koşullarını sağlayıp sağlamadığımıza bakalım:
 
-{% asciicast CAQRLpALjCLWGieTejOeTBcUY %}
+```{asciinema} assets/ilk-derleme-636605.cast
+```
 
 **Evet görüldüğü üzere artık hazırız!** 🥳
 
@@ -261,7 +264,8 @@ yeterlidir) dolayı SSH gibi bağlantılar üzerinden de sorunsuz çalışabilme
 çalışıyor diyelim) dolayı `menuconfig` ve `nconfig` araçları gözlemlerime göre
 daha sık kullanılmaktadır.
 
-{% asciicast ePL2Br7BDggFHRDB4cx5fdiky %}
+```{asciinema} assets/ilk-derleme-636607.cast
+```
 
 Burada ilk olarak `git checkout -b bootlin 2022.02` komutu ile `2022.02`
 versiyonundan (tag) `bootlin` isimli bir branch oluşturuyoruz. `make help` ile
@@ -278,7 +282,8 @@ alıyor.
 
 Şimdi gelin, `gconfig` ve `xconfig` araçlarına bakalım.
 
-{% asciicast tsN4RuKhng57Ww7xaztQN3Icv %}
+```{asciinema} assets/ilk-derleme-636726.cast
+```
 
 Kayıttan da görebileceğiniz üzere `gconfig` ve `xconfig` araçlarını hemen
 kullanamadık. Önceki bölümde de belirttiğim gibi, `gconfig` aracı GTK kütüphanelerine,
@@ -329,7 +334,8 @@ kayıta ve lab dokümanlarına bakarak siz de kendinizde deneyebilirsiniz.
 
 Bakalım karta yüklenmeye hazır bir şeyler çıkartabilecek miyiz?
 
-{% asciicast eBguOqKc7hwk8kudfMJSl8rZ5 %}
+```{asciinema} assets/ilk-derleme-636728.cast
+```
 
 Belirttiğim gibi şimdilik sadece "Derleyebiliyor muyuz?" diye baktığımız için
 seçenekleri Bootlin'in tariflediği gibi yapıp, geçiyorum. İlerleyen bölümlerde
@@ -373,7 +379,8 @@ yönlendirilmesini sağlıyor, ama şu aşamada konumuzun dışında bu kavram.
 
 İlk derleme girişimimizin kaydına bir bakalım:
 
-{% asciicast YgRAdbY9SlloLd0xQQ5YFq10B %}
+```{asciinema} assets/ilk-derleme-636729.cast
+```
 
 Loglar akarken şunlar dikkatimi çekti:
 
@@ -412,7 +419,8 @@ olmasa da Buildroot'un temin etmesini bekliyordum.
 İnternette de tahmin ettiğim şekilde bir çözüm sunulmuş [^8f]: Derleme yaptığımız
 sisteme OpenSSL'in geliştirme paketini kuralım ve derlemeyi tekrar deneyelim.
 
-{% asciicast jEdZORfgObR4rYvAbM5In3Jee %}
+```{asciinema} assets/ilk-derleme-636770.cast
+```
 
 Bu sayede hatayı düzeltmiş olduk. Tekrar `make` dediğim zaman derleme işlemi
 kaldığı yerden devam etti. **Bu da `make` gibi sistemlerin bizlere sunduğu en

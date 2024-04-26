@@ -20,12 +20,14 @@ xv6, [Version 6 Unix, v6](https://en.wikipedia.org/wiki/Version_6_Unix) dan
 esinlenerek tasarlanmıştır. Meşhur [A Commentary on the UNIX Operating System,
 Lions' Commentary on UNIX 6th
 Edition](https://en.wikipedia.org/wiki/A_Commentary_on_the_UNIX_Operating_System)
-kitabı gibi bir dokümantasyonu vardır. 2006 yılında xv6'nın tasarlanma amacı
-orijinal Unix v6'nın standart olmayan bir C dili ile, PDP-11 gibi çok eski ve
-adeta tarihi eser bir makine için tasarlanmış olmasıymış [^13f]. Adamlar da
-güncel bir donanımda, x86'da, çalışabilecek ve standart bir C ile (ANSI C, 1989,
-eski ama standart) yazılmış benzer bir işletim sistemi yapmışlar sınıfta
-göstermek için.
+kitabı gibi bir dokümantasyonu vardır (Bu daha çok x86 için yapılmış ilk [xv6
+için geçerli](https://pdos.csail.mit.edu/6.828/2018/xv6/xv6-rev11.pdf), RISC-V
+için olanında bu tarz bir kitap yok, farklı bir kitap var). 2006 yılında xv6'nın
+tasarlanma amacı orijinal Unix v6'nın standart olmayan bir C dili ile, PDP-11
+gibi çok eski ve adeta tarihi eser bir makine için tasarlanmış olmasıymış
+[^13f]. Adamlar da güncel bir donanımda, x86'da, çalışabilecek ve standart bir C
+ile (ANSI C, 1989, eski ama standart) yazılmış benzer bir işletim sistemi
+yapmışlar sınıfta göstermek için.
 
 ## MIT İşletim Sistemi Kursları ve Tarihçesi
 
@@ -134,6 +136,7 @@ merhaba-dunya.md
 isletim-sistemi.md
 user-space-giris.md
 gdb-ile-debug.md
+open-close
 ```
 
 ## 📚 Kaynaklar

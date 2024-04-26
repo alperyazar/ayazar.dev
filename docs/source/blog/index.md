@@ -1,10 +1,6 @@
 # 📼 Karışık
 
-Ortaya karışık içerikler.
-
-```{todo}
-Yapım aşamasındadır 🚧
-```
+Ortaya karışık içerikler, blog.
 
 ```{toctree}
 ---

@@ -3,7 +3,7 @@ og:description: What kind of language is C? What are the properties? Which parad
 giscus: 8005ad99-496b-45ad-b5ad-ed97718bd8d2
 ---
 
-# 15 Features of The C Programming Language
+# 🌈 15 Features of The C Programming Language
 
 ```{figure} assets/properties.jpg
 :align: center

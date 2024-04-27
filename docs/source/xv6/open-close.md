@@ -283,11 +283,19 @@ Merhaba Dunya!
 Ben bir notum.
 ```
 
-Neden hep aynı içerik oluyor? Çünkü her seferinde dosyayı programımız açıyor
-ve en başından itibaren aynı yazıyı yazdığı için dosya içeriği hep aynı
-oluyor. xv6'de `open()` fonksiyonunda Linux'ta olduğu gibi `O_APPEND` gibi bir
-mod, `lseek()` biri bir sistem fonksiyonu da ya da implement edilmiş `fseek()`
-fonksiyonu yok.
+Neden hep aynı içerik oluyor? Çünkü her seferinde dosyayı programımız açıyor ve
+en başından itibaren aynı yazıyı yazdığı için dosya içeriği hep aynı oluyor.
+xv6'de `open()` fonksiyonunda Linux'ta olduğu gibi `O_APPEND` gibi bir mod,
+`lseek()` biri bir sistem fonksiyonu da ya da implement edilmiş `fseek()`
+fonksiyonu yok. Hal böyle olunca kolay bir şekilde *append* işlemi yapamıyoruz,
+yani var olan içeriği koruyup `write()` işlemini dosyanın sonuna yapamıyoruz.
+Bunu yapabilmemiz için görünen tek yol önce `read()` ile dosya içeriğinin bir
+`char` diziye okunması, bu dizinin sonuna eklemek istediğimiz yazının eklenmesi,
+mesela `strcat()` ile, daha sonra hepsinin `write()` ile yazılması. Bunun da
+kendine has zorlukları var, programımız içerisinde ayıracağımız dizinin yeteri
+kadar büyük olması gerekiyor ama dosya boyutunu bilmiyorsak nasıl yapabiliriz?
+Normalde bunu dinamik bellek yönetimi ile çözebiliriz, yani `malloc()`
+kullanarak, xv6'da `malloc()` mevcut. Fakat bunu daha sonraya bırakalım bence
 
 ---
 
@@ -350,8 +358,8 @@ fd = open("not.txt", O_RDONLY|O_CREATE|O_TRUNC);
 
 ---
 
-Tabii read only bir dosyaya `O_CREATE` ve `O_TRUNC` vermek biraz garip ama
-göstermek istediğim şey, bir dosya read only açılırsa `write()` yapılamaz.
+Tabii read only bir dosyaya `O_CREATE` ve özellikle `O_TRUNC` vermek biraz garip
+ama göstermek istediğim şey, bir dosya read only açılırsa `write()` yapılamaz.
 Aşağıda göreceğiniz gibi `open()` bize geçerli bir fd dönüyor fakat `write()`
 bize hata dönüyor, çünkü dosyayı read only açtık.
 

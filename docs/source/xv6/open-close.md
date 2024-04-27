@@ -97,16 +97,17 @@ gelen file descriptor, fd, sayısını dönüyor. Biz de bu sayıyı daha sonra
 
 ## `close()`
 
-`close()` ise açılmış bir dosyanın o process için kapatılmasını sağlıyor. Bir
-adet parametre alıyor, kapatmak istediğimiz file descriptor ve eğer başarılı
-olursa 0, eğer başarısız olursa (örneğin parametre hatası) -1 dönüyor.
+`close()` ise açılmış bir dosyanın **o process için** kapatılmasını sağlıyor.
+Bir adet parametre alıyor, kapatmak istediğimiz file descriptor ve eğer başarılı
+olursa 0, eğer başarısız olursa (örneğin parametre hatası, geçersiz fd gibi) -1
+dönüyor.
 
 İşletim sistemi çekirdeği, hangi dosyaların kaç process tarafından açıldığını
 takip ediyor. `close()` işlemi aslında açık olan bir dosyayı o process için
-kapatıyor ve kernel o dosyayı açmış olan process sayısını 1 eksiltiyor. Eğer
-o dosyayı açmış olan başka process kalmadıysa yani sayı 0 olduysa dosya gerçekten
-kapatılıyor. Kapatma işleminin detaylarını ilerleyen kısımlarda muhtemelen
-konuşuruz.
+kapatıyor ve kernel o dosyayı açmış olan process sayısını 1 eksiltiyor. Eğer o
+dosyayı açmış olan başka process kalmadıysa yani sayı 0 olduysa dosya gerçekten
+kernel tarafından kapatılıyor. Kapatma işleminin detaylarını ilerleyen
+kısımlarda muhtemelen konuşuruz.
 
 `close()` işlemi sonunda kapatılan dosyanın file descriptor değeri boşa çıkıyor
 ve bu noktadan sonra gelecek başka `open()` işlemleri ile aynı descriptor değeri

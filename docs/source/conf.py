@@ -98,13 +98,15 @@ html_theme_options = {
       "color-brand-primary": "#b91d45",
       "color-brand-content": "#b91d45",
       "ayazardev-bold": "#fabfc8",
-      "ayazardev-em": "#c0eeff"
+      "ayazardev-em": "#c0eeff",
+      "ayazardev-article-color": "#343743",
     },
     "dark_css_variables": {
       "color-brand-primary": "#fabfc8",
       "color-brand-content": "#fabfc8",
       "ayazardev-bold": "#995d6d",
-      "ayazardev-em": "#266173"
+      "ayazardev-em": "#266173",
+      "ayazardev-article-color": "#d0d0d0"
     }
 }
 

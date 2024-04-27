@@ -7,9 +7,11 @@ p b, p strong {
  /* font-size: 1.10rem !important; */
 }
 
+
 article {
-  color: #343743;
+  color: var(--ayazardev-article-color);
 }
+
 
 p em {
   background-color: var(--ayazardev-em); /* Color of the marker */

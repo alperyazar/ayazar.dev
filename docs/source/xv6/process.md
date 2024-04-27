@@ -250,7 +250,7 @@ o kadar `ofile` elemanın gösterdiği yer geçerlidir. Yukarıdaki örnekte 3 a
 açık dosya varmış gibi düşünebilirsiniz.
 ```
 
-## Veri Yapılarının Oluşturulması
+## Verilerin Bellekte Tahsis Edilmesi
 
 `struct file *ofile[NOFILE];` ifadesini hatırlayalım. Bir process oluşturulduğu
 zaman bu pointer dizisinin gösterdiği elemanların bellekte tahsis edilmesi

@@ -97,20 +97,26 @@ gelen file descriptor, fd, sayısını dönüyor. Biz de bu sayıyı daha sonra
 
 ## `close()`
 
-`close()` ise açılmış bir dosyanın kapatılmasını sağlıyor. Bir adet parametre
-alıyor, kapatmak istediğimiz file descriptor ve eğer başarılı olursa 0, eğer
-başarısız olursa (örneğin parametre hatası) -1 dönüyor.
+`close()` ise açılmış bir dosyanın o process için kapatılmasını sağlıyor. Bir
+adet parametre alıyor, kapatmak istediğimiz file descriptor ve eğer başarılı
+olursa 0, eğer başarısız olursa (örneğin parametre hatası) -1 dönüyor.
 
-Linux gibi sistemlerde dosya erişimleri için her zaman diske gidilmiyor. Bunun
-sebebi performans. Bellek yani RAM ile bir tampon oluşturuluyor. Linux'taki
-`close()` gibi fonksiyonlar bu belleğin *flush* edilmesini sağlıyor, yani RAM'de
-duran değişiklikleri diske işliyor. Fakat görebildiğim kadarıyla xv6'da böyle
-bir mekanizma yok, tam da emin değilim. O yüzden `close()` pek bir işlevi olan
-fonksiyon olmayabilir.
+İşletim sistemi çekirdeği, hangi dosyaların kaç process tarafından açıldığını
+takip ediyor. `close()` işlemi aslında açık olan bir dosyayı o process için
+kapatıyor ve kernel o dosyayı açmış olan process sayısını 1 eksiltiyor. Eğer
+o dosyayı açmış olan başka process kalmadıysa yani sayı 0 olduysa dosya gerçekten
+kapatılıyor. Kapatma işleminin detaylarını ilerleyen kısımlarda muhtemelen
+konuşuruz.
+
+`close()` işlemi sonunda kapatılan dosyanın file descriptor değeri boşa çıkıyor
+ve bu noktadan sonra gelecek başka `open()` işlemleri ile aynı descriptor değeri
+başka dosya için kullanılabilir. Yani bir process'in ömrü boyunca bir file
+descriptor değer, örneğin 3 diyelim, yapılan `open()` ve `close()` sayısına göre
+farklı dosyaları gösteriyor olabilir.
 
 Linux gibi sistemlerde bir process sonlandığı zaman açık olan tüm dosyalar
-otomatik `close()` ediliyor, xv6'da böyle mi bilmiyorum, ilerleyen zamanlarda
-umarım öğreniriz.
+otomatik `close()` ediliyor, xv6'da böyle mi bilmiyorum ama muhtemelen öyeldir.
+İlerleyen zamanlarda umarım öğreniriz.
 
 ## Örnekler
 

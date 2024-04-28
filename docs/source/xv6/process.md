@@ -15,7 +15,7 @@ oluyor bilemiyorum, [terimler.org](https://terimler.org/)'da `süreç` olarak
 Kavramları](https://bilgisayarkavramlari.com/2007/11/18/islem-process/)
 sitesinde ve
 [Vikipedi](https://tr.wikipedia.org/wiki/%C4%B0%C5%9Flem_(bilgisayar))'de
-`işlem` olarak belirtilmiş. Ben tahmin ediyorum ki el alışkanlı `process`
+`işlem` olarak belirtilmiş. Ben tahmin ediyorum ki el alışkanlığı `process`
 yazmaya devam edeceğim ama benim kulağıma `işlem` daha doğru geliyor.
 ```
 
@@ -39,10 +39,24 @@ değişiyor. xv6, Linux gibi sistemlerde process'e ait temel bilgiler arasında
 **PID** yani **P**rocess **ID** geliyor. İşletim sistemi, her process'e herhangi
 bir `t` anında sistemde tekil yani unique olan bir tam sayı atıyor, TC kimlik no
 gibi düşünün ama çok daha kısa. Yani herhangi bir anda aynı PID değerine sahip
-iki farklı process sistemde yer almıyor. Bununla beraber bir process ile tutulan
-en önemli bilgilerden biri de **file descriptor table** yani o process'e açık
-olan dosyalar ile ilgili bilgiler. Örneğin biz `open()` ile dosya açtıkça
-aslında kernel bu tablonun bir satırında dosya ile ilgili bilgiler tutuyor.
+iki farklı process sistemde yer almıyor. Fakat TC kimlik no'dan bir farkı var,
+ölen bir kişinin kimlik numarası yeni doğan birine verilmiyor yani evrensel
+olarak tekil gibi düşünebiliriz. Sistem uzun süre açık olursa ve sürekli bir
+process oluşturulması ve process'in sonlanması gerçekleşirse PID değerleri
+tükenebilir, o yüzden Linux gibi sistemlerde eski fakat kullanılmayan PID
+değerleri tekrar başka process'lere verilebilir. Sistem açıldıktan kapanana
+kadar bir PID değeri sadece tek bir process'i gösterecek diye bir kıstas yok ama
+elbette herhangi bir anda bir PID değeri bir adet process'i göstermeli. Bu
+dediklerim Linux gibi çekirdekler için geçerli. xv6'nın çekirdek kodundan
+anladığım kadarıyla böyle bir tedbire gidilmemiş. Bu kadar fazla process'in
+yaratılıp, ölüp, tekrar yaratılacağı düşünülmemiş gibi anlıyorum ama yanılıyor
+da olabilirim, ilerleyen bölümlerde deneriz, belki bir [fork
+bomb](https://en.wikipedia.org/wiki/Fork_bomb) saldırısı yaparız kernel'e.
+
+Bununla beraber bir process ile tutulan en önemli bilgilerden biri de **file
+descriptor table** yani o process'e açık olan dosyalar ile ilgili bilgiler.
+Örneğin biz `open()` ile dosya açtıkça aslında kernel bu tablonun bir satırında
+dosya ile ilgili bilgiler tutuyor.
 
 Elbette tahmin edersiniz ki C'de adı `tablo` olan bir tür ya da veri yapısı yok.
 Ama satırlardan oluşan tabloyu çok güzel modelleyebilen bir C aracımız var:
@@ -243,11 +257,16 @@ yapılacağını etkiliyor.
 ```{figure} assets/process-struct-proc-ve-struct-file.jpg
 :align: center
 
-`struct pointer` ve `struct file` arasındaki ilişki görüldüğü gibidir. `ofile[]`
-dizisinin elemanları birer `struct pointer*` dır yani pointer'dır. Her biri
+`struct proc` ve `struct file` arasındaki ilişki görüldüğü gibidir. `ofile[]`
+dizisinin elemanları birer `struct file*` dır yani pointer'dır. Her biri
 bir `struct file` türünü gösterir. Elbette açık olan dosya sayısı kaç ise,
 o kadar `ofile` elemanın gösterdiği yer geçerlidir. Yukarıdaki örnekte 3 adet
 açık dosya varmış gibi düşünebilirsiniz.
+
+`struct file` içerisindeki `uint off` üyesini sadece bir örnek olsun diye yazdım.
+Yeşil okların gösterdiği yerler sanki bu elemanın adresi gibi gözüküyor, bu
+şekilde değil. `ofile[]` elemanları `struct file` nesnelerinin başlangıcını,
+yani ilk elemanını gösteriyor. Göbekten bir elemanı göstermiyor yani.
 ```
 
 ## Verilerin Bellekte Tahsis Edilmesi

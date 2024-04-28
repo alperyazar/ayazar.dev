@@ -27,8 +27,8 @@ article p {
 
 /* GPT-4 */
 /* https://stackoverflow.com/a/52058198/1766391 */
-a[href^="http://"]:not([href^="http://ayazar.dev"])::after,
-a[href^="https://"]:not([href^="https://ayazar.dev"])::after{
+article a[href^="http://"]:not([href^="http://ayazar.dev"])::after,
+article a[href^="https://"]:not([href^="https://ayazar.dev"])::after{
   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
   margin: 0 3px 0 5px;
 }

@@ -138,6 +138,7 @@ user-space-giris.md
 gdb-ile-debug.md
 open-close
 process
+bellek-duzeni
 ```
 
 ## 📚 Kaynaklar

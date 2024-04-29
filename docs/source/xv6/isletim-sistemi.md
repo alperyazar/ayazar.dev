@@ -9,15 +9,15 @@ Adettendir, işletim sistemi nedir bir konuşalım, kısa keseceğim.
 En altta donanım var, üstte kullanıcı yazılımları arada da işletim sistemi, OS.
 
 İşletim sisteminin kalbine kernel deniyor. OS'un yaptığı temel şeylerden biri
-her şeyi sanallaştırmak. Buradaki sanallaştırmayı Virtual Box, VMWare gibi
-şeylerle karıştırmayın. Aslında tüm çalışan uygulamalara *Bilgisayarda bir tek
-sen çalışıyorsun, tüm donanım ve kaynaklar senin, valla bak!* şeklinde yalan söylemeye
-yarıyor. Yani tüm uygulamalar bütün bellek kendisindeymiş, tüm CPU
-kendisindeymiş gibi çalışıyor. Yani işlemci, bellek gibi donanımların
-sanallaştırılmasını sağlıyor. Bunun yanında dosya sistemi, file system FS, gibi
-hizmetleri sunuyor. Ayrıca TCP/IP katmanı gibi ağ protokolleri de yine kernel
-tarafından implement ediliyor. Elbette bunlar genel geçer laflar, xv6 bu kadar
-yetenekli değil.
+her şeyi sanallaştırmak daha doğru tabirle **soyutlamak**. Buradaki
+sanallaştırmayı Virtual Box, VMWare gibi şeylerle karıştırmayın. Aslında tüm
+çalışan uygulamalara *Bilgisayarda bir tek sen çalışıyorsun, tüm donanım ve
+kaynaklar senin, valla bak!* şeklinde yalan söylemeye yarıyor. Yani tüm
+uygulamalar bütün bellek kendisindeymiş, tüm CPU kendisindeymiş gibi çalışıyor.
+Yani işlemci, bellek gibi donanımların sanallaştırılmasını sağlıyor. Bunun
+yanında dosya sistemi, file system FS, gibi hizmetleri sunuyor. Ayrıca TCP/IP
+katmanı gibi ağ protokolleri de yine kernel tarafından implement ediliyor.
+Elbette bunlar genel geçer laflar, xv6 bu kadar yetenekli değil.
 
 Bir önemli işlevi de donanımın soyutlanmasıdır. Yani mesela Firefox gibi bir
 internet tarayıcısı üzerinde çalıştığı donanımın detaylarını pek bilmez, hangi

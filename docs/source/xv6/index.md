@@ -138,7 +138,7 @@ user-space-giris.md
 gdb-ile-debug.md
 open-close
 process
-bellek-duzeni
+os-ve-bellek
 ```
 
 ## 📚 Kaynaklar
@@ -173,6 +173,7 @@ Konu ile ilgili kaynaklar
 - 📺 [Low Byte Productions](https://www.youtube.com/@LowByteProductions)
   tarafından hazırlanmış xv6-riscv üzerine birkaç
   [video](https://www.youtube.com/playlist?list=PLP29wDx6QmW4Mw8mgvP87Zk33LRcKA9bl)
+- 📖 Modern Operating Systems, 4th Edition, Tanenbaum. `978-0133591620` 🌟
 
 ### RISC-V
 

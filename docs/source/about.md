@@ -61,7 +61,7 @@ OR send a message on
       Provide Quality of Service (QoS) in Cloud Computing
     - Advisor: [Prof. Ece Güran Schmidt](https://users.metu.edu.tr/eguran/)
     - Field: Computers
-    - CGPA: 3.75
+    - CGPA: 3.75/4.00
     - ℹ️ Began PhD studies in 2016, successfully passed the qualification exam,
       and progressed to the thesis stage before deciding to leave the program.
 

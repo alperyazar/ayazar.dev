@@ -54,6 +54,17 @@ OR send a message on
 
 ## Education
 
+- 🪦 Not Completed, **PhD, Electrical and Electronics Engineering**. Middle East
+  Technical University (METU), Ankara, Turkey.
+    - Area of Study: Heterogeneous Architectures and Cloud
+    - Thesis Topic: Reconfigurable and Composable Hardware Accelerators to
+      Provide Quality of Service (QoS) in Cloud Computing
+    - Advisor: [Prof. Ece Güran Schmidt](https://users.metu.edu.tr/eguran/)
+    - Field: Computers
+    - CGPA: 3.75
+    - ℹ️ Began PhD studies in 2016, successfully passed the qualification exam,
+      and progressed to the thesis stage before deciding to leave the program.
+
 - 2015, **MSc, Electrical and Electronics Engineering**. Middle East Technical
   University (METU), Ankara, Turkey.
     - Area of Study: Statistical Signal Processing

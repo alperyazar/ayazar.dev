@@ -11,13 +11,25 @@ og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da 
 
 Merhaba, ben **Alper Yazar**, 2012 yılından itibaren elektronik mühendisi olarak
 çalışmaktayım. Ağırlıklı olarak gömülü sistemler, Linux, sayısal tasarım, FPGA,
-elektronik tasarım gibi konular üzerine çalışıyorum.
+elektronik tasarım gibi konular üzerine çalışıyorum. Şu ziyaret ettiğiniz
+kişisel sitemde ağırlıklı olarak teknik konular üzerine notlarımı ve kişisel
+düşüncelerimi paylaşıyorum.
 
-[💼 LinkedIn profilim](https://www.linkedin.com/in/alperyazar)
+---
+
+- [👥 LinkedIn'de Takip Edin](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=alperyazar)
+  Paylaşımlarımı genelde bu platformda yapıyorum.
+- [📺 YouTube Kanalıma Abone Olun](https://www.youtube.com/@ayazar?sub_confirmation=1)
+  Çok aktif değilim.
+- [🐦 X (Twitter) Profilim](https://twitter.com/alper_yazar)
+- [mastodon](https://mastodon.social/@ayazar)
+
+[Diğer profillerim](follow.md)
+
+---
 
 Şu an ziyaret ettiğiniz kişisel sitemde Türkçe ve İngilizce içerikler
-bulabilirsiniz. Ağırlıklı olarak teknik konularda oluşturduğum notları
-paylaşıyorum. İçeriklere menülerden ulaşabilirsiniz.
+bulabilirsiniz. İçeriklere menülerden ulaşabilirsiniz.
 
 Beni diğer sitelerde [takip edebilir](follow.md), bana ulaşmak ve hakkımda daha
 çok bilgi edinmek için [hakkımda](about.md) sayfasına bakabilirsiniz.
@@ -59,7 +71,7 @@ follow.md
 caption: Notlarım
 hidden: true
 ---
-
+not-hakkinda.md
 buildroot/index.md
 c/index.md
 devops/index.md

@@ -9,7 +9,7 @@ og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da 
 :figclass: thmbnl
 ```
 
-Merhaba, ben **Alper Yazar**, 2012 yılından itibaren elektronik mühendisi olarak
+Merhaba, ben Alper Yazar, 2012 yılından itibaren elektronik mühendisi olarak
 çalışmaktayım. Ağırlıklı olarak gömülü sistemler, Linux, sayısal tasarım, FPGA,
 elektronik tasarım gibi konular üzerine çalışıyorum. Şu ziyaret ettiğiniz
 kişisel sitemde ağırlıklı olarak teknik konular üzerine notlarımı ve kişisel

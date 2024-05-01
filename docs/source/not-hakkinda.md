@@ -52,6 +52,19 @@ Oluşturduğum içerikleri mümkün olduğunca birçok kaynakla desteklemeye
 içerikler olduğunu söyleyemem ama içerik doğruluğu en titiz olduğum noktalardan
 biri. **Bu yüzden gördüğünüz hata ve eksikleri iletirseniz çok memnun olurum.**
 
+## Dilbilgisi Hataları ve Düşük Cümleler
+
+İçeriğin teknik anlamda doğru bilgi içermesine gösterdiğim özeni bazen dilbilgisi
+kurallarına veya cümle kurgularına gösteremeyebiliyorum. Bunun ardında iki temel
+sebep var: Bazen içeriği hemen çıkarmak ya da birim zamanda daha çok içerik
+çıkarmak adına acele edebiliyorum, yazıyı tekrar okuyup düzeltmeye vakit
+ayırmıyorum ya da yeteri kadar vakit ayırmıyorum. Bazen de dilbilgisi kurallarını
+yanlış biliyor oluyorum, doğru yaptığımı zannediyorum ama aslında yazım hatası
+yapıyorum.
+
+Gördüğünüz hataları belirtirseniz ya da kendiniz düzeltip *Pull Request*
+açarsanız mutlaka düzeltmek isterim.
+
 ---
 
 Şimdilik bu kadar. Aklıma bir şeyler gelirse yeni maddeler eklerim.

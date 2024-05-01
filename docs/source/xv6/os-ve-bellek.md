@@ -7,32 +7,36 @@ giscus: 2610ab7f-7904-4bff-aa0a-e654a9142f3f
 ```{note}
 Bu yazıda işletim sistemleri ve bellek yönetimi konusundaki notlarım yer
 almaktadır. Yazının başları genel kavramlar ile ilgilidir, son kısmında ise
-xv6'ya özel bilgiler yer almaktadır. Yazının amacı genel işletim sistemleri
-olmadığından **kavramlardan kısaca bahsedeceğim.**
+xv6'ya özel bilgiler yer almaktadır. Yazının amacı genel olarak işletim sistemleri
+kavramlarını anlatmak
+olmadığından **kavramlardan kısaca bahsedeceğim ve yüzeysel geçeceğim.**
 ```
 
-İşletim sistemi, bizim için temel 3 farklı donanımı soyutlar: **işlemci**,
+İşletim sistemi, bizim için temel 3 donanımı soyutlar: **işlemci**,
 **bellek** ve **disk.**
 
-**Disk**, dosya sistemleri ile soyutlanır. Aslında *ham* veri depolama cihazı olan
-diskler dosya, klasör nedir bilmez. Bunlar dosya sisteminin sağladığı bir
-soyutlama katmanıdır. Dosya sistemleri de tipik olarak kernel tarafında
-gerçekleştirilir.
+**Disk**, dosya sistemleri (NTFS, ext4, BTRFS, vs.) ile soyutlanır. Aslında
+*ham* veri depolama cihazı olan diskler dosya, klasör nedir bilmez. Bunlar dosya
+sisteminin sağladığı bir soyutlama katmanıdır. Dosya sistemleri de tipik olarak
+kernel tarafında gerçekleştirilir.
 
-**İşlemci**, farklı thread'ler arasında paylaştırılır. Thread, işlemcide koşan bir
-iş parçasıdır yani CPU'da yürütülen komutlar. Bir sistemde aynı anda aktif olan
-birden fazla thread olsa da her thread sanki sadece kendisi varmış gibi
+**İşlemci**, farklı thread'ler arasında paylaştırılır. Thread, işlemcide koşan
+bir iş parçasıdır yani CPU'da yürütülen komutlar bütünü diyebiliriz. Bir
+sistemde aynı anda aktif olan birden fazla thread olsa da her thread sanki
+sadece kendisi varmış, başka bir thread yokmu, tüm işlemci ona aitmiş gibi
 işlemciyi kullanır. İşlemci kaynağının birden fazla thread arasında
 paylaştırılması işi işletim sisteminin bir görevidir. Linux gibi modern işletim
-sistemlerinin çoğu, *multi-thread* programlamayı desteklerler yani kernel
-desteği ile multi-thread çalışan programlar mümkün olabilmektedir. Process ise
-aslında işletim sisteminin uydurduğu bir bileşke veri yapısıdır. Yani bir
-programın thread'leri + file descriptor table + bellek yapılandırması bir
-process oluşturur. xv6'da bir process sadece tek bir thread'ten oluşabilir.
-Elbette kullanıcı kendi kodu ile multi-thread ilüzyonu yaratabilir fakat xv6
-kernelinin böyle bir desteği yoktur. O yüzden xv6 ile ilgili konuların çoğunda
-`thread` ve `process` kelimeleri aynı anlama geliyor gibi düşünülebilir. Fakat
-process, thread dışında başka veri yapıları da içeren bir yapıdır.
+sistemlerinin çoğu, *multi-thread* programlamayı desteklerler yani bir process
+içerisinde kernel desteği ile multi-thread çalışan programlar mümkün
+olabilmektedir. Process ise aslında işletim sisteminin uydurduğu bir bileşke
+veri yapısıdır. Yani bir programın thread'leri + file descriptor table + bellek
+yapılandırması bir process oluşturur. xv6'da bir process sadece tek bir
+thread'ten oluşabilir. Elbette kullanıcı kendi kodu ile multi-thread ilüzyonu
+yaratabilir fakat xv6 kernelinin böyle bir desteği yoktur. xv6 *multi-process*
+bir işletim sistemidir ama Linux'ta olduğunun aksine xv6, kernel seviysinde
+*multi-thread* çalışmayı desteklememektedir. O yüzden xv6 ile ilgili konuların
+çoğunda `thread` ve `process` kelimeleri aynı anlama geliyor gibi düşünülebilir.
+Fakat process, thread dışında başka veri yapıları da içeren bir yapıdır.
 
 ```{figure} assets/os-ve-bellek-process.jpg
 :align: center
@@ -50,8 +54,8 @@ aslında. Elbette xv6'daki `struct proc` içerisinde başka elemanlar da var.
 ```
 
 **Bellek**, yani RAM, işletim sistemi üzerinde koşan tüm programlar yani
-process'ler ve kernel tarafından aslında paylaşılıyor. Biz bir programı
-çalıştırdığımız zaman program, işletim sistemi tarafından program belleğe
+process'ler ve kernel tarafından paylaşılmaktadır. Biz bir programı
+çalıştırdığımız zaman program, işletim sistemi tarafından belleğe
 açılıyor yani yükleniyor. Belleğin tam olarak hangi adresine yükleneceği ise
 işletim sisteminin vereceği bir karar. Çünkü bilgisayarda bir adet bellek olduğu
 ve bu belleğin birden fazla program tarafından paylaşılması gerektiği için
@@ -62,7 +66,7 @@ tarafından belleğin farklı taraflarına yerleştirilebilir. Diyelim ki progra
 içerisinde temel load/store instruction'ları yani komutları (ya da buyruk) var.
 Bu komutların belleğin neresine erişeceğini bilmesi lazım. Fakat programın
 belleğin gerçekten neresinde olduğunu bilmezse bu komutların adresleri ne
-olacak? Buna bir çözüm bulunması gerekiyor **bu çözümün donanımsal olarak
+olacak? Buna bir çözüm bulunması gerekiyor. **Bu çözümün donanımsal olarak
 işlemci tarafından da desteklenmesi lazım.** İşte işletim sisteminin yaptığı
 önemli soyutlamalardan biri de belleğin soyutlanmasıdır. Tipik olarak programlar
 tüm belleğin onlara ait olduğunu düşünürler ve bir **sanal bellek** e erişirler,
@@ -92,7 +96,7 @@ da biliniyor. Yani programı bellekte çalışabilirliğini bozmadan taşıma i�
 diyebiliriz.
 
 Tarihsel olarak baktığımızda taa IBM 360 (60'lı yıllar) bilgisayarından itibaren
-bu çözüm aranan bir problem olmuş.
+bu, çözüm aranan bir problem olmuş.
 
 ```{figure} assets/os-ve-bellek-ibm360.jpg
 :align: center
@@ -105,24 +109,25 @@ bu çözüm aranan bir problem olmuş.
 ### Static Relocation
 
 Diyelim ki programı bir dilde yazdınız, mesela C, derlediniz ve `JMP 3` gibi bir
-komut var, bu bellekteki 3 nolu adresteki kodu çalıştır demek. Programınız kendisinin
-adres 0'dan itibaren yerleştiğini düşünüyor ama ya öyle değilse. İşte bu durumda
-IBM 360 şöyle bir şey yapıyormuş: Diyelim ki sizin programınızı adres 1000'den
-itibaren yerleştirdi. Programı diskten belleğe yüklerken **static relocation**
-denen bir teknik kullanıyoru ve tüm `JMP` komutlarının adresine 1000 ekliyor.
-Örneğin `JMP 3` oluyor `JMP 1003`. Bu, programın *yüklenirken* modifiye edilmesi
-demek. Programı başka bir yere taşımak için de bu relocator yazılımının
-(programı modifiye eden yazılım) tekrar çalışması gerekiyor. Bu, çok kullanışlı
-bir yöntem değil.
+komut var, bu bellekteki 3 nolu adresteki kodu çalıştır demek. Programınız
+kendisinin adres 0'dan itibaren yerleştiğini düşünüyor ama ya öyle değilse? İşte
+bu durumda IBM 360 şöyle bir şey yapıyormuş: Diyelim ki işletim sistemi sizin
+programınızı adres 1000'den itibaren yerleştirdi. Programı diskten belleğe
+yüklerken **static relocation** denen bir teknik kullanıyor ve tüm `JMP`
+komutlarının adresine 1000 ekliyor. Örneğin `JMP 3` oluyor `JMP 1003`. Bu,
+programın *yüklenirken* modifiye edilmesi demek. Programı başka bir yere taşımak
+için de bu relocator yazılımının (programı modifiye eden yazılım) tekrar
+çalışması gerekiyor. Bu, çok kullanışlı bir yöntem değil ama elbette zamanında
+iş görmüş.
 
 ### Dynamic Relocation ve Segmentation
 
 Bir de **dynamic relocation** denen bir çözüm tekniği var. Bu tekniklerde
-dönüşüm program çalışırken, *belleğe erişim sırasında* yapılıyor. Elbette bunun
-için donanım desteği gerekiyor fakat program yüklenirken işletim sistemi
+dönüşüm, program çalışırken ve *belleğe erişim sırasında* yapılıyor. Elbette
+bunun için donanım desteği gerekiyor fakat program yüklenirken işletim sistemi
 tarafından modifiye edilmiyor, sadece bu mekanizmayı sağlayan donanım
-bileşenleri konfigüre ediliyor. Günümüzde işletim sistemi çalıştıran işlemcilerin
-hemen hemen hepsi kategorideki teknikleri kullanıyor.
+bileşenleri konfigüre ediliyor. Günümüzde işletim sistemi çalıştıran
+işlemcilerin hemen hemen hepsi bu kategorideki teknikleri kullanıyor.
 
 Dynamic relocation teknikleri çeşitli, en temellerinden biri **segmentation.**
 Burada tüm program için (kod + veri + stack), veya hepsi için ayrı ayrı birer
@@ -132,17 +137,19 @@ nereye yerleştirdiyse ona göre bu *base register* ları ayarlıyor. Bir bellek
 erişimi olduğu zaman ise işlemci donanımı gidip bellekten erişeceği adresi
 en temel olarak `gerçek adres = base register + offset` şeklinde buluyor.
 Program kodlarında ise `JMP 3` gibi bir komut olursa (veri erişimi de benzer
-şekilde), `gerçek adres = base register + 3` mantığı ile hesaplanıyor.
+şekilde), `gerçek adres = base register + 3` mantığı ile hesaplanıyor. Aslında
+mantık olarak static relocation ile benzer bir mantık var ama adres dönüşümü
+donanım tarafından yapılıyor, işletim sistemi programı modifiye etmiyor.
 
 Tarihsel açıdan baktığımızda CDC 6600 (1964), Intel 8088 (1979) gibi bilgisayar
 ve işlemciler farklı çalışma mantıkları sergileseler de base + offset mantığını
 destekliyorlar.
 
-Fakat başka problemler de mevcut
+Fakat başka problemler de mevcut…
 
 ## Fragmentation
 
-Segment'ler tek bir birim, bellekte ard arda olması gerekiyor. Diyelim ki
+Segment'ler tek bir birim ve bellekte ard arda olması gerekiyor. Diyelim ki
 programınızın data segment'i 300 MB yer tutuyor, kesintisiz bir 300 MB'lık
 boşluk bulmanız lazım aksi taktirde programı çalıştıramıyorsunuz. Sistem açılıp
 bazı programlar çalışıp, belleğe yüklenip, bellekten çıkarıldıkça bellekte
@@ -171,12 +178,12 @@ page size değerlerini destekliyor. [^2f] Page size'ın büyük ya da küçük o
 getirdiği çeşitili avantaj ve dezavantajlar var. Ama bunlar da bu yazının konusu
 değil.
 
-Diyelim ki page size değerimiz 4 KiB, bu durumda process'in gördüğü bellek ve
-gerçek fiziksel bellek 4 KiB'lik parçalara bölünüyor ve parçalar gerçek yani
-fiziksel belleğin **herhangi bir** 4 KiB'lık kısımlarına eşleştiriliyor. Yani
-process açısından bellek tek parça ve sürekli fakat arka planda olan eşleşme
-sayesinde her 4 KiB, fiziksel bellekte ard arda olmayan 4 KiB'lık bölüme denk
-geliyor olabilir.
+Diyelim ki page size değerimiz 4 KiB, bu durumda process'in gördüğü sanal bellek
+ve gerçek fiziksel bellek 4 KiB'lik parçalara bölünüyor ve sanal bellekteki
+parçalar gerçek yani fiziksel belleğin **herhangi bir** 4 KiB'lık kısımlarına
+eşleştiriliyor. Yani process açısından bellek tek parça ve sürekli (contiguous)
+fakat arka planda olan eşleşme sayesinde her 4 KiB, fiziksel bellekte ard arda
+olmayan 4 KiB'lık bölüme denk geliyor olabilir.
 
 ## Swapping
 
@@ -192,7 +199,7 @@ process veya işler için kullanılması ve ihtiyaç halinde tekrar diskteki bel
 bilgilerinin geri yüklenmesidir. Linux üzerinde çalışan arkadaşlar zaten `swap`
 kelimesi ile önceden muhtemelen tanışmışlardır. Swapping genellikle sayfalar
 üzerinden olmaktadır. Yani bir sayfa komple diske aktarılır ya da diskten belleğe
-geri konur. Elbette bu işlem çalışan program bunun farkına varmadan yapılır.
+geri konur. Elbette bu işlem, çalışan program bunun farkına varmadan yapılır.
 Burada işletim sistemi ve işlemcinin donanımı rol alır.
 
 **Genel işletim sistemi kısmını burada kesiyorum.** Fakat dilerseniz `Kaynaklar`
@@ -213,7 +220,7 @@ yapılır.
 ### QEMU Sistemi
 
 xv6'yı QEMU üzerinde emule ediyoruz. Şimdi gelin QEMU tarafından sağlanan
-*sanal* RISC-V sisteminin bellek haritasına bir bakalım.
+RISC-V temelli sistemin bellek haritasına bir bakalım.
 
 Bunun için [QEMU'nun kaynak
 kodundan](https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c) çeşitli
@@ -248,8 +255,8 @@ static const MemMapEntry virt_memmap[] = {
 };
 ```
 
-Burada `BaseAddr - Size` çiftlerini görüyoruz. RAM kısmının base adresinin
-`0x80000000` olduğunu görüyoruz fakat boyutunun 0 olması elbette olası değil,
+Burada `Base Address, Size` çiftlerini görüyoruz. RAM kısmının base adresinin
+`0x80000000` olduğunu görüyoruz fakat boyutunun `0` olması elbette olası değil,
 başka bir yerden geliyor olmalı. Kodun ilerleyen kısımlarında şöyle bir satır
 var:
 
@@ -325,8 +332,8 @@ I/O](https://en.wikipedia.org/wiki/Memory-mapped_I/O_and_port-mapped_I/O)
 yapısında. UART, PLIC (Interrupt Controller) gibi donanımların hepsi işlemcinin
 bellek haritasında birer bellek alanı gibi duruyorlar. Yani 0-2GB (`0x80000000`)
 arası alan görünüşe göre donanıma rezerve edilmiş, sonrasında RAM başlıyor.
-Bizim durumda RAM 128 MB ile sınırlı ve bu xv6'nın kodu içerisine de gömülmüş
-durumda.
+Bizim durumda RAM 128 MB ile sınırlı ve bu kısıt xv6'nın kodu içerisine de
+gömülmüş durumda.
 
 ### Process Bellek Haritası
 
@@ -334,8 +341,8 @@ Kernelin kendisi ve çalışan her bir process virtual memory üzerinden çalı�
 Yani gördükleri bellek aslında bir ilüzyon! Bahsettiğim paging mekanizması ile
 elbette gerçek bellekte, yani bu örnekte 128 MiB'lik bellekte, karşılıkları
 var (ya da bazen yok, sonuçta virtual, swap edilmişse? 🙄). xv6 üzerinde çalışan
-her bir process aynı virtual memory'yi görüyor, kernelde farklılıklar var
-anladığım kadarıyla ama konumuz şimdilik user space process'ler.
+her bir process aynı virtual memory'yi görüyor, kernelin ise farklı bir address
+space'i var ama konumuz şimdilik user space process'ler.
 
 xv6, varsayılan olarak 4 KiB yani 4096 byte'lık page size ile çalışır:
 
@@ -354,7 +361,7 @@ page diyoruz. Process'in gördüğü page'ler, gerçek page'lere herhangi bir
 kombinasyonla eşlenebilir. Bu işletim sisteminin sorumluluğundadır. Kuralı
 işletim sistemi koyar fakat bu kurala göre bu dönüşümleri RISC-V işlemcisinin
 kendisi yapar yani donanımda yapılır. Onun için önceki yazıların birinde OS
-**policy** belirler, donanım **implementation** yapar demiştim, neyse.
+**policy** belirler, donanım **implementation** yapar demiştim.
 
 **Peki user space process'ler yani çalıştırdığımız programlar nasıl bir bellek
 görüyor?**
@@ -368,19 +375,20 @@ doğru uzuyor ama o kısma sonraki yazılarda bakacağız. 🙂
 [Kaynak](https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf)
 ```
 
-İşte bu şekilde! Programlar diskte duruyor biz bunları çalıştırdığımız zaman
-RAM'e açılıyorlar. Bunu işletim sistemi yapıyor. Programların içerisinde çeşitli
-*section* lar bulunuyor. `text` isimli section CPU'da çalışacak kodu içeren
-kısım yani CPU komutları. İşte bu kısım adres 0'dan başlanarak belleğe
+İşte bu şekilde! Programlar diskte duruyor, biz bunları çalıştırdığımız zaman
+belleğe açılıyorlar. Bunu işletim sistemi yapıyor. Programların içerisinde
+çeşitli *section* lar bulunuyor. `text` isimli section CPU'da çalışacak kodu
+içeren kısım yani CPU komutları. İşte bu kısım adres 0'dan başlanarak belleğe
 yerleştiriliyor, ama virtual memory adresi böyle. Gerçek fiziksel adres bambaşka
 olabilir. Şu an sadece sanal adreslerden konuşuyoruz. `data` kısmı, programın
 verileri. Mesela bir C programında oluşturduğumuz statik ömürlü değişkenler
 (global değişkenler, statik yerel değişkenler) bu alana yerleştiriliyorlar.
-`stack`, çalışacak program içerisinde bulunan bir kısım değil. Yine C'den
+`stack`, çalışacak program içerisinde bulunan bir kısım değil, process
+oluşturulurken işletim sistemi tarafından yaratılan bir alan. Yine C'den
 düşünecek olursak fonksiyon çağrılarında argüman ve dönüş değerlerinin
 geçirilmesi buradan yapılıyor ve otomatik ömürlü yerel değişkenler stack
 üzerinde yaratılıyorlar. xv6'da stack boyutu runtime sırasında değişmemektedir
-ve 1 page size kadardır, yani varsayılan olarak 4096 byte.`data` ile `stack`
+ve 1 page size kadardır, yani varsayılan olarak 4096 byte. `data` ile `stack`
 arasında bir *guard page* var. Bunun amacı stack taşmalarını yakalayabilmek,
 detaylarına bakacağız. Daha yukarıda ise `heap` yer alıyor. Burası dinamik
 bellek yönetimi ile işletim sisteminden çalışma sırasında yani runtime sırasında
@@ -407,20 +415,20 @@ Virtual memory'nin tepe değeri `MAXVA` sembolik sabiti ile belirlenmiştir.
 ```
 
 Burada `MAXVA` nın değeri tam 256 GiB olmaktadır! Elbette bu bellek sanal
-bellektir, sonuçta elimizde fiziksel olarak 128M bellek var. İşte bu arka planda
-donanım tarafından gerçek belleğe eşleniyor. Çalışan program oralara eriştiğini
-zannetse de fiziksel olarak başka adreslere erişiyor.
+bellektir, sonuçta elimizde fiziksel olarak 128M bellek var. İşte bu alanlar
+arka planda donanım tarafından gerçek belleğe eşleniyor. Çalışan program çok
+yüsek adreslere eriştiğini zannetse de fiziksel olarak başka adreslere erişiyor.
 
 İlerleyen yazılarda bakarız, bizim sistemde virtual address 39-bit oluyor. Fakat
 burada bir bit daha kısıp 38-bit ile sınırlamışlar. Yani 39-bitlik sanal bellek
 adresinin MSB'si her zaman 0 bu sistemde. Bu aralığı 512 GiB'ten 256 GiB'e
-düşürüyor ama zaten sayılar çok büyük. Avantajı da şu diye anlıyorum, ileride
-kernel kodlarına bakarız: Ola ki iki 39-bit'lik sayıyı karşılaştırmaya vs
-sokarsak C'de bu sayıların sign bit extension ile negatif sayı gibi extend
-edilmesinin ve hatalı karşılaştırma yapılmasının önüne geçelim diye MSB her
-zaman 0 tutulmuş diye anlıyorum. Bu C kuralları ilgili bir şey ve bir nevi
-[defensive programming](https://en.wikipedia.org/wiki/Defensive_programming)
-örneği.
+düşürüyor ama zaten sayılar çok büyük, pratikte bu bir kayıp yaratmıyor.
+Avantajı da şu diye anlıyorum, ileride kernel kodlarına bakarız: Ola ki iki
+39-bit'lik sayıyı karşılaştırmaya sokarsak C'de bu sayıların sign bit extension
+ile negatif sayı gibi extend edilmesinin ve hatalı karşılaştırma yapılmasının
+önüne geçelim diye MSB her zaman 0 tutulmuş diye anlıyorum. Bu C kuralları
+ilgili bir şey ve bir nevi bir [defensive
+programming](https://en.wikipedia.org/wiki/Defensive_programming) örneği.
 
 Son olarak `RXWU` gibi karakterlerin anlamına bakalım. RISC-V işlemcisinde
 page'lere çeşitli *attribute* lar atanabiliyor. Örneğin bir page sadece okunabilir,

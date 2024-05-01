@@ -14,7 +14,7 @@ sphinxcontrib-youtube = "*"
 sphinx-sitemap = "*"
 sphinx-copybutton = "*"
 sphinxext-opengraph = "*"
-"sphinxcontrib.asciinema" = "==0.3.8"
+"sphinxcontrib.asciinema" = "==0.4.1"
 
 [dev-packages]
 

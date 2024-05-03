@@ -65,6 +65,19 @@ yapıyorum.
 Gördüğünüz hataları belirtirseniz ya da kendiniz düzeltip *Pull Request*
 açarsanız mutlaka düzeltmek isterim.
 
+## Çoğu İçerik Yarım ve Canlıdır
+
+Not oluşturduğum birçok konu oldukça kapsamlı olduğundan zaman buldukça
+eklemeler yapabiliyorum. Bir konunun tamamlanmasını beklersem içeriği oluşturmam
+yıllar alacağı için yazdıkça siteye ekliyorum. O yüzden gördüğünüz çoğu içerik
+yarım olabilir. Eğer bir yazı yarım kaldıysa onu yazı içerisinde belirtiyorum.
+Genelde yazıları yarım bırakmamaya çalışıyorum.
+
+Benzer şekilde içerikleri vakit buldukça revize ediyorum. O yüzden yazılar
+zamanla iyileşiyor veya değişiyor olabilir. Bu site açık kaynak olduğu için eski
+sürümlere dilerseniz [Github
+reposundan](https://github.com/alperyazar/ayazar.dev) bakabilirsiniz.
+
 ---
 
 Şimdilik bu kadar. Aklıma bir şeyler gelirse yeni maddeler eklerim.

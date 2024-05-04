@@ -22,15 +22,16 @@ yazmaya devam edeceğim ama benim kulağıma `işlem` daha doğru geliyor.
 *Bilgisayar programı* dediğimiz şeyler genelde sabit diskte duran ve işletim
 sistemi tarafından çalıştırılabilen dosyalar. İşletim sistemine göre bu
 çalıştırılabilir dosyaların formatları ve uzantıları değişebiliyor. Örneğin
-Windows sistemlerde tipik olarak `.exe` uzantısından ve formatından bahsediyoruz,
-xv6 gibi Unix temelli sistemlerde, Linux dahil olmak üzere, bu formatın adı
-[ELF](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) oluyor.
-Bu tarz sistemlerde dosya uzantısının pek bir önemi yok. Biz bir programı
-çalıştırdığımız zaman, masaüstü ortamında çift tıklayarak, ya da komut satırından
-çalıştırarak bir dizi işlem gerçekleşiyor. İşletim sisteminin çeşitli bileşenleri
-ve çekirdeği bu dosyayı okuyor, ana belleğe yani RAM'e açıyor ve programın içerisinde
-bulunan CPU komutlarını çalıştırmaya başlıyor.
-**İşte çalışan programlara temel olarak process diyoruz.**
+Windows sistemlerde tipik olarak `.exe` uzantısından ve
+[PE](https://en.wikipedia.org/wiki/Portable_Executable) formatından
+bahsediyoruz, xv6 gibi Unix temelli sistemlerde, Linux dahil olmak üzere, bu
+formatın adı [ELF](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
+oluyor. Bu tarz sistemlerde dosya uzantısının pek bir önemi yok. Biz bir
+programı çalıştırdığımız zaman, masaüstü ortamında çift tıklayarak, ya da komut
+satırından çalıştırarak bir dizi işlem gerçekleşiyor. İşletim sisteminin çeşitli
+bileşenleri ve çekirdeği bu dosyayı okuyor, ana belleğe yani RAM'e açıyor ve
+programın içerisinde bulunan CPU komutlarını çalıştırmaya başlıyor. **İşte
+çalışan programlara temel olarak process diyoruz.**
 
 Process'ler kernel tarafından oluşturulan ve takip edilen birimler. Kernel
 içerisinde her process için bir veri yapısı içerisinde çeşitli bilgiler

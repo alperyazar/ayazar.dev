@@ -2,11 +2,11 @@
 giscus: 11abc6dd-d8e8-44f1-9ad4-c18530c13372
 ---
 
-# Aygıt Sürücüler ve Çekirdek Modülleri
+# Aygıt Sürücüleri ve Çekirdek Modülleri
 
 **Çekirdek modülleri** yani **kernel modules**, kernel içerisinde ve kernel
 space içerisinde çalışan kodlardır. Eğer bir modül bir cihaz için yazılıyorsa o
-**device driver** yani **aygıt sürücü** olur. Yani aygıt sürücüleri, çekirdek
+**device driver** yani **aygıt sürücüsü** olur. Yani aygıt sürücüleri, çekirdek
 modüllerinin bir alt kümesidir.
 
 Aygıt sürücüler donanımın interrupt kontrolcülerine erişmek isteyecektir tipik
@@ -20,6 +20,12 @@ Doğal olarak her işletim sisteminin aygıt sürücüsü farklıdır: Windows v
 Genel bir aygıt sürücüsü yazmak diye bir şey yoktur. Hatta Linux özelinde
 konuşacak olursak kernel versiyonu değiştikçe sürücülerin de değişmesi
 gerekebilmektedir çünkü kernelin kendi kodu da değişmektedir.
+
+```{note}
+Yine de versiyon 2.6'dan sonra çok büyük köklü değişikliklerin olmadığını
+söylemek yanlış olmaz. O yüzden klasik kitaplardan LDD3'ün hala geçerli olduğunu
+düşünebiliriz.
+```
 
 Aygıt sürücüler gibi kernel modüllerde tüm C fonksiyonları kullanılamaz çünkü
 standart C kütüphanesi, kernel içerisinde kullanılmamaktadır. Kernel tarafından
@@ -89,11 +95,95 @@ geliyor ve o da bir şeyler export edebiliyor.
 > Monolitik ve C'de yazılmış bir kernelin böyle bir "plug-in" mekanizması içermesi
 > şaşırtıcı değil mi?
 
-```{todo}
-Yazı henüz bitmemiştir. `127-5851`
+## Kernel Modüllerinin Derlenmesi ve Link Edilmesi
+
+Normalde statik ve dinamik link şeklinde iki tip link biliyoruz user space
+programlar için. Kernel modüllerinin derlenmesi ve link edilmesi, user space
+programlardan daha karmaşık olabilir. Kernel geliştiricileri bizler için bu
+işleri kolay yapabilmemiz için `Makefile` lar veriyorlar.
+
+Derlenmiş kernel modülleri birer **ELF object file** formatındadır ama
+kendilerine özel çeşitli **section** lar içerirler. Böyle bir formatın
+çıkabilmesi için GCC'nin özel switch'ler ile çağırılması gerekir.
+
+### Örnek
+
+Aşağıdaki `Makefile` örnek olarak verilmiştir.
+
+```makefile
+obj-m += helloworld.o
+
+all:
+  make -C /lib/modules/$(shell uname -r)/build M=${PWD} modules
+clean:
+  make -C /lib/modules/$(shell uname -r)/build M=${PWD} clean
 ```
+
+veya (alttakini tercih edin [^1f])
+
+```makefile
+obj-m += helloworld.o
+
+PWD := $(CURDIR)
+
+all:
+  make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+clean:
+  make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
+
+Yukarıdaki Makefile bir *boilerplate code* olarak kullanılabilir.
+
+`obj-m`, kernel tarafından sağlanan Makefile'ların kullandığı bir değişkendir:
+
+> A makefile symbol used by the kernel build system to determine which modules
+> should be built in the current directory
+
+Aslı işi yapan yer `-C` ile belirtilen yerdeki Makefile dosyalarıdır. Bunlar,
+kernel geliştiricileri tarafından sağlanır.
+
+```shell
+$ cat /lib/modules/$(uname -r)/build/Makefile
+
+...
+```
+
+Yukarıdaki Makefile, `helloword.c` dosyasının derlenmesini sağlamaktadır.
+
+Eğer birden fazla dosya varsa:
+
+```makefile
+obj-m += a.o b.o c.o
+```
+
+veya
+
+```makefile
+obj-m += a.o
+obj-m += b.o
+obj-m += c.o
+```
+
+yapabiliriz.
+
+Bu dosyayı parametrik de yapabiliriz:
+
+```makefile
+obj-m += ${file}.o
+#...
+```
+
+sonra
+
+```text
+make file=helloworld
+```
+
+diyebiliriz.
 
 ## Kaynaklar
 
 - [Genel Kaynaklar](index.md)
 - `127-2625`
+
+[^1f]: <https://stackoverflow.com/q/52437728/1766391>

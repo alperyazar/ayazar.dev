@@ -14,6 +14,8 @@ Bu kısım, Linux için aygıt sürücüsü geliştirme yani device driver devel
 maxdepth: 1
 ---
 giris
+merhaba-dunya
+3
 ```
 
 ## 📚 Kaynaklar

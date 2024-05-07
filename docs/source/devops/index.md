@@ -1,3 +1,7 @@
+---
+giscus: 583f0dc6-bb80-4596-aa94-3cb11721f1dc
+---
+
 # ♾️ DevOps
 
 Bu kısımda, [DevOps](https://en.wikipedia.org/wiki/DevOps) konusu ile ilgili
@@ -17,3 +21,15 @@ içerikleri bulunmaktadır.**
 DevOps, biraz şemsiye bir terim. Bu başlık altında yöntemler ve araçlar yer
 alabiliyor. Ben de bu doğrultuda hem kişisel görüşlerimden, hem de araçlardan
 bahsetmeye çalışıyorum.
+
+## GitLab
+
+GitLab'a özgü notlarım.
+
+```{toctree}
+---
+maxdepth: 1
+glob: true
+---
+gitlab/cicd-variables
+```

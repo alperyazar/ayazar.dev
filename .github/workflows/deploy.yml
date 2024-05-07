@@ -32,6 +32,7 @@ jobs:
         pipenv update
         pipenv run sphinx-build --fail-on-warning --fresh-env --jobs auto --html-define SPHINXPRODUCTION=True docs/source docs/build
         date -u +%Y-%m-%d-%T-%Z > docs/build/build.info.txt
+        echo "${{ github.sha }}" > docs/build/sha.txt
         cat Pipfile.lock >> docs/build/build.info.txt
         touch docs/build/.nojekyll
 

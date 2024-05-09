@@ -15,21 +15,17 @@ performansı ve en önemlisi geliştirici/mühendis/ekip/çalışan mutluluğunu
 arttırdığına inanıyorum. Onun için biraz *hobi* olarak da bu konular ile
 ilgileniyorum.
 
-**Sitenin bu kısmında gömülü sistemlere ve FPGA tasarımına yönelik DevOps
-içerikleri bulunmaktadır.**
+**Sitenin bu kısmında ağırlıklı olarak gömülü sistemlere ve FPGA tasarımına
+yönelik DevOps içerikleri bulunmaktadır.**
 
 DevOps, biraz şemsiye bir terim. Bu başlık altında yöntemler ve araçlar yer
 alabiliyor. Ben de bu doğrultuda hem kişisel görüşlerimden, hem de araçlardan
 bahsetmeye çalışıyorum.
-
-## GitLab
-
-GitLab'a özgü notlarım.
 
 ```{toctree}
 ---
 maxdepth: 1
 glob: true
 ---
-gitlab/cicd-variables
+gitlab/index.md
 ```

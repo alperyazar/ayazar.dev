@@ -471,10 +471,6 @@ engine results related to each language. [^4f] This approach has been a subject 
 significant debate, with various opinions questioning its validity and
 meaningfulness. I have delved into this topic extensively in a detailed article.
 
-```{note}
-🇹🇷 Bknz: [](/blog/23/tiobe-index-nedir-guvenebilir-miyiz.md)
-```
-
 In conclusion, the question arises: Is C a popular language and does its
 popularity matter to us? Consider this - languages like Verilog and VHDL,
 crucial in FPGA and ASIC design, may not rank high on popularity scales. Does

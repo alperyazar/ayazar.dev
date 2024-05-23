@@ -65,7 +65,7 @@ yapıyorum.
 Gördüğünüz hataları belirtirseniz ya da kendiniz düzeltip *Pull Request*
 açarsanız mutlaka düzeltmek isterim.
 
-## Çoğu İçerik Yarım ve Canlıdır
+## İçerik Yarım ve Canlıdır
 
 Not oluşturduğum birçok konu oldukça kapsamlı olduğundan zaman buldukça
 eklemeler yapabiliyorum. Bir konunun tamamlanmasını beklersem içeriği oluşturmam
@@ -77,6 +77,27 @@ Benzer şekilde içerikleri vakit buldukça revize ediyorum. O yüzden yazılar
 zamanla iyileşiyor veya değişiyor olabilir. Bu site açık kaynak olduğu için eski
 sürümlere dilerseniz [Github
 reposundan](https://github.com/alperyazar/ayazar.dev) bakabilirsiniz.
+
+## İçerik Yarım ve Eskidir
+
+Bazı içerikler ise yarım kalmış ve tamamlanmayacak olabilir. O konu ile ilgili
+çalışma yapmıyorsam o konuda yeni notlar muhtemelen gelmeyecektir. Benzer
+şekilde tam olup eskimiş içerikler olabilir, zamanında ilgilenmişimdir ama bir
+süredir çalışma yapmamışımdır mesela. İçeriklerin eski olmasından dolayı içerdiği
+bilgiler güncelliğini yitirmiş ve bu yüzden kısmen doğru veya tamamen yanlış
+olabilir. Fark edersem düzeltiyorum ama fark etmeyebilirim de.
+
+Her sayfanın altında `Son güncelleme / Last updated` tarihi olmaktadır. Bu bilgi
+`git` üzerinden alınmaktadır. O yüzden çok basit değişiklikler olsa da bu tarih
+ilerleyebilmekte. Bunun güncel olması yazının güncel olduğu anlamına gelmez ama
+bu tarihin eski olması yazıya hiç dokunulmadığı anlamına gelir. Yani içerik
+güncellemesinin bu tarihten daha yeni olma ihtimali yok ama daha geçmişte bir
+tarih de olabilir.
+
+```{todo}
+Son güncelleme tarihinin güncelliğini iyileştir.
+Ref: https://github.com/alperyazar/ayazar.dev/issues/16
+```
 
 ---
 

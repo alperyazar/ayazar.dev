@@ -22,8 +22,7 @@ giscus: c17ab8a5-c588-4915-9f61-c76bc4f80ab6
 - [It should be i.e. "GNU/systemd/linux", discuss?
   (Reddit)](https://www.reddit.com/r/linuxmasterrace/comments/36jcfa/it_should_be_ie_gnusystemdlinux_discuss)
 - Necati Ergin Bey'den aldığım C kursunu değerlendirdiğim ve neden Embedded C
-  yani Gömülü C diye ayrı bir C dili olmadığından da bahsettiğim yazım:
-  [](/c/220-saatlik-c-kursu-alinir-mi.md)
+  yani Gömülü C diye ayrı bir C dili olmadığından da bahsettiğim yazım
 - [BIOS (Wikipedia)](https://en.wikipedia.org/wiki/BIOS)
 - [Devicetree (Wikipedia)](https://en.wikipedia.org/wiki/Devicetree)
 - <https://distrowatch.com/>

@@ -72,7 +72,6 @@ hidden: true
 ---
 not-hakkinda.md
 buildroot/index.md
-c/index.md
 devops/index.md
 ldd/index.md
 sys/index.md

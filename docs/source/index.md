@@ -61,7 +61,6 @@ hidden: true
 ---
 
 about.md
-log/index.md
 follow.md
 ```
 
@@ -72,7 +71,6 @@ hidden: true
 ---
 not-hakkinda.md
 sys/index.md
-xilinx/index.md
 xv6/index.md
 ```
 

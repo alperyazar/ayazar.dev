@@ -71,7 +71,6 @@ caption: Notlarım
 hidden: true
 ---
 not-hakkinda.md
-ldd/index.md
 sys/index.md
 xilinx/index.md
 xv6/index.md

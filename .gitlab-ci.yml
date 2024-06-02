@@ -1,5 +1,8 @@
 image: ubuntu:22.04
 
+variables:
+  GIT_DEPTH: 0
+
 pages:
   script:
     - apt-get -y update

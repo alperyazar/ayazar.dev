@@ -61,6 +61,7 @@ hidden: true
 ---
 
 about.md
+blog/index.md
 log/index.md
 follow.md
 ```

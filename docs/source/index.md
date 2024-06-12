@@ -61,6 +61,7 @@ hidden: true
 ---
 
 about.md
+log/index.md
 follow.md
 ```
 
@@ -70,7 +71,12 @@ caption: Notlarım
 hidden: true
 ---
 not-hakkinda.md
+buildroot/index.md
+c/index.md
+devops/index.md
+ldd/index.md
 sys/index.md
+xilinx/index.md
 xv6/index.md
 ```
 

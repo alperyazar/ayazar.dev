@@ -61,9 +61,9 @@ hidden: true
 ---
 
 about.md
+follow.md
 blog/index.md
 log/index.md
-follow.md
 ```
 
 ```{toctree}

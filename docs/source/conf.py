@@ -95,20 +95,22 @@ html_theme_options = {
     "light_css_variables": {
       "font-stack": "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
       "font-stack--monospace": "\"Reddit Mono\", \"SFMono-Regular\", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
-      "color-brand-primary": "#b91d45",
-      "color-brand-content": "#9a1839",
-      "color-brand-visited": "#e34f74",
+      "color-brand-primary": "#111",
+      "color-brand-content": "#111",
+      "color-brand-visited": "#111",
       "ayazardev-bold": "#fabfc8",
       "ayazardev-em": "#c0eeff",
-      "ayazardev-article-color": "#343743",
+      "ayazardev-article-color": "#111",
+      "ayazardev-aftera": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);"
     },
     "dark_css_variables": {
-      "color-brand-primary": "#f1415c",
-      "color-brand-content": "#f1415c",
-      "color-brand-visited": "#fabfc8",
+      "color-brand-primary": "#d0d0d0",
+      "color-brand-content": "#d0d0d0",
+      "color-brand-visited": "#d0d0d0",
       "ayazardev-bold": "#995d6d",
       "ayazardev-em": "#266173",
-      "ayazardev-article-color": "#d0d0d0"
+      "ayazardev-article-color": "#d0d0d0",
+      "ayazardev-aftera": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAP0lEQVQY042PSQoAMAgDO+L/v2xPhVITbG7RkIVlUFV1c9oBUOJ8n84xpthjEj8igJhEtovjLVoNs2MUUsUpbMPMLAXUjJjTAAAAAElFTkSuQmCC);"
     }
 }
 

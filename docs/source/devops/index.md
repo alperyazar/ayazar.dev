@@ -22,10 +22,13 @@ DevOps, biraz şemsiye bir terim. Bu başlık altında yöntemler ve araçlar ye
 alabiliyor. Ben de bu doğrultuda hem kişisel görüşlerimden, hem de araçlardan
 bahsetmeye çalışıyorum.
 
+---
+
 ```{toctree}
 ---
 maxdepth: 2
 glob: true
 ---
+tool/index.md
 gitlab/index.md
 ```

@@ -5,7 +5,7 @@ body {
 }
 
 pre {
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: 'Reddit Mono', monospace !important;
   font-size: smaller !important;
 }
 
@@ -31,9 +31,11 @@ p, li {
   font-size: 1.1rem !important;
 }
 
+/*
 .rst-content code {
   font-size: 85% !important;
 }
+*/
 
 .rst-content img {
   margin: 6px;
@@ -59,9 +61,16 @@ figure.thmbnl img {
 }
 
 /* https://stackoverflow.com/a/52058198/1766391 */
-a[target="_blank"]::after {
+article a[href^="http://"]:not([href^="http://ayazar.dev"])::after,
+article a[href^="https://"]:not([href^="https://ayazar.dev"])::after{
   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
   margin: 0 3px 0 5px;
+}
+
+.section p,
+.simple li,
+section>p {
+  text-align:justify
 }
 
 /*

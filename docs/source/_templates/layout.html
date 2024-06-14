@@ -1,0 +1,61 @@
+{% extends '!layout.html' %}
+
+{% block extrahead %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Reddit+Mono&display=swap" rel="stylesheet">
+{%- if SPHINXPRODUCTION %}
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+<!-- Buy me a coffee -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+{%- endif %}
+{% endblock %}
+
+{% block extrabody %}
+{% endblock %}
+
+{% block footer %}
+
+<div id="progressBar" class="progress-bar"></div>
+
+<script>
+  // Listen for scroll events on the window
+window.onscroll = function() {
+  // Call the function to update the progress bar
+  updateProgressBar();
+};
+
+function updateProgressBar() {
+  // Get the total height of the page
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  // Get the current scroll position
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // Calculate the scroll percentage
+  var scrollPercentage = (scrollTop / scrollHeight) * 100;
+  // Update the width of the progress bar
+  document.getElementById("progressBar").style.width = scrollPercentage + "%";
+}
+</script>
+
+{%- if SPHINXPRODUCTION %}
+<!-- Default Statcounter code for ayazar.dev
+https://ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12886228;
+  var sc_invisible=1;
+  var sc_security="027dedf0";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12886228/0/027dedf0/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+{%- endif %}
+{% endblock %}

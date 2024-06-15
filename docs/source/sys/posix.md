@@ -73,6 +73,17 @@ Linux üzerinde çalışacak kodlar yazmaktır. O yüzden şahsen POSIX ile taş
 kod yazmayı fazla önemsemiyorum. Konu bütünlüğü olması açısından standartlardan
 biraz bahsetmek istedim.
 
+POSIX fonksiyonlarının önemli bir kısmı en az bir sistem çağrısı yani syscall
+yapmaktadır. Bir kısmı ise hiç sistem çağrısı yapmayabilir. Syscall'ların isimleri
+genelde `sys_x()` formatındadır. Özetleyecek olursak:
+
+- `foo()` isimli POSIX fonksiyonu hiç syscall yapmadan, tamam userspace'te
+  kalarak çalışabilir.
+- `hede()` isimli POSIX fonksiyonu bir adet `sys_hodo()` isimli syscall
+  yapabilir.
+- `bar()` isimli POSIX fonksiyonu `sys_baz()`, `sys_qux()` gibi birden fazla
+  syscall yapabilir.
+
 Günümüzde, son POSIX ve SUS sürümü pratikte aynı düşünülmektedir. Buradan son
 standarta erişebilirsiniz. Ben ise genelde POSIX veya SUS dokümanları yerine
 *man Sayfaları* na bakacağım.

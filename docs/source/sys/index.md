@@ -15,7 +15,7 @@ posix.md
 kernel-arayuz.md
 man.md
 merhaba-dunya.md
-write-size-t-ssize-t.md
+size-t-ssize-t.md
 ```
 
 ## 📚 Kaynaklar

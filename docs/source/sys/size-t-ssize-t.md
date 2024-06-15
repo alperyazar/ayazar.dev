@@ -56,13 +56,13 @@ sağlıyor. `write()` ise bize kaç byte'lık veriyi başarılı bir şekilde ya
 dönüyor. Fakat dikkat ederseniz dönüş değerinin türü `size_t` değil, `ssize_t`.
 Çünkü `write()`, hata durumunda bize `-1` dönüyor. `size_t` işaretsiz bir tür
 olduğu için dönüş değerini göstermek için kullanılamaz, o yüzden `ssize_t` türünden
-bir dönüşe sahip.
+bir dönüş türüne sahip.
 
 `size_t` ve `ssize_t` türlerinin genişliklerinin 16-bit olduğu örnekten devam
 edelim. `write(..,..,40000)` gibi bir çağrı yaparsak ve `40000` byte yazılırsa
-ne olacak? `write()`, `40000` değerini dönmek isteyecek fakat `ssize_t` bu değeri
-tutacak kadar geniş değil. İşte POSIX standartları bu durum için böyle bir
-açıklama yapıyor: [^7f]
+ne olacak? `write()`, `40000` değerini dönmek isteyecek fakat `ssize_t` bu
+değeri bir işaret hatası olmadan tutacak kadar geniş değil. İşte POSIX
+standartları bu durum için böyle bir açıklama yapıyor: [^7f]
 
 > If the value of nbyte is greater than {SSIZE_MAX}, the result is implementation-defined.
 
@@ -100,16 +100,21 @@ Aynı açıklama henüz değinmediğimiz `read()` fonksiyonu için de yapılmı�
 belirtilmiş. Yani `write()` fonksiyonu bu değerden büyük bir değer dönemez. Bu
 değer ise 32-bit genişliğinde bir işaretli tam sayının tutabileceği değer aralığı
 arasında. **Fakat hala problemlerimiz var: Linux üzerinde `SSIZE_MAX` ne?**
+**Yani `ssize_t` türünün bu değeri bir işaret hatası oluşturmadan tutabileceğinden
+emin miyiz?**
 
 C ve POSIX standartlarını beraber okuduğumuz zaman `ssize_t` türünün aralığının
-`size_t` türünün aralığını kapsadığına dair bir çıkarım yapamıyoruz. Odağımızı
-Linux'la sınırlasak bile `ssize_t` türünün en az 32-bit genişliğinde olacağını
-garanti eden bir durum yok. Fakat pratikte durum bu kadar kötü değil.
+`size_t` türünün aralığını kapsadığına dair bir çıkarım yapamıyoruz. Hatta
+`ssize_t` türünün, `size_t` türünün işaretli türü olabileceği söyleniyor. Bu
+zaten `size_t` türünden bir değişkendeki "büyük" sayıların işaret hatası olmadan
+`ssize_t` türünde ifade edilemeyeceğini açıkça belirtiyor. Odağımızı Linux'la
+sınırlasak bile `ssize_t` türünün en az 32-bit genişliğinde olacağını garanti
+eden bir durum yok. Fakat pratikte durum bu kadar kötü değil.
 
-POSIX sistemlerden ayrılıp daha odaklı olarak Linux sistemlere bakacak olursak,
-eğer `SSIZE_MAX` değeri `0x7ffff000` dan büyük ise bir problemimiz yok. Çünkü
-zaten Linux üzerinde `write()` ve `read()` fonksiyonları maksimum bu değeri
-dönebiliyorlar ve `ssize_t` bu değeri tutabilecek kadar geniş ise tamamız.
+Genel POSIX sistemlerden ayrılıp Linux sistemlere bakacak olursak, eğer
+`SSIZE_MAX` değeri `0x7ffff000` dan büyük ise bir problemimiz yok. Çünkü zaten
+Linux üzerinde `write()` ve `read()` fonksiyonları maksimum bu değeri
+dönebiliyorlar ve `ssize_t` bu değeri tutabilecek kadar geniş ise tamamız. 👍
 
 ---
 
@@ -121,11 +126,11 @@ SSIZE_MAX                          32767
 _POSIX_SSIZE_MAX                   32767
 ```
 
-32767 mi? Şaka mı? 64 bit sistem üzerinde bu komutu çalıştırıyorum ve böyle bir
-değer dönüyor. `_POSIX_SSIZE_MAX` ın 32767 olması doğru, çünkü bu POSIX'in
+32767 mi? Şaka mı? 🤦 64 bit sistem üzerinde bu komutu çalıştırıyorum ve böyle
+bir değer dönüyor. `_POSIX_SSIZE_MAX` ın 32767 olması doğru, çünkü bu POSIX'in
 belirlediği sabit bir sayı. Bu sayı `SSIZE_MAX` ın alabileceği en düşük değeri
-belirtiyor. Benim sistem de ise gerçekten `SSIZE_MAX` en düşük değerde mi? Bir
-de aynı değeri `limits.h` içerisinden yazdıralım:
+belirtiyor. Benim sistemde ise gerçekten `SSIZE_MAX` en düşük değerde mi? Bir
+de aynı değeri `limits.h` içerisindeki makroyu kullanarak yazdıralım:
 
 ```c
 #include <stdio.h>
@@ -172,8 +177,8 @@ SSIZE_MAX from limits.h: 2147483647
 SSIZE_MAX from sysconf: 32767
 ```
 
-çıktısını alıyor. Bu da `0x7FFFFFFF` demek yani 32-bit genişliğindeki işaretli
-tam sayısının alacağı en yüksek değer.
+çıktısını alıyoruz. Bu da `0x7FFFFFFF` demek yani 32-bit genişliğindeki işaretli
+bir tam sayısının alacağı en yüksek değer.
 
 **Özetle** pratikte gözüken hem 32-bit hem de 64-bit sistemlerde `SSIZE_MAX`
 değeri, Linux'un belirlediği `0x7ffff000` limit değerinin üzerinde olduğu.
@@ -181,12 +186,12 @@ Pratikte bu sistemler ile çalışacağımız düşünürsek aslında bir proble
 
 ---
 
-**Peki `getconf()` kabuk komutu veya `sysconf()` fonksiyonu bize niye farklı
+**Peki `getconf` kabuk komutu veya `sysconf()` fonksiyonu bize niye farklı
 bir sayı dönüyor?**
 
 `sysconf()` bir POSIX fonksiyonu [^10f] ve runtime sırasında uygulamanın
-üzerinde çalıştığı sistemle ilgili çeşitli limit değerleri sorgulamasını sağlıyor.
-Linux üzerinde de bulunuyor.[^11f]
+üzerinde çalıştığı sistemle ilgili çeşitli limit değerlerin sorgulanmasını
+sağlıyor. Bu fonksiyon, Linux üzerinde de bulunuyor.[^11f]
 
 ```c
 #include <unistd.h>
@@ -245,7 +250,10 @@ ile sorgulama yapın. Bizim durumumuzda aslında `limits.h` içerisinde `SSIZE_M
 değeri mevcut. Bunu net belirtmemişler ama acaba bu macro tanımlı olduğunda
 `sysconf()` doğru değeri vermiyor (yani vermek zorunda değil) olabilir mi? Yani
 `SSIZE_MAX` zaten tanımlı olduğu için `sysconf()` ile biz doğru olmayan bir
-sonuç alıyor olabilir miyiz? Öyleyse bile mantığını anlamış değilim.
+sonuç alıyor olabilir miyiz? Ama öte yandan da adamlar bam diye `return
+_POSIX_SSIZE_MAX;` yazıp geçmişler yani `SSIZE_MAX` tanımlı mı değil mi durumu
+pek kontrol ediliyor gibi değil. Belki de `glibc` için `SSIZE_MAX` ın tanımlı
+olmama durumu yoktur. Yine de bu mantığı çok anlamış değilim.
 
 Ben bu konuyu SO'da sordum fakat pek tatmin edici bir cevap gelmedi ama bir
 kişinin yorumuna göre `limits.h` içerisindeki `SSIZE_MAX` değerine güvenebiliriz.
@@ -294,8 +302,8 @@ Bunlardan iki adet çıkarım yapabiliriz:
 ## Uçtan Uca
 
 `SSIZE_MAX` ın minimum `0x7fffffff` olacağını hem deneyimledik hem de kaynak
-kodlardan gördük diyebiliriz. Linux'taki fonksiyonlar `0x7ffff000` dan büyük değer
-dönmeyeceğiz için bir problem pratikte yok. Ama bu kadar dibine girmişken
+kodlardan gördük diyebiliriz. Linux'taki fonksiyonlar `0x7ffff000` dan büyük bir
+değer dönmeyeceği için bir problem pratikte yok. Ama bu kadar dibine girmişken
 kendi C programımızda `write()` veya `read()` fonksiyonlarını çağırdığımızda
 neler oluyor, uçtan uca onu bir anlamaya çalışalım.
 
@@ -315,7 +323,7 @@ ssize_t write(int fd, const void *buf, size_t count)
 ```
 
 `write()` fonksiyonu aslında doğrudan syscall yapan bir fonksiyon, `sys_write`
-isimli syscall çağırıyor. Bu syscall ise kernel içerisinde tanımlanmış durumda
+isimli syscall'ı çağırıyor. Bu syscall ise kernel içerisinde tanımlanmış durumda
 [^21f]
 
 ```c
@@ -397,12 +405,19 @@ Bakalım [^23f]:
 Burada mimariye özgü tanımlamalar olabiliyor ama sayfa boyutunu 12 bit, `int` i de
 32 bit olarak düşünürsek aslında `0x7ffff000 = 0x7fffffff - 0xfff` ilişkisinden
 elde edilmektedir. `count` yani gerçekten yazım yapılan değer ise aslında `if`
-ile bu değere kernel içerisinde limitlenmektedir.
+ile bu değere kernel içerisinde limitlenmektedir. x86 mimarilerde page size yani
+sayfa boyutu tipik olarak 4K olmaktadır, yani 12 bit. ARM gibi mimarilerde ise
+daha büyük sayfa boyutları olabiliyor, x86'da da olabiliyor elbette. Ama anlaşılan,
+ilgili fonksiyonlar en büyük değer olarak `0x7ffff000` dönüyorlarsa en küçük
+sayfa boyutu günümüzde kernel tarafından 4K olarak ayarlanıyor. Aksi taktirde
+`PAGE_MASK` değeri değişecek `MAX_RW_COUNT` sembolik sabiti de bu değeri
+aşacaktır.
 
 ## Özet
 
 Özetle, Linux üzerinde `ssize_t` türü ve `write()`/`read()` fonksiyonları
-düşünüldüğünde pratikte bir problem bulunmamaktadır.
+düşünüldüğünde pratikte bir problem bulunmamaktadır. O kadar yazdık, sonuç bu.
+😄
 
 [^1f]: <https://en.cppreference.com/w/c/types/size_t>
 [^2f]: <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_types.h.html>

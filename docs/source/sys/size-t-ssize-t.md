@@ -350,7 +350,7 @@ ssize_t ksys_write(unsigned int fd, const char __user *buf, size_t count)
 }
 ```
 
-ve [^23f]:
+ve [^24f]:
 
 ```c
 ssize_t vfs_write(struct file *file, const char __user *buf, size_t count, loff_t *pos)
@@ -427,3 +427,4 @@ düşünüldüğünde pratikte bir problem bulunmamaktadır.
 [^21f]: <https://elixir.bootlin.com/linux/v6.9.4/source/fs/read_write.c#L652>
 [^22f]: <https://elixir.bootlin.com/linux/v6.9.4/source/fs/read_write.c#L632>
 [^23f]: <https://elixir.bootlin.com/linux/v6.9.4/source/include/linux/fs.h#L2605>
+[^24f]: <https://elixir.bootlin.com/linux/v6.9.4/source/fs/read_write.c#L570>

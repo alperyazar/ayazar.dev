@@ -21,3 +21,4 @@ specimen.md
 - [CDN Info](https://ayazar.dev/cdn-cgi/trace)
 - [robots.txt](https://ayazar.dev/robots.txt)
 - [sitemap.xml](https://ayazar.dev/sitemap.xml)
+- [sha.txt](https://ayazar.dev/sha.txt)

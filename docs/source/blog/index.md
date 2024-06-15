@@ -1,4 +1,4 @@
-# 📼 Karışık
+# 📼 Blog
 
 Ortaya karışık içerikler, blog.
 

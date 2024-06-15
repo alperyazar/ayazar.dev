@@ -16,6 +16,7 @@ kernel-arayuz.md
 man.md
 merhaba-dunya.md
 size-t-ssize-t.md
+errno.md
 ```
 
 ## 📚 Kaynaklar

@@ -11,9 +11,10 @@ og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da 
 
 Merhaba, ben Alper Yazar, 2012 yılından itibaren elektronik mühendisi olarak
 çalışmaktayım. Ağırlıklı olarak gömülü sistemler, Linux, sayısal tasarım, FPGA,
-elektronik tasarım gibi konular üzerine çalışıyorum. Şu ziyaret ettiğiniz
-kişisel sitemde ağırlıklı olarak teknik konular üzerine notlarımı ve kişisel
-düşüncelerimi paylaşıyorum.
+elektronik tasarım gibi konular üzerine çalışıyorum. Geniş bir alanda çalıştığım
+için kendimi [Full Stack Elektronik Mühendisi](blog/23/full-stack-elektronik.md)
+olarak tanımlıyorum. Şu an ziyaret ettiğiniz kişisel sitemde ağırlıklı olarak
+teknik konular üzerine notlarımı ve kişisel düşüncelerimi paylaşıyorum.
 
 ---
 

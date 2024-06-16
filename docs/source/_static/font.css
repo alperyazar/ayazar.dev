@@ -5,8 +5,9 @@ body {
 }
 
 pre {
-  font-family: 'Reddit Mono', monospace !important;
-  font-size: smaller !important;
+  font-family: 'Source Code Pro', monospace !important;
+  font-size: 100% !important;
+  font-weight: bolder !important;
 }
 
 p b, p strong {
@@ -24,6 +25,7 @@ p a {
 
 em {
   font-size: 1.10rem !important;
+  font-weight: bolder;
 }
 
 p, li {
@@ -43,6 +45,10 @@ p, li {
   border-radius: 10px;       /* Rounded corners */
   padding: 4px;              /* Spacing between the image and the border */
   display: inline-block;     /* Allows the padding and border to take effect properly */
+}
+
+.rst-content code {
+  font-size: 90% !important;
 }
 
 /* https://stackoverflow.com/a/5790911 */
@@ -70,7 +76,7 @@ article a[href^="https://"]:not([href^="https://ayazar.dev"])::after{
 .section p,
 .simple li,
 section>p {
-  text-align:justify
+  text-align:left
 }
 
 /*

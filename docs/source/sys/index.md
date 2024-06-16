@@ -17,6 +17,7 @@ man.md
 merhaba-dunya.md
 size-t-ssize-t.md
 errno.md
+open.md
 ```
 
 ## 📚 Kaynaklar

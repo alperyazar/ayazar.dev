@@ -28,6 +28,8 @@ Linux Sistem Programlama ile ilgili olduğunu düşündüğüm çeşitli kaynakl
 
 ## 📖 Kitaplar
 
+- [Linux System Programming: Talking Directly to the Kernel and C Library,
+  Second Edition](https://a.co/d/bHoBz0U) Robert Love.978-1449339531
 - [The Linux Programming Interface.](https://man7.org/tlpi/) Michael Kerrisk.
   ISBN 978-1-59327-220-3
 - [Advanced Programming in the UNIX Environment, 3rd

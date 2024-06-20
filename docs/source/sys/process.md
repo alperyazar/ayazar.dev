@@ -1,9 +1,5 @@
 # Process Kavramı
 
-```{todo}
-Yazı henüz tamamlanmamıştır.
-```
-
 > An operating system is only as good as the applications that run on it.
 
 *Anonim ?*
@@ -13,7 +9,7 @@ de kullanışlı olmuyorlar. Sonuçta temel var oluş amaçları zaten kullanıc
 problemlerini çözen programların sorunsuzca çalışmasını ve bu programları
 geliştiren programcılara çeşitli kolalıklar sağlamak. O yüzden üzerinde bir
 şey program çalıştırmayan bir işletim sistemi pek kullanışlı olmayacaktır.
-Bilgisayarınızı açıp, giriş yaptıktan sonra sadece ekrana baktığınızı düşünün
+Bilgisayarınızı açıp, giriş yaptıktan sonra sadece ekrana baktığınızı düşünün,
 herhalde pek keyif almazdınız.
 
 İşletim sistemi üzerinde **çalışan programlara process** denilmektedir. Türkçe
@@ -21,7 +17,7 @@ karşılığı olarak *proses* (eh…) ya da *süreç* kelimelerini kullanabilir
 Bilgisayarımızda programlar çalıştırılabilir dosyalar olarak ikincil hafızada
 yani diskimizde dururlar, birinci hafıza bellek yani RAM'dir. Biz bir programı
 çift tıklayıp ya da terminalden adını yazıp çalıştırdığımızda diskte duran
-çalıştırılabilir kodlar işletim sistemi tarafından diskten yüklenir ve belleğe
+çalıştırılabilir kodlar işletim sistemi tarafından diskten okunur ve belleğe
 açılır ve daha sonra bellek üzerinde yürütülmeye başlanır. İşte bu işlem de
 **process creation** yani *proses yaratma/oluşturma* olarak adlandırılır. İlgili
 program artık işletim sistemi tarafından bir proses haline getirilmiştir ve
@@ -335,23 +331,325 @@ int main(void)
 }
 ```
 
-```{todo}
-Burada kaldım.
+Yukarıdaki kod ile `getpid()` fonksiyonunu kullanarak prosesin PID değerini
+öğreniyoruz. `(void)` cast'ler ve `fflush()` fonksiyonu kafanızı karıştırmasın,
+burada pek önemli değiller. Bendeki çıktı bu şekilde.
+
+```text
+PID = 4188
 ```
+
+Programdaki `getchar()` fonksiyonundan dolayı biz bir girdi yapana kadar
+programımız çıkmadan bekliyor. Şimdi başka bir terminalde bu PID değeri ile
+ilgili bilgiler elde etmeye çalışalım.
+
+```shell
+ay@2204:~$ ps up 4188
+
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+ay          4188  0.0  0.0   2776   924 pts/1    S+   21:49   0:00 ./a.out
+```
+
+Görüleceği üzere bu prosesi çalıştıran kullanıcı `ay` ve `./a.out` komutu ile
+çalıştırılmış.
+
+Bir proses ile ilgili bilgier `/proc/` altında da yaratılıyor. Bizim PID'yi
+ele alırsak:
+
+```shell
+ay@2204:/proc/4188$ cd /proc/4188
+
+ay@2204:/proc/4188$ ll
+total 0
+dr-xr-xr-x   9 ay   ay   0 Jun 20 21:50 ./
+dr-xr-xr-x 269 root root 0 Jun 20 21:42 ../
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 arch_status
+dr-xr-xr-x   2 ay   ay   0 Jun 20 21:54 attr/
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 autogroup
+-r--------   1 ay   ay   0 Jun 20 21:54 auxv
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 cgroup
+--w-------   1 ay   ay   0 Jun 20 21:54 clear_refs
+-r--r--r--   1 ay   ay   0 Jun 20 21:50 cmdline
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 comm
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 coredump_filter
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 cpu_resctrl_groups
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 cpuset
+lrwxrwxrwx   1 ay   ay   0 Jun 20 21:52 cwd -> /home/ay/temp/
+-r--------   1 ay   ay   0 Jun 20 21:54 environ
+lrwxrwxrwx   1 ay   ay   0 Jun 20 21:52 exe -> /home/ay/temp/a.out*
+dr-x------   2 ay   ay   0 Jun 20 21:52 fd/
+dr-xr-xr-x   2 ay   ay   0 Jun 20 21:54 fdinfo/
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 gid_map
+-r--------   1 ay   ay   0 Jun 20 21:54 io
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 limits
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 loginuid
+dr-x------   2 ay   ay   0 Jun 20 21:54 map_files/
+-r--r--r--   1 ay   ay   0 Jun 20 21:52 maps
+-rw-------   1 ay   ay   0 Jun 20 21:54 mem
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 mountinfo
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 mounts
+-r--------   1 ay   ay   0 Jun 20 21:54 mountstats
+dr-xr-xr-x  55 ay   ay   0 Jun 20 21:54 net/
+dr-x--x--x   2 ay   ay   0 Jun 20 21:54 ns/
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 numa_maps
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 oom_adj
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 oom_score
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 oom_score_adj
+-r--------   1 ay   ay   0 Jun 20 21:54 pagemap
+-r--------   1 ay   ay   0 Jun 20 21:54 patch_state
+-r--------   1 ay   ay   0 Jun 20 21:54 personality
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 projid_map
+lrwxrwxrwx   1 ay   ay   0 Jun 20 21:52 root -> //
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 sched
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 schedstat
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 sessionid
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 setgroups
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 smaps
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 smaps_rollup
+-r--------   1 ay   ay   0 Jun 20 21:54 stack
+-r--r--r--   1 ay   ay   0 Jun 20 21:50 stat
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 statm
+-r--r--r--   1 ay   ay   0 Jun 20 21:50 status
+-r--------   1 ay   ay   0 Jun 20 21:54 syscall
+dr-xr-xr-x   3 ay   ay   0 Jun 20 21:54 task/
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 timens_offsets
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 timers
+-rw-rw-rw-   1 ay   ay   0 Jun 20 21:54 timerslack_ns
+-rw-r--r--   1 ay   ay   0 Jun 20 21:54 uid_map
+-r--r--r--   1 ay   ay   0 Jun 20 21:54 wchan
+```
+
+Kernel her proses için `/proc/<PID>` altında bu şekilde *sanal* dosya ve
+klasörler oluşturuyor.
+
+```shell
+ay@2204:/proc/4188$ ls -l /proc/4188/exe
+
+lrwxrwxrwx 1 ay ay 0 Jun 20 21:52 /proc/4188/exe -> /home/ay/temp/a.out
+```
+
+Örneğin `exe` isimli dosya aslında o prosesi oluşturan yani çalışan programı
+gösteriyor. Yeri geldikçe diğer dosyalara da bakarız.
+
+### `pid_t` Türünün C Dilinde Ele Alınması
+
+`pid_t` türü ile ilgili biraz daha konuşmak istiyorum. Yukarıda da belirttiğim
+gibi bu tür en fazla `signed long int` kadar geniş olabiliyor. Fakat `long`
+olacağının garantisi yok, `int` olabilir bir sistemde. Peki bu türü nasıl
+ele alacağız? Özellikle `printf()` gibi variadic fonksiyonlarda dikkat etmek
+gerekiyor.
+
+`printf()` gibi variadic fonksiyonları, variadic parametrelerin türünü anlamak
+için çeşitli yöntemler kullanıyorlar. Örneğin `printf()` fonksiyonu ilk
+parametresi olan string içerisinde `%d` ile eşlediği parametreyi `int`, `%ld`
+ile eşlediği parametreyi `long` olarak ele alıyor. Derleyicinin bu tarz
+fonksiyonlarda tür kontrolü yapma şansı düşük, gerçi modern derleyiciler
+`printf()` te bunu yapabiliyor ama bizler C programcıları olarak doğru kod
+yazmalıyız. Variadic fonksiyonlarda kontrol mekanizmaları kısıtlı olduğu için
+programcıların doğru *casting* işlemlerini yapması gerekiyor. Peki `printf()`
+ile `pid_t` yi yazdırırken bunu neyle eşleyeceğiz, `%d` mi `%ld` mi yoksa
+başka bir şey mi?
+
+`pid_t`, `long` türünden büyük olamaz. O halde `(long)pid` şeklinde casting
+işlemi yapmamız bir veri kaybı yaratmayacaktır. Elimizde `long` türden bir
+nesne olduğunu bildiğimizde bunu `%ld` ile bastırabiliriz. [^9f] Bir diğer
+seçeneğimiz de C99 ile dile eklenen `intmax_t` türünü kullanmak. `intmax_t`
+nin platformdan bağımsız olarak dilde bulunan herhangi bir işaretli tam sayı
+türündeki bir değeri tutabileceği garanti edilmiş durumdadır. `pid_t` nin `long`
+u geçemeyeceğini biliyoruz fakat böyle bir bilgi olmasaydı bu sefer `intmax_t`
+ye cast edebilirdik. Bu türden bir değeri de `printf()` içerisinde `%jd` ile
+yazdırabiliriz.
 
 ## Kullanıcı ve Grup ID
 
 Linux sistemleri çok kullanıcılı sistemlerdir. Her bir kullanıcının bir
-kullanıcı adı vardır. Fakat işletim sistemi seviyesinde kullanıcı takipi isimler
+kullanıcı adı vardır. Fakat işletim sistemi seviyesinde kullanıcı takibi isimler
 ile değil numalar üzerinden yapılır. Buna *kullanıcı numarası*, **user ID** ya
-da çoğu zaman **UID** adı verilir. Benzer şekilde kullanıcıların ait olduğu çoğu
-grup ya da gruplar vardır. Güncel sistemlerde kullanıcılar tipik olarak birden
-fazla gruba dahildir. Grupların da bir numarası vardır, **group ID** ya da
-**GID** olarak belirtilir. Kullanıcı/grup ID mekanizması Linux üzerindeki temel
-izin kontrol mekanizmasını oluşturur. Dosya sistemindeki her klasör ve dosyanın
-da ID bilgileri vardır ve bir kullanıcının dosya sistemi üzerinde yapabileceği
-şeyler (dosya yaratma, silme, var olan dosyayı değiştirme, okuma gibi) bu ID'ler
-üzerinden kontrol edilir.
+da çoğu zaman **UID** adı verilir. Bir kullanıcının bir adet UID numarası
+olabilir. Aksine, kullanıcıların ait olduğu gruplar vardır.
+Güncel sistemlerde kullanıcılar tipik olarak birden fazla gruba dahildir.
+Grupların da bir numarası vardır, **group ID** ya da **GID** olarak belirtilir.
+Kullanıcı/grup ID mekanizması Linux üzerindeki temel izin kontrol mekanizmasını
+oluşturur. Dosya sistemindeki her klasör ve dosyanın da ID bilgileri vardır ve
+bir kullanıcının dosya sistemi üzerinde yapabileceği şeyler (dosya yaratma,
+silme, var olan dosyayı değiştirme, okuma gibi) bu ID'ler üzerinden kontrol
+edilir.
+
+`id` kabuk komutu ile kullanıcı ID ve ait olduğumuz grup ID değerlerini
+görebiliriz.
+
+```shell
+ay@2204:~$ id
+
+uid=1000(ay) gid=1000(ay) groups=1000(ay),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
+```
+
+Örneğin benim `UID` değerim `1000` imiş ve dahil olduğum *ana, primary* grubun
+ID değeri yani `GID` değeri de `1000` imiş. Onun dışında dahil olduğum başka
+gruplar da varmış. Bildiğim kadarıyla ilk UNIX sistemlerde bir kullanıcının bir
+grubu olabiliyormuş ama bu çeşitli kısıtlar getirdiği için kullanıcıların ek
+yani *supplementary group* ları olması da sağlanmış. Günümüzdeki Linux
+sistemlerde de bir kullanıcının bir UID değeri olsa da dahil olduğu birden fazla
+grup olabilir.
+
+Linux proseslerin de ait olduğu kullanıcı ve grup ID'leri vardır. Çünkü prosesler,
+kullanıcılar ile ilişkilendirilir.
+
+Prosesler için `task_struct`isimli bir veri yapısından bahsetmiştik. Bu bilgiler
+de burada tutulmaktadır. İlgili veri yapısı içerisinde `cred` isimli,
+*credential ?*, bir veri yapısına pointer bulunur. Bu veri yapısı içerisinde de
+ilgili ID bilgileri saklanır: [^10f]
+
+```c
+struct cred {
+  atomic_long_t  usage;
+  kuid_t    uid;    /* real UID of the task */
+  kgid_t    gid;    /* real GID of the task */
+  kuid_t    suid;    /* saved UID of the task */
+  kgid_t    sgid;    /* saved GID of the task */
+  kuid_t    euid;    /* effective UID of the task */
+  kgid_t    egid;    /* effective GID of the task */
+  kuid_t    fsuid;    /* UID for VFS ops */
+  kgid_t    fsgid;    /* GID for VFS ops */
+  //
+}
+```
+
+## `uid_t` ve `gid_t`
+
+Bir proses, kendisine ait olan id değerlerini sistem fonksiyonlarına çağrı
+yaparak öğrenebilir. UID için `uid_t`, GID için `gid_t` veri türleri
+tanımlanmıştır. Bunlar *typedef* edilen tür eş isimleridir, tam sayı şeklinde
+tanımlanırlar. `pid_t` nin aksine genişlikleri ile ilgili bir kısıtlama POSIX
+standartlarında yapılmamıştır. Peki `uid_t` türünden bir değişkeni nasıl
+`printf()` ile yazdırabiliriz? `uid_t` nin işaretli olup olmaması konusunda da
+bir bilgi verilmemiştir. O yüzden nümerik olarak olabilecek en yüksek tam sayı
+değerini tutan ve C99 standartı ile C diline eklenmiş `uintmax_t` türünü
+kullanmamız en mantıklısıdır. [^12f] Böyle bir değeri de `printf()` içerisinde
+`%ju` ile bastırabiliriz. Fakat pratikte bu kadar zorlamaya gerek yok. Örneğin
+*Advanced Programming in The UNIX Environment* kitabında `int` gibi davranılmış
+ve `%d` ile eşleştirilmiştir, cast yapılmadan ki bence en azından cast
+yapılmalıdır. *The Linux Programming Interface* adlı kitapta `long` a cast
+yapılıp, `%ld` ile yazdırılmıştır. Ben Kaan Aslan Hoca'nın yaklaşımını doğru
+buluyorum ve `uintmax_t` kullanacağım. Fakat *cast ettiğiniz sürece* pratikte en
+az `int` olmak üzere bir tam sayıya cast ettiğiniz zaman problem yaşamamanız
+gerekir çünkü ID değerleri çok büyük sayılar olmuyor. Fakat bir varsayım
+yapmadan ilerlemek istiyorsak `uintmax_t` en iyi seçenek.
+
+Kullanıcı ve grup ID öğrenmek için `getuid()` ve `getgid()` fonksiyonlarını
+kullanabiliriz. Prototipleri `unistd.h` içerisindedir.
+
+```c
+#include <unistd.h>
+
+uid_t getuid(void);
+gid_t getgid(void);
+```
+
+Örnek:
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+#include <stdint.h> //uintmax_t
+
+int main(void){
+  uid_t uid;
+  gid_t gid;
+
+  uid = getuid();
+  gid = getgid();
+
+  printf("UID = %ju, GID = %ju\n", (uintmax_t)uid, (uintmax_t)gid);
+  return 0;
+}
+```
+
+Yukarıdaki kodu çalıştırdığımız zaman bendeki çıktı:
+
+```text
+UID = 1000, GID = 1000
+```
+
+### Efektif UID ve GID: EUID ve EGID
+
+Proseslerin bir de *efektif* yani *etkin* ID değerleri vardır. Biraz önce
+baktıklarımız *real ID* olarak da geçmektedir. Efektif ID'ler de benzer şekilde
+sistem fonksiyonları kullanılarak öğrenilebilirler. Burada da
+
+```c
+#include <unistd.h>
+
+uid_t geteuid(void);
+gid_t getegid(void);
+```
+
+fonksiyonlarını kullanacağız. Programımızı değiştirelim:
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+#include <stdint.h> //uintmax_t
+
+int main(void){
+  uid_t uid, euid;
+  gid_t gid, egid;
+
+  uid  = getuid();
+  euid = geteuid();
+  gid  = getgid();
+  egid = getegid();
+
+  printf("UID = %ju, GID = %ju\n", (uintmax_t)uid, (uintmax_t)gid);
+  printf("EUID = %ju, EGID = %ju\n", (uintmax_t)euid, (uintmax_t)egid);
+  return 0;
+}
+```
+
+ve çalıştıralım:
+
+```text
+UID = 1000, GID = 1000
+EUID = 1000, EGID = 1000
+```
+
+**Aynı değerleri gördük, bunların olayı nedir?**
+
+Etkin ID'lerin tam olarak ne işe yaradığına daha sonra bakacağız. Fakat kernel,
+process'in bir şeyi yapma yetkisinin olup olmadığına bakmak için etkin ID
+değerlerini kullanır. Örneğin proses bir dosyaya yazma yapmak istiyorsa bunu
+yapıp yapamayacağı etkin ID değerleri ile kontrol edilir. Etkin ID'lerin, Gerçek
+ID'lerden nasıl farklı olacağı bir başka yazının konusu ama demo amaçlı `SUID`
+kullanarak bir bakalım:
+
+```shell
+ay@2204:~/temp$ sudo chown 4123:3456 a.out
+
+ay@2204:~/temp$ ll a.out
+-rwxrwxr-x 1 4123 3456 16136 Jun 21 00:04 a.out*
+
+ay@2204:~/temp$ sudo chmod +s a.out
+
+ay@2204:~/temp$ ./a.out
+UID = 1000, GID = 1000
+EUID = 4123, EGID = 3456
+
+ay@2204:~/temp$ ll a.out
+-rwsrwsr-x 1 4123 3456 16136 Jun 21 00:04 a.out*
+```
+
+Yukarıda ne oldu? Derlenmiş programımızın dosyasının, `a.out`, sahipliğini
+sistemimde olmayan `4123` ID'li kullanıcıya ve `3456` ID'li gruba geçirdim,
+bunları uydurdum. Daha sonra dosyanın `SUID` bayrağını set ettim. Bu durumda
+dosyayı çalıştırdığımız zaman gerçek ID'lerin benim ID'ler fakat etkin ID'lerin
+diğer ID'ler olduğunu görüyoruz. Yani programı ben çalıştırmış olsam da proses
+adet diğer ID'li kullanıcı çalıştırıyormuş gibi, onun yetkileri ile çalışıyor.
+
+Bunlara daha sonra bakacağız, şimdilik bu kadar 👋
+
+## Bakmaya Değer
+
+: [^11f]
 
 [^1f]: <https://elixir.bootlin.com/linux/v6.9.5/source/include/linux/sched.h#L748>
 [^2f]: <https://man7.org/linux/man-pages/man2/getrlimit.2.html>
@@ -361,3 +659,7 @@ da ID bilgileri vardır ve bir kullanıcının dosya sistemi üzerinde yapabilec
 [^6f]: Advanced Programming in the UNIX Environment, 3rd Edition
 [^7f]: <https://unix.stackexchange.com/a/150980/285808>
 [^8f]: <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_types.h.html>
+[^9f]: <https://en.cppreference.com/w/c/io/fprintf>
+[^10f]: <https://elixir.bootlin.com/linux/v6.9.5/source/include/linux/cred.h#L111>
+[^11f]: <https://stackoverflow.com/a/58123923/1766391>
+[^12f]: <https://en.cppreference.com/w/c/types/integer>

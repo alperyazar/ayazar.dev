@@ -20,6 +20,7 @@ errno.md
 open.md
 process.md
 dosya-dizin-izin.md
+inode.md
 ```
 
 ## 📚 Kaynaklar

@@ -80,11 +80,12 @@ ldd/index.md
 sys/index.md
 xilinx/index.md
 xv6/index.md
+diger/index.md
 ```
 
 ```{toctree}
 ---
-caption: Diğer
+caption: ---
 hidden: True
 ---
 

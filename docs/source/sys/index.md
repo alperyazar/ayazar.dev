@@ -21,6 +21,7 @@ open.md
 process.md
 dosya-dizin-izin.md
 inode.md
+rwx-dosya-dizin.md
 ```
 
 ## 📚 Kaynaklar

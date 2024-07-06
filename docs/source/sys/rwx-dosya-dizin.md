@@ -1,9 +1,5 @@
 # `rwx`, Dosya, Dizin
 
-```{todo}
-Yazı henüz bitmemiştir.
-```
-
 Bu yazıda, `rwx` bayrak yani *flag* lerinin dosya ve dizinlerde ne anlama
 geldiğini örneklerle anlatmaya çalışacağım.
 
@@ -185,12 +181,15 @@ dizin ve dosyaların `Tür` kısımlarının farklı olduğuna dikkat ediniz.
 
 ---
 
-Sıradan dosyalar üzerinde **read** ve **write** ın ne anlama geldiğini biliyoruz.
-**execute** kısmına en son bakalım. İş, dizinlere geldiği zaman daha çok karışıyor.
+Sıradan dosyalar üzerinde **read** ve **write** ın ne anlama geldiğini
+biliyoruz. **execute** kısmına en son bakalım. İş, dizinlere geldiği zaman daha
+çok karışıyor.
 
 Ne demiştik, dizinler aslında `inode-dosya adı` çifti tutan özel dosyalardır.
-Diyelim ki bir dizin üzerinde sadece **read** hakkımız var ve başka bir hakkımız yok.
-Bu durumda ne yapabiliriz? Alabileceğimiz iki bilgi var, içersindeki dizin ve dosyaların isimleri ve inode bilgileri. `a` dizininde sadece `r` hakkım olsun:
+Diyelim ki bir dizin üzerinde sadece **read** hakkımız var ve başka bir hakkımız
+yok. Bu durumda ne yapabiliriz? Alabileceğimiz iki bilgi var, içersindeki dizin
+ve dosyaların isimleri ve inode bilgileri. `a` dizininde sadece `r` hakkım
+olsun:
 
 ```shell
 $ ls -l
@@ -213,7 +212,18 @@ total 0
 d????????? ? ? ? ?            ? d
 ```
 
-Hmm, ilginç şeyler oluyor. `a` nın içerisinde olan dizin ve dosyaları gördük fakat erişim hataları da aldık. Yani içinde olanları biliyoruz fakat içerisinde olan şeylerin bilgileri elimizde yok, `?` işareti olarak geldi. Peki neden? **Çünkü dizin üzerinde execute yani `x` hakkımız yok!**. Dizinler üzerindeki `x` hakkını şuna benzetebiliriz: Dizini okuyarak içerisinde bulunanların adlarını ve inode bilgilerini aldık. Fakat içerideki şeylerin bilgilerini edinmemiz için her birinin inode veri yapısına ulaşmamız gerekiyor. İşte bir dizinde *execute* hakkımız olmadığı zaman o dizinin altında bulunan inode'lara erişemiyoruz gibi düşünebiliriz. Örneğin `b.txt` nin inode değerini biliyoruz fakat `a` dizininde `x` hakkımız olmadığı için bu inode'un içeriğine bakamıyoruz. **Dizinler üzerindeki execute hakkını adeta bir geçiş noktası gibi de düşünebiliriz.** **O dizinin içine de giremiyoruz.**
+Hmm, ilginç şeyler oluyor. `a` nın içerisinde olan dizin ve dosyaları gördük
+fakat erişim hataları da aldık. Yani içinde olanları biliyoruz fakat içerisinde
+olan şeylerin bilgileri elimizde yok, `?` işareti olarak geldi. Peki neden?
+**Çünkü dizin üzerinde execute yani `x` hakkımız yok!**. Dizinler üzerindeki `x`
+hakkını şuna benzetebiliriz: Dizini okuyarak içerisinde bulunanların adlarını ve
+inode bilgilerini aldık. Fakat içerideki şeylerin bilgilerini edinmemiz için her
+birinin inode veri yapısına ulaşmamız gerekiyor. İşte bir dizinde *execute*
+hakkımız olmadığı zaman o dizinin altında bulunan inode'lara erişemiyoruz gibi
+düşünebiliriz. Örneğin `b.txt` nin inode değerini biliyoruz fakat `a` dizininde
+`x` hakkımız olmadığı için bu inode'un içeriğine bakamıyoruz. **Dizinler
+üzerindeki execute hakkını adeta bir geçiş noktası gibi de düşünebiliriz.** **O
+dizinin içine de giremiyoruz.**
 
 ```text
 $ cd a
@@ -223,20 +233,44 @@ bash: cd: a: Permission denied
 
 Şöyle bir benzetme yapabiliriz:
 
-Dizinleri kapısı olan birer oda gibi düşünelim. Bu kapının bir camı var ve içeride de ışık var. Peki içeride ne var? Dizinin içerisinde bulunan dosya ve dizinlerin isim ve inode bilgileri. Dizinler üzerinde `r` ve `x` haklarını şöyle hayal edebiliriz:
+Dizinleri kapısı olan birer oda gibi düşünelim. Bu kapının bir camı var ve
+içeride de ışık var. Peki içeride ne var? Dizinin içerisinde bulunan dosya ve
+dizinlerin isim ve inode bilgileri. Dizinler üzerinde `r` ve `x` haklarını şöyle
+hayal edebiliriz:
 
-- `r` YOK, `x` YOK: Kapının anahtarı yok, içerideki ışık da kapalı. İçeriye giremiyoruz. Kapının camından baksak da içersi gözükmüyor. Yani dizinin içerisinde ne olduğunu da bilmiyoruz.
-- `r` VAR, `x` YOK: Kapının anahtarı yok, fakat içerisinin ışığı yanıyor. İçeriye giremiyoruz. Ama kapının camından içeriye bakarsak ne olduğu gözüküyor. Dizinin içerisinde ne var ve nerede duruyor biliyoruz. Ama anahtarımız olmadığı için kapıyı açıp, içeriklere erişemiyoruz.
-- `r` YOK, `x` VAR: Kapının anahtarı var, fakat içerisi karanlık. İçeride ne olduğunu göremiyoruz. Ama bildiğimiz bir içerik varsa ona devam edebiliyoruz. Yani zifiri karanlık ama yollar açık. Sadece nereye gideceğimizi bilirsek ilerleyebiliriz.
-- `r` VAR, `x` VAR: Kapının anahtarı var, içerisi de aydınlık. Her şeyi görüp, yolumuza devam edebiliyoruz.
+- `r` YOK, `x` YOK: Kapının anahtarı yok, içerideki ışık da kapalı. İçeriye
+  giremiyoruz. Kapının camından baksak da içersi gözükmüyor. Yani dizinin
+  içerisinde ne olduğunu da bilmiyoruz.
+- `r` VAR, `x` YOK: Kapının anahtarı yok, fakat içerisinin ışığı yanıyor.
+  İçeriye giremiyoruz. Ama kapının camından içeriye bakarsak ne olduğu
+  gözüküyor. Dizinin içerisinde ne var ve nerede duruyor biliyoruz. Ama
+  anahtarımız olmadığı için kapıyı açıp, içeriklere erişemiyoruz.
+- `r` YOK, `x` VAR: Kapının anahtarı var, fakat içerisi karanlık. İçeride ne
+  olduğunu göremiyoruz. Ama bildiğimiz bir içerik varsa ona devam edebiliyoruz.
+  Yani zifiri karanlık ama yollar açık. Sadece nereye gideceğimizi bilirsek
+  ilerleyebiliriz.
+- `r` VAR, `x` VAR: Kapının anahtarı var, içerisi de aydınlık. Her şeyi görüp,
+  yolumuza devam edebiliyoruz.
 
-İşte kendimizi dosya sisteminde odalar yani dizinler arasında gezen biri olarak hayal edersek `cd` komutu ile ilgili odaya yani dizine girmeye çalışıyoruz. `x` hakkımız yoksa yani odanın anahtarı bize verilmediyse içeriye de giremiyoruz.
+İşte kendimizi dosya sisteminde odalar yani dizinler arasında gezen biri olarak
+hayal edersek `cd` komutu ile ilgili odaya yani dizine girmeye çalışıyoruz. `x`
+hakkımız yoksa yani odanın anahtarı bize verilmediyse içeriye de giremiyoruz.
 
 ---
 
-Şimdi yukarıdaki örneğe geri dönelim. Sadece `r` hakkımız vardı. Odanın içine bakabildik, ışığı yanıyor ama içeriye giremiyoruz. Dikkatinizi bir şey çekti mi? İsimle beraber bir bilgi daha var: tür bilgisi yani `-` ve `d` karakterleri. Demiştik ki bunlar aslında ilgili inode içerisinde bulunuyor. **Bunlara erişemiyorsak, `ls` komutu `d` ve `-` bilgilerini nerden alıyor?** Biraz önce de belirttiğim gibi aslında dizin içerisinde erişim kolaylığı için bu bilgiler saklanıyor. Bu sayede `r` hakkı ile görebiliyoruz. Yani aslında `inode-isim-tür` şeklinde üçlü bir veri seti var gibi düşünebiliriz. Ama bu kısım bence gerçekten önemli değil. Yani `r` hakkı varken tür bilgisi görebiliyor muyuz sorusu bence çok detay, ana konudan sapmayalım.
+Şimdi yukarıdaki örneğe geri dönelim. Sadece `r` hakkımız vardı. Odanın içine
+bakabildik, ışığı yanıyor ama içeriye giremiyoruz. Dikkatinizi bir şey çekti mi?
+İsimle beraber bir bilgi daha var: tür bilgisi yani `-` ve `d` karakterleri.
+Demiştik ki bunlar aslında ilgili inode içerisinde bulunuyor. **Bunlara
+erişemiyorsak, `ls` komutu `d` ve `-` bilgilerini nerden alıyor?** Biraz önce de
+belirttiğim gibi aslında dizin içerisinde erişim kolaylığı için bu bilgiler
+saklanıyor. Bu sayede `r` hakkı ile görebiliyoruz. Yani aslında `inode-isim-tür`
+şeklinde üçlü bir veri seti var gibi düşünebiliriz. Ama bu kısım bence gerçekten
+önemli değil. Yani `r` hakkı varken tür bilgisi görebiliyor muyuz sorusu bence
+çok detay, ana konudan sapmayalım.
 
-O zaman bir de inode bilgisini bulmaya çalışalım içerideki dosya ve dizinlerin. `a` yı okuyabildiğimize göre bu bilgileri alabilmemiz lazım değil mi?
+O zaman bir de inode bilgisini bulmaya çalışalım içerideki dosya ve dizinlerin.
+`a` yı okuyabildiğimize göre bu bilgileri alabilmemiz lazım değil mi?
 
 ```shell
 $ ls -il a
@@ -250,7 +284,14 @@ total 0
 ? d????????? ? ? ? ?            ? d
 ```
 
-Hmm, inode bilgisi yerine yine `?` aldık, en sağdaki. Niye böyle oldu? Bu `ls` komutunun inode bilgisini edinme yöntemi ile ilgili. `strace` ile çalıştırırsanız [statx](https://man7.org/linux/man-pages/man2/statx.2.html) sistem çağrısını yaptığını görebilirsiniz. Bu çağrı direkt hedef dosya üzerinde yapılıyor, `a/b.txt` gibi. Fakat `a` üzerinde `x` hakkımız olmadığı için bu sistem çağrısını `ls` komutunun yetkisi yetmiyor. Yani `ls`, `a` nın kapısından geçip içeriye ulaşıp bilgileri toplamak istiyor. Ama inode değerini alabileceğimizi size göstereceğim:
+Hmm, inode bilgisi yerine yine `?` aldık, en sağdaki. Niye böyle oldu? Bu `ls`
+komutunun inode bilgisini edinme yöntemi ile ilgili. `strace` ile
+çalıştırırsanız [statx](https://man7.org/linux/man-pages/man2/statx.2.html)
+sistem çağrısını yaptığını görebilirsiniz. Bu çağrı direkt hedef dosya üzerinde
+yapılıyor, `a/b.txt` gibi. Fakat `a` üzerinde `x` hakkımız olmadığı için bu
+sistem çağrısını `ls` komutunun yetkisi yetmiyor. Yani `ls`, `a` nın kapısından
+geçip içeriye ulaşıp bilgileri toplamak istiyor. Ama inode değerini
+alabileceğimizi size göstereceğim:
 
 ```text
 $ find . -name b.txt -printf "%f - %i\n"
@@ -258,11 +299,19 @@ $ find . -name b.txt -printf "%f - %i\n"
 b.txt - 392227
 ```
 
-`find` komutu ile aynı sistemde `b.txt` nin inode değerini alabildik. `strace` ile bakarsak `find` komutunun [stat](https://man7.org/linux/man-pages/man2/stat.2.html) çağrısı yaptığını görüyoruz. Burada `statx` veya `stat` ile ilgili bir çıkarım yapmıyorum. Demek istediğim şey `ls` ve `find` farklı birer program olduğu için farklı davranabiliyorlar. `find` komutu, dizin üzerinde execute hakkı olmadan içerisinde bulunan dosyanın inode bilgisini bize verebiliyor.
+`find` komutu ile aynı sistemde `b.txt` nin inode değerini alabildik. `strace`
+ile bakarsak `find` komutunun
+[stat](https://man7.org/linux/man-pages/man2/stat.2.html) çağrısı yaptığını
+görüyoruz. Burada `statx` veya `stat` ile ilgili bir çıkarım yapmıyorum. Demek
+istediğim şey `ls` ve `find` farklı birer program olduğu için farklı
+davranabiliyorlar. `find` komutu, dizin üzerinde execute hakkı olmadan
+içerisinde bulunan dosyanın inode bilgisini bize verebiliyor.
 
 ---
 
-Bence zor kısmı atlattık. Dizinde `r` hakkımız varsa içeriğini görebiliyoruz ama `x` hakkımız yoksa o içeriklere erişemiyoruz, sadece adını görmüş oluyoruz hatta dizinin *içine de giremiyoruz.*
+Bence zor kısmı atlattık. Dizinde `r` hakkımız varsa içeriğini görebiliyoruz ama
+`x` hakkımız yoksa o içeriklere erişemiyoruz, sadece adını görmüş oluyoruz hatta
+dizinin *içine de giremiyoruz.*
 
 Şimdi `a` üzerinde sadece `x` hakkımız olsun.
 
@@ -281,7 +330,9 @@ $ ls -l a
 ls: cannot open directory 'a': Permission denied
 ```
 
-Hayır! Oda benzetmesine devam edelim. `a` nın kapıları açık ama içerisi zifiri karanlık. İçinde ne var bilmiyorum. Ama biz içinde `b.txt` olduğunu biliyoruz. Bunun içeriğine erişebilir miyiz?
+Hayır! Oda benzetmesine devam edelim. `a` nın kapıları açık ama içerisi zifiri
+karanlık. İçinde ne var bilmiyorum. Ama biz içinde `b.txt` olduğunu biliyoruz.
+Bunun içeriğine erişebilir miyiz?
 
 ```text
 $ cat a/b.txt
@@ -289,15 +340,26 @@ $ cat a/b.txt
 Ben b.txt nin icerigiyim
 ```
 
-Cevabımız evet! Yani `a` dan geçip `b.txt` ye ulaştım ama `b.txt` nin varlığını bildiğim için.
+Cevabımız evet! Yani `a` dan geçip `b.txt` ye ulaştım ama `b.txt` nin varlığını
+bildiğim için.
 
-Benzer şekilde `cd a` diyerek de `a` nın içine girebiliyorum ama her yer karanlık. İçeride iken `ls` dersem yine hata alıyorum, göremiyorum ki içinde ne var!
+Benzer şekilde `cd a` diyerek de `a` nın içine girebiliyorum ama her yer
+karanlık. İçeride iken `ls` dersem yine hata alıyorum, göremiyorum ki içinde ne
+var!
 
 ---
 
-Peki dizinlerdeki `w` hakkı nedir. Dizinleri `inode-dosya ismi` tutan bir dosya gibi düşünürsek burada yazma hakkımız varsa bu listeyle de oynayabiliriz demek. Ne yapabiliriz? Dosya isimlerini değiştirebiliriz. Yeni dosyalar ekleyebiliriz ve **dosya silebiliriz.** Dosya silme işi ilginç. Bir dosyayı silmek için o dosyaya yazma hakkımızın olması gerekmiyor. O dosyanın bulunduğu dizine yazma hakkımız olsa bu yeterli. Bir dosyayı sildiğimiz zaman diskten silineceği garanti değil, bu konuya hard ve soft link konusunda değiniriz. Ama bir örnek yapalım.
+Peki dizinlerdeki `w` hakkı nedir. Dizinleri `inode-dosya ismi` tutan bir dosya
+gibi düşünürsek burada yazma hakkımız varsa bu listeyle de oynayabiliriz demek.
+Ne yapabiliriz? Dosya isimlerini değiştirebiliriz. Yeni dosyalar ekleyebiliriz
+ve **dosya silebiliriz.** Dosya silme işi ilginç. Bir dosyayı silmek için o
+dosyaya yazma hakkımızın olması gerekmiyor. O dosyanın bulunduğu dizine yazma
+hakkımız olsa bu yeterli. Bir dosyayı sildiğimiz zaman diskten silineceği
+garanti değil, bu konuya hard ve soft link konusunda değiniriz. Ama bir örnek
+yapalım.
 
-`a` ya `rwx` haklarımı verip içine girdim, `b.txt` dosyasından herkesin tüm haklarını aldım.
+`a` ya `rwx` haklarımı verip içine girdim, `b.txt` dosyasından herkesin tüm
+haklarını aldım.
 
 ```shell
 $ ls -lah
@@ -315,11 +377,15 @@ ay@400:~/sys/a $ echo "yazma denemesi" > b.txt
 bash: b.txt: Permission denied
 ```
 
-Ne yazabiliyorum ne okuyabiliyorum. Peki silebiliyor muyum? Evet! Silebiliyoruz çünkü `a` ya yazma hakkımız var. `rm b.txt` dediğimiz zaman `remove write-protected regular file` diyor, dosyada yazma hakkımız olmadığı için emin misin diyor fakat buna `y` dersek çatır çutur siliyor.
+Ne yazabiliyorum ne okuyabiliyorum. Peki silebiliyor muyum? Evet! Silebiliyoruz
+çünkü `a` ya yazma hakkımız var. `rm b.txt` dediğimiz zaman `remove
+write-protected regular file` diyor, dosyada yazma hakkımız olmadığı için emin
+misin diyor fakat buna `y` dersek çatır çutur siliyor.
 
 ---
 
-`a` dizindeki haklarımızı `-w-` konumuna getirelim. Bu durumda `cd` ile giremeyiz. Ama *uzaktan* değişiklikler yapabilir miyiz?
+`a` dizindeki haklarımızı `-w-` konumuna getirelim. Bu durumda `cd` ile
+giremeyiz. Ama *uzaktan* değişiklikler yapabilir miyiz?
 
 ```text
 $ ls -l
@@ -333,13 +399,89 @@ ay@400:~/sys $ touch a/f.txt
 touch: cannot touch 'a/f.txt': Permission denied
 ```
 
-Hmm, ilginç. `a` da `w` hakkım var. O yüzden `inode-dosya adı` tablosunu değiştirebiliyorum. Peki neden `c.txt` yi silemedim? Çünkü `a` da `x` hakkım yok. `rm` ile dosya silerken olan birkaç işlem var. `a` nın içerisinden `c.txt` satırının silindiği doğru fakat `c` nin inode'u içerisinde de değişiklik yapılması gerekiyor, örneğin hard link sayısı 1 eksiltilecek. Fakat `a` da `x` hakkım olmadığı için `c` nin inode'una da erişemiyorum.
+Hmm, ilginç. `a` da `w` hakkım var. O yüzden `inode-dosya adı` tablosunu
+değiştirebiliyorum. Peki neden `c.txt` yi silemedim? Çünkü `a` da `x` hakkım
+yok. `rm` ile dosya silerken olan birkaç işlem var. `a` nın içerisinden `c.txt`
+satırının silindiği doğru fakat `c` nin inode'u içerisinde de değişiklik
+yapılması gerekiyor, örneğin hard link sayısı 1 eksiltilecek. Fakat `a` da `x`
+hakkım olmadığı için `c` nin inode'una da erişemiyorum.
 
-**O yüzden bir dizinde `x` hakkı olmadan `w` hakkının olması pratikte anlamlı olmamaktadır.** [^1f]
+**O yüzden bir dizinde `x` hakkı olmadan `w` hakkının olması pratikte anlamlı
+olmamaktadır.** [^1f]
 
-```{todo}
-Dosya execute kavramından devam et.
+---
+
+Şimdi dosya üzerindeki *execute* hakkına bakalım. Aşağıdaki gibi bir BASH
+scripti yazalım:
+
+```bash
+echo "Merhaba Dunya!"
 ```
+
+fakat bu dosyaya `x` hakkı vermeyelim:
+
+```shell
+$ ls -l script.sh
+
+-rw-r--r-- 1 ay ay 34 Jul  6 23:13 script.sh
+```
+
+Bu durumda bu dosyayı çalıştıramıyoruz:
+
+```shell
+$ ./script.sh
+
+bash: ./script.sh: Permission denied
+```
+
+Fakat `bash script.sh` dersek çalışıyor:
+
+```shell
+$ bash script.sh
+
+Merhaba Dunya!
+```
+
+Bu nasıl oldu? Biz burada aslında `bash` programını çalıştırdık fakat ona
+argüman olarak `script.sh` dosyasını verdik. Yani execute edilen şey aslında
+`bash`. BASH scriptleri özünde satır satır interpret edildikleri için dolaylı
+yoldan çalıştırılmış oldu. Burada dosyanın `read` hakkına sahip olması yeterli,
+çünkü `bash` programı dosyayı okuyabildi. Python scriptlerinde de benzer bir şey
+yapabiliriz, `python script.py` gibi. Yani interpreted, script tabanlı
+dosyalarda ilgili script dilini interpret eden programı çağırabiliriz.
+
+---
+
+**Biraz gıcıklaştıralım.** C dilinde aynı yazıyı basan programı yazıp
+derleyeyim, `printf("Merhaba Dunya!\n")` yani. `a.out` şeklinde bir dosya
+çıkıyor. Diyelim ki bunda da `x` hakkım yok. Scriptlerde olduğu gibi `xxx a.out`
+diyerek bunu çalıştırabilir miyim? `xxx` ne olmalı? Aslında evet. Burada da
+**dynamic loader** ı kullanabiliriz. [^2f] Ama bu konu dışı bir konu:
+
+```shell
+$ /lib/ld-linux-aarch64.so.1 ~/sys/a.out
+
+Merhaba Dunya!
+```
+
+`ld` ile benzer bir işlem gerçekleştirebiliriz. Ben bu denemeleri ARM bir
+platformda yaptığım için içinde `aarch64` geçiyor.
+
+## Özet
+
+Dosya/dizin izinlerine bakılırken sırası ile kullanıcı, grup ve *others*
+izinlerine bakılır. Eğer biz ilgili dosya veya dizinin kullanıcısı isek,
+kullanıcı izinleri bizim için geçerli olur, diğerlerinin ne olduğu önemli olmaz.
+Eğer değilsek ama grubumuz tutuyorsa bu sefer grup izinleri geçerli olur. Tutan
+yoksa *others* oluruz.
+
+Sıradan düz dosyalarda `w` hakkı dosyayı yazmamızı, `r` hakkı okumamızı, `x`
+hakkı ise çalıştırmamızı sağlar.
+
+Dizinlerde ise işler biraz daha farklı. `x` hakkı ile dizinin *içinden
+geçebiliyoruz.* Buna bazen bu yüzden **search permission** da denebiliyor. `w`
+hakkı ile dizinin içeriği ile oynayabiliyoruz fakat `x` hakkı yoksa pek bir
+anlamı olmuyor. `r` hakkı ile de dizin içeriğini görebiliyoruz.
 
 ## İlgili Bağlantılar
 
@@ -347,4 +489,4 @@ Dosya execute kavramından devam et.
 - <https://unix.stackexchange.com/q/18095>
 
 [^1f]:<https://unix.stackexchange.com/q/149184>
-
+[^2f]:<https://unix.stackexchange.com/a/265851>

@@ -1,13 +1,10 @@
 # YouTube, Vimeo (Şifreli Videolar Dahil) Video İndirme
 
-```{todo}
-Yazı henüz yarımdır.
-```
-
-Çeşitli sebeplerden dolayı YouTube, Vimeo gibi platformlardaki videoları indirmek
-ve saklamak isteyebilirsiniz. Konun yasallık ve etik tarafını size bırakıyor
-ve teknik kısmını anlatmak istiyorum. Bahsedeceğim yöntemleri hem Windows hem de
-Linux üzerinde kullanabilirsiniz.
+Çeşitli sebeplerden dolayı YouTube, Vimeo gibi platformlardaki videoları
+indirmek ve saklamak isteyebilirsiniz. İndireceğiniz içeriğe sahip olmanız doğru
+mu ve etik mi, buna siz karar vermelisiniz. Ben bu yazıda işin teknik kısmından
+bahsedeceğim. Bahsedeceğim yöntemleri hem **Windows** hem de **Linux** üzerinde
+kullanabilirsiniz.
 
 ## yt-dlp ve FFmpeg
 
@@ -216,9 +213,100 @@ ERROR: [vimeo] <ID>: Unable to download JSON metadata: HTTP Error 400: Bad Reque
 
 ### Protected ve Private Videolar
 
-```{todo}
-Buradayım.
+Vimeo'nun video yükleyen tarafında olmadım. Anladığım kadarıyla şifreyle korunan
+iki tip video var: protected ve private. yt-dlp, private videoları indirebiliyor
+fakat protected videolarda başarısız oluyor, en azından şimdilik. Belirttiğim
+gibi siz bu yazıyı okuduğunuz zaman durum değişmiş olabilir çünkü hem Vimeo
+tarafı hem de yt-dlp tarafı sürekli güncelleniyor.
+
+yt-dlp'nin başarısız olduğu durumlarda tarayıcımızın geliştirici araçlarını
+kullanarak indirme işlemi yapabiliriz.
+
+### Chrome Üzerinden İndirme
+
+Chrome'un geliştirici aracını bu iş için daha kullanışlı buldum, o yüzden anlatımı
+Chrome üzerinden yapacağım ama siz diğer tarayıcılarda da benzer işler
+yapabilirsiniz.
+
+İndirmek istediğimiz videoyu açıyoruz, şifremizi girip izlemeye başlıyoruz.
+Burada görüntü kalitesini elle ayarlamanızı öneririm aksi taktirde pencere
+boyutunuza ve internet hızınıza göre Vimeo daha düşük kalitede bir video gönderiyor
+olabilir. Diyelim ki Full HD, yani 1080p indirmek istiyoruz:
+
+```{figure} assets/yt-dlp-vimeo-kalite.png
+:align: center
+
+Elle kaliteyi 1080p yaptım.
 ```
+
+Videoyu başlatalım, bir 10 snye oynasın, videoyu durdurmayın oynamaya devam
+etsin. Daha sonra **F12** tuşuna basarak, *Geliştirici Araçlarını* yani
+*DevTools* u açalım ve *Ağ* Yani *Network* sekmesine giderek gelen giden şeyleri
+yakalayalım. Bu arada videomuz oynuyor olmalı. Daha sonra *Boyut* a göre
+azalacak şekilde sıralayalım. Bendeki gibi iki farklı isimde `.mp4` dosyaları
+gördükten sonra paketlerin yakalanmasını durdurabilirsiniz.
+
+```{figure} assets/yt-dlp-chrome-devtools.png
+:align: center
+
+`F12` ile açıyoruz.
+```
+
+Burada ismi farklı olan iki adet `.mp4` dosyası göreceksiniz. Ben yukarıdaki
+görselde `1` ve `2` olarak işaretledim. Biz videoyu izledikçe bu dosyalar
+Vimeo'dan tarayıcımıza gelmeye devam edecektir. Boyutu yaklaşık 2 MB olan dosya
+parçaları yani `1.mp4`, video dosyasıdır fakat sessizdir. Boyutu 100 kB altında
+parçaları olan `2.mp4` dosyası ise ses dosyasıdır onda da video yoktur. `1.mp4`
+e ait satırlardan birine sağ tıklayalım, `Kopyala → URL'yi kopyala` diyelim.
+Bunu doğrudan yeni bir sekme açarak adres çubuğuna veya bir not defterine
+yapıştıralım. Şu formatta olacaktır:
+
+```text
+https://vod-adaptive-ak.vimeocdn.com/a/1.mp4?c&range=d-f
+```
+
+Ben birçok yeri kısalttım. Burada sonda bulunan `&range=...` kısmını **siliyoruz.**
+Fakat onun dışındaki diğer parçaları bırakıyoruz. Yani:
+
+```text
+https://vod-adaptive-ak.vimeocdn.com/a/1.mp4?c
+```
+
+kalıyor. Kalan kısma tarayıcımızla gidiyoruz.
+
+Burada videomuz doğrudan tarayıcı içerisinde oynayacaktır, fakat sesi yok.
+Videonun sağ altında bulunan `⋮` sembolüne tıklıyor ve `İndir` diyoruz.
+`1.mp4` dosyamız iniyor.
+
+Aynı işlemi `2.mp4` için yani ses dosyası için de tekrarlıyoruz. Günün sonunda
+elimizde `1.mp4` yani video dosyası ve `2.mp4` yani ses dosyası bulunuyor.
+
+Son aşamada bunları birleşitiriyoruz. Bunun için FFmpeg kullanabiliriz. Zaten
+yazının başında FFmpeg'i temin etmeyi anlatmıştım, yt-dlp için de temin etmemiz
+gerekiyor. İndirdiğimiz FFmpeg'i kullanabiliriz. Şu yazımda FFmpeg ile
+birleştirme işlemini anlatıyorum:
+
+[](ffmpeg-birlestirme.md)
+
+Birleştirdikten sonra videoyu bir kontrol edin, sesi düzgün mü? Bazen başları
+düzgün olup sonda bozulmalar olabiliyor. Böyle bir durumda işlemleri tekrar
+etmeyi deneyebilirsiniz. Nadir de olsa anlık ağ problemlerinden dosyalar bozuk
+gelebiliyor. Videonun başını, ortasını ve sonunu atlayarak şöyle bir 2-3 saniye
+bakarak test edin.
+
+## Kapanış
+
+An itibariyle durum bu şekilde. Ama dediğim gibi YouTube, Vimeo gibi stream
+platformları sürekli değişiklik yapıyorlar. Bunların bir kısmı yt-dlp gibi
+programların çalışmasını engellemeye yönelik oluyor. Buna karşı tedbirler de
+yt-dlp tarafından alınıyor, yani sonu olmayan bir mücadele adeta. Sizin bu yazıyı
+okuduğunuz tarihte yazdığım yöntemler çalışmıyor olabilir ya da işler kolaylaşmış
+olabilir.
+
+Tekrar hatırlatmak isterim ki ben burada yöntemi tarifliyorum. İndireceğiniz
+içeriklerin sahiplik konusu, kullanım lisansı gibi konulara lütfen dikkat edin.
+
+**Bir şeyi yapabiliyor olmanız onu yapmanızı her zaman haklı kılmaz.**
 
 ## Kaynaklar
 

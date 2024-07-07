@@ -23,6 +23,7 @@ dosya-dizin-izin.md
 inode.md
 rwx-dosya-dizin.md
 soft-hard-link.md
+dot-ve-dot-dot.md
 ```
 
 ## 📚 Kaynaklar

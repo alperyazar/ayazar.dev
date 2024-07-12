@@ -11,5 +11,5 @@ GitLab'a özgü notlarım.
 maxdepth: 1
 glob: true
 ---
-cicd-variables
+*
 ```

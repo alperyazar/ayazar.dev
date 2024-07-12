@@ -76,6 +76,7 @@ not-hakkinda.md
 buildroot/index.md
 c/index.md
 devops/index.md
+embedded/index.md
 ldd/index.md
 sys/index.md
 xilinx/index.md

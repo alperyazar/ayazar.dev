@@ -2,7 +2,7 @@
 giscus: 553430f9-d308-41c7-8cf7-fab7868e358c
 ---
 
-# 🐧 Linux Aygıt Sürücüsü Geliştirme
+# 🐧 Linux Aygıt Sürücü
 
 Bu kısım, Linux için aygıt sürücüsü geliştirme yani device driver development
 çalışmaları için ayrılmıştır.

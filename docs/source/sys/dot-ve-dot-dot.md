@@ -1,6 +1,0 @@
-# `.` ve `..`
-
-```{todo}
-Yazı hazırlanacaktır.
-```
-

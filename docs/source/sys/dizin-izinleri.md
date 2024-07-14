@@ -299,6 +299,44 @@ Odaya giremediğimiz için, dizin tablosunda da değişiklik yapamıyoruz. Bu a�
 `rm`, `mv` gibi komutları çalıştırabilmemiz için o dizinde `x` hakkımızın olması
 gerekiyor.
 
+## Dosya İzinleri
+
+Çok kısaca şekil üzerinden dosya izinlerinden de tekrar bahsedeyim.
+
+```{figure} assets/dizin-oda.png
+:align: center
+```
+
+Dosya izinleri yukarıdaki çizimde inode'lardan point edilen kırmızı kutuları
+ilgilendiriyor, yani dosya izinlerini. inode içerisindeki bilgilerin kendisi
+doğrudan izinlerle ilgili değil. Örneğin bir dosyaya verilen hard link sayısı
+inode içerisinde tutuluyor. Dosyaya yazma hakkımız olmamasına rağmen bulunduğu
+dizinde `x` hakkımız varsa dosyaya hard link oluşturabiliriz:
+
+```shell
+alper@brs23-2204:~/sys$ ls -ld a
+dr-xrwxr-x 3 alper alper 4096 Jul 14 17:57 a
+
+alper@brs23-2204:~/sys$ cd a
+alper@brs23-2204:~/sys/a$ ls -l xx
+----rw-r-- 1 alper alper 3 Jul 14 17:57 xx
+
+alper@brs23-2204:~/sys/a$ cd ..
+alper@brs23-2204:~/sys$ ln a/xx link
+alper@brs23-2204:~/sys$ ls -l a/xx
+----rw-r-- 2 alper alper 3 Jul 14 17:57 a/xx
+
+alper@brs23-2204:~/sys$ cat link
+cat: link: Permission denied
+alper@brs23-2204:~/sys$ echo "yazma" > link
+bash: link: Permission denied
+```
+
+Gördüğünüz üzere `a` da `x` hakkım olduğu için `w` hakkım olmasa bile `xx`
+dosyasına `a` dışından hard link oluşturabildim, `xx` dosyasında hiçbir hakkım
+yok ama link count sayısını arttırabildim. Çünkü `rwx` hakları doğrudan inode'u
+değil, dosya içeriğini bağlıyor.
+
 ## Kaynaklar
 
 - <https://wpollock.com/AUnix1/FilePermissions.htm>

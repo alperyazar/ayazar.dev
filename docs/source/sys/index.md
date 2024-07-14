@@ -22,8 +22,10 @@ process.md
 dosya-dizin-izin.md
 inode.md
 rwx-dosya-dizin.md
+dizin-izinleri.md
 soft-hard-link.md
 dot-and-dot-dot.md
+ozel-izinler.md
 ```
 
 ## 📚 Kaynaklar

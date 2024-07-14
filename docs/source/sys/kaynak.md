@@ -15,6 +15,7 @@ Linux Sistem Programlama ile ilgili olduğunu düşündüğüm çeşitli kaynakl
 - Murat Demirten tarafından hazırlanmış [Linux Sistem
   Programlama](https://demirten.gitbooks.io/linux-sistem-programlama/content/)
   isimli açık online kitap.
+- [File Permissions (PDF)](assets/file-permissions.pdf)
 
 ## 📚 man Sayfaları
 

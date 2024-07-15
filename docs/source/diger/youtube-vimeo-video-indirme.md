@@ -211,6 +211,10 @@ yine başarısız oldu fakat 403 değil, 400 hatası vermeye başladı:
 ERROR: [vimeo] <ID>: Unable to download JSON metadata: HTTP Error 400: Bad Request (caused by <HTTPError 400: Bad Request>)
 ```
 
+```{note}
+yt-dlp'nin 2024.07.09 versiyonu ile beraber Vimeo hataları giderilmiş duruyor.
+```
+
 ### Protected ve Private Videolar
 
 Vimeo'nun video yükleyen tarafında olmadım. Anladığım kadarıyla şifreyle korunan

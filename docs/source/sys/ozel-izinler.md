@@ -1,9 +1,5 @@
 # Özel Dosya İzinleri
 
-```{todo}
-Yazı yarımdır.
-```
-
 Şimdiye kadar bir dosya veya dizin izni hakkında konuşurken 3 farklı gurptan
 (user, group, other) ve 3 farklı izinden, `rwx`, bahsettik. Linux sistemlerde
 bu izinlerin dışında farklı senaryolarda bize faydalı olabilecek birkaç izin

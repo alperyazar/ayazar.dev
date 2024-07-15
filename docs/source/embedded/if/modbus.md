@@ -1,9 +1,5 @@
 # Modbus
 
-```{todo}
-Yazı henüz tamamlanmamıştır.
-```
-
 Modbus, OSI modelinde en tepede yani application layer'da duran bir protokoldür.
 
 1979 yılından beri hayatımızdadır.
@@ -118,25 +114,37 @@ Modbus, endüstriyel uygulamalar için tasarlanmıştır, o yüzden
 dokümantasyonundaki bazı terimler garip gelebilmektedir.
 
 Modbus dokümanlarında, protokol ile cihazın belleğindeki çeşitli değerlere
-erişildiği (okuma veya yazma) düşünülmüştür. 4 farklı temel tablo
-tanımlanmıştır. Bu 4 adet tablo adeta cihazın belleğinde durmaktadır ve bizler
+erişildiği (okuma veya yazma) düşünülmüştür. 4 farklı temel blok
+tanımlanmıştır. Bu 4 adet blok adeta cihazın belleğinde durmaktadır ve bizler
 Modbus üzerinden bunlara erişmekteyiz.
 
-| Tablo | Nesne Tipi | R/W |
+| Blok | Nesne Tipi | R/W |
 | ----- | ---------- | --- |
 | Discrete Input | 1-bit | R |
 | Coils | 1-bit | R/W |
 | Input Registers | 16-bit word | R |
 | Holding Registers | 16-bit word | R/W |
 
+```{figure} assets/modbus-figure-6.jpg
+:align: center
+
 Bellekte sanki bir bölgede Discrete Input, bir yerde Coils, bir yerde Input
-Registers varmış gibi düşünebiliriz. Elbette bu kısımlar overlap edebilir. Yani
-16-bit genişliğindeki bir register'ı hem Input Registers ile word genişliğinde
-hem de Coils ile bitwise görebiliriz. Bellek modelinden devam edecek olursak
-bellekteki bazı lokasyonlar birbirinin *alias* ı olabilir. Bellekteki bu
-alanların değerlerinin ne ifade edeceği tamamen **vendor bağımlıdır.** Modbus'un
-sunduğu bu veri modelinin, uygulamaya nasıl bağlanacağı IEC-61131 gibi
-*application model* ler ile belirlenir.
+Registers varmış gibi düşünebiliriz. Görsel alıntıdır. `[1]`
+```
+
+Elbette bu kısımlar overlap edebilir. Yani 16-bit genişliğindeki bir register'ı
+hem Input Registers ile word genişliğinde hem de Coils ile bitwise görebiliriz.
+Yani bellekteki bazı lokasyonlar birbirinin *alias* ı olabilir.
+
+```{figure} assets/modbus-figure-7.jpg
+:align: center
+
+Burada da tüm 4 blok alias durumdadır. Görsel alıntıdır. `[1]`
+```
+
+Bellekteki bu alanların değerlerinin ne ifade edeceği tamamen **vendor
+bağımlıdır.** Modbus'un sunduğu bu veri modelinin, uygulamaya nasıl bağlanacağı
+IEC-61131 gibi *application model* ler ile belirlenir.
 
 Modbus protokollerinde bu 4 farklı türdeki hafıza, bir numara ile
 adreslenmektedir. Modbus paketlerinde, PDU içerisinde, bu adresler `0-65535`
@@ -145,19 +153,28 @@ başlamaktadır. Örneğin 3 nolu Discrete Input türünden bir biti okumak içi
 gerekli olan Modbus paketindeki adres değeri 2 olmalıdır, kafa karıştırıcı değil
 mi...
 
+```{figure} assets/modbus-figure-8.jpg
+:align: center
+
+Paket'te `n` yazıyorsa hafızada `n+1` e erişiyoruz. Görsel alıntıdır. `[1]`
+```
+
 ## Function Codes
 
 Yukarıda `1-127` (sınırlar dahil) arasındaki function code'ların geçerli
 olduğundan bahsetmiştik.
 
-`Figure 10 koy`
+```{figure} assets/modbus-figure-10.jpg
+:align: center
+
+Function code'ların bir kısmı rezerve, bir kısmına da önden anlamlar
+yüklenmiştir. Görsel alıntıdır. `[1]`
+```
 
 Bu aralıktaki kodların bir kısmı Modbus tarafından PUBLIC olarak işaretlenmiş ve
 genel amaçlıdır. Bir kısmı ise User Defined olarak bırakılmıştır.
 
-```{todo}
-Burada kaldım
-```
+Bunları da başka bir yazıda irdeleyelim, burada genel bir bakış attık.
 
 ## Kaynaklar
 

@@ -161,6 +161,18 @@ altına bir şeyler yazabilir ama sticky bit set olduğu için sadece kendisine
 ait olanları silebilir veya yeniden adlandırabilir. Bu sayede bir kullanıcı
 dizinde `rwx` hakkı olmasına rağmen diğer kullanıcıların dosyalarına salça olamaz.
 
+---
+
+Kernel 3.6 ile beraber bu bite bir anlam daha yüklenmiştir. [^7f] [^13f] Symlink
+ile tetiklenen [TOCTOU](https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use)
+atakların engellenmesi amaçlanmıştır:
+
+```text
+The solution is to permit symlinks to only be followed when outside
+a sticky world-writable directory, or when the uid of the symlink and
+follower match, or when the directory owner matches the symlink's owner.
+```
+
 ### Dosyalarda Sticky Bit
 
 Linux üzerinde dosyalara verilen sticky bit'lerin bir anlamı yoktur. Diğer
@@ -514,7 +526,67 @@ Yani grup kısmında `s` yerine `S` görüyorsak, SGID çalışmıyor, en azınd
 
 ### Dizinlerde SGID
 
-Buradayım...
+Dizinerde SUID'nin bir anlamı yoktu fakat SGID için durum farklı.
+
+Linux sistemlerde bir dizin içerisinde bir dosya veya dizin oluşturulduğu zaman
+yeni oluşturulan dizin/dosyanın GID değeri onu yaratan kullanıcının, daha doğrusu
+prosesin EGID değeri olmaktadır, yaratıldığı dizinden bağımsız olarak. Bu, AT&T
+UNIX'te de böyledir, Linux da böyle davranmaktadır. Bir diğer tercih de içinde
+yaratıldığı dizinin grup bilgilerini almaktır, yaratan kişiden bağımsız olarak.
+Bu da BSD tarzı olarak geçmektedir. Linux'ta istersek `mount -o bsdgroups` veya
+`mount -o grpid` ile mount edersek BSD tarzı davranışa ulaşabiliriz. Bir diğer
+yol da SGID kullanmaktır. SGID biti set edilmiş dizinlerin altındaki dizin ve
+klasörler de böyle yaratılır. Yaratılan dizinlerin de SGID biti set edilmiş olur.
+
+Örnek:
+
+```shell
+alper@brs23-2204:/opt/sys$ mkdir dizin
+alper@brs23-2204:/opt/sys$ chmod o+rwx dizin
+alper@brs23-2204:/opt/sys$ chmod g+s dizin
+
+alper@brs23-2204:/opt/sys$ ls -ld dizin
+drwxrwsrwx 2 alper alper 4096 Jul 15 09:02 dizin
+
+alper@brs23-2204:/opt/sys$ cd dizin
+alper@brs23-2204:/opt/sys/dizin$ touch alper
+alper@brs23-2204:/opt/sys/dizin$ ls -l
+total 0
+-rw-rw-r-- 1 alper alper 0 Jul 15 09:03 alper
+```
+
+Burada `alper` kullanıcısı ile bir dizin yarattım ve `g+s` ile SGID bitini set
+ettim. Aynı kullanıcı ile bu dizin altında bir şeyler yaratınca farkı görmüyorum.
+Ama şimdi gidip `user1` kullanıcısı ile altında bir şeyler yaratayım. Bunu
+yapabilmek için `o+rwx` ile izin verdim, SGID ile ilgisi olan bir konu değil
+
+```shell
+user1@brs23-2204:/opt/sys/dizin$ touch user1
+user1@brs23-2204:/opt/sys/dizin$ mkdir user1-dir
+user1@brs23-2204:/opt/sys/dizin$ cd user1-dir/
+user1@brs23-2204:/opt/sys/dizin/user1-dir$ touch user1
+user1@brs23-2204:/opt/sys/dizin/user1-dir$ cd ..
+
+user1@brs23-2204:/opt/sys/dizin$ ls -l
+total 4
+-rw-rw-r-- 1 alper alper    0 Jul 15 09:03 alper
+-rw-rw-r-- 1 user1 alper    0 Jul 15 09:03 user1
+drwxrwsr-x 2 user1 alper 4096 Jul 15 09:04 user1-dir
+
+user1@brs23-2204:/opt/sys/dizin$ cd user1-dir/
+user1@brs23-2204:/opt/sys/dizin/user1-dir$ ls -l
+total 0
+-rw-rw-r-- 1 user1 alper 0 Jul 15 09:04 user1
+```
+
+İşte burada farkı görüyoruz. `user1` ile yarattığım `user1` isimi dosyanın
+grubu `alper` oldu çünkü altında bulunduğu dizinin grubu `alper` ve SGID set
+edilmiş durumda. Benzer şekilde `user1-dir` isimli dizinin de grubu `alper` oldu
+ve SGID otomatik olarak set edildi, `s` oldu. Onun altındaki dosyalar da benzer
+şekilde davranıyor.
+
+Bu davranış özellikle ortak dizinlerde çalışırken iyi olabiliyor, dosya koyan
+herkesin koyduğu dosyalar bir gruba dahil oluyor.
 
 ## Kaynaklar
 
@@ -532,3 +604,4 @@ Buradayım...
 [^10f]: <https://stackoverflow.com/a/77976994/1766391>
 [^11f]: <https://linux.die.net/man/2/mount>
 [^12f]: <https://man7.org/linux/man-pages/man2/fcntl.2.html>
+[^13f]: <https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=800179c9b8a1e796e441674776d11cd4c05d61d7>

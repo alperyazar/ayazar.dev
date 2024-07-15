@@ -26,6 +26,7 @@ dizin-izinleri.md
 soft-hard-link.md
 dot-and-dot-dot.md
 ozel-izinler.md
+dac-acl-mac.md
 ```
 
 ## 📚 Kaynaklar

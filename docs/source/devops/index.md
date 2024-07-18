@@ -31,4 +31,5 @@ glob: true
 ---
 tool/index.md
 gitlab/index.md
+podman/index.md
 ```

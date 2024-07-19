@@ -33,6 +33,13 @@ cause a potential security risk if you are not in such network, like working
 at home.
 ```
 
+#### Modify Desktop Shortcut
+
+For Ubuntu, modify `/usr/share/applications/code.desktop`:
+
+Replace `Exec=/usr/share/code/code %F` with
+`Exec=/usr/share/code/code --ignore-certificate-errors %F`.
+
 ### Proxy
 
 You can set proxy for system wide or just for VS Code.

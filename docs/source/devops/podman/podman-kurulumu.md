@@ -36,6 +36,9 @@ $ cat /etc/subgid
 ayazar:100000:65536
 ```
 
+Bu ayarları değiştirdikten sonra `podman system migrate` demeke gerekebilir,
+gereksiz yere demenin de bir zararı olmamalı.
+
 Örneğin benim durumumda bir aralık bana tanımlanmış. LDAP gibi durumlarda bu
 dosyalar güncellenmeyebiliyor. Bu durumda makineyi kullanacak herkes için
 overlap etmeyecek aralıklar vermek gerekiyor. Aşağıdaki dokümanlarda bu konu

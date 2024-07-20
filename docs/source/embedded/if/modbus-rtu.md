@@ -66,8 +66,8 @@ Modbus RTU dokümanında master ve slave node'lar için state diyagramlar verilm
 Görsel alıntıdır. `[1]`
 ```
 
-- Master açılınca `Idle` state'inde duruyor. Bu state'te değilse request
-  atamıyor. Yani bir request attıktan sonra Idle'a gelene kadar başka request
+- Master açılınca `Idle` state'inde duruyor. **Bu state'te değilse request
+  atamıyor.** Yani bir request attıktan sonra Idle'a gelene kadar başka request
   atılamaz.
 - Unicast mode'da bir slave adreslenerek mesaj atıldıysa master cevap beklemeye
   geçer. Bir yandan da bir time-out süresi saymaya başlar. Time-out süresi
@@ -82,6 +82,58 @@ Görsel alıntıdır. `[1]`
   arası, time-out süresi ise saniyeler mertebesindedir.
 
 ## Slave State Diagram
+
+```{figure} assets/modbus-rtu-figure-8.jpg
+:align: center
+
+Görsel alıntıdır. `[1]`
+```
+
+- Slave açılınca `Idle` state'inde duruyor.
+- Bir paket geldiği zaman eğer gelen pakette CRC hatası gibi hatalar varsa
+  paket slave tarafından discard edilebilir. Bu durumda slave'in bir cevap
+  vermesine gerek yoktur.
+- Eğer pakette slave'in yapamayacağı bir şey isteniyorsa ya da paketin içeriği
+  hatalı ise master'a cevap dönülmelidir.
+- Her şey yolunda ise master'ın istediği yapıldıktan sonra ve paket **unicast
+  ise** master'a cevap dönülmelidir.
+
+```{note}
+🤔 State diyagramında ve açıklamada ne olmayan bence şöyle bir kısım var:
+Broadcast paketinin içeriğinde hata varsa slave yine cevap dönmeli mi? Bence
+broadcast mesajında böyle bir durum olmamalı. Birden fazla frame cevap dönmeye
+çalışırs ne olacak hata durumunda?
+```
+
+## Örnek Akış
+
+```{figure} assets/modbus-rtu-figure-9.jpg
+:align: center
+
+Görsel alıntıdır. `[1]`
+```
+
+Yukarıdaki görselde 3 adet transaction verilmiştir.
+
+İlk olanda, yani `i-1` olanda, master bir istek atmakta, arkasından da slave
+cevap vermektedir. Burada slave'in paketi aldıktan sonra işlemesi bir müddet
+vakit almaktadır: `Request treatment`. Daha sonra slave cevap atmakta ve
+master'da bir süre gelen cevabı incelemektedir.
+
+Bir sonrakinde, `i` olanda, master bir broadcast mesajı atmakta ve broadcast
+mesajlarında slave'ler cevap vermemektedir. Fakat master `Turnaround delay`
+kadar bir süre *open loop* şekilde beklemektedir. Bu süre, slave'lerin mesajı
+işlemesi için master'ın beklediği bir süredir.
+
+Son `i+1` isimli transaction'da slave paketi hatalı almakta, CRC hatası örneğin,
+ve paketi drop etmektedir. Bu durumda slave bir cevap oluşturmaz. Master time
+out'a girer ve bir sonraki transaction'a geçer.
+
+`REQUEST`, `REPLY`, `BROADCAST` gibi süreler paket uzunluğuna ve baud rate'e
+bağlıdır. Onun dışındaki bekleme süreleri ise slave'lere göre seçilmelidir.
+Ne kadar sürede mesaj işlenebiliyor vs.
+
+## Transmission Modes
 
 BURADAYIM
 

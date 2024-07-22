@@ -91,6 +91,7 @@ Görsel alıntıdır. `[1]`
 
 - Slave açılınca `Idle` state'inde duruyor.
 - Bir paket geldiği zaman eğer gelen pakette CRC hatası gibi hatalar varsa
+  veya master'ın attığı paket ile ilgili slave adreslenmediyse,
   paket slave tarafından discard edilebilir. Bu durumda slave'in bir cevap
   vermesine gerek yoktur.
 - Eğer pakette slave'in yapamayacağı bir şey isteniyorsa ya da paketin içeriği
@@ -135,6 +136,25 @@ Ne kadar sürede mesaj işlenebiliyor vs.
 
 ## Transmission Modes
 
-BURADAYIM
+Seri kanal üzerinde implement edilen Modbus protokolü için iki adet
+*transmission mode* tanımlanmıştır: **RTU** ve **ASCII**. RTU modu tüm cihazlar
+tarafından implement edilmelidir, ASCII opsiyoneldir. İki modu implement eden
+cihazlarda default mode RTU olmalıdır. Mode, verinin mesaj içerisine nasıl
+paketleneceğiniz ve nasıl gösterileceğini belirler. ASCII, text modu RTU ise
+binary mode olarak düşünülebilir. Bu dokümanda sadece RTU'ya odaklanıyorum.
+
+### RTU
+
+*Bildiğimiz* seri kanal mesajlarından oluşur.
+
+```text
+| 1 bit start | 8 bit data (LSB önce) | 1 bit parity | 1 bit stop |
+```
+
+Data gönderilirken önce LSB biti hatta konur. Default olarak **even parity**
+kullanılır. Opsiyonel olarak odd parity veya no parity de desteklenebilir.
+Modbus dokümanları geniş bir destek aralığı için no parity'nin de desteklenmesini
+önermektedir. Eğer parity kullanılmazsa yerine stop biti konulmalıdır, yani
+2 stop bit gönderilmelidir.
 
 [^1f]: [MODBUS over Serial Line Specification & Implementation Guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)

@@ -236,8 +236,37 @@ kütüphanede de benim gibi 11 bit almışlar, neyse...
 ```{figure} assets/modbus-rtu-figure-13.jpg
 :align: center
 
+Görüldüğü gibi frame'ler arası en az 3.5 karakter süresi olmalıdır. Elbette
+4.5 gibi daha büyük bir sayı da olabilir.
+
 Görsel alıntıdır. `[1]`
 ```
+
+Benzer şekilde:
+
+```{figure} assets/modbus-rtu-figure-t15.jpg
+:align: center
+
+Bir frame içerisinde iki karakter arasında 1.5 karakter süresinden daha fazla
+boşluk bulunamaz. Bu durumda alan kişi mesajı discard etmelidir.
+
+Görsel alıntıdır. `[1]`
+```
+
+Hem master hem de slave açısından şöyle bir state diagram çizilebilir:
+
+```{figure} assets/modbus-rtu-figure-14.jpg
+:align: center
+
+Görsel alıntıdır. `[1]`
+```
+
+- En az 3.5 karakter süresi boyunca bir iletim olmazsa hat *idle* olarak kabul
+  edilir.
+- Alan taraf `t3.5` bittikten sonra frame'in bittiğini düşünüp işler.
+- Alan taraf isterse işlem kolaylığı açısından CRC'yi beklemeden adres alanını
+  işleyip, eğer kendisi adreslenmediyse frame'in bitişini beklemeye başlayabilir.
+  Devamını almasa da olur.
 
 BURADAYIM
 

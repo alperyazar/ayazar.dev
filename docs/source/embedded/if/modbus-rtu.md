@@ -143,7 +143,7 @@ cihazlarda default mode RTU olmalıdır. Mode, verinin mesaj içerisine nasıl
 paketleneceğiniz ve nasıl gösterileceğini belirler. ASCII, text modu RTU ise
 binary mode olarak düşünülebilir. Bu dokümanda sadece RTU'ya odaklanıyorum.
 
-### RTU
+## RTU
 
 *Bildiğimiz* seri kanal mesajlarından oluşur.
 
@@ -157,4 +157,90 @@ Modbus dokümanları geniş bir destek aralığı için no parity'nin de destekl
 önermektedir. Eğer parity kullanılmazsa yerine stop biti konulmalıdır, yani
 2 stop bit gönderilmelidir.
 
+## CRC
+
+RTU formatını hatırlayalım:
+
+```text
+| Adres (1 byte) | Function code (1 byte) | Data (0-252 byte) | CRC (2 byte) |
+```
+
+Burada CRC'nin önce LSB byte'ı sonra MSB byte'ı gönderilmelidir:
+
+```text
+CRC Low (1 byte) | CRC High (1 byte)
+```
+
+şeklinde.
+
+Parity'nin olup olmamaısından bağımsız olarak CRC olmak zorundadır.
+
+CRC gözüktüğü gibi 16-bit genişleğindedir.
+
+CRC, tüm mesaj üzerinden hesaplanır yani `Adres`, `Function code` ve `Data`
+hesaplaması CRC'ye dahil edilir.
+
+Modbus dokümanlarında CRC'nin hesaplanması detaylı olarak anlatılmaktadır. [^1f]
+Pratikte aşağıdaki sitelerden CRC hesaplaması yapılabilir:
+
+- <https://crccalc.com/> `CRC-16/MODBUS` kullanılmalıdır.
+- <https://www.lammertbies.nl/comm/info/crc-calculation> `CRC-16 (Modbus)`
+  kulanılmalıdır.
+
+Yukarıdaki sitelere veri girerken `ASCII` değil `HEX` girdiğinizden emin olun.
+Modbus dokümanlarından devam edecek olursak elimizdeki frame `0207` den
+oluşuyorsa, yani adres `0x02` ve function code `0x07` ise yani data yoksa
+CRC, `0x1241` olarak bulunmalıdır. Fakat bu CRC hatta konulduğu zaman hatta
+`0x41` ve `0x12` görülmelidir. Çünkü Modbus protokolünde CRC'nin önce düşük byte'ı,
+LSB, sonra yüksek byte'ı, MSB, gönderilmelidir.
+
+## Framing
+
+RTU mesajlaşmada **frame'ler arasında en az 3.5 karakter boşluk bulunmalıdır.**
+**Peki karakter süresi ne kadardır?** Bir karakter 8 bit olarak mı yoksa
+11 bit (1 bit start + 8 bit data + 1 bit parity + 1 bit stop) olarak mı
+alınmalıdır? Ben Modbus dokümanında net bir tanım göremedim. 8 bit, 11 bit,
+hatta 10 bit alan var (bence en alakasızı bu). [^2f] 8 bit bence yanlış çünkü
+dokümantasyonda bir yerde
+
+> Only the eight bits of data in each character...
+
+diye bir laf geçiyor. Demek ki character 8 bit'ten fazla. 10 bit doğru değil
+bence, parity var. O yüzden 11 bit olarak düşünmek mantıklı geliyor.
+
+Bir frame içinde de karakterler arasında **1.5 karakter süresinden fazla
+boşluk olmamalı.** Böyle bir durumda o frame eksik kabul edilir ve alıcı taraıfndan
+ihmal edilmelidir.
+
+3.5 karakterlik süre `t3.5`, 1.5 karakterlik süre de `t1.5` olarak geçmektedir.
+Driver implementasyonuna bağlı olarak timer kullanımı CPU interrupt yükünü
+arttırmaktadır. Baud rate arttıkça timer interrupt sıklığını arttırmamak için
+Modbus dokümanı baud rate'ten bağımsız sabit değerler kullanılmasını önermektedir.
+Buna göre:
+
+```text
+if baud rate > 19200
+  t3.5 = 1750 us
+  t1.5 =  750 us
+else
+  t3.5 = (3.5 * 11) / baud rate
+  t1.5 = (1.5 * 11) / baud rate
+```
+
+Karakter süresinin kaç bit olacağı dediğim gibi net değildir. 19200 bps değerindeki
+bu sayıları tutturmak için 11 değil 10 almak daha uygun oluyor ama 19200 bps
+değerinde bu sayılar tam örtüşecek diye bir şey de yok. Örneğin
+[bu](https://github.com/BlackBrix/Simple-Modbus-Master/blob/217cb83d943cd7194faf2c577214a8ccca37b815/SimpleModbusMaster.cpp#L417)
+kütüphanede de benim gibi 11 bit almışlar, neyse...
+
+```{figure} assets/modbus-rtu-figure-13.jpg
+:align: center
+
+Görsel alıntıdır. `[1]`
+```
+
+BURADAYIM
+
+
 [^1f]: [MODBUS over Serial Line Specification & Implementation Guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)
+[^2f]: <https://stackoverflow.com/questions/20740012/calculating-modbus-rtu-3-5-character-time>

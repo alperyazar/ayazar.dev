@@ -11,10 +11,11 @@ Modbus dokümanını temel alacağız. [^1f]
 
 ---
 
-RTU'da hattaki master node Modbus client, slave node'lar Modbus server olmaktadır.
+RTU'da hattaki master node Modbus client, slave node'lar Modbus server
+olmaktadır.
 
-Seri bir haberleşme hattı üzerinde implement edilen Modbus RTU'da sadece 1
-adet master olmaktadır ve maksimum 247 adet slave olabilir.
+Seri bir haberleşme hattı üzerinde implement edilen Modbus RTU'da sadece 1 adet
+master olmaktadır ve maksimum 247 adet slave olabilir.
 
 - İletişim her zaman master tarafından başlatılır.
 - Master'dan bir şey sorulmadan slave kendi başına gaza gelip bir mesaj atmaz
@@ -28,10 +29,10 @@ der, slave de bunun cevabını verir. Burada transaction dediğimiz şey bu iki
 paketten oluşur. Her slave'in `[1-247]` arası (sınırlar dahil) adresi vardır.
 
 **Broadcast mode** da ise master bir isteği tüm slave'lere yollar. Burada
-slave'ler tarafından bir cevap verilmez yani transaction dediğimiz şey
-tam da tanımlı değildir ama tanımlamak istersek tek mesajdan oluşuyor gibi
-düşünebiliriz. Adres `0` gönderilen paketler broadcast paket olmaktadır ve
-tüm slave'ler bu paketi almalıdır.
+slave'ler tarafından bir cevap verilmez yani transaction dediğimiz şey tam da
+tanımlı değildir ama tanımlamak istersek tek mesajdan oluşuyor gibi
+düşünebiliriz. Adres `0` gönderilen paketler broadcast paket olmaktadır ve tüm
+slave'ler bu paketi almalıdır.
 
 ---
 
@@ -56,7 +57,8 @@ RTU'da paket formatı şöyledir:
 
 ---
 
-Modbus RTU dokümanında master ve slave node'lar için state diyagramlar verilmiştir.
+Modbus RTU dokümanında master ve slave node'lar için state diyagramlar
+verilmiştir.
 
 ## Master State Diagram
 
@@ -90,10 +92,10 @@ Görsel alıntıdır. `[1]`
 ```
 
 - Slave açılınca `Idle` state'inde duruyor.
-- Bir paket geldiği zaman eğer gelen pakette CRC hatası gibi hatalar varsa
-  veya master'ın attığı paket ile ilgili slave adreslenmediyse,
-  paket slave tarafından discard edilebilir. Bu durumda slave'in bir cevap
-  vermesine gerek yoktur.
+- Bir paket geldiği zaman eğer gelen pakette CRC hatası gibi hatalar varsa veya
+  master'ın attığı paket ile ilgili slave adreslenmediyse, paket slave
+  tarafından discard edilebilir. Bu durumda slave'in bir cevap vermesine gerek
+  yoktur.
 - Eğer pakette slave'in yapamayacağı bir şey isteniyorsa ya da paketin içeriği
   hatalı ise master'a cevap dönülmelidir.
 - Her şey yolunda ise master'ın istediği yapıldıktan sonra ve paket **unicast
@@ -131,8 +133,8 @@ ve paketi drop etmektedir. Bu durumda slave bir cevap oluşturmaz. Master time
 out'a girer ve bir sonraki transaction'a geçer.
 
 `REQUEST`, `REPLY`, `BROADCAST` gibi süreler paket uzunluğuna ve baud rate'e
-bağlıdır. Onun dışındaki bekleme süreleri ise slave'lere göre seçilmelidir.
-Ne kadar sürede mesaj işlenebiliyor vs.
+bağlıdır. Onun dışındaki bekleme süreleri ise slave'lere göre seçilmelidir. Ne
+kadar sürede mesaj işlenebiliyor vs.
 
 ## Transmission Modes
 
@@ -153,9 +155,9 @@ binary mode olarak düşünülebilir. Bu dokümanda sadece RTU'ya odaklanıyorum
 
 Data gönderilirken önce LSB biti hatta konur. Default olarak **even parity**
 kullanılır. Opsiyonel olarak odd parity veya no parity de desteklenebilir.
-Modbus dokümanları geniş bir destek aralığı için no parity'nin de desteklenmesini
-önermektedir. Eğer parity kullanılmazsa yerine stop biti konulmalıdır, yani
-2 stop bit gönderilmelidir.
+Modbus dokümanları geniş bir destek aralığı için no parity'nin de
+desteklenmesini önermektedir. Eğer parity kullanılmazsa yerine stop biti
+konulmalıdır, yani 2 stop bit gönderilmelidir.
 
 ## CRC
 
@@ -189,34 +191,34 @@ Pratikte aşağıdaki sitelerden CRC hesaplaması yapılabilir:
 
 Yukarıdaki sitelere veri girerken `ASCII` değil `HEX` girdiğinizden emin olun.
 Modbus dokümanlarından devam edecek olursak elimizdeki frame `0207` den
-oluşuyorsa, yani adres `0x02` ve function code `0x07` ise yani data yoksa
-CRC, `0x1241` olarak bulunmalıdır. Fakat bu CRC hatta konulduğu zaman hatta
-`0x41` ve `0x12` görülmelidir. Çünkü Modbus protokolünde CRC'nin önce düşük byte'ı,
-LSB, sonra yüksek byte'ı, MSB, gönderilmelidir.
+oluşuyorsa, yani adres `0x02` ve function code `0x07` ise yani data yoksa CRC,
+`0x1241` olarak bulunmalıdır. Fakat bu CRC hatta konulduğu zaman hatta `0x41` ve
+`0x12` görülmelidir. Çünkü Modbus protokolünde CRC'nin önce düşük byte'ı, LSB,
+sonra yüksek byte'ı, MSB, gönderilmelidir.
 
 ## Framing
 
 RTU mesajlaşmada **frame'ler arasında en az 3.5 karakter boşluk bulunmalıdır.**
-**Peki karakter süresi ne kadardır?** Bir karakter 8 bit olarak mı yoksa
-11 bit (1 bit start + 8 bit data + 1 bit parity + 1 bit stop) olarak mı
-alınmalıdır? Ben Modbus dokümanında net bir tanım göremedim. 8 bit, 11 bit,
-hatta 10 bit alan var (bence en alakasızı bu). [^2f] 8 bit bence yanlış çünkü
-dokümantasyonda bir yerde
+**Peki karakter süresi ne kadardır?** Bir karakter 8 bit olarak mı yoksa 11 bit
+(1 bit start + 8 bit data + 1 bit parity + 1 bit stop) olarak mı alınmalıdır?
+Ben Modbus dokümanında net bir tanım göremedim. 8 bit, 11 bit, hatta 10 bit alan
+var (bence en alakasızı bu). [^2f] 8 bit bence yanlış çünkü dokümantasyonda bir
+yerde
 
 > Only the eight bits of data in each character...
 
 diye bir laf geçiyor. Demek ki character 8 bit'ten fazla. 10 bit doğru değil
 bence, parity var. O yüzden 11 bit olarak düşünmek mantıklı geliyor.
 
-Bir frame içinde de karakterler arasında **1.5 karakter süresinden fazla
-boşluk olmamalı.** Böyle bir durumda o frame eksik kabul edilir ve alıcı taraıfndan
+Bir frame içinde de karakterler arasında **1.5 karakter süresinden fazla boşluk
+olmamalı.** Böyle bir durumda o frame eksik kabul edilir ve alıcı taraıfndan
 ihmal edilmelidir.
 
 3.5 karakterlik süre `t3.5`, 1.5 karakterlik süre de `t1.5` olarak geçmektedir.
 Driver implementasyonuna bağlı olarak timer kullanımı CPU interrupt yükünü
 arttırmaktadır. Baud rate arttıkça timer interrupt sıklığını arttırmamak için
-Modbus dokümanı baud rate'ten bağımsız sabit değerler kullanılmasını önermektedir.
-Buna göre:
+Modbus dokümanı baud rate'ten bağımsız sabit değerler kullanılmasını
+önermektedir. Buna göre:
 
 ```text
 if baud rate > 19200
@@ -227,9 +229,9 @@ else
   t1.5 = (1.5 * 11) / baud rate
 ```
 
-Karakter süresinin kaç bit olacağı dediğim gibi net değildir. 19200 bps değerindeki
-bu sayıları tutturmak için 11 değil 10 almak daha uygun oluyor ama 19200 bps
-değerinde bu sayılar tam örtüşecek diye bir şey de yok. Örneğin
+Karakter süresinin kaç bit olacağı dediğim gibi net değildir. 19200 bps
+değerindeki bu sayıları tutturmak için 11 değil 10 almak daha uygun oluyor ama
+19200 bps değerinde bu sayılar tam örtüşecek diye bir şey de yok. Örneğin
 [bu](https://github.com/BlackBrix/Simple-Modbus-Master/blob/217cb83d943cd7194faf2c577214a8ccca37b815/SimpleModbusMaster.cpp#L417)
 kütüphanede de benim gibi 11 bit almışlar, neyse...
 
@@ -265,11 +267,11 @@ Görsel alıntıdır. `[1]`
   edilir.
 - Alan taraf `t3.5` bittikten sonra frame'in bittiğini düşünüp işler.
 - Alan taraf isterse işlem kolaylığı açısından CRC'yi beklemeden adres alanını
-  işleyip, eğer kendisi adreslenmediyse frame'in bitişini beklemeye başlayabilir.
-  Devamını almasa da olur.
+  işleyip, eğer kendisi adreslenmediyse frame'in bitişini beklemeye
+  başlayabilir. Devamını almasa da olur.
 
 BURADAYIM
 
-
-[^1f]: [MODBUS over Serial Line Specification & Implementation Guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)
+[^1f]: [MODBUS over Serial Line Specification & Implementation
+    Guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)
 [^2f]: <https://stackoverflow.com/questions/20740012/calculating-modbus-rtu-3-5-character-time>

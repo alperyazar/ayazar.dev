@@ -1,9 +1,5 @@
 # Modbus RTU
 
-```{todo}
-Doküman yarımdır.
-```
-
 Modbus bir seri kanal üzerinde, RS-232 veya RS-485 üzerinde implement edildiği
 zaman ve veri binary olarak taşındığı zaman Modbus RTU adını almaktadır. Binary
 değil de text olarak taşınıyorsa da Modbus ASCII olmaktadır. RTU'yu anlamak için
@@ -105,7 +101,14 @@ Görsel alıntıdır. `[1]`
 🤔 State diyagramında ve açıklamada ne olmayan bence şöyle bir kısım var:
 Broadcast paketinin içeriğinde hata varsa slave yine cevap dönmeli mi? Bence
 broadcast mesajında böyle bir durum olmamalı. Birden fazla frame cevap dönmeye
-çalışırs ne olacak hata durumunda?
+çalışırsa ne olacak hata durumunda? Bunun cevabını Modbus dokümanı içerisinde
+yakalayabiliyoruz `[1]`:
+
+It comprises also the error detected in broadcast messages even if an
+exception message is not returned in this case.
+
+Yani diyor ki broadcast durumunda hata oluşursa cevap dönülmez. Yine de açıkça
+state diagramda belirtilirse daha iyi olurmuş.
 ```
 
 ## Örnek Akış
@@ -175,7 +178,7 @@ CRC Low (1 byte) | CRC High (1 byte)
 
 şeklinde.
 
-Parity'nin olup olmamaısından bağımsız olarak CRC olmak zorundadır.
+Parity'nin olup olmamasından bağımsız olarak CRC olmak zorundadır.
 
 CRC gözüktüğü gibi 16-bit genişleğindedir.
 
@@ -202,8 +205,8 @@ RTU mesajlaşmada **frame'ler arasında en az 3.5 karakter boşluk bulunmalıdı
 **Peki karakter süresi ne kadardır?** Bir karakter 8 bit olarak mı yoksa 11 bit
 (1 bit start + 8 bit data + 1 bit parity + 1 bit stop) olarak mı alınmalıdır?
 Ben Modbus dokümanında net bir tanım göremedim. 8 bit, 11 bit, hatta 10 bit alan
-var (bence en alakasızı bu). [^2f] 8 bit bence yanlış çünkü dokümantasyonda bir
-yerde
+var (bence en alakasızı bu, en azında RTU için ASCII modda 10 bit almak doğru
+olacaktır). [^2f] 8 bit bence yanlış çünkü dokümantasyonda bir yerde
 
 > Only the eight bits of data in each character...
 
@@ -270,7 +273,12 @@ Görsel alıntıdır. `[1]`
   işleyip, eğer kendisi adreslenmediyse frame'in bitişini beklemeye
   başlayabilir. Devamını almasa da olur.
 
-BURADAYIM
+---
+
+Modbus dokümanının devamında RS-485/422 protokolü ile ilgili daha genel bilgiler,
+elektriksel özellikler, konnektör ve LED önerileri bulunmaktadır. Bu bilgileri
+buraya tekrar almıyorum, çoğu da zaten Modbus'tan bağımsız bilgiler. Yine
+de dokümandan takip edilebilir [^1f].
 
 [^1f]: [MODBUS over Serial Line Specification & Implementation
     Guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)

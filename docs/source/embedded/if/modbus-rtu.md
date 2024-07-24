@@ -5,6 +5,12 @@ zaman ve veri binary olarak taşındığı zaman Modbus RTU adını almaktadır.
 değil de text olarak taşınıyorsa da Modbus ASCII olmaktadır. RTU'yu anlamak için
 Modbus dokümanını temel alacağız. [^1f]
 
+```{note}
+🙏 Bu içeriğin oluşturulmasında verdiği katkılardan dolayı
+[Hamza Murat Yılmaz](https://www.linkedin.com/in/hamza-murat-y%C4%B1lmaz-2037891a2/)
+a teşekkürler...
+```
+
 ---
 
 RTU'da hattaki master node Modbus client, slave node'lar Modbus server

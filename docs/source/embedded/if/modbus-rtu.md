@@ -41,7 +41,9 @@ Adres alanı 1 byte'tan oluşmaktadır:
 | `[248 - 255]` | Rezerve |
 
 Bir adres iki adet slave'e atanamaz. Master mode'un bir adresi olmak zorunda
-değildir, sadece slave node'ların adresi olması zorunludur.
+değildir, sadece slave node'ların adresi olması zorunludur. Slave'ler cevap
+verirken kendi adreslerini belirtirler. Yani unicast giden istek ve cevaplardaki
+adresler aynı olmaktadır.
 
 ---
 
@@ -177,6 +179,8 @@ CRC Low (1 byte) | CRC High (1 byte)
 ```
 
 şeklinde.
+
+**Modbus data order'ı big endian iken CRC order'ı little endian olmaktadır.**
 
 Parity'nin olup olmamasından bağımsız olarak CRC olmak zorundadır.
 

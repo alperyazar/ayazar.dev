@@ -111,6 +111,17 @@ Coil: -- -- -- -- 39 38 37 36
 
 gibi...
 
+---
+
+Bir de **hata durumlarına** bakalım. Dokümanda gayet güzel gösterilmiş:
+
+```{figure} assets/modbus-function-codes-11.jpg
+:align: center
+
+Görsel alıntıdır. `[1]`
+```
+
+
 
 [^1f]: <https://modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf>
 [^2f]: <https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf>

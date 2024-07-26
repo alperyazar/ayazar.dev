@@ -121,6 +121,36 @@ Bir de **hata durumlarına** bakalım. Dokümanda gayet güzel gösterilmiş:
 Görsel alıntıdır. `[1]`
 ```
 
+Görebileceğimiz gibi farklı hata durumlarında farklı hatalar dönmelidir. Hata
+durumlarında 1 byte function code, istek function code'un `0x80` ile ORlanması
+ile oluşturulur. Daha sonra 1 byte data olarak `ExceptionCode` konur.
+
+Diyelim ki master olmayan bir adresteki coil'i okumak istedi. Bu durumda da
+`02` nolu exception dönüyorsak
+
+Cevap:
+
+```text
+| Adres | 0x81 | 0x02 | CRC-l | CRC-h |
+```
+
+olacaktır.
+
+---
+
+Yazının geri kanalındaki komutların çalışma biçimi bu komuta benzediği için
+daha yüzeysel anlatacağım.
+
+## Read Discrete Inputs, `0x02`
+
+Read coils, `0x01`, ile aynı çalışmaktadır.
+
+## Read Holding Registers, `0x03`
+
+Coil ve discrete input okumak ile benzerdir özünde. Holding Registers, Modbus
+standartında 16-bit olarak tanımlanmıştır. Buna göre protokolde değişiklikler
+olmaktadır.
+
 
 
 [^1f]: <https://modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf>

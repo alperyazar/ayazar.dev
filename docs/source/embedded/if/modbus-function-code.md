@@ -149,7 +149,61 @@ Read coils, `0x01`, ile aynı çalışmaktadır.
 
 Coil ve discrete input okumak ile benzerdir özünde. Holding Registers, Modbus
 standartında 16-bit olarak tanımlanmıştır. Buna göre protokolde değişiklikler
-olmaktadır.
+olmaktadır. Farklı olarak tek seferde en fazla 125 adet register okunabilir,
+her biri 16-bit. Bir register 2 byte şeklinde gönderilir. Modbus'a uygun
+olacak şekilde ilk olarak MSB byte hatta konur, yani big endian order kullanılır.
+
+##  Read Input Registers, `0x04`
+
+Read Holding Registers, `0x03`, ile aynı çalışmaktadır.
+
+##  Write Single Coil, `0x05`
+
+Tek 1-bit lik coil register'ın değerini değiştirmek için kullanılır.
+
+RTU İstek:
+
+```text
+| Adres | 0x05 | 0x0000 - 0xFFFF | 0x0000 or 0xFF00 | CRC-l | CRC-h |
+```
+
+CRC ve adres hariç 5 byte'lık bir pakettir. Function code sonrası ilk 2 byte
+yazma yapılacak regsiter adresini belirtir. Önceki paketlerde olduğu gibi
+`1` offset olayı burada da vardır. İlgili register'ı `ON` yapmak için
+`0xFF00`, `OFF` yapmak için `0x0000` yazılır. Diğer değerler geçersizdir.
+
+##  Write Single Register, `0x06`
+
+Tek bir holding register'a (16-bit) yazmak için kullanılır. Write Single Coil,
+`0x05`, e oldukça benzer. Data kısmı sabit iki adet 16-bit veri yerine yazılması
+istenen 16-bit veridir.
+
+##  Read Exception Status, `0x07`
+
+**Sadece seri kanal** implementasyonlarında vardır. 8-bit bir değer okunuyor ama
+ne işe yarıyor anlamadım.
+
+##  Diagnostics, `0x08`
+
+**Sadece seri kanal** implementasyonlarında vardır. Slave cihazdan (server)
+çeşitli sorgular ve test yapmaya yarar. 2 byte'lık sub-function code'lar ile
+istek şekillendirilir. Detayları Modbus dokümanında vardır.
+
+- Loopback test
+- Bir slave cihazı susturmak
+- İletişimi resetlemek
+- Çeşitli istatistik register'larını okumak için
+
+kullanılır.
+
+## Get Comm Event Log, `0x0C` ve Get Comm Event Counter, `0x0B`
+
+**Sadece seri kanal** implementasyonlarında vardır. Detayları dokümanlardan
+okunabilir. Özünde seri kanal ile çeşitli istatistikleri döner.
+
+## Write Multiple Coils, `0x0F`
+
+Birden fazla 1-bit genişliğinde olan coil'e yazmaya yarar.
 
 
 

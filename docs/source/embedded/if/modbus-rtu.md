@@ -240,7 +240,9 @@ Karakter süresinin kaç bit olacağı dediğim gibi net değildir. 19200 bps
 değerindeki bu sayıları tutturmak için 11 değil 10 almak daha uygun oluyor ama
 19200 bps değerinde bu sayılar tam örtüşecek diye bir şey de yok. Örneğin
 [bu](https://github.com/BlackBrix/Simple-Modbus-Master/blob/217cb83d943cd7194faf2c577214a8ccca37b815/SimpleModbusMaster.cpp#L417)
-kütüphanede de benim gibi 11 bit almışlar, neyse...
+kütüphanede de benim gibi 11 bit almışlar, benzer şekilde
+[Wikipedia](https://en.wikipedia.org/wiki/Modbus)'da da 11 bit olarak alınmış,
+neyse...
 
 ```{figure} assets/modbus-rtu-figure-13.jpg
 :align: center

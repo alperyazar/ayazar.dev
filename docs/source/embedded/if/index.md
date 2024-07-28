@@ -9,4 +9,5 @@ glob: true
 ---
 modbus
 modbus-rtu
+modbus-function-code
 ```

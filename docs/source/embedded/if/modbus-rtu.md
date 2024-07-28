@@ -47,7 +47,9 @@ Adres alanı 1 byte'tan oluşmaktadır:
 | `[248 - 255]` | Rezerve |
 
 Bir adres iki adet slave'e atanamaz. Master mode'un bir adresi olmak zorunda
-değildir, sadece slave node'ların adresi olması zorunludur.
+değildir, sadece slave node'ların adresi olması zorunludur. Slave'ler cevap
+verirken kendi adreslerini belirtirler. Yani unicast giden istek ve cevaplardaki
+adresler aynı olmaktadır.
 
 ---
 
@@ -184,6 +186,8 @@ CRC Low (1 byte) | CRC High (1 byte)
 
 şeklinde.
 
+**Modbus data order'ı big endian iken CRC order'ı little endian olmaktadır.**
+
 Parity'nin olup olmamasından bağımsız olarak CRC olmak zorundadır.
 
 CRC gözüktüğü gibi 16-bit genişleğindedir.
@@ -242,7 +246,9 @@ Karakter süresinin kaç bit olacağı dediğim gibi net değildir. 19200 bps
 değerindeki bu sayıları tutturmak için 11 değil 10 almak daha uygun oluyor ama
 19200 bps değerinde bu sayılar tam örtüşecek diye bir şey de yok. Örneğin
 [bu](https://github.com/BlackBrix/Simple-Modbus-Master/blob/217cb83d943cd7194faf2c577214a8ccca37b815/SimpleModbusMaster.cpp#L417)
-kütüphanede de benim gibi 11 bit almışlar, neyse...
+kütüphanede de benim gibi 11 bit almışlar, benzer şekilde
+[Wikipedia](https://en.wikipedia.org/wiki/Modbus)'da da 11 bit olarak alınmış,
+neyse...
 
 ```{figure} assets/modbus-rtu-figure-13.jpg
 :align: center

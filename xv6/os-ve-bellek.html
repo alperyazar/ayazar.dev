@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="tr" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="article:modified_time" content="2024-05-23T17:19:08+00:00" /><meta property="og:title" content="İşletim Sistemleri ve Bellek Yönetimi" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ayazar.dev/xv6/os-ve-bellek.html" />
+<meta property="og:site_name" content="Alper Yazar" />
+<meta property="og:description" content="İşletim sistemi, bizim için temel 3 donanımı soyutlar: işlemci, bellek ve disk. Disk, dosya sistemleri (NTFS, ext4, BTRFS, vs.) ile soyutlanır. Aslında ham veri depolama cihazı olan diskler dosya, ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İşletim Sistemleri ve Bellek Yönetimi &mdash; ayazar.dev</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/asciinema-player_2.6.1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/asciinema-custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/colors.css?v=c552ea84" />
+      <link rel="stylesheet" type="text/css" href="../_static/table.css?v=2383017d" />
+      <link rel="stylesheet" type="text/css" href="../_static/font.css?v=cb0fa957" />
+      <link rel="stylesheet" type="text/css" href="../_static/width.css?v=778471ac" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://ayazar.dev/xv6/os-ve-bellek.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=c91cfd43"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/asciinema-player_2.6.1.js"></script>
+        <script src="../_static/translations.js?v=5dbee647"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="next" title="📦 Diğer" href="../diger/index.html" />
+    <link rel="prev" title="Process Kavramı ve xv6 Çekirdeğindeki Gerçekleştirimi" href="process.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+<!-- Buy me a coffee -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Alper Yazar
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                ayazar.dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Belgeleri arayın" aria-label="Belgeleri arayın" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">🤓 About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#contact">✉️ Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#education">Education</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#work-experience">Work Experience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#publications">Publications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#patent">Patent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#thesis">Thesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#conference">Conference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#poster">Poster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#lecture-note">Lecture Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#project">Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#funded">Funded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#hobby">Hobby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#phd">PhD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#msc">MSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#bsc">BSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#attended-trainings">Attended Trainings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#embedded-software">Embedded/Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#digital-fpga">Digital/FPGA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#honor-award">Honor &amp; Award</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#membership">Membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#follow">Follow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#site-info">Site Info</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../follow.html">➡️ Follow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog/index.html">📼 Blog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blog/24/index.html">2024</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html">Why do we have programming languages in the first place? Part 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#why-do-computers-exist-in-the-first-place">Why do computers exist in the first place? 💻</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#processors">Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#talking-with-processors">Talking with Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#isa-the-contract">ISA: The Contract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#isa-bad-and-good-news">ISA: Bad and Good News</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#putting-instructions-into-the-memory">Putting Instructions into The Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#machine-language">Machine Language</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#assembly-the-first-step-towards-to-programming-languages">Assembly: The First Step Towards to Programming Languages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html">12 Yaşındaki Laptop’uma Hafta Sonu Linux Bakımı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#tasinma-hazirliklari">Taşınma Hazırlıkları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#ventoy">Ventoy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#kurulum">Kurulum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#kullanim">Kullanım</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/chatgpt-exporter.html">Sadece İki Tıklama ile ChatGPT Export! Markdown, HTML, txt, png…</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/zsh.html">My Zsh Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#oh-my-zsh">Oh My Zsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#powerlevel10k">powerlevel10k</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#plugins">plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#in-action">In action</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/23/index.html">2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html">TIOBE Index nedir? Güvenebilir miyiz?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#tiobe-index-nasil-hesaplaniyor">TIOBE Index nasıl hesaplanıyor?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#alternatifler">Alternatifler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#populerlik-nedir">Popülerlik nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#yani">Yani?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html">Muhendislik Yapabilirim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#yeteri-kadar-zeki-degilim-sanirim">Yeteri kadar zeki değilim sanırım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#neticede-kul-yapimi">Neticede kul yapımı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#roma-uno-die-non-est-condita">Roma uno die non est condita</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#isin-tarihini-de-biraz-ogrenelim">İşin tarihini de biraz öğrenelim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#bugun-anlamak-zorunda-degiliz">Bugün anlamak zorunda değiliz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#o-benden-daha-cok-biliyor">O benden daha çok biliyor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#eyvah-geride-kaldim">Eyvah, geride kaldım!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#ama-egim-cok-dusuk-arttirmam-lazim">Ama eğim çok düşük, arttırmam lazım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#ilerledigimi-nasil-anlayabilirim">İlerlediğimi nasıl anlayabilirim?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#her-katmani-stack-cok-iyi-bilmek-zorunda-degiliz">Her katmanı (stack) (çok iyi) bilmek zorunda değiliz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#o-konuda-motivasyonum-hic-yok">O konuda motivasyonum hiç yok</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#baska">Başka?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/full-stack-elektronik.html">Full Stack Elektronik Mühendisi?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#full-stack-developer-kimdir">Full Stack Developer kimdir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#stack-nedir">Stack nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#elektronik-sistemlerdeki-katmanlar">Elektronik sistemlerdeki katmanlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#id1">Full Stack Elektronik Mühendisi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#full-stack-electronics-kavrami">Full Stack Electronics kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#tartisma">Tartışma</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/ctf.html">İlk CTF Deneyimim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#ctf-capture-the-flag">CTF (Capture the Flag)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#ee-peki-sen-nasil-ikinci-oldun">“Ee, peki sen nasıl ikinci oldun?”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/lychee.html">lychee: Kırık Link Kalmasın</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#neden-kullaniyorum">Neden kullanıyorum?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#docker">Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#ci">CI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#github-actions">Github Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/22/index.html">2022</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/kod-ile-vscode-eklentisi-onerme.html">Kod ile beraber Visual Studio Code eklentileri öneriyoruz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/kod-ile-vscode-eklentisi-onerme.html#referanslar">Referanslar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html">Recommend Visual Studio Code extensions along with your code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#working-with-git">Working with git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#extensions-json">extensions.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#finding-names-of-extensions">Finding names of extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#why">Why?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#do-not-trust-developers">Do not trust developers!</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/merhaba-hugo.html">Merhaba (go)Hugo!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/merhaba-hugo.html#neden-degistirdim">Neden değiştirdim?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/merhaba-hugo.html#bundan-sonra-ne-olacak">Bundan sonra ne olacak?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/windirstat.html">WinDirStat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/windirstat.html#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/21/index.html">2021</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/sumatrapdf-texstudio-synctex-search-link.html">Create search link between SumatraPDF and TeXstudio with SyncTeX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/sumatrapdf.html">Sumatra PDF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#giris">Giriş</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#fare-destegi">Fare Desteği</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#latex-ve-synctex-kolayligi">LaTeX ve SyncTeX Kolaylığı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#kucuk-boyut-hiz-tasinabilir-surum">Küçük Boyut, Hız, Taşınabilir Sürüm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#kisisellestirme">Kişiselleştirme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#eksiler">Eksiler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html">Raspberry Pi SD kart taşıma ve büyütme</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#sd-karti-bilgisayara-kopyalama">SD kartı bilgisayara kopyalama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#bilgisayardan-yeni-sd-karta-kopyalama">Bilgisayardan yeni SD karta kopyalama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#raspberry-pi-uzerinde-alanlarin-genisletilmesi">Raspberry Pi üzerinde alanların genişletilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#sonuc">Sonuç</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html">Tekrar Merhaba Jekyll!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html#neden">Neden?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html#degerlendirme">Değerlendirme</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/wsl-offline.html">Using WSL on an offline Windows machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#getting-files">Getting files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#enabling-wsl-on-windows">Enabling WSL on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#installing-wsl-package">Installing WSL package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#error-the-service-has-not-been-started">Error: “The service has not been started”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#pitfall-moving-ubuntu-20-04-after-installation">Pitfall: Moving Ubuntu 20.04 After Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#error-wslregisterdistribution-failed-with-error-0x80070005">Error: “WslRegisterDistribution failed with error: 0x80070005”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/20/index.html">2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/using-vscode-with-self-signed-certificates-behind-proxy.html">Using VS Code with self signed SSL certificates behind proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/20/using-vscode-with-self-signed-certificates-behind-proxy.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/using-pip-and-pipenv-with-self-signed-certificates.html">Use pip and pipenv with self signed SSL certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/20/using-pip-and-pipenv-with-self-signed-certificates.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/tekrar-merhaba-mkdocs.html">Tekrar Merhaba MkDocs!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/tekrar-merhaba-dokuwiki.html">Tekrar Merhaba DokuWiki!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/guncel-dogrulama-yontemleri.html">Güncel (Sayısal Tasarım) Doğrulama Yöntemleri ve Araçları</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/microsoft-word-selection-is-locked.html">Microsoft Word: ‘You can’t make this change because this selection is locked.’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/merhaba-mkdocs.html">Merhaba MkDocs!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/19/index.html">2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/dokuwiki-blog-deneme.html">Dokuwiki ile Blog Deneme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/yazamayanlara.html">Yazamayanlara</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/crash-course-computer-science.html">Crash Course Computer Science</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html">Windows 10 1803-&gt;1903 Yükseltmesi Sırasında GRUB’un Bozulması</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#sorun">Sorun</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#cozum">Çözüm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#sebebi-neydi-ki">Sebebi neydi ki?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/merhaba-sphinx.html">Merhaba Sphinx!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/18/index.html">2018</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html">Tensorflow (NVIDIA GPU Desteği ile) ve Keras Kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#windows-10-icin">Windows 10 İçin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#windows-7-icin">Windows 7 İçin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#hata-ayiklama">Hata Ayıklama</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/17/index.html">2017</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/17/photorec.html">Camcorder DVD Video Recovery on Ubuntu with photorec</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#tl-dr">TL;DR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#data-recovery-tools">Data Recovery Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/14/index.html">2014</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/dokuwiki-without-mail-support.html">Install DokuWiki without Mail Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/zofzpcb.html">ZofzPCB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-like">Features That I Like</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-love">Features That I Love</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-will-like">Features That I Will Like</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/hababam-sinifi-bolme.html">235.000’in 9.000’e Tam Olarak Bölünmemesi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/windows-hazirda-beklet-uyku.html">Windows’un Sunduğu ‘Hazırda Beklet’ ve ‘Uyku’ Seçeneklerini Sürekli Ters Algılamam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/13/index.html">2013</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html">Yeni Enstrüman: Elektro Gitar + Amfi 🎵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#secim-sebebim">Seçim Sebebim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#tremolo-koluna-dikkat">Tremolo Koluna Dikkat!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#amfi-amplifikator">Amfi (Amplifikatör)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/12/index.html">2012</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/ubuntu-disket-surucusu-kullanma.html">Ubuntu Üzerinde Disket Sürücüsünü Kullanma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/latex-otomatik-hecelemeyi-kapatma.html">LaTeX’te Otomatik Hecelemeyi Kapatma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/ankara-bitirme-projeleri-sergisi.html">Ankara Bitirme Projeleri Sergisi 29 Haziran - 1 Temmuz 2012</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/11/index.html">2011</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html">Atari Kolu (NES Controller) Arayüzü</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#atari-kolunun-sinyalleri">Atari Kolunun Sinyalleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#pic-ile-atari-kolunun-kullanilmasi">PIC ile Atari Kolunun Kullanılması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/altera-de0-fpga-gelistirme-kiti.html">Altera DE0 FPGA Geliştirme Kiti</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/ninite.html">Ninite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/turkce-ubuntu-uzerinde-matlab-calistirma.html">Türkçe Ubuntu Üzerinde MATLAB Çalıştırma Problemi ve Çözümü</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html">AirTies RT-205 Açma - Kapama Düğmesi Arızası</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html#modemi-tamir-ediyoruz">Modemi Tamir Ediyoruz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../log/index.html">📋 Olan Biten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../log/7.html">Kayıt - 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/6.html">Kayıt - 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/5.html">Kayıt - 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/4.html">Kayıt - 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/3.html">Kayıt - 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/2.html">Kayıt - 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/1.html">Kayıt - 1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notlarım</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../not-hakkinda.html">⁉️ Notlarım Hakkında</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#egitim-veya-ders-amacli-degildir">Eğitim veya Ders Amaçlı Değildir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#yari-turkce-ve-yari-ingilizce-notlar">Yarı Türkçe ve Yarı İngilizce Notlar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-dogrulugu">İçerik Doğruluğu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#dilbilgisi-hatalari-ve-dusuk-cumleler">Dilbilgisi Hataları ve Düşük Cümleler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-yarim-ve-canlidir">İçerik Yarım ve Canlıdır</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-yarim-ve-eskidir">İçerik Yarım ve Eskidir</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../buildroot/index.html">👷 Buildroot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../buildroot/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/basliyoruz.html">Buildroot İle Gömülü Linux: Başlıyoruz!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/basliyoruz.html#baglantilar">Bağlantılar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html">Gömülü (Embedded) Linux nedir? Buildroot ve Yocto ne işe yarar?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html#videoda-gecen-baglantilar">Videoda Geçen Bağlantılar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html#notlar">Notlar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/tanisma.html">Buildroot ile Tanşıyoruz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/tanisma.html#videoda-gecen-baglantilar">Videoda Geçen Bağlantılar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/tanisma.html#notlar">Notlar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/ilk-derleme.html">Buildroot ile ilk derleme!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#gelistirme-ortaminin-olusturulmasi">Geliştirme Ortamının Oluşturulması 💻</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#buildroot-un-edinilmesi">Buildroot’un Edinilmesi ⬇️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#paketlerin-kurulmasi">Paketlerin Kurulması 📦</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#buildroot-u-kullanmaya-baslama">Buildroot’u Kullanmaya Başlama 🚀</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#derleyelim">Derleyelim 🛠️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#kapanis">Kapanış</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">🇨 C</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../c/history.html">📜 History of C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#s">70s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id4">80s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id6">90s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id7">2000s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#standards-summarized">Standards Summarized</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#unix-and-c">UNIX and C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#long-live-c">Long live C!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#related">Related</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#resources">Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#changelog">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/properties.html">🌈 15 Features of The C Programming Language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#artificial">🤖 artificial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#compiled">🔨 compiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#efficient">💚 efficient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#expressive">🎨 expressive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#general-purpose">⭕ general purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#imperative">👮 imperative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#middle-low-level">⬇ middle-low level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#non-proprietary">🆓 non-proprietary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#popular">🎊 popular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#portable">👜 portable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#procedural">〽 procedural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#standard">📓 standard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#statically-typed">⚓ statically typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#structured">🏗️ structured</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#weakly-typed">〰 weakly typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#resources">📚 Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/resources.html">📚 Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#standard-documents">Standard Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#web">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#online-compilers">Online Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#exercise">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#books">Books</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c/index.html#diger-icerikler">Diğer İçerikler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html">220 saatlik C kursu alınır mı?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#aldigim-kurs">Aldığım kurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#c-ve-sistem-programcilari-dernegi-csd">C ve Sistem Programcıları Derneği (CSD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-kimler-icin-uygun-ve-degil">Kurs kimler için uygun ve değil? 🤷‍♂️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-tarihcesi">Kurs tarihçesi ⏳</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-pahali-ve-uzun-mu-diger-kurumsal-kurslar-udemy">Kurs pahalı 💰 ve uzun mu ⏱️? Diğer kurumsal kurslar? Udemy?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurumsal-ozel-sinif-ders">Kurumsal, özel sınıf ders 🏢</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#gomulu-embedded-c-anlatiliyor-mu">Gömülü (Embedded) C anlatılıyor mu?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#okula-faydasi-olur-mu">Okula faydası olur mu? 🏫</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#mulakatlara-hazirlik">Mülakatlara hazırlık 👔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#programlamayi-yeni-ogrenenler-icin">Programlamayı yeni öğrenenler için? 🐣</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kaan-aslan-vs-necati-ergin">Kaan Aslan vs Necati Ergin ⚔️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#olasi-mutsuzluklar">Olası mutsuzluklar 😔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kursu-alacaklara-oneriler">Kursu alacaklara öneriler 💡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#meraklilara">Meraklılara… 🔍</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-struct-padding-packed.html">Do not let the structure padding ruin your day</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-struct-padding-packed.html#moral-of-the-story">Moral of the story</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html">C programlamada gördüğüm en sık yapılan hata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#bu-neden-hatali">Bu neden hatalı?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#bu-hatayi-neden-yapiyoruz">Bu hatayı neden yapıyoruz?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#ornek">Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#derleme-sirasinda-yakalayalim">Derleme sırasında yakalayalım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#ozetle">Özetle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html">Programlama dillerinde Statik ve Dinamik Tür kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#python-dinamik-tur-kavramina-ornek">Python, Dinamik Tür Kavramına Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#c-statik-tur-kavramina-ornek">C, Statik Tür Kavramına Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#ilgili">İlgili</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/yoda-notation.html">Yoda Notation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/yoda-notation.html#further-read">Further Read</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-is-procedural.html">C is a procedural language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-procedural.html#resources">resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-is-imperative.html">C is an imperative language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#imperative-vs-declarative">imperative vs declarative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#a-declarative-example">a declarative example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#computer-architecture-and-imperative-programming">computer architecture and imperative programming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#functional-programming">functional programming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#summary">summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#resources">resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">♾️ DevOps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devops/tool/index.html">🧰 Araçlar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/asciinema.html">Asciinema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/cyberchef.html">CyberChef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/drawio.html">draw.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/excalidraw.html">Excalidraw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/hedgedoc.html">HedgeDoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/jirafeau.html">Jirafeau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/jsoneditor.html">JSON Editor Online</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/kuma.html">Uptime Kuma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/mattermost.html">Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/w2md.html">Word to Markdown Converter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devops/gitlab/index.html">GitLab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/gitlab/cicd-variables.html">CI/CD Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/cicd-variables.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html">Gitlab Private Container Registry, Runner Konfigürasyonu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#access-token-olusturulmasi">Access Token Oluşturulması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#runner-konfigurasyonu">Runner Konfigürasyonu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#test">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devops/podman/index.html">Podman</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/podman/podman-kurulumu.html">Podman Kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/podman/podman-kurulumu.html#etc-subuid-ve-etc-subgid"><code class="docutils literal notranslate"><span class="pre">/etc/subuid</span></code> ve <code class="docutils literal notranslate"><span class="pre">/etc/subgid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/podman/podman-self-registry.html">Podman’i Self Hosted Registry İle Kullanma</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../embedded/index.html">🪦 Gömülü Sistemler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/if/index.html">🤝 Arayüzler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus.html">Modbus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#protokol">Protokol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#modbus-pdu">MODBUS PDU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#data-encoding">Data Encoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#data-model">Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#function-codes">Function Codes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus-rtu.html">Modbus RTU</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#master-state-diagram">Master State Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#slave-state-diagram">Slave State Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#ornek-akis">Örnek Akış</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#transmission-modes">Transmission Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#rtu">RTU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#crc">CRC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#framing">Framing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus-function-code.html">Modbus Function Codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-coils-0x01">Read Coils, <code class="docutils literal notranslate"><span class="pre">0x01</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-discrete-inputs-0x02">Read Discrete Inputs, <code class="docutils literal notranslate"><span class="pre">0x02</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-holding-registers-0x03">Read Holding Registers, <code class="docutils literal notranslate"><span class="pre">0x03</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-input-registers-0x04">Read Input Registers, <code class="docutils literal notranslate"><span class="pre">0x04</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-single-coil-0x05">Write Single Coil, <code class="docutils literal notranslate"><span class="pre">0x05</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-single-register-0x06">Write Single Register, <code class="docutils literal notranslate"><span class="pre">0x06</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-exception-status-0x07">Read Exception Status, <code class="docutils literal notranslate"><span class="pre">0x07</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#diagnostics-0x08">Diagnostics, <code class="docutils literal notranslate"><span class="pre">0x08</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#get-comm-event-counter-0x0b-ve-get-comm-event-log-0x0c">Get Comm Event Counter, <code class="docutils literal notranslate"><span class="pre">0x0B</span></code> ve Get Comm Event Log, <code class="docutils literal notranslate"><span class="pre">0x0C</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-multiple-coils-0x0f">Write Multiple Coils, <code class="docutils literal notranslate"><span class="pre">0x0F</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-multiple-registers-0x10">Write Multiple Registers, <code class="docutils literal notranslate"><span class="pre">0x10</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#report-server-id-0x11">Report Server ID, <code class="docutils literal notranslate"><span class="pre">0x11</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-file-record-0x14">Read File Record, <code class="docutils literal notranslate"><span class="pre">0x14</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-file-record-0x15">Write File Record, <code class="docutils literal notranslate"><span class="pre">0x15</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#mask-write-register-0x16">Mask Write Register, <code class="docutils literal notranslate"><span class="pre">0x16</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-write-multiple-registers-0x17">Read/Write Multiple registers, <code class="docutils literal notranslate"><span class="pre">0x17</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-fifo-queue-0x18">Read FIFO Queue, <code class="docutils literal notranslate"><span class="pre">0x18</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#encapsulated-interface-transport-0x2b">Encapsulated Interface Transport, <code class="docutils literal notranslate"><span class="pre">0x2B</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#modbus-exception-responses">MODBUS Exception Responses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ldd/index.html">🐧 Linux Aygıt Sürücü</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ldd/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/giris.html">Aygıt Sürücüleri ve Çekirdek Modülleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#gerekli-dosyalarin-elde-edilmesi">Gerekli Dosyaların Elde Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kernel-fonksiyonlari">Kernel Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kernel-modullerinin-derlenmesi-ve-link-edilmesi">Kernel Modüllerinin Derlenmesi ve Link Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/merhaba-dunya.html">“Merhaba Dunya!”</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/merhaba-dunya.html#kernel-e-modulun-yuklenmesi-ve-cikartilmasi">Kernel’e Modülün Yüklenmesi ve Çıkartılması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/merhaba-dunya.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/3.html">3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/3.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ldd/index.html#kaynaklar">📚 Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sys/index.html">🐧 Linux Sistem Programlama</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sys/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sys/giris.html">Linux Sistem Programlama nedir? + bazı SSS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#sistem-programlama-nedir">Sistem Programlama nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#linux-sistem-programlama-nedir">Linux Sistem Programlama nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#bu-seri-hakkinda">Bu Seri Hakkında</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/arayuz.html">Soyutlama Katmanları, Arayüzler ve Standart C Kütüphanesi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#standart-c-kutuphanesi-ve-posix-fonksiyonlari">Standart C Kütüphanesi ve POSIX Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#daha-yuksek-seviyeli-diller">Daha Yüksek Seviyeli Diller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#oneriler-ve-kaynaklar">Öneriler ve Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/posix.html">POSIX, SUS ve LSB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/posix.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/posix.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/kernel-arayuz.html">Linux Kernel Arayüzü</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kernel-arayuz.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/man.html">man Sayfalarında Yolumuzu Bulma</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#yerel-man-sayfalari">Yerel man sayfaları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#section-s">Section(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#gnu-info-system">GNU Info System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#gui-yardim-araclari">GUI Yardım Araçları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#online">Online</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/merhaba-dunya.html">Merhaba Dünya!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#strace">🛣️ strace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#statik-baglama-static-linking">🪨 Statik Bağlama, Static Linking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#libc-den-kacis">🏃 libc’den Kaçış</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#assembly">Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#her-yer-dosya">📁 Her yer dosya!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#stdio-h-stdin-stdout-stderr">stdio.h, stdin, stdout, stderr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#write">write()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/size-t-ssize-t.html"><code class="docutils literal notranslate"><span class="pre">size_t</span></code> ve <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> Sorunsalı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/size-t-ssize-t.html#uctan-uca">Uçtan Uca</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/size-t-ssize-t.html#ozet">Özet</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/errno.html">Hata Durumları, <code class="docutils literal notranslate"><span class="pre">errno</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#errno"><code class="docutils literal notranslate"><span class="pre">errno</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#posix-ve-sistem-fonksiyonlari">POSIX ve Sistem Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#errno-degerleri"><code class="docutils literal notranslate"><span class="pre">errno</span></code> Değerleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#bakiniz">Bakınız</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/open.html">Dosya Yaratma ve Açma: <code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/process.html">Process Kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#prosesler-ile-ilgili-komutlar">Prosesler ile İlgili Komutlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#task-struct"><code class="docutils literal notranslate"><span class="pre">task_struct</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#pid">PID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#getpid-ve-pid-t"><code class="docutils literal notranslate"><span class="pre">getpid()</span></code> ve <code class="docutils literal notranslate"><span class="pre">pid_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#kullanici-ve-grup-id">Kullanıcı ve Grup ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#uid-t-ve-gid-t"><code class="docutils literal notranslate"><span class="pre">uid_t</span></code> ve <code class="docutils literal notranslate"><span class="pre">gid_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#bakmaya-deger">Bakmaya Değer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dosya-dizin-izin.html">Dosya Dizin İzin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dosya-turleri">Dosya Türleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dosya-izinleri">Dosya İzinleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dizin-izinleri">Dizin İzinleri</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/inode.html">Inode Kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#bazi-terimler">Bazı Terimler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#id2">inode Kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#inode-temelli-dosya-sistemleri">inode Temelli Dosya Sistemleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/rwx-dosya-dizin.html"><code class="docutils literal notranslate"><span class="pre">rwx</span></code>, Dosya, Dizin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#izinlerin-kontrol-sirasi">İzinlerin Kontrol Sırası</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#tekrar-dizin-ve-inode-kavrami">Tekrar: Dizin ve inode Kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#ilgili-baglantilar">İlgili Bağlantılar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dizin-izinleri.html">Dizin İzinleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#oda-kapi-kilit-cam">Oda, Kapı, Kilit, Cam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#r"><code class="docutils literal notranslate"><span class="pre">r--</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#w"><code class="docutils literal notranslate"><span class="pre">-w-</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#x"><code class="docutils literal notranslate"><span class="pre">--x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#rw"><code class="docutils literal notranslate"><span class="pre">rw-</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#r-x"><code class="docutils literal notranslate"><span class="pre">r-x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#wx"><code class="docutils literal notranslate"><span class="pre">-wx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#rwx"><code class="docutils literal notranslate"><span class="pre">rwx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#id1"><code class="docutils literal notranslate"><span class="pre">---</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#dosya-izinleri">Dosya İzinleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/soft-hard-link.html">Soft Link ve Hard Link Kavramları</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/soft-hard-link.html#hard-link">Hard Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/soft-hard-link.html#soft-link-symlink">Soft Link (Symlink)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dot-and-dot-dot.html"><code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dot-and-dot-dot.html#are-they-virtual-or-real">Are they virtual or real?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dot-and-dot-dot.html#symlinks-weird-cd-and-pwd-behavior-on-and">Symlinks, Weird <code class="docutils literal notranslate"><span class="pre">cd</span></code> and <code class="docutils literal notranslate"><span class="pre">pwd</span></code> Behavior on <code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/ozel-izinler.html">Özel Dosya İzinleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#sticky-bit-1000">Sticky Bit (<code class="docutils literal notranslate"><span class="pre">1000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#set-uid-suid-4000">Set UID, SUID (<code class="docutils literal notranslate"><span class="pre">4000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#set-gid-sgid-2000">Set GID, SGID (<code class="docutils literal notranslate"><span class="pre">2000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dac-acl-mac.html">DAC, ACL, MAC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#dac-discretionary-access-controls">DAC, Discretionary Access Controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#mac-mandatory-access-controls">MAC, Mandatory Access Controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#acl-access-control-list">ACL, Access Control List</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sys/index.html#kaynaklar">📚 Kaynaklar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sys/kaynak.html">Kaynaklar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#icerik">🌐 İçerik</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#man-sayfalari">📚 man Sayfaları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#kitaplar">📖 Kitaplar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#standartlar">📝 Standartlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#bakmaya-deger">👓 Bakmaya Değer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#tercume-ve-icerik">🔤 Tercüme ve İçerik</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../xilinx/index.html">✖️ Xilinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../xilinx/index.html#genel">Genel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html">Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#peki-ama-neden">Peki Ama Neden?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#nasil-yapilir">Nasıl yapılır? 🤓</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#gelistirme-bilgisayari">Geliştirme Bilgisayarı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#ssh-tunel">SSH Tünel 🚇</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#vivado-vitis-sdk-xsct-program-flash">Vivado, Vitis, SDK, XSCT, <code class="docutils literal notranslate"><span class="pre">program_flash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#hata-ayiklama">Hata Ayıklama 🐛</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/xilinx-remote-debugging.html#arkadaslariniza-saka-yapin">Arkadaşlarınıza Şaka Yapın! 😜</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../xilinx/index.html#petalinux">PetaLinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/petalinux-offline.html">Running PetaLinux on an offline machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/petalinux-offline.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/petalinux-offline.html#configuring-the-petalinux-project">Configuring the PetaLinux project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/petalinux-offline.html#problem-still-i-can-t-compile-some-petalinux-projects">Problem: Still I can’t compile some PetaLinux projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/petalinux-offline.html#further-read">Further read</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/ubuntu-1604-petalinux-20183-kurulumu.html">Ubuntu 16.04.5 Üzerinde Petalinux 2018.3 Kurulumu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/ubuntu-2004-petalinux-20222-kurulumu.html">Ubuntu 20.04 üzerine PetaLinux 2022.2 kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/ubuntu-2004-petalinux-20222-kurulumu.html#desteklenmeyen-isletim-sistemi">Desteklenmeyen işletim sistemi?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/ubuntu-2004-petalinux-20222-kurulumu.html#petalinux-config-te-patliyoruz">petalinux-config’te patlıyoruz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/ubuntu-2004-petalinux-20222-kurulumu.html#ozet">Özet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../xilinx/index.html#vivado">Vivado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/awk-undefined-symbol-mpfrzsub.html">awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/awk-undefined-symbol-mpfrzsub.html#symptoms">Symptoms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/awk-undefined-symbol-mpfrzsub.html#solution">Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/awk-undefined-symbol-mpfrzsub.html#ref">Ref</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xilinx/vivado-20164-node-locked-license-ubuntu.html">Vivado 2016.4 Node Locked License Not Working on Ubuntu 16.04</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/vivado-20164-node-locked-license-ubuntu.html#symptoms">Symptoms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/vivado-20164-node-locked-license-ubuntu.html#diagnosis">Diagnosis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/vivado-20164-node-locked-license-ubuntu.html#solution">Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xilinx/vivado-20164-node-locked-license-ubuntu.html#ref">Ref</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6️⃣ xv6</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#mit-isletim-sistemi-kurslari-ve-tarihcesi">MIT İşletim Sistemi Kursları ve Tarihçesi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#diger-universitelerdeki-kurslar">Diğer Üniversitelerdeki Kurslar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#kitap-hakkinda">Kitap Hakkında</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#notlarim">📝 Notlarım</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="merhaba-dunya.html">Merhaba Dünya!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="merhaba-dunya.html#riscv-gnu-toolchain">riscv-gnu-toolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="merhaba-dunya.html#qemu">QEMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="merhaba-dunya.html#xv6-riscv">xv6-riscv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="merhaba-dunya.html#pre-built-binary">Pre-built Binary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="merhaba-dunya.html#sonuc">Sonuç</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="isletim-sistemi.html">İşletim Sistemi nedir? + Unix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="isletim-sistemi.html#unix">Unix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="isletim-sistemi.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user-space-giris.html">User Space Programlamaya Giriş: <code class="docutils literal notranslate"><span class="pre">write()</span></code> ve <code class="docutils literal notranslate"><span class="pre">read()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user-space-giris.html#read-ve-write"><code class="docutils literal notranslate"><span class="pre">read()</span></code> ve <code class="docutils literal notranslate"><span class="pre">write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="user-space-giris.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user-space-giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gdb-ile-debug.html">GDB ile Hata Ayıklama (Debug 🐛)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gdb-ile-debug.html#cekirdek-hardware-thread-hart-sayisi-ayarlama">Çekirdek, Hardware Thread, hart Sayısı Ayarlama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gdb-ile-debug.html#gdb">GDB</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="open-close.html"><code class="docutils literal notranslate"><span class="pre">open()</span></code> ve <code class="docutils literal notranslate"><span class="pre">close()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="open-close.html#open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="open-close.html#close"><code class="docutils literal notranslate"><span class="pre">close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="open-close.html#ornekler">Örnekler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="open-close.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="process.html">Process Kavramı ve xv6 Çekirdeğindeki Gerçekleştirimi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="process.html#xv6-proc-struct-proc-ve-struct-file">xv6: <code class="docutils literal notranslate"><span class="pre">proc</span></code>, <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">proc</span></code> ve <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="process.html#verilerin-bellekte-tahsis-edilmesi">Verilerin Bellekte Tahsis Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process.html#hadi-gozlemleyelim">Hadi Gözlemleyelim! 👀</a></li>
+<li class="toctree-l4"><a class="reference internal" href="process.html#ozet">Özet</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">İşletim Sistemleri ve Bellek Yönetimi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#her-programa-bir-bellek-alani">Her Programa Bir Bellek Alanı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#relocation">Relocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fragmentation">Fragmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtual-memory-ve-paging">Virtual Memory ve Paging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swapping">Swapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xv6">xv6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#kaynaklar">📚 Kaynaklar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#risc-v">RISC-V</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../diger/index.html">📦 Diğer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../diger/ffmpeg-birlestirme.html">FFmpeg Video ve Ses Birleştirme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diger/ffmpeg-tek-resim-ses-video.html">FFMmpeg ile Tek Resim ve Ses Dosyası ile Video Oluşturma</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diger/ffmpeg-tek-resim-ses-video.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html">YouTube, Vimeo (Şifreli Videolar Dahil) Video İndirme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#yt-dlp-ve-ffmpeg">yt-dlp ve FFmpeg</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#ffmpeg">FFmpeg</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#youtube-video-indirme">YouTube Video İndirme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#vimeo">Vimeo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#sifreli-videolari-indirme">Şifreli Videoları İndirme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#protected-ve-private-videolar">Protected ve Private Videolar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#chrome-uzerinden-indirme">Chrome Üzerinden İndirme</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#kapanis">Kapanış</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">---</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">🌀 Miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/disclaimer.html">❗ Disclaimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/todos.html">Todo List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/specimen.html">Specimen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#admonition">Admonition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#todo">Todo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#visual">Visual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#youtube">YouTube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#giphy">giphy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#giscus">giscus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#rest-specific">reST Specific</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../misc/specimen.html#code-block">Code Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#asciinema">Asciinema</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/disclaimer.html">❗ Disclaimer</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Alper Yazar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">6️⃣ xv6</a></li>
+      <li class="breadcrumb-item active">İşletim Sistemleri ve Bellek Yönetimi</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/alperyazar/ayazar.dev/blob/master/docs/source/xv6/os-ve-bellek.md" class="fa fa-github"> GitHub'da Düzenle</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="process.html" class="btn btn-neutral float-left" title="Process Kavramı ve xv6 Çekirdeğindeki Gerçekleştirimi" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Önceki</a>
+        <a href="../diger/index.html" class="btn btn-neutral float-right" title="📦 Diğer" accesskey="n">Sonraki <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="isletim-sistemleri-ve-bellek-yonetimi">
+<h1>İşletim Sistemleri ve Bellek Yönetimi<a class="headerlink" href="#isletim-sistemleri-ve-bellek-yonetimi" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Bu yazıda işletim sistemleri ve bellek yönetimi konusundaki notlarım yer
+almaktadır. Yazının başları genel kavramlar ile ilgilidir, son kısmında ise
+xv6’ya özel bilgiler yer almaktadır. Yazının amacı genel olarak işletim sistemleri
+kavramlarını anlatmak
+olmadığından <strong>kavramlardan kısaca bahsedeceğim ve yüzeysel geçeceğim.</strong></p>
+</div>
+<p>İşletim sistemi, bizim için temel 3 donanımı soyutlar: <strong>işlemci</strong>,
+<strong>bellek</strong> ve <strong>disk.</strong></p>
+<p><strong>Disk</strong>, dosya sistemleri (NTFS, ext4, BTRFS, vs.) ile soyutlanır. Aslında
+<em>ham</em> veri depolama cihazı olan diskler dosya, klasör nedir bilmez. Bunlar dosya
+sisteminin sağladığı bir soyutlama katmanıdır. Dosya sistemleri de tipik olarak
+kernel tarafında gerçekleştirilir.</p>
+<p><strong>İşlemci</strong>, farklı thread’ler arasında paylaştırılır. Thread, işlemcide koşan
+bir iş parçasıdır yani CPU’da yürütülen komutlar bütünü diyebiliriz. Bir
+sistemde aynı anda aktif olan birden fazla thread olsa da her thread sanki
+sadece kendisi varmış, başka bir thread yokmu, tüm işlemci ona aitmiş gibi
+işlemciyi kullanır. İşlemci kaynağının birden fazla thread arasında
+paylaştırılması işi işletim sisteminin bir görevidir. Linux gibi modern işletim
+sistemlerinin çoğu, <em>multi-thread</em> programlamayı desteklerler yani bir process
+içerisinde kernel desteği ile multi-thread çalışan programlar mümkün
+olabilmektedir. Process ise aslında işletim sisteminin uydurduğu bir bileşke
+veri yapısıdır. Yani bir programın thread’leri + file descriptor table + bellek
+yapılandırması bir process oluşturur. xv6’da bir process sadece tek bir
+thread’ten oluşabilir. Elbette kullanıcı kendi kodu ile multi-thread ilüzyonu
+yaratabilir fakat xv6 kernelinin böyle bir desteği yoktur. xv6 <em>multi-process</em>
+bir işletim sistemidir ama Linux’ta olduğunun aksine xv6, kernel seviysinde
+<em>multi-thread</em> çalışmayı desteklememektedir. O yüzden xv6 ile ilgili konuların
+çoğunda <code class="docutils literal notranslate"><span class="pre">thread</span></code> ve <code class="docutils literal notranslate"><span class="pre">process</span></code> kelimeleri aynı anlama geliyor gibi düşünülebilir.
+Fakat process, thread dışında başka veri yapıları da içeren bir yapıdır.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/os-ve-bellek-process.jpg" src="../_images/os-ve-bellek-process.jpg" />
+<figcaption>
+<p><span class="caption-text">Genel process mantığı bu şekildedir. Buradaki çizimde multi-thread bir uygulama
+gösterilmiş, 3 adet thread barındıran. Fakat xv6 bir process içerisinde
+bir adet thread destekliyor. Bu çizim xv6 için tamamen doğru değil fakat genel
+mantık olarak doğru bir gösterim.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<div class="legend">
+<p><code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">proc</span></code> un en önemli elemanlarından birinin file descriptor table olduğundan
+bahsetmiştik. Burada da File Handle olarak ilgili tablodan satırlar gösterilmiş
+aslında. Elbette xv6’daki <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">proc</span></code> içerisinde başka elemanlar da var.</p>
+<p><a class="reference external" href="https://ops-class.org/slides/2016-01-30-processes/deck.html#slide-48">Kaynak</a></p>
+</div>
+</figcaption>
+</figure>
+<p><strong>Bellek</strong>, yani RAM, işletim sistemi üzerinde koşan tüm programlar yani
+process’ler ve kernel tarafından paylaşılmaktadır. Biz bir programı
+çalıştırdığımız zaman program, işletim sistemi tarafından belleğe
+açılıyor yani yükleniyor. Belleğin tam olarak hangi adresine yükleneceği ise
+işletim sisteminin vereceği bir karar. Çünkü bilgisayarda bir adet bellek olduğu
+ve bu belleğin birden fazla program tarafından paylaşılması gerektiği için
+burada her programa önden bir yer ayırmak mümkün değil, adeta bellek alanları
+çalışan programlara kiralanıyor. <strong>Fakat programın belleğin neresine açılacağını
+derleme sırasında bilmesi mümkün değil.</strong> Ayrıca aynı program işletim sistemi
+tarafından belleğin farklı taraflarına yerleştirilebilir. Diyelim ki program
+içerisinde temel load/store instruction’ları yani komutları (ya da buyruk) var.
+Bu komutların belleğin neresine erişeceğini bilmesi lazım. Fakat programın
+belleğin gerçekten neresinde olduğunu bilmezse bu komutların adresleri ne
+olacak? Buna bir çözüm bulunması gerekiyor. <strong>Bu çözümün donanımsal olarak
+işlemci tarafından da desteklenmesi lazım.</strong> İşte işletim sisteminin yaptığı
+önemli soyutlamalardan biri de belleğin soyutlanmasıdır. Tipik olarak programlar
+tüm belleğin onlara ait olduğunu düşünürler ve bir <strong>sanal bellek</strong> e erişirler,
+<strong>virtual memory</strong>. Sanal belleğe olan yazma/okuma işlemlerinin gerçek, fiziksel
+belleğe yani RAM entegresine dönüşümü, gerçekte belleğin neresine erişileceği
+konusu işlemci desteği ile sağlanır. Bu yazıda belleğin soyutlanmasına yani
+sanallaştırılmasına bakacağız. xv6’ye gelmeden önce probleme biraz daha genel
+bakalım. Bu konular ile ilgili olan anahtar kelimeler: <strong>virtual memory</strong>,
+<strong>paging</strong>, <strong>swapping</strong>, <strong>segmentation</strong>, <strong>position independent code (PIC)</strong>
+(kısmen)</p>
+<section id="her-programa-bir-bellek-alani">
+<h2>Her Programa Bir Bellek Alanı<a class="headerlink" href="#her-programa-bir-bellek-alani" title="Link to this heading"></a></h2>
+<p>Yapabileceğimiz kötü çözümlerden biri çalışabilecek her program için fiziksel
+olarak bellekte belli bir alanı rezerve etmek ve bunu programa derleme
+aşamasında söylemek olurdu. Yani diyecektik ki 0-512MB arası firefox’a ait,
+512MB-1G arası VS Code kullansın gibi. Elbette burada birçok problem var,
+kesinlikle ölçeklenebilir bir çözüm değil. Kullanılmayan programlar için rezerve
+edilmiş bellek, başka programlar tarafından kullanılamıyor, bu en temel
+problemlerden biri. Bu yöntemin çalışmayacağı belli oldu.</p>
+</section>
+<section id="relocation">
+<h2>Relocation<a class="headerlink" href="#relocation" title="Link to this heading"></a></h2>
+<p>Programların çalışmadan önce belleğin bir yerlerine yerleştirilmesi ve bu yerden
+bağımsız olacak şekilde çalışır hale getirilmesi <strong>relocation</strong> problemi olarak
+da biliniyor. Yani programı bellekte çalışabilirliğini bozmadan taşıma işi
+diyebiliriz.</p>
+<p>Tarihsel olarak baktığımızda taa IBM 360 (60’lı yıllar) bilgisayarından itibaren
+bu, çözüm aranan bir problem olmuş.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/os-ve-bellek-ibm360.jpg" src="../_images/os-ve-bellek-ibm360.jpg" />
+<figcaption>
+<p><span class="caption-text"><em>IBM System/360 Model 50 CPU, computer operator’s console, and peripherals at Volkswagen</em></span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+<div class="legend">
+<p><a class="reference external" href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_B_145_Bild-F038812-0014,_Wolfsburg,_VW_Autowerk.jpg">Kaynak</a></p>
+</div>
+</figcaption>
+</figure>
+<section id="static-relocation">
+<h3>Static Relocation<a class="headerlink" href="#static-relocation" title="Link to this heading"></a></h3>
+<p>Diyelim ki programı bir dilde yazdınız, mesela C, derlediniz ve <code class="docutils literal notranslate"><span class="pre">JMP</span> <span class="pre">3</span></code> gibi bir
+komut var, bu bellekteki 3 nolu adresteki kodu çalıştır demek. Programınız
+kendisinin adres 0’dan itibaren yerleştiğini düşünüyor ama ya öyle değilse? İşte
+bu durumda IBM 360 şöyle bir şey yapıyormuş: Diyelim ki işletim sistemi sizin
+programınızı adres 1000’den itibaren yerleştirdi. Programı diskten belleğe
+yüklerken <strong>static relocation</strong> denen bir teknik kullanıyor ve tüm <code class="docutils literal notranslate"><span class="pre">JMP</span></code>
+komutlarının adresine 1000 ekliyor. Örneğin <code class="docutils literal notranslate"><span class="pre">JMP</span> <span class="pre">3</span></code> oluyor <code class="docutils literal notranslate"><span class="pre">JMP</span> <span class="pre">1003</span></code>. Bu,
+programın <em>yüklenirken</em> modifiye edilmesi demek. Programı başka bir yere taşımak
+için de bu relocator yazılımının (programı modifiye eden yazılım) tekrar
+çalışması gerekiyor. Bu, çok kullanışlı bir yöntem değil ama elbette zamanında
+iş görmüş.</p>
+</section>
+<section id="dynamic-relocation-ve-segmentation">
+<h3>Dynamic Relocation ve Segmentation<a class="headerlink" href="#dynamic-relocation-ve-segmentation" title="Link to this heading"></a></h3>
+<p>Bir de <strong>dynamic relocation</strong> denen bir çözüm tekniği var. Bu tekniklerde
+dönüşüm, program çalışırken ve <em>belleğe erişim sırasında</em> yapılıyor. Elbette
+bunun için donanım desteği gerekiyor fakat program yüklenirken işletim sistemi
+tarafından modifiye edilmiyor, sadece bu mekanizmayı sağlayan donanım
+bileşenleri konfigüre ediliyor. Günümüzde işletim sistemi çalıştıran
+işlemcilerin hemen hemen hepsi bu kategorideki teknikleri kullanıyor.</p>
+<p>Dynamic relocation teknikleri çeşitli, en temellerinden biri <strong>segmentation.</strong>
+Burada tüm program için (kod + veri + stack), veya hepsi için ayrı ayrı birer
+<em>base register</em> bulunuyor. Program, kendisi adres 0’daymış gibi çalışıyor. Fakat
+aslında bu bir offset değer. İşletim sistemi, programı yüklediği zaman bellekte
+nereye yerleştirdiyse ona göre bu <em>base register</em> ları ayarlıyor. Bir bellek
+erişimi olduğu zaman ise işlemci donanımı gidip bellekten erişeceği adresi
+en temel olarak <code class="docutils literal notranslate"><span class="pre">gerçek</span> <span class="pre">adres</span> <span class="pre">=</span> <span class="pre">base</span> <span class="pre">register</span> <span class="pre">+</span> <span class="pre">offset</span></code> şeklinde buluyor.
+Program kodlarında ise <code class="docutils literal notranslate"><span class="pre">JMP</span> <span class="pre">3</span></code> gibi bir komut olursa (veri erişimi de benzer
+şekilde), <code class="docutils literal notranslate"><span class="pre">gerçek</span> <span class="pre">adres</span> <span class="pre">=</span> <span class="pre">base</span> <span class="pre">register</span> <span class="pre">+</span> <span class="pre">3</span></code> mantığı ile hesaplanıyor. Aslında
+mantık olarak static relocation ile benzer bir mantık var ama adres dönüşümü
+donanım tarafından yapılıyor, işletim sistemi programı modifiye etmiyor.</p>
+<p>Tarihsel açıdan baktığımızda CDC 6600 (1964), Intel 8088 (1979) gibi bilgisayar
+ve işlemciler farklı çalışma mantıkları sergileseler de base + offset mantığını
+destekliyorlar.</p>
+<p>Fakat başka problemler de mevcut…</p>
+</section>
+</section>
+<section id="fragmentation">
+<h2>Fragmentation<a class="headerlink" href="#fragmentation" title="Link to this heading"></a></h2>
+<p>Segment’ler tek bir birim ve bellekte ard arda olması gerekiyor. Diyelim ki
+programınızın data segment’i 300 MB yer tutuyor, kesintisiz bir 300 MB’lık
+boşluk bulmanız lazım aksi taktirde programı çalıştıramıyorsunuz. Sistem açılıp
+bazı programlar çalışıp, belleğe yüklenip, bellekten çıkarıldıkça bellekte
+boşluklar oluşmaya başlıyor, <em>bellek delik deşik oluyor</em> adeta. Bu durumda
+bellekte toplamda örneğin 1 GB boş alan olsa bile ard arda boşluklardan oluşan
+300 MB’lık bir alan bulunamayabiliyor. Diyelim ki 4 adet 256 MB’lık boş yer var
+ama 300 MB’lık segment yine hiç bir yere girmiyor. Buna <strong>fragmentation</strong>
+problemi deniyor. Temel iki çeşidi var: <strong>internal fragmentation</strong> ve <strong>external
+fragmentation</strong>. Yazının konusu genel OS konuları olmadığı için detaylara
+girmiyorum.</p>
+</section>
+<section id="virtual-memory-ve-paging">
+<h2>Virtual Memory ve Paging<a class="headerlink" href="#virtual-memory-ve-paging" title="Link to this heading"></a></h2>
+<p>Günümüzde kullanılan temel dynamic allocation tekniği ise <strong>virtual memory</strong>,
+Türkçe’ye <strong>sanal bellek</strong> (eskiden bir de <code class="docutils literal notranslate"><span class="pre">sanal</span> <span class="pre">bebek</span></code> vardı, hehe) olarak
+çevrilebilir <a class="footnote-reference brackets" href="#f" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. Burada bellek, <strong>page</strong> yani <strong>sayfa</strong> adında minik
+parçalara ayrılıyor. Virtual memory yöntemi, 1961 yılında dünyanın ilk süper
+bilgisayarlarından biri olan
+<a class="reference external" href="https://en.wikipedia.org/wiki/Atlas_(computer)">Atlas</a>’ta çalışan John
+Fotheringham tarafından <a class="reference external" href="https://dl.acm.org/profile/81100516822">kullanılmış</a>,
+yani yöntem olarak oldukça eski.</p>
+<p>Günümüz işlemcilerde page boyutu yani page size tipik olarak 4/8 KiB gibi
+değerlerde oluyor ama işlemcilerin çoğu MiB hatta GiB boyutlarında daha büyük
+page size değerlerini destekliyor. <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> Page size’ın büyük ya da küçük olmasının
+getirdiği çeşitili avantaj ve dezavantajlar var. Ama bunlar da bu yazının konusu
+değil.</p>
+<p>Diyelim ki page size değerimiz 4 KiB, bu durumda process’in gördüğü sanal bellek
+ve gerçek fiziksel bellek 4 KiB’lik parçalara bölünüyor ve sanal bellekteki
+parçalar gerçek yani fiziksel belleğin <strong>herhangi bir</strong> 4 KiB’lık kısımlarına
+eşleştiriliyor. Yani process açısından bellek tek parça ve sürekli (contiguous)
+fakat arka planda olan eşleşme sayesinde her 4 KiB, fiziksel bellekte ard arda
+olmayan 4 KiB’lık bölüme denk geliyor olabilir.</p>
+</section>
+<section id="swapping">
+<h2>Swapping<a class="headerlink" href="#swapping" title="Link to this heading"></a></h2>
+<p>Virtual memory ile ilgili sık anılan terim ve tekniklerden biri de <strong>swapping</strong>
+kavramıdır. Swapping yapılabilmesi için virtual memory yani sayfa bazlı bir
+bellek yönetimi zorunlu değildir, segment bazlı sistemlerde de yapılabilir. Ama
+günümüzde artık standart olan yapı virtual memory + swapping diyebiliriz. Ben de
+virtual memory kullanan sitemler üzerinden anlatmaya devam edeceğim.</p>
+<p>Swapping’in amacı fiziksel olarak belleğin yetmediği durumlarda belleğin bir
+kısmının diske, hard disk veya SSD, konulması, diske aktarılan kısmın başka
+process veya işler için kullanılması ve ihtiyaç halinde tekrar diskteki bellek
+bilgilerinin geri yüklenmesidir. Linux üzerinde çalışan arkadaşlar zaten <code class="docutils literal notranslate"><span class="pre">swap</span></code>
+kelimesi ile önceden muhtemelen tanışmışlardır. Swapping genellikle sayfalar
+üzerinden olmaktadır. Yani bir sayfa komple diske aktarılır ya da diskten belleğe
+geri konur. Elbette bu işlem, çalışan program bunun farkına varmadan yapılır.
+Burada işletim sistemi ve işlemcinin donanımı rol alır.</p>
+<p><strong>Genel işletim sistemi kısmını burada kesiyorum.</strong> Fakat dilerseniz <code class="docutils literal notranslate"><span class="pre">Kaynaklar</span></code>
+kısmındaki kaynaklardan veya beğendiğiniz bir işletim sistemi kitabından konuları
+öğrenebilirsiniz. Şimdi xv6 ve RISC-V özelinde devam edelim.</p>
+</section>
+<section id="xv6">
+<h2>xv6<a class="headerlink" href="#xv6" title="Link to this heading"></a></h2>
+<p>xv6, RISC-V donanımının sunduğu paging yöntemini kullanan bir işletim sistemi.
+Yani virtual memory destekleniyor. xv6 gibi neredeyse tüm işletim sistemlerinde
+process’lerin gördüğü bir <strong>adress space</strong> vardır. Her process, aynı adress
+space’i görür. Tüm process’lerin belleğinin tümünün kendilerine ait olduğunu
+zanneder (hatta var olan fiziksel bellekten daha büyük bir bellek görürler).
+Gerçek bellek ile process’lerin gördüğü sanal belleğin birbiriyle eşleştirilmesi
+ve yönetimi işletim sisteminin çekirdeğinin kontrolünde, RISC-V donanımı sayesinde
+yapılır.</p>
+<section id="qemu-sistemi">
+<h3>QEMU Sistemi<a class="headerlink" href="#qemu-sistemi" title="Link to this heading"></a></h3>
+<p>xv6’yı QEMU üzerinde emule ediyoruz. Şimdi gelin QEMU tarafından sağlanan
+RISC-V temelli sistemin bellek haritasına bir bakalım.</p>
+<p>Bunun için <a class="reference external" href="https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c">QEMU’nun kaynak
+kodundan</a> çeşitli
+ipuçları toplayabiliriz:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">hw/riscv/virt.c</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">MemMapEntry</span><span class="w"> </span><span class="n">virt_memmap</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">71</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_DEBUG</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="p">{</span><span class="w">        </span><span class="mh">0x0</span><span class="p">,</span><span class="w">         </span><span class="mh">0x100</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">72</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_MROM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="p">{</span><span class="w">     </span><span class="mh">0x1000</span><span class="p">,</span><span class="w">        </span><span class="mh">0xf000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">73</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_TEST</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="p">{</span><span class="w">   </span><span class="mh">0x100000</span><span class="p">,</span><span class="w">        </span><span class="mh">0x1000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">74</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_RTC</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="p">{</span><span class="w">   </span><span class="mh">0x101000</span><span class="p">,</span><span class="w">        </span><span class="mh">0x1000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">75</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_CLINT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="p">{</span><span class="w">  </span><span class="mh">0x2000000</span><span class="p">,</span><span class="w">       </span><span class="mh">0x10000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">76</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_ACLINT_SSWI</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="mh">0x2F00000</span><span class="p">,</span><span class="w">        </span><span class="mh">0x4000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">77</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_PCIE_PIO</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="p">{</span><span class="w">  </span><span class="mh">0x3000000</span><span class="p">,</span><span class="w">       </span><span class="mh">0x10000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">78</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_PLATFORM_BUS</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="mh">0x4000000</span><span class="p">,</span><span class="w">     </span><span class="mh">0x2000000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">79</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_PLIC</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="p">{</span><span class="w">  </span><span class="mh">0xc000000</span><span class="p">,</span><span class="w"> </span><span class="n">VIRT_PLIC_SIZE</span><span class="p">(</span><span class="n">VIRT_CPUS_MAX</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">80</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_APLIC_M</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="p">{</span><span class="w">  </span><span class="mh">0xc000000</span><span class="p">,</span><span class="w"> </span><span class="n">APLIC_SIZE</span><span class="p">(</span><span class="n">VIRT_CPUS_MAX</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">81</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_APLIC_S</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="p">{</span><span class="w">  </span><span class="mh">0xd000000</span><span class="p">,</span><span class="w"> </span><span class="n">APLIC_SIZE</span><span class="p">(</span><span class="n">VIRT_CPUS_MAX</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">82</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_UART0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="mh">0x10000000</span><span class="p">,</span><span class="w">         </span><span class="mh">0x100</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">83</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_VIRTIO</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="mh">0x10001000</span><span class="p">,</span><span class="w">        </span><span class="mh">0x1000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">84</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_FW_CFG</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="mh">0x10100000</span><span class="p">,</span><span class="w">          </span><span class="mh">0x18</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">85</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_FLASH</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="mh">0x20000000</span><span class="p">,</span><span class="w">     </span><span class="mh">0x4000000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">86</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_IMSIC_M</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="mh">0x24000000</span><span class="p">,</span><span class="w"> </span><span class="n">VIRT_IMSIC_MAX_SIZE</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">87</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_IMSIC_S</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="mh">0x28000000</span><span class="p">,</span><span class="w"> </span><span class="n">VIRT_IMSIC_MAX_SIZE</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">88</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_PCIE_ECAM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mh">0x30000000</span><span class="p">,</span><span class="w">    </span><span class="mh">0x10000000</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">89</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_PCIE_MMIO</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mh">0x40000000</span><span class="p">,</span><span class="w">    </span><span class="mh">0x40000000</span><span class="w"> </span><span class="p">},</span>
+<span class="hll"><span class="linenos">90</span><span class="w">  </span><span class="p">[</span><span class="n">VIRT_DRAM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="mh">0x80000000</span><span class="p">,</span><span class="w">           </span><span class="mh">0x0</span><span class="w"> </span><span class="p">},</span>
+</span><span class="linenos">91</span><span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<p>Burada <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">Address,</span> <span class="pre">Size</span></code> çiftlerini görüyoruz. RAM kısmının base adresinin
+<code class="docutils literal notranslate"><span class="pre">0x80000000</span></code> olduğunu görüyoruz fakat boyutunun <code class="docutils literal notranslate"><span class="pre">0</span></code> olması elbette olası değil,
+başka bir yerden geliyor olmalı. Kodun ilerleyen kısımlarında şöyle bir satır
+var:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">hw/riscv/virt.c</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1288</span><span class="cm">/* build the array of physical mem area from base_memmap */</span>
+<span class="linenos">1289</span><span class="n">mem_array</span><span class="p">.</span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">memmap</span><span class="p">[</span><span class="n">VIRT_DRAM</span><span class="p">].</span><span class="n">base</span><span class="p">;</span>
+<span class="hll"><span class="linenos">1290</span><span class="n">mem_array</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ms</span><span class="o">-&gt;</span><span class="n">ram_size</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</div>
+<p>Belleğin boyutu muhtemelen bu koda bir yerlerden parametre olarak geliyor.
+Burada xv6 repository’sindeki Makefile yardımcı oluyor:</p>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>İlerleyen kısımlarda <a class="reference external" href="https://github.com/mit-pdos/xv6-riscv/tree/f5b93ef12f7159f74f80f94729ee4faabe42c360">f5b93ef</a>
+nolu commit’i referans alacağım.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Makefile</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">159</span><span class="nv">QEMUOPTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-machine<span class="w"> </span>virt<span class="w"> </span>-bios<span class="w"> </span>none<span class="w"> </span>-kernel<span class="w"> </span><span class="nv">$K</span>/kernel<span class="w"> </span>-m<span class="w"> </span>128M<span class="w"> </span>-smp<span class="w"> </span><span class="k">$(</span>CPUS<span class="k">)</span><span class="w"> </span>-nographic
+</span><span class="linenos">160</span><span class="nv">QEMUOPTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-global<span class="w"> </span>virtio-mmio.force-legacy<span class="o">=</span><span class="nb">false</span>
+<span class="linenos">161</span><span class="nv">QEMUOPTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>fs.img,if<span class="o">=</span>none,format<span class="o">=</span>raw,id<span class="o">=</span>x0
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">128M</span></code> argümanı ile oluşturulan “sanal makine” 128M ile oluşturuluyor.
+Bunu xv6 kodunda başka yerlerde de görüyoruz:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">kernel/memlayout.h</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">44</span><span class="c1">// the kernel expects there to be RAM</span>
+<span class="linenos">45</span><span class="c1">// for use by the kernel and user pages</span>
+<span class="linenos">46</span><span class="c1">// from physical address 0x80000000 to PHYSTOP.</span>
+<span class="linenos">47</span><span class="cp">#define KERNBASE 0x80000000L</span>
+<span class="hll"><span class="linenos">48</span><span class="cp">#define PHYSTOP (KERNBASE + 128*1024*1024)</span>
+</span></pre></div>
+</div>
+</div>
+<p>xv6’nın kodunun yorumlarına bakarsak <code class="docutils literal notranslate"><span class="pre">0x80000000</span></code> ve ilerisindeki 128M’lik alanın
+hem kernel hem de kullanıcı programları tarafından kullanılan bellek alanı
+olduğunu görüyoruz. Yani şimdilik her şey tutarlı gidiyor.</p>
+<hr class="docutils" />
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">kernel/memlayout.h</span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 3</span><span class="c1">// qemu -machine virt is set up like this,</span>
+<span class="linenos"> 4</span><span class="c1">// based on qemu&#39;s hw/riscv/virt.c:</span>
+<span class="linenos"> 5</span><span class="c1">//</span>
+<span class="linenos"> 6</span><span class="c1">// 00001000 -- boot ROM, provided by qemu</span>
+<span class="linenos"> 7</span><span class="c1">// 02000000 -- CLINT</span>
+<span class="linenos"> 8</span><span class="c1">// 0C000000 -- PLIC</span>
+<span class="linenos"> 9</span><span class="c1">// 10000000 -- uart0</span>
+<span class="linenos">10</span><span class="c1">// 10001000 -- virtio disk</span>
+<span class="linenos">11</span><span class="c1">// 80000000 -- boot ROM jumps here in machine mode</span>
+<span class="linenos">12</span><span class="c1">//             -kernel loads the kernel here</span>
+<span class="linenos">13</span><span class="c1">// unused RAM after 80000000.</span>
+</pre></div>
+</div>
+</div>
+<p>Yukarıdaki yorumlardan başka bilgiler de çıkartıyoruz. Birçok bilgisayar sistemi
+gibi bu sistem de <a class="reference external" href="https://en.wikipedia.org/wiki/Memory-mapped_I/O_and_port-mapped_I/O">Memory Mapped
+I/O</a>
+yapısında. UART, PLIC (Interrupt Controller) gibi donanımların hepsi işlemcinin
+bellek haritasında birer bellek alanı gibi duruyorlar. Yani 0-2GB (<code class="docutils literal notranslate"><span class="pre">0x80000000</span></code>)
+arası alan görünüşe göre donanıma rezerve edilmiş, sonrasında RAM başlıyor.
+Bizim durumda RAM 128 MB ile sınırlı ve bu kısıt xv6’nın kodu içerisine de
+gömülmüş durumda.</p>
+</section>
+<section id="process-bellek-haritasi">
+<h3>Process Bellek Haritası<a class="headerlink" href="#process-bellek-haritasi" title="Link to this heading"></a></h3>
+<p>Kernelin kendisi ve çalışan her bir process virtual memory üzerinden çalışmaktadır.
+Yani gördükleri bellek aslında bir ilüzyon! Bahsettiğim paging mekanizması ile
+elbette gerçek bellekte, yani bu örnekte 128 MiB’lik bellekte, karşılıkları
+var (ya da bazen yok, sonuçta virtual, swap edilmişse? 🙄). xv6 üzerinde çalışan
+her bir process aynı virtual memory’yi görüyor, kernelin ise farklı bir address
+space’i var ama konumuz şimdilik user space process’ler.</p>
+<p>xv6, varsayılan olarak 4 KiB yani 4096 byte’lık page size ile çalışır:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">kernel/riscv.h</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">335</span><span class="cp">#define PGSIZE 4096 </span><span class="c1">// bytes per page</span>
+</span><span class="linenos">336</span><span class="cp">#define PGSHIFT 12  </span><span class="c1">// bits of offset within a page</span>
+</pre></div>
+</div>
+</div>
+<p>Yani bu demek oluyor ki process’lerin gördüğü bellek 4096 byte’lık parçalara
+ayrılmıştır, 128 M’lik bellek de aynı boyutta parçalara ayrılmıştır, bunlara
+page diyoruz. Process’in gördüğü page’ler, gerçek page’lere herhangi bir
+kombinasyonla eşlenebilir. Bu işletim sisteminin sorumluluğundadır. Kuralı
+işletim sistemi koyar fakat bu kurala göre bu dönüşümleri RISC-V işlemcisinin
+kendisi yapar yani donanımda yapılır. Onun için önceki yazıların birinde OS
+<strong>policy</strong> belirler, donanım <strong>implementation</strong> yapar demiştim.</p>
+<p><strong>Peki user space process’ler yani çalıştırdığımız programlar nasıl bir bellek
+görüyor?</strong></p>
+<figure class="align-center" id="id12">
+<img alt="../_images/os-ve-bellek-process-vm.png" src="../_images/os-ve-bellek-process-vm.png" />
+<figcaption>
+<p><span class="caption-text">Process’lerin gördüğü virtual memory. Tırtıklı çizgilerle çizim sağ tarafa
+doğru uzuyor ama o kısma sonraki yazılarda bakacağız. 🙂</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+<div class="legend">
+<p><a class="reference external" href="https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf">Kaynak</a></p>
+</div>
+</figcaption>
+</figure>
+<p>İşte bu şekilde! Programlar diskte duruyor, biz bunları çalıştırdığımız zaman
+belleğe açılıyorlar. Bunu işletim sistemi yapıyor. Programların içerisinde
+çeşitli <em>section</em> lar bulunuyor. <code class="docutils literal notranslate"><span class="pre">text</span></code> isimli section CPU’da çalışacak kodu
+içeren kısım yani CPU komutları. İşte bu kısım adres 0’dan başlanarak belleğe
+yerleştiriliyor, ama virtual memory adresi böyle. Gerçek fiziksel adres bambaşka
+olabilir. Şu an sadece sanal adreslerden konuşuyoruz. <code class="docutils literal notranslate"><span class="pre">data</span></code> kısmı, programın
+verileri. Mesela bir C programında oluşturduğumuz statik ömürlü değişkenler
+(global değişkenler, statik yerel değişkenler) bu alana yerleştiriliyorlar.
+<code class="docutils literal notranslate"><span class="pre">stack</span></code>, çalışacak program içerisinde bulunan bir kısım değil, process
+oluşturulurken işletim sistemi tarafından yaratılan bir alan. Yine C’den
+düşünecek olursak fonksiyon çağrılarında argüman ve dönüş değerlerinin
+geçirilmesi buradan yapılıyor ve otomatik ömürlü yerel değişkenler stack
+üzerinde yaratılıyorlar. xv6’da stack boyutu runtime sırasında değişmemektedir
+ve 1 page size kadardır, yani varsayılan olarak 4096 byte. <code class="docutils literal notranslate"><span class="pre">data</span></code> ile <code class="docutils literal notranslate"><span class="pre">stack</span></code>
+arasında bir <em>guard page</em> var. Bunun amacı stack taşmalarını yakalayabilmek,
+detaylarına bakacağız. Daha yukarıda ise <code class="docutils literal notranslate"><span class="pre">heap</span></code> yer alıyor. Burası dinamik
+bellek yönetimi ile işletim sisteminden çalışma sırasında yani runtime sırasında
+bellek tahsis edilen yer. <code class="docutils literal notranslate"><span class="pre">heap</span></code> alanının boyutu, çalışma sırasında program
+tarafından yapılan <code class="docutils literal notranslate"><span class="pre">sbrk()</span></code> sistem çağrısı ile değiştirilebiliyor. Yani işletim
+sisteminden daha çok bellek isteyebiliyoruz. C’de kullandığımız <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> ve
+benzeri fonksiyonlar da arka planda bunu yapıyorlar. Runtime sırasında boyutu
+değiştirilebilen tek alan <code class="docutils literal notranslate"><span class="pre">heap</span></code> tir. Belleğin en tepesinde ise <code class="docutils literal notranslate"><span class="pre">trapframe</span></code> ve
+<code class="docutils literal notranslate"><span class="pre">trampoline</span></code> isimli iki page var. Bunlar user space ve kernel space arası
+geçişler, context switch işleri için, sonra bakarız.</p>
+<p>Virtual memory’nin tepe değeri <code class="docutils literal notranslate"><span class="pre">MAXVA</span></code> sembolik sabiti ile belirlenmiştir.</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">kernel/riscv.h</span><a class="headerlink" href="#id13" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">359</span><span class="c1">// one beyond the highest possible virtual address.</span>
+<span class="linenos">360</span><span class="c1">// MAXVA is actually one bit less than the max allowed by</span>
+<span class="linenos">361</span><span class="c1">// Sv39, to avoid having to sign-extend virtual addresses</span>
+<span class="linenos">362</span><span class="c1">// that have the high bit set.</span>
+<span class="hll"><span class="linenos">363</span><span class="cp">#define MAXVA (1L &lt;&lt; (9 + 9 + 9 + 12 - 1))</span>
+</span></pre></div>
+</div>
+</div>
+<p>Burada <code class="docutils literal notranslate"><span class="pre">MAXVA</span></code> nın değeri tam 256 GiB olmaktadır! Elbette bu bellek sanal
+bellektir, sonuçta elimizde fiziksel olarak 128M bellek var. İşte bu alanlar
+arka planda donanım tarafından gerçek belleğe eşleniyor. Çalışan program çok
+yüsek adreslere eriştiğini zannetse de fiziksel olarak başka adreslere erişiyor.</p>
+<p>İlerleyen yazılarda bakarız, bizim sistemde virtual address 39-bit oluyor. Fakat
+burada bir bit daha kısıp 38-bit ile sınırlamışlar. Yani 39-bitlik sanal bellek
+adresinin MSB’si her zaman 0 bu sistemde. Bu aralığı 512 GiB’ten 256 GiB’e
+düşürüyor ama zaten sayılar çok büyük, pratikte bu bir kayıp yaratmıyor.
+Avantajı da şu diye anlıyorum, ileride kernel kodlarına bakarız: Ola ki iki
+39-bit’lik sayıyı karşılaştırmaya sokarsak C’de bu sayıların sign bit extension
+ile negatif sayı gibi extend edilmesinin ve hatalı karşılaştırma yapılmasının
+önüne geçelim diye MSB her zaman 0 tutulmuş diye anlıyorum. Bu C kuralları
+ilgili bir şey ve bir nevi bir <a class="reference external" href="https://en.wikipedia.org/wiki/Defensive_programming">defensive
+programming</a> örneği.</p>
+<p>Son olarak <code class="docutils literal notranslate"><span class="pre">RXWU</span></code> gibi karakterlerin anlamına bakalım. RISC-V işlemcisinde
+page’lere çeşitli <em>attribute</em> lar atanabiliyor. Örneğin bir page sadece okunabilir,
+çalıştırılabilir veya yazılabilir gibi işaretlenebiliyor. Bunun amacı olası
+program hatalarının programı bozmasını önlemek. Örneğin <code class="docutils literal notranslate"><span class="pre">text</span></code> alanının çalıştırılabilir
+koddan oluştuğunu söylemiştik. Onun için bu alanın <code class="docutils literal notranslate"><span class="pre">W</span></code> yetkisine sahip olmasına
+gerek yok, üzerine yazma yapmayacağız. Eğer yanlışlıkla yazma yaparsak, diyelim
+ki programda bir bug var bu sefer işlemci bunu engelleyecektir.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> okunabilir page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> execute edilebilir yani çalıştırılabilir page. Buradakiler CPU üzerinde
+çalıştırılabilir.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">W</span></code> yazılabilir page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> user modda erişilebilir page</p></li>
+</ul>
+<p>Bir de page için <code class="docutils literal notranslate"><span class="pre">V</span></code> yani valid flag’i var ama şu an konumuz dışında.</p>
+<p>Eğer kullancının çalıştırdığı program, ilgili page’in özelliğine uymayan bir
+işlem yaparsa işlemci bir exception üretiyor ve bununla işletim sistemi
+ilgileniyor. Örneğin kullanıcı programı <code class="docutils literal notranslate"><span class="pre">trampoline</span></code> ve <code class="docutils literal notranslate"><span class="pre">trapframe</span></code> e erişemez,
+<code class="docutils literal notranslate"><span class="pre">U</span></code> özelliği yok. <code class="docutils literal notranslate"><span class="pre">data</span></code> kısmındaki bir şeyi CPU’da çalıştıramaz, <code class="docutils literal notranslate"><span class="pre">X</span></code> yok gibi.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Her process’in virtual memory görünümü aynı olsa da fiziksel belleğe olan eşleşmesi
+farklı olacaktır. Her process için kernel bir adet eşleşme tablosu tutmaktadır.
+Sanal page’ler ile gerçek page’ler arası eşleşmeyi gösteren bu tablonun adı
+<strong>page table</strong> dır. Bunun kernel seviyesinde nasıl gerçekleştirildiğine sonra
+bakarız.</p>
+</div>
+</section>
+</section>
+<section id="kaynaklar">
+<h2>Kaynaklar<a class="headerlink" href="#kaynaklar" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=Hr8Dck3re3k">https://www.youtube.com/watch?v=Hr8Dck3re3k</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=o91pWKnr0Mk">https://www.youtube.com/watch?v=o91pWKnr0Mk</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=SGeDjFoYAis">https://www.youtube.com/watch?v=SGeDjFoYAis</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Memory_segmentation">https://en.wikipedia.org/wiki/Memory_segmentation</a></p></li>
+<li><p><a class="reference external" href="https://lass.cs.umass.edu/~shenoy/courses/fall12/lectures/Lec12.pdf">https://lass.cs.umass.edu/~shenoy/courses/fall12/lectures/Lec12.pdf</a></p></li>
+<li><p><a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf">https://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=-DTXcfBW4NQ">https://www.youtube.com/watch?v=-DTXcfBW4NQ</a></p></li>
+<li><p><a class="reference external" href="http://staff.um.edu.mt/csta1/courses/lectures/csm202/os10.html">http://staff.um.edu.mt/csta1/courses/lectures/csm202/os10.html</a></p></li>
+<li><p><a class="reference external" href="https://lass.cs.umass.edu/~shenoy/courses/fall12/lectures/Lec12.pdf">https://lass.cs.umass.edu/~shenoy/courses/fall12/lectures/Lec12.pdf</a></p></li>
+<li><p>🌟 Modern Operating Systems, 4th Edition, Tanenbaum. Chapter 3 Memory Management.
+<code class="docutils literal notranslate"><span class="pre">978-0133591620</span></code></p></li>
+<li><p><a class="reference external" href="https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf">https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=yfqxa-TYdFU">https://www.youtube.com/watch?v=yfqxa-TYdFU</a></p></li>
+</ul>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://terimler.org/">https://terimler.org/</a></p>
+</aside>
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Page_(computer_memory)">https://en.wikipedia.org/wiki/Page_(computer_memory)</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="process.html" class="btn btn-neutral float-left" title="Process Kavramı ve xv6 Çekirdeğindeki Gerçekleştirimi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Önceki</a>
+        <a href="../diger/index.html" class="btn btn-neutral float-right" title="📦 Diğer" accesskey="n" rel="next">Sonraki <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2011-2024, Alper Yazar. Licensed under CC BY-SA 4.0.
+      <span class="lastupdated">Son güncelleme: 23 May 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    kullanılarak <a href="https://readthedocs.org">Read the Docs</a> tarafından sağlanmasıyla oluşturuldu.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHLWHCPSG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FHLWHCPSG0', {
+          'anonymize_ip': false,
+      });
+    </script>
+
+<div id="progressBar" class="progress-bar"></div>
+
+<script>
+  // Listen for scroll events on the window
+window.onscroll = function() {
+  // Call the function to update the progress bar
+  updateProgressBar();
+};
+
+function updateProgressBar() {
+  // Get the total height of the page
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  // Get the current scroll position
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // Calculate the scroll percentage
+  var scrollPercentage = (scrollTop / scrollHeight) * 100;
+  // Update the width of the progress bar
+  document.getElementById("progressBar").style.width = scrollPercentage + "%";
+}
+</script>
+<!-- Default Statcounter code for ayazar.dev
+https://ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12886228;
+  var sc_invisible=1;
+  var sc_security="027dedf0";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12886228/0/027dedf0/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+
+
+</body>
+</html>

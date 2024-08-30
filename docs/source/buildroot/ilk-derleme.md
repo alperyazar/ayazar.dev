@@ -13,7 +13,7 @@ videoyu izlemenizi tavsiye ederim, çünkü bazı noktalarda yazıda olmayan
 yorumlar yapıyorum.
 ```
 
-```{youtube} sO_Sdf09DiY
+```{youtube} GiNsDE4_hnk
 :align: center
 :width: 100%
 ```

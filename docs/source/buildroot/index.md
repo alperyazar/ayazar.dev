@@ -7,8 +7,8 @@ bulabilirsiniz.
 
 ## 📝 Notlarım
 
-[YouTube kanalımda](https://www.youtube.com/@ayazar), [Buildroot
-Öğreniyoruz](https://www.youtube.com/playlist?list=PLr5LL6z9GIeE2auxES8u_MycPvl6AlCZw)
+[YouTube kanalımda](https://www.youtube.com/@FSElektronik), [Buildroot
+Öğreniyoruz](https://www.youtube.com/playlist?list=PLN87Yz_UzbiGWMQND0I-FdbjFcrFZrN_t)
 isimli bir seriye bağlamıştım. Bu seriyi [Bootlin](https://bootlin.com/)
 firmasının açık kaynak, [Buildroot
 eğitimini](https://bootlin.com/training/buildroot/) temel alarak başlatmıştım.

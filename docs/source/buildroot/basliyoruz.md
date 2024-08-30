@@ -4,14 +4,14 @@ giscus: d1529605-d45e-4969-a41c-197e37314f9e
 
 # Buildroot İle Gömülü Linux: Başlıyoruz!
 
-```{youtube} 3Y2P9UmT5xY
+```{youtube} 3o1TP5c9_6k
 :align: center
 :width: 100%
 ```
 
 ---
 
-[Video](https://www.youtube.com/watch?v=3Y2P9UmT5xY)
+[Video](https://youtu.be/3o1TP5c9_6k)
 
 Bu video serinin ilk videosu. Burada kendimden ve video serisinden bahsediyorum.
 

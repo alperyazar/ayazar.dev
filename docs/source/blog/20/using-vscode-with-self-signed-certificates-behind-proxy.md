@@ -82,3 +82,5 @@ Without using GUI, in `settings.json` set
 `"http.proxy":"http://<ip.addr>:<port>"`
 
 *Published on: 2020-11-26*
+
+[^1f]: <https://github.com/microsoft/vscode/issues/84845#issuecomment-558952807>

@@ -307,6 +307,7 @@ OR send a message on
 
 ## Honor & Award
 
+- ASELSAN CTF (Capture The Flag) Contest, 2nd Place. 2022.
 - TUBITAK 2228-National MSc and PhD Scholarship Programme for Senior
   Undergraduate Students. 2012 - 2015.
 - Capstone Design Project Honorable Mention Award. 2011.

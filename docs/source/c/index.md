@@ -12,6 +12,7 @@ glob: true
 history.md
 properties.md
 resources.md
+derleme.md
 ```
 
 ## Diğer İçerikler

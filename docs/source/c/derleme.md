@@ -1,4 +1,4 @@
-# Bir C Programı Derlenirken Olanlar
+# 🏗️ Bir C Programı Derlenirken Olanlar
 
 C, derlenen yani *compiled* bir dildir. Bknz: [](properties.md).
 

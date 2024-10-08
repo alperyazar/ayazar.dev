@@ -6,13 +6,14 @@ C programlama dili, en sevdiğim ❤️
 
 ```{toctree}
 ---
-maxdepth: 1
+maxdepth: 2
 glob: true
 ---
 history.md
 properties.md
 resources.md
 derleme.md
+character-set.md
 ```
 
 ## Diğer İçerikler

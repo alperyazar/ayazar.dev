@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 myst-parser = "*"
-sphinx-rtd-theme = "==2.0.0"
+sphinx-rtd-theme = "==3.0.1"
 Sphinx = "*"
 # Netlify supports only Python 3.8, so the latest compatible version is
 sphinx-autobuild = "==2021.3.14" #2024.4.13 gives watchfiles error. See: https://github.com/sphinx-doc/sphinx-autobuild/pull/152

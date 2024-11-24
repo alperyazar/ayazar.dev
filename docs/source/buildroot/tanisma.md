@@ -12,13 +12,13 @@ kullanılır? Nereden indirilir? ...
 geçen bağlantılar veya videoya ek notlar sunulmuştur.
 ```
 
-```{youtube} pxtKh58Z5Vc
+```{youtube} meLZZuCS4gI
 :align: center
 :width: 100%
 ```
 
 Bu video
-[serinin](https://www.youtube.com/playlist?list=PLN87Yz_UzbiGWMQND0I-FdbjFcrFZrN_t)
+[serinin](https://www.youtube.com/playlist?list=PLr5LL6z9GIeE2auxES8u_MycPvl6AlCZw)
 üçüncü videosu. Bu bölümde Buildroot nedir? kimler kullanır? nasıl kullanılır?
 nereden indirilir? gibi soruların cevabını arıyoruz.
 

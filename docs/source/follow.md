@@ -11,7 +11,7 @@ Here the list of my profiles on some platforms:
 - [mastodon](https://mastodon.social/@ayazar)
 - [Twitter](https://twitter.com/alper_yazar), moving to [mastodon](https://mastodon.social/@ayazar)
 - [GitHub](https://github.com/alperyazar)
-- [Full Stack Elektronik (YouTube, in Turkish)](https://www.youtube.com/@FSElektronik)
+- [YouTube (in Turkish)](https://www.youtube.com/@ayazar)
 - [Reddit](https://www.reddit.com/user/ayazar/)
 - [Stack Exchange (Overflow)](https://stackexchange.com/users/1966184/alper-y)
 - [Hackaday](https://hackaday.io/ayazar)

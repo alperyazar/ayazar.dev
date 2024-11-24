@@ -20,7 +20,7 @@ teknik konular üzerine notlarımı ve kişisel düşüncelerimi paylaşıyorum.
 
 - [👥 LinkedIn'de Takip Edin](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=alperyazar)
   Paylaşımlarımı genelde bu platformda yapıyorum.
-- [📺 Full Stack Elektronik (YouTube)](https://www.youtube.com/@FSElektronik?sub_confirmation=1)
+- [📺 YouTube](https://www.youtube.com/@ayazar)
   Çok aktif değilim.
 - [🐦 X (Twitter) Profilim](https://twitter.com/alper_yazar)
 - [mastodon](https://mastodon.social/@ayazar)
@@ -64,7 +64,6 @@ hidden: true
 about.md
 follow.md
 blog/index.md
-log/index.md
 ```
 
 ```{toctree}
@@ -82,6 +81,14 @@ sys/index.md
 xilinx/index.md
 xv6/index.md
 diger/index.md
+```
+
+```{toctree}
+---
+caption: Eski
+hidden: true
+---
+log/index.md
 ```
 
 ```{toctree}

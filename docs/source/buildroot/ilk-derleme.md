@@ -13,7 +13,7 @@ videoyu izlemenizi tavsiye ederim, çünkü bazı noktalarda yazıda olmayan
 yorumlar yapıyorum.
 ```
 
-```{youtube} GiNsDE4_hnk
+```{youtube} sO_Sdf09DiY
 :align: center
 :width: 100%
 ```
@@ -26,11 +26,11 @@ asciinema kayıtlarını ekle
 
 Buildroot yolculuğumuza, *Buildroot Öğreniyoruz* serisinin 4. bölümü ile devam
 ediyoruz. Bu bölümde, Buildroot ile ilk derlememizi yapacağız. Bir [önceki
-bölümde]({% post_url 2024-02-04-buildroot-ogreniyoruz-03 %}), Buildroot ile
-tanışmış, tasarım felsefesine, kimler tarafından kullanıldığına ve nasıl
-kullanıldığına bakmıştık. Bu bölümde ise, bir önceki bölümde öğrendiklerimizin
-adeta pratiğini yapacağız. Eğer bir önceki bölümü izlemediyseniz konu bütünlüğü
-açısından önceki bölüme bakmanızı öneririm. 👇
+bölümde](tanisma.md), Buildroot ile tanışmış, tasarım felsefesine, kimler
+tarafından kullanıldığına ve nasıl kullanıldığına bakmıştık. Bu bölümde ise, bir
+önceki bölümde öğrendiklerimizin adeta pratiğini yapacağız. Eğer bir önceki
+bölümü izlemediyseniz konu bütünlüğü açısından önceki bölüme bakmanızı öneririm.
+👇
 
 [](tanisma.md)
 

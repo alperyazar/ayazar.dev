@@ -121,9 +121,9 @@ kullanıyorsa kernel de bu register'ı sistem numarasını okumak için kullanma
 Yani her iki taraf da register'ların anlamları üzerinden önden bir anlaşmaya
 varmalı. İşte burada aslında kernel geliştiricileri, programcılar için bir
 arayüz tanımlıyorlar. *Bu register şu anlamda, şu register bu anlamda* diyorlar.
-Buna **calling convention** adı veriliyor. [Şu sayfada
-](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/)Linux
-kernelinin kullandığı calling convention'nun detaylarını görebilirsiniz.
+Buna **calling convention** adı veriliyor.
+[Şu sayfada](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/)
+Linux kernelinin kullandığı calling convention'nun detaylarını görebilirsiniz.
 System call'lardan kısaca **syscall** olarak da bahsediliyor.
 
 Linux kernelinin oluşturduğu gibi iki farklı yazılımın birbiriyle uyumlu bir

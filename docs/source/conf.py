@@ -109,7 +109,7 @@ html_context = {
     "conf_py_path": "/docs/source/"
 }
 
-language = 'tr'
+language = 'en'
 
 todo_include_todos = True
 
@@ -126,3 +126,8 @@ ogp_social_cards = {
 
 # https://pypi.org/project/sphinx-disqus/
 # disqus_shortname = "ayazardev"
+
+
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_last_updated_fmt
+html_last_updated_fmt = "%Y-%m-%d UTC"
+html_last_updated_use_utc = True

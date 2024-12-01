@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Alper Yazar'
+project = 'Alper Yazar - ayazar.dev'
 copyright = '2011-2024, Alper Yazar. Licensed under CC BY-SA 4.0'
-html_title = "Alper Yazar"
+html_title = "Alper Yazar - ayazar.dev"
 author = 'Alper Yazar'
 
 # The full version, including alpha/beta/rc tags
@@ -40,7 +40,8 @@ extensions = ['myst_parser',
 'sphinx_sitemap',
 'sphinx_copybutton',
 'sphinxext.opengraph',
-'sphinxcontrib.asciinema'
+'sphinxcontrib.asciinema',
+'sphinxcontrib.googleanalytics'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -88,13 +89,17 @@ html_copy_source = False
 
 # https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 html_theme_options = {
-    'analytics_id': 'G-FHLWHCPSG0',
-    'display_version': True,
+    # 'analytics_id': 'G-FHLWHCPSG0', Not valid in rtd-theme 3.0.2 anymore
+    # 'display_version': True, Not valid in rtd-theme 3.0.2 anymore
     'style_external_links': True,
     'prev_next_buttons_location': 'both',
     'navigation_depth': 4,
     'collapse_navigation': False
 }
+
+# sphinxcontrib.googleanalytics
+googleanalytics_id = 'G-FHLWHCPSG0'
+googleanalytics_enabled = True
 
 html_context = {
     "display_github" : True,

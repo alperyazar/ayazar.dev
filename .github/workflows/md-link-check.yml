@@ -22,7 +22,7 @@ jobs:
         with:
           args: --verbose './**/*.md'
           # Don't fail action on broken links
-          fail: false
+          fail: true
 
       - name: Create Issue From File
         if: env.lychee_exit_code != 0

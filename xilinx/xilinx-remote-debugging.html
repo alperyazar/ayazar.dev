@@ -1,0 +1,1434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="article:modified_time" content="2024-06-12T17:14:28+00:00" /><meta property="og:title" content="Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ayazar.dev/xilinx/xilinx-remote-debugging.html" />
+<meta property="og:site_name" content="Alper Yazar - ayazar.dev" />
+<meta property="og:description" content="Karta yapılan JTAG bağlantısına ağ üzerinden başka bilgisayardan erişip, kod atma, hata ayıklama gibi tüm işleri karta bağlıymış gibi yapabilirsiniz." />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHLWHCPSG0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FHLWHCPSG0');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır? &mdash; Alper Yazar - ayazar.dev</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/asciinema-player_2.6.1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/asciinema-custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/colors.css?v=c552ea84" />
+      <link rel="stylesheet" type="text/css" href="../_static/table.css?v=2383017d" />
+      <link rel="stylesheet" type="text/css" href="../_static/font.css?v=cb0fa957" />
+      <link rel="stylesheet" type="text/css" href="../_static/width.css?v=778471ac" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://ayazar.dev/xilinx/xilinx-remote-debugging.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7f41d439"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/asciinema-player_2.6.1.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running PetaLinux on an offline machine" href="petalinux-offline.html" />
+    <link rel="prev" title="✖️ Xilinx" href="index.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
+crossorigin="anonymous"></script>
+<!-- Buy me a coffee -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Alper Yazar - ayazar.dev
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">🤓 About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#contact">✉️ Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#education">Education</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#work-experience">Work Experience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#publications">Publications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#patent">Patent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#thesis">Thesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#conference">Conference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#poster">Poster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#lecture-note">Lecture Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#project">Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#funded">Funded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#hobby">Hobby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#phd">PhD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#msc">MSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about.html#bsc">BSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#attended-trainings">Attended Trainings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#embedded-software">Embedded/Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about.html#digital-fpga">Digital/FPGA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#honor-award">Honor &amp; Award</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#membership">Membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#activity">Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#follow">Follow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#site-info">Site Info</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../follow.html">➡️ Follow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog/index.html">📼 Blog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blog/24/index.html">2024</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html">Why do we have programming languages in the first place? Part 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#why-do-computers-exist-in-the-first-place">Why do computers exist in the first place? 💻</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#processors">Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#talking-with-processors">Talking with Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#isa-the-contract">ISA: The Contract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#isa-bad-and-good-news">ISA: Bad and Good News</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#putting-instructions-into-the-memory">Putting Instructions into The Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#machine-language">Machine Language</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/why-programming-languages-part-1.html#assembly-the-first-step-towards-to-programming-languages">Assembly: The First Step Towards to Programming Languages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html">12 Yaşındaki Laptop’uma Hafta Sonu Linux Bakımı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#tasinma-hazirliklari">Taşınma Hazırlıkları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#ventoy">Ventoy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#kurulum">Kurulum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/eski-laptop-linux-bakim.html#kullanim">Kullanım</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/chatgpt-exporter.html">Sadece İki Tıklama ile ChatGPT Export! Markdown, HTML, txt, png…</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/24/zsh.html">My Zsh Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#oh-my-zsh">Oh My Zsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#powerlevel10k">powerlevel10k</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#plugins">plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/24/zsh.html#in-action">In action</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/23/index.html">2023</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html">TIOBE Index nedir? Güvenebilir miyiz?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#tiobe-index-nasil-hesaplaniyor">TIOBE Index nasıl hesaplanıyor?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#alternatifler">Alternatifler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#populerlik-nedir">Popülerlik nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#yani">Yani?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/tiobe-index-nedir-guvenebilir-miyiz.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html">Muhendislik Yapabilirim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#yeteri-kadar-zeki-degilim-sanirim">Yeteri kadar zeki değilim sanırım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#neticede-kul-yapimi">Neticede kul yapımı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#roma-uno-die-non-est-condita">Roma uno die non est condita</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#isin-tarihini-de-biraz-ogrenelim">İşin tarihini de biraz öğrenelim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#bugun-anlamak-zorunda-degiliz">Bugün anlamak zorunda değiliz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#o-benden-daha-cok-biliyor">O benden daha çok biliyor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#eyvah-geride-kaldim">Eyvah, geride kaldım!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#ama-egim-cok-dusuk-arttirmam-lazim">Ama eğim çok düşük, arttırmam lazım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#ilerledigimi-nasil-anlayabilirim">İlerlediğimi nasıl anlayabilirim?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#her-katmani-stack-cok-iyi-bilmek-zorunda-degiliz">Her katmanı (stack) (çok iyi) bilmek zorunda değiliz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#o-konuda-motivasyonum-hic-yok">O konuda motivasyonum hiç yok</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/muhendislik-yapabilirim.html#baska">Başka?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/full-stack-elektronik.html">Full Stack Elektronik Mühendisi?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#full-stack-developer-kimdir">Full Stack Developer kimdir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#stack-nedir">Stack nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#elektronik-sistemlerdeki-katmanlar">Elektronik sistemlerdeki katmanlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#id1">Full Stack Elektronik Mühendisi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#full-stack-electronics-kavrami">Full Stack Electronics kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/full-stack-elektronik.html#tartisma">Tartışma</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/ctf.html">İlk CTF Deneyimim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#ctf-capture-the-flag">CTF (Capture the Flag)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#ee-peki-sen-nasil-ikinci-oldun">“Ee, peki sen nasıl ikinci oldun?”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/ctf.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/23/lychee.html">lychee: Kırık Link Kalmasın</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#neden-kullaniyorum">Neden kullanıyorum?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#docker">Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#ci">CI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#github-actions">Github Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/23/lychee.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/22/index.html">2022</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/kod-ile-vscode-eklentisi-onerme.html">Kod ile beraber Visual Studio Code eklentileri öneriyoruz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/kod-ile-vscode-eklentisi-onerme.html#referanslar">Referanslar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html">Recommend Visual Studio Code extensions along with your code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#working-with-git">Working with git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#extensions-json">extensions.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#finding-names-of-extensions">Finding names of extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#why">Why?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/vscode-extension-recommendation.html#do-not-trust-developers">Do not trust developers!</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/merhaba-hugo.html">Merhaba (go)Hugo!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/merhaba-hugo.html#neden-degistirdim">Neden değiştirdim?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/merhaba-hugo.html#bundan-sonra-ne-olacak">Bundan sonra ne olacak?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/22/windirstat.html">WinDirStat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/22/windirstat.html#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/21/index.html">2021</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/sumatrapdf-texstudio-synctex-search-link.html">Create search link between SumatraPDF and TeXstudio with SyncTeX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/sumatrapdf.html">Sumatra PDF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#giris">Giriş</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#fare-destegi">Fare Desteği</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#latex-ve-synctex-kolayligi">LaTeX ve SyncTeX Kolaylığı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#kucuk-boyut-hiz-tasinabilir-surum">Küçük Boyut, Hız, Taşınabilir Sürüm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#kisisellestirme">Kişiselleştirme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/sumatrapdf.html#eksiler">Eksiler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html">Raspberry Pi SD kart taşıma ve büyütme</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#sd-karti-bilgisayara-kopyalama">SD kartı bilgisayara kopyalama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#bilgisayardan-yeni-sd-karta-kopyalama">Bilgisayardan yeni SD karta kopyalama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#raspberry-pi-uzerinde-alanlarin-genisletilmesi">Raspberry Pi üzerinde alanların genişletilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/rpi-sd-kart-buyutme.html#sonuc">Sonuç</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html">Tekrar Merhaba Jekyll!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html#neden">Neden?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/tekrar-merhaba-jekyll.html#degerlendirme">Değerlendirme</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/21/wsl-offline.html">Using WSL on an offline Windows machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#getting-files">Getting files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#enabling-wsl-on-windows">Enabling WSL on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#installing-wsl-package">Installing WSL package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#error-the-service-has-not-been-started">Error: “The service has not been started”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#pitfall-moving-ubuntu-20-04-after-installation">Pitfall: Moving Ubuntu 20.04 After Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#error-wslregisterdistribution-failed-with-error-0x80070005">Error: “WslRegisterDistribution failed with error: 0x80070005”</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/21/wsl-offline.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/20/index.html">2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/using-vscode-with-self-signed-certificates-behind-proxy.html">Using VS Code with self signed SSL certificates behind proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/20/using-vscode-with-self-signed-certificates-behind-proxy.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/using-pip-and-pipenv-with-self-signed-certificates.html">Use pip and pipenv with self signed SSL certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/20/using-pip-and-pipenv-with-self-signed-certificates.html#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/tekrar-merhaba-mkdocs.html">Tekrar Merhaba MkDocs!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/tekrar-merhaba-dokuwiki.html">Tekrar Merhaba DokuWiki!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/guncel-dogrulama-yontemleri.html">Güncel (Sayısal Tasarım) Doğrulama Yöntemleri ve Araçları</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/microsoft-word-selection-is-locked.html">Microsoft Word: ‘You can’t make this change because this selection is locked.’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/20/merhaba-mkdocs.html">Merhaba MkDocs!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/19/index.html">2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/dokuwiki-blog-deneme.html">Dokuwiki ile Blog Deneme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/yazamayanlara.html">Yazamayanlara</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/crash-course-computer-science.html">Crash Course Computer Science</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html">Windows 10 1803-&gt;1903 Yükseltmesi Sırasında GRUB’un Bozulması</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#sorun">Sorun</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#cozum">Çözüm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/19/windows-10-grub-bozulmasi.html#sebebi-neydi-ki">Sebebi neydi ki?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/19/merhaba-sphinx.html">Merhaba Sphinx!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/18/index.html">2018</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html">Tensorflow (NVIDIA GPU Desteği ile) ve Keras Kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#windows-10-icin">Windows 10 İçin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#windows-7-icin">Windows 7 İçin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/18/tensorflow-nvidia-keras-kurulumu.html#hata-ayiklama">Hata Ayıklama</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/17/index.html">2017</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/17/photorec.html">Camcorder DVD Video Recovery on Ubuntu with photorec</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#tl-dr">TL;DR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#data-recovery-tools">Data Recovery Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/17/photorec.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/14/index.html">2014</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/dokuwiki-without-mail-support.html">Install DokuWiki without Mail Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/zofzpcb.html">ZofzPCB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-like">Features That I Like</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-love">Features That I Love</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/14/zofzpcb.html#features-that-i-will-like">Features That I Will Like</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/hababam-sinifi-bolme.html">235.000’in 9.000’e Tam Olarak Bölünmemesi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/14/windows-hazirda-beklet-uyku.html">Windows’un Sunduğu ‘Hazırda Beklet’ ve ‘Uyku’ Seçeneklerini Sürekli Ters Algılamam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/13/index.html">2013</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html">Yeni Enstrüman: Elektro Gitar + Amfi 🎵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#secim-sebebim">Seçim Sebebim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#tremolo-koluna-dikkat">Tremolo Koluna Dikkat!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/13/yeni-enstruman-elektro-gitar-amfi.html#amfi-amplifikator">Amfi (Amplifikatör)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/12/index.html">2012</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/ubuntu-disket-surucusu-kullanma.html">Ubuntu Üzerinde Disket Sürücüsünü Kullanma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/latex-otomatik-hecelemeyi-kapatma.html">LaTeX’te Otomatik Hecelemeyi Kapatma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/12/ankara-bitirme-projeleri-sergisi.html">Ankara Bitirme Projeleri Sergisi 29 Haziran - 1 Temmuz 2012</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/11/index.html">2011</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html">Atari Kolu (NES Controller) Arayüzü</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#atari-kolunun-sinyalleri">Atari Kolunun Sinyalleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#pic-ile-atari-kolunun-kullanilmasi">PIC ile Atari Kolunun Kullanılması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/atari-kolu-nes-controller.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/altera-de0-fpga-gelistirme-kiti.html">Altera DE0 FPGA Geliştirme Kiti</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/ninite.html">Ninite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/turkce-ubuntu-uzerinde-matlab-calistirma.html">Türkçe Ubuntu Üzerinde MATLAB Çalıştırma Problemi ve Çözümü</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html">AirTies RT-205 Açma - Kapama Düğmesi Arızası</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html#modemi-tamir-ediyoruz">Modemi Tamir Ediyoruz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blog/11/airties-rt-205-acma-kapama-dugmesi-arizasi.html#son-sozler">Son Sözler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notlarım</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../not-hakkinda.html">⁉️ Notlarım Hakkında</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#egitim-veya-ders-amacli-degildir">Eğitim veya Ders Amaçlı Değildir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#yari-turkce-ve-yari-ingilizce-notlar">Yarı Türkçe ve Yarı İngilizce Notlar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-dogrulugu">İçerik Doğruluğu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#dilbilgisi-hatalari-ve-dusuk-cumleler">Dilbilgisi Hataları ve Düşük Cümleler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-yarim-ve-canlidir">İçerik Yarım ve Canlıdır</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../not-hakkinda.html#icerik-yarim-ve-eskidir">İçerik Yarım ve Eskidir</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../buildroot/index.html">👷 Buildroot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../buildroot/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/basliyoruz.html">Buildroot İle Gömülü Linux: Başlıyoruz!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/basliyoruz.html#baglantilar">Bağlantılar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html">Gömülü (Embedded) Linux nedir? Buildroot ve Yocto ne işe yarar?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html#videoda-gecen-baglantilar">Videoda Geçen Bağlantılar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/gomulu-linux-nedir.html#notlar">Notlar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/tanisma.html">Buildroot ile Tanşıyoruz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/tanisma.html#videoda-gecen-baglantilar">Videoda Geçen Bağlantılar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/tanisma.html#notlar">Notlar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildroot/ilk-derleme.html">Buildroot ile ilk derleme!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#gelistirme-ortaminin-olusturulmasi">Geliştirme Ortamının Oluşturulması 💻</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#buildroot-un-edinilmesi">Buildroot’un Edinilmesi ⬇️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#paketlerin-kurulmasi">Paketlerin Kurulması 📦</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#buildroot-u-kullanmaya-baslama">Buildroot’u Kullanmaya Başlama 🚀</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#derleyelim">Derleyelim 🛠️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../buildroot/ilk-derleme.html#kapanis">Kapanış</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">🇨 C</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../c/history.html">📜 History of C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#s">70s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id4">80s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id6">90s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#id7">2000s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#standards-summarized">Standards Summarized</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#unix-and-c">UNIX and C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#long-live-c">Long live C!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#related">Related</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#resources">Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/history.html#changelog">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/properties.html">🌈 15 Features of The C Programming Language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#artificial">🤖 artificial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#compiled">🔨 compiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#efficient">💚 efficient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#expressive">🎨 expressive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#general-purpose">⭕ general purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#imperative">👮 imperative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#middle-low-level">⬇ middle-low level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#non-proprietary">🆓 non-proprietary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#popular">🎊 popular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#portable">👜 portable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#procedural">〽 procedural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#standard">📓 standard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#statically-typed">⚓ statically typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#structured">🏗️ structured</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#weakly-typed">〰 weakly typed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/properties.html#resources">📚 Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/resources.html">📚 Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#standard-documents">Standard Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#web">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#online-compilers">Online Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#exercise">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/resources.html#books">Books</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/derleme.html">🏗️ Bir C Programı Derlenirken Olanlar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/derleme.html#derleme-adimlari">Derleme Adımları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/derleme.html#time-lar">Time’lar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/derleme.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/character-set.html">🔤 Character Set(s) - Karakter Set(leri)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#basic-ve-extended-karakterler">Basic ve Extended Karakterler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#escape-sequence">Escape Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#null-character">Null Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#basic-source-ve-execution-character-sets">Basic Source ve Execution Character Sets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#trigraph-sequences-x">Trigraph sequences <code class="docutils literal notranslate"><span class="pre">??x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/character-set.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c/index.html#diger-icerikler">Diğer İçerikler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html">220 saatlik C kursu alınır mı?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#aldigim-kurs">Aldığım kurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#c-ve-sistem-programcilari-dernegi-csd">C ve Sistem Programcıları Derneği (CSD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-kimler-icin-uygun-ve-degil">Kurs kimler için uygun ve değil? 🤷‍♂️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-tarihcesi">Kurs tarihçesi ⏳</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurs-pahali-ve-uzun-mu-diger-kurumsal-kurslar-udemy">Kurs pahalı 💰 ve uzun mu ⏱️? Diğer kurumsal kurslar? Udemy?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kurumsal-ozel-sinif-ders">Kurumsal, özel sınıf ders 🏢</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#gomulu-embedded-c-anlatiliyor-mu">Gömülü (Embedded) C anlatılıyor mu?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#okula-faydasi-olur-mu">Okula faydası olur mu? 🏫</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#mulakatlara-hazirlik">Mülakatlara hazırlık 👔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#programlamayi-yeni-ogrenenler-icin">Programlamayı yeni öğrenenler için? 🐣</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kaan-aslan-vs-necati-ergin">Kaan Aslan vs Necati Ergin ⚔️</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#olasi-mutsuzluklar">Olası mutsuzluklar 😔</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#kursu-alacaklara-oneriler">Kursu alacaklara öneriler 💡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/220-saatlik-c-kursu-alinir-mi.html#meraklilara">Meraklılara… 🔍</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-struct-padding-packed.html">Do not let the structure padding ruin your day</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-struct-padding-packed.html#moral-of-the-story">Moral of the story</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html">C programlamada gördüğüm en sık yapılan hata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#bu-neden-hatali">Bu neden hatalı?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#bu-hatayi-neden-yapiyoruz">Bu hatayı neden yapıyoruz?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#ornek">Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#derleme-sirasinda-yakalayalim">Derleme sırasında yakalayalım</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-programlamada-en-cok-yapilan-hata.html#ozetle">Özetle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html">Programlama dillerinde Statik ve Dinamik Tür kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#python-dinamik-tur-kavramina-ornek">Python, Dinamik Tür Kavramına Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#c-statik-tur-kavramina-ornek">C, Statik Tür Kavramına Örnek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#ilgili">İlgili</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/statik-dinamik-tur-kavrami.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/yoda-notation.html">Yoda Notation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/yoda-notation.html#further-read">Further Read</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-is-procedural.html">C is a procedural language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-procedural.html#resources">resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../c/c-is-imperative.html">C is an imperative language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#imperative-vs-declarative">imperative vs declarative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#a-declarative-example">a declarative example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#computer-architecture-and-imperative-programming">computer architecture and imperative programming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#functional-programming">functional programming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#summary">summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../c/c-is-imperative.html#resources">resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">♾️ DevOps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devops/tool/index.html">🧰 Araçlar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/asciinema.html">Asciinema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/cyberchef.html">CyberChef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/drawio.html">draw.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/excalidraw.html">Excalidraw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/hedgedoc.html">HedgeDoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/jirafeau.html">Jirafeau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/jsoneditor.html">JSON Editor Online</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/kuma.html">Uptime Kuma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/mattermost.html">Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/tool/w2md.html">Word to Markdown Converter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devops/gitlab/index.html">GitLab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/gitlab/cicd-variables.html">CI/CD Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/cicd-variables.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html">Gitlab Private Container Registry, Runner Konfigürasyonu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#access-token-olusturulmasi">Access Token Oluşturulması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#runner-konfigurasyonu">Runner Konfigürasyonu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devops/gitlab/gitlab-private-registry-runner.html#test">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devops/podman/index.html">Podman</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devops/podman/podman-kurulumu.html">Podman Kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devops/podman/podman-kurulumu.html#etc-subuid-ve-etc-subgid"><code class="docutils literal notranslate"><span class="pre">/etc/subuid</span></code> ve <code class="docutils literal notranslate"><span class="pre">/etc/subgid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devops/podman/podman-self-registry.html">Podman’i Self Hosted Registry İle Kullanma</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../embedded/index.html">🪦 Gömülü Sistemler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/if/index.html">🤝 Arayüzler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus.html">Modbus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#protokol">Protokol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#modbus-pdu">MODBUS PDU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#data-encoding">Data Encoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#data-model">Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#function-codes">Function Codes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus-rtu.html">Modbus RTU</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#master-state-diagram">Master State Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#slave-state-diagram">Slave State Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#ornek-akis">Örnek Akış</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#transmission-modes">Transmission Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#rtu">RTU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#crc">CRC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-rtu.html#framing">Framing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../embedded/if/modbus-function-code.html">Modbus Function Codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-coils-0x01">Read Coils, <code class="docutils literal notranslate"><span class="pre">0x01</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-discrete-inputs-0x02">Read Discrete Inputs, <code class="docutils literal notranslate"><span class="pre">0x02</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-holding-registers-0x03">Read Holding Registers, <code class="docutils literal notranslate"><span class="pre">0x03</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-input-registers-0x04">Read Input Registers, <code class="docutils literal notranslate"><span class="pre">0x04</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-single-coil-0x05">Write Single Coil, <code class="docutils literal notranslate"><span class="pre">0x05</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-single-register-0x06">Write Single Register, <code class="docutils literal notranslate"><span class="pre">0x06</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-exception-status-0x07">Read Exception Status, <code class="docutils literal notranslate"><span class="pre">0x07</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#diagnostics-0x08">Diagnostics, <code class="docutils literal notranslate"><span class="pre">0x08</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#get-comm-event-counter-0x0b-ve-get-comm-event-log-0x0c">Get Comm Event Counter, <code class="docutils literal notranslate"><span class="pre">0x0B</span></code> ve Get Comm Event Log, <code class="docutils literal notranslate"><span class="pre">0x0C</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-multiple-coils-0x0f">Write Multiple Coils, <code class="docutils literal notranslate"><span class="pre">0x0F</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-multiple-registers-0x10">Write Multiple Registers, <code class="docutils literal notranslate"><span class="pre">0x10</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#report-server-id-0x11">Report Server ID, <code class="docutils literal notranslate"><span class="pre">0x11</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-file-record-0x14">Read File Record, <code class="docutils literal notranslate"><span class="pre">0x14</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#write-file-record-0x15">Write File Record, <code class="docutils literal notranslate"><span class="pre">0x15</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#mask-write-register-0x16">Mask Write Register, <code class="docutils literal notranslate"><span class="pre">0x16</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-write-multiple-registers-0x17">Read/Write Multiple registers, <code class="docutils literal notranslate"><span class="pre">0x17</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#read-fifo-queue-0x18">Read FIFO Queue, <code class="docutils literal notranslate"><span class="pre">0x18</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#encapsulated-interface-transport-0x2b">Encapsulated Interface Transport, <code class="docutils literal notranslate"><span class="pre">0x2B</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../embedded/if/modbus-function-code.html#modbus-exception-responses">MODBUS Exception Responses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ldd/index.html">🐧 Linux Aygıt Sürücü</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ldd/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/giris.html">Aygıt Sürücüleri ve Çekirdek Modülleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#gerekli-dosyalarin-elde-edilmesi">Gerekli Dosyaların Elde Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kernel-fonksiyonlari">Kernel Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kernel-modullerinin-derlenmesi-ve-link-edilmesi">Kernel Modüllerinin Derlenmesi ve Link Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/merhaba-dunya.html">“Merhaba Dunya!”</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/merhaba-dunya.html#kernel-e-modulun-yuklenmesi-ve-cikartilmasi">Kernel’e Modülün Yüklenmesi ve Çıkartılması</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/merhaba-dunya.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ldd/3.html">3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ldd/3.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ldd/index.html#kaynaklar">📚 Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sys/index.html">🐧 Linux Sistem Programlama</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sys/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sys/giris.html">Linux Sistem Programlama nedir? + bazı SSS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#sistem-programlama-nedir">Sistem Programlama nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#linux-sistem-programlama-nedir">Linux Sistem Programlama nedir?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#bu-seri-hakkinda">Bu Seri Hakkında</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/arayuz.html">Soyutlama Katmanları, Arayüzler ve Standart C Kütüphanesi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#standart-c-kutuphanesi-ve-posix-fonksiyonlari">Standart C Kütüphanesi ve POSIX Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#daha-yuksek-seviyeli-diller">Daha Yüksek Seviyeli Diller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/arayuz.html#oneriler-ve-kaynaklar">Öneriler ve Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/posix.html">POSIX, SUS ve LSB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/posix.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/posix.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/kernel-arayuz.html">Linux Kernel Arayüzü</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kernel-arayuz.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/man.html">man Sayfalarında Yolumuzu Bulma</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#yerel-man-sayfalari">Yerel man sayfaları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#section-s">Section(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#gnu-info-system">GNU Info System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#gui-yardim-araclari">GUI Yardım Araçları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#online">Online</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/man.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/merhaba-dunya.html">Merhaba Dünya!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#strace">🛣️ strace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#statik-baglama-static-linking">🪨 Statik Bağlama, Static Linking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#libc-den-kacis">🏃 libc’den Kaçış</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#assembly">Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#her-yer-dosya">📁 Her yer dosya!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#stdio-h-stdin-stdout-stderr">stdio.h, stdin, stdout, stderr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#write">write()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/merhaba-dunya.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/size-t-ssize-t.html"><code class="docutils literal notranslate"><span class="pre">size_t</span></code> ve <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> Sorunsalı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/size-t-ssize-t.html#uctan-uca">Uçtan Uca</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/size-t-ssize-t.html#ozet">Özet</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/errno.html">Hata Durumları, <code class="docutils literal notranslate"><span class="pre">errno</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#errno"><code class="docutils literal notranslate"><span class="pre">errno</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#posix-ve-sistem-fonksiyonlari">POSIX ve Sistem Fonksiyonları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#errno-degerleri"><code class="docutils literal notranslate"><span class="pre">errno</span></code> Değerleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/errno.html#bakiniz">Bakınız</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/open.html">Dosya Yaratma ve Açma: <code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/process.html">Process Kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#prosesler-ile-ilgili-komutlar">Prosesler ile İlgili Komutlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#task-struct"><code class="docutils literal notranslate"><span class="pre">task_struct</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#pid">PID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#getpid-ve-pid-t"><code class="docutils literal notranslate"><span class="pre">getpid()</span></code> ve <code class="docutils literal notranslate"><span class="pre">pid_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#kullanici-ve-grup-id">Kullanıcı ve Grup ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#uid-t-ve-gid-t"><code class="docutils literal notranslate"><span class="pre">uid_t</span></code> ve <code class="docutils literal notranslate"><span class="pre">gid_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/process.html#bakmaya-deger">Bakmaya Değer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dosya-dizin-izin.html">Dosya Dizin İzin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dosya-turleri">Dosya Türleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dosya-izinleri">Dosya İzinleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dosya-dizin-izin.html#dizin-izinleri">Dizin İzinleri</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/inode.html">Inode Kavramı</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#bazi-terimler">Bazı Terimler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#id2">inode Kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#inode-temelli-dosya-sistemleri">inode Temelli Dosya Sistemleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/inode.html#ilgili-kaynaklar">İlgili Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/rwx-dosya-dizin.html"><code class="docutils literal notranslate"><span class="pre">rwx</span></code>, Dosya, Dizin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#izinlerin-kontrol-sirasi">İzinlerin Kontrol Sırası</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#tekrar-dizin-ve-inode-kavrami">Tekrar: Dizin ve inode Kavramı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/rwx-dosya-dizin.html#ilgili-baglantilar">İlgili Bağlantılar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dizin-izinleri.html">Dizin İzinleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#oda-kapi-kilit-cam">Oda, Kapı, Kilit, Cam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#r"><code class="docutils literal notranslate"><span class="pre">r--</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#w"><code class="docutils literal notranslate"><span class="pre">-w-</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#x"><code class="docutils literal notranslate"><span class="pre">--x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#rw"><code class="docutils literal notranslate"><span class="pre">rw-</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#r-x"><code class="docutils literal notranslate"><span class="pre">r-x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#wx"><code class="docutils literal notranslate"><span class="pre">-wx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#rwx"><code class="docutils literal notranslate"><span class="pre">rwx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#id1"><code class="docutils literal notranslate"><span class="pre">---</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#dosya-izinleri">Dosya İzinleri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dizin-izinleri.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/soft-hard-link.html">Soft Link ve Hard Link Kavramları</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/soft-hard-link.html#hard-link">Hard Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/soft-hard-link.html#soft-link-symlink">Soft Link (Symlink)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dot-and-dot-dot.html"><code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dot-and-dot-dot.html#are-they-virtual-or-real">Are they virtual or real?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dot-and-dot-dot.html#symlinks-weird-cd-and-pwd-behavior-on-and">Symlinks, Weird <code class="docutils literal notranslate"><span class="pre">cd</span></code> and <code class="docutils literal notranslate"><span class="pre">pwd</span></code> Behavior on <code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/ozel-izinler.html">Özel Dosya İzinleri</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#sticky-bit-1000">Sticky Bit (<code class="docutils literal notranslate"><span class="pre">1000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#set-uid-suid-4000">Set UID, SUID (<code class="docutils literal notranslate"><span class="pre">4000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#set-gid-sgid-2000">Set GID, SGID (<code class="docutils literal notranslate"><span class="pre">2000</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/ozel-izinler.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sys/dac-acl-mac.html">DAC, ACL, MAC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#dac-discretionary-access-controls">DAC, Discretionary Access Controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#mac-mandatory-access-controls">MAC, Mandatory Access Controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#acl-access-control-list">ACL, Access Control List</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/dac-acl-mac.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sys/index.html#kaynaklar">📚 Kaynaklar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sys/kaynak.html">Kaynaklar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#icerik">🌐 İçerik</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#man-sayfalari">📚 man Sayfaları</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#kitaplar">📖 Kitaplar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#standartlar">📝 Standartlar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#bakmaya-deger">👓 Bakmaya Değer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sys/kaynak.html#tercume-ve-icerik">🔤 Tercüme ve İçerik</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">✖️ Xilinx</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#genel">Genel</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#peki-ama-neden">Peki Ama Neden?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nasil-yapilir">Nasıl yapılır? 🤓</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gelistirme-bilgisayari">Geliştirme Bilgisayarı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-tunel">SSH Tünel 🚇</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vivado-vitis-sdk-xsct-program-flash">Vivado, Vitis, SDK, XSCT, <code class="docutils literal notranslate"><span class="pre">program_flash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hata-ayiklama">Hata Ayıklama 🐛</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arkadaslariniza-saka-yapin">Arkadaşlarınıza Şaka Yapın! 😜</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#petalinux">PetaLinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="petalinux-offline.html">Running PetaLinux on an offline machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="petalinux-offline.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="petalinux-offline.html#configuring-the-petalinux-project">Configuring the PetaLinux project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="petalinux-offline.html#problem-still-i-can-t-compile-some-petalinux-projects">Problem: Still I can’t compile some PetaLinux projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="petalinux-offline.html#further-read">Further read</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ubuntu-1604-petalinux-20183-kurulumu.html">Ubuntu 16.04.5 Üzerinde Petalinux 2018.3 Kurulumu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubuntu-2004-petalinux-20222-kurulumu.html">Ubuntu 20.04 üzerine PetaLinux 2022.2 kurulumu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu-2004-petalinux-20222-kurulumu.html#desteklenmeyen-isletim-sistemi">Desteklenmeyen işletim sistemi?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu-2004-petalinux-20222-kurulumu.html#petalinux-config-te-patliyoruz">petalinux-config’te patlıyoruz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu-2004-petalinux-20222-kurulumu.html#ozet">Özet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#vivado">Vivado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="awk-undefined-symbol-mpfrzsub.html">awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="awk-undefined-symbol-mpfrzsub.html#symptoms">Symptoms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="awk-undefined-symbol-mpfrzsub.html#solution">Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="awk-undefined-symbol-mpfrzsub.html#ref">Ref</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vivado-20164-node-locked-license-ubuntu.html">Vivado 2016.4 Node Locked License Not Working on Ubuntu 16.04</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vivado-20164-node-locked-license-ubuntu.html#symptoms">Symptoms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vivado-20164-node-locked-license-ubuntu.html#diagnosis">Diagnosis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vivado-20164-node-locked-license-ubuntu.html#solution">Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vivado-20164-node-locked-license-ubuntu.html#ref">Ref</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../xv6/index.html">6️⃣ xv6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../xv6/index.html#mit-isletim-sistemi-kurslari-ve-tarihcesi">MIT İşletim Sistemi Kursları ve Tarihçesi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xv6/index.html#diger-universitelerdeki-kurslar">Diğer Üniversitelerdeki Kurslar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xv6/index.html#kitap-hakkinda">Kitap Hakkında</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xv6/index.html#notlarim">📝 Notlarım</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/merhaba-dunya.html">Merhaba Dünya!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/merhaba-dunya.html#riscv-gnu-toolchain">riscv-gnu-toolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/merhaba-dunya.html#qemu">QEMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/merhaba-dunya.html#xv6-riscv">xv6-riscv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/merhaba-dunya.html#pre-built-binary">Pre-built Binary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/merhaba-dunya.html#sonuc">Sonuç</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/isletim-sistemi.html">İşletim Sistemi nedir? + Unix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/isletim-sistemi.html#unix">Unix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/isletim-sistemi.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/user-space-giris.html">User Space Programlamaya Giriş: <code class="docutils literal notranslate"><span class="pre">write()</span></code> ve <code class="docutils literal notranslate"><span class="pre">read()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/user-space-giris.html#read-ve-write"><code class="docutils literal notranslate"><span class="pre">read()</span></code> ve <code class="docutils literal notranslate"><span class="pre">write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/user-space-giris.html#ozet">Özet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/user-space-giris.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/gdb-ile-debug.html">GDB ile Hata Ayıklama (Debug 🐛)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/gdb-ile-debug.html#cekirdek-hardware-thread-hart-sayisi-ayarlama">Çekirdek, Hardware Thread, hart Sayısı Ayarlama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/gdb-ile-debug.html#gdb">GDB</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/open-close.html"><code class="docutils literal notranslate"><span class="pre">open()</span></code> ve <code class="docutils literal notranslate"><span class="pre">close()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/open-close.html#open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/open-close.html#close"><code class="docutils literal notranslate"><span class="pre">close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/open-close.html#ornekler">Örnekler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/open-close.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/process.html">Process Kavramı ve xv6 Çekirdeğindeki Gerçekleştirimi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/process.html#xv6-proc-struct-proc-ve-struct-file">xv6: <code class="docutils literal notranslate"><span class="pre">proc</span></code>, <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">proc</span></code> ve <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/process.html#verilerin-bellekte-tahsis-edilmesi">Verilerin Bellekte Tahsis Edilmesi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/process.html#hadi-gozlemleyelim">Hadi Gözlemleyelim! 👀</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/process.html#ozet">Özet</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/os-ve-bellek.html">İşletim Sistemleri ve Bellek Yönetimi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#her-programa-bir-bellek-alani">Her Programa Bir Bellek Alanı</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#relocation">Relocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#fragmentation">Fragmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#virtual-memory-ve-paging">Virtual Memory ve Paging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#swapping">Swapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#xv6">xv6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xv6/os-ve-bellek.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../xv6/index.html#kaynaklar">📚 Kaynaklar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xv6/index.html#risc-v">RISC-V</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../diger/index.html">📦 Diğer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../diger/ffmpeg-birlestirme.html">FFmpeg Video ve Ses Birleştirme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diger/ffmpeg-tek-resim-ses-video.html">FFMmpeg ile Tek Resim ve Ses Dosyası ile Video Oluşturma</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diger/ffmpeg-tek-resim-ses-video.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html">YouTube, Vimeo (Şifreli Videolar Dahil) Video İndirme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#yt-dlp-ve-ffmpeg">yt-dlp ve FFmpeg</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#ffmpeg">FFmpeg</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#youtube-video-indirme">YouTube Video İndirme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#vimeo">Vimeo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#sifreli-videolari-indirme">Şifreli Videoları İndirme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#protected-ve-private-videolar">Protected ve Private Videolar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#chrome-uzerinden-indirme">Chrome Üzerinden İndirme</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#kapanis">Kapanış</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diger/youtube-vimeo-video-indirme.html#kaynaklar">Kaynaklar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Eski</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../log/index.html">📋 Olan Biten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../log/7.html">Kayıt - 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/6.html">Kayıt - 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/5.html">Kayıt - 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/4.html">Kayıt - 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/3.html">Kayıt - 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/2.html">Kayıt - 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log/1.html">Kayıt - 1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">---</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">🌀 Miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/disclaimer.html">❗ Disclaimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/todos.html">Todo List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/specimen.html">Specimen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#admonition">Admonition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#todo">Todo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#visual">Visual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#youtube">YouTube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#giphy">giphy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#giscus">giscus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#rest-specific">reST Specific</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../misc/specimen.html#code-block">Code Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/specimen.html#asciinema">Asciinema</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/disclaimer.html">❗ Disclaimer</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Alper Yazar - ayazar.dev</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">✖️ Xilinx</a></li>
+      <li class="breadcrumb-item active">Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/alperyazar/ayazar.dev/blob/master/docs/source/xilinx/xilinx-remote-debugging.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="✖️ Xilinx" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="petalinux-offline.html" class="btn btn-neutral float-right" title="Running PetaLinux on an offline machine" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xilinx-amd-remote-debugging-neden-kullanisli-ve-nasil-yapilir">
+<h1>Xilinx (AMD) Remote Debugging Neden Kullanışlı ve Nasıl Yapılır?<a class="headerlink" href="#xilinx-amd-remote-debugging-neden-kullanisli-ve-nasil-yapilir" title="Link to this heading"></a></h1>
+<figure class="thmbnl align-center">
+<img alt="../_images/xilinx-remote-debugging.png" src="../_images/xilinx-remote-debugging.png" />
+</figure>
+<hr class="docutils" />
+<p><em>Karta yapılan JTAG bağlantısına ağ üzerinden başka bilgisayardan erişip, kod
+atma, hata ayıklama gibi tüm işleri karta bağlıymış gibi yapabilirsiniz.</em></p>
+<p>Xilinx ürünleri (FPGA ve SoC) ile çalışırken tipik olarak karta fiziksel bir
+JTAG bağlantımız oluyor. <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html">Platform
+Cable</a>
+(“kırmızı şey”) veya benzeri bir ürünü, çalıştığımız bilgisayara USB veya
+Ethernet gibi bir arayüzden bağlıyoruz. Genelde de geliştirme ve hata ayıklama
+yaptığımız bir adet bilgisayar bulunuyor ve kartın JTAG arayüzünü de bu
+bilgisayara bağlamış oluyoruz. Bu çoğu durumda kullanışlı olsa da <strong>böyle yapmak
+zorunda değiliz.</strong></p>
+<p>Xilinx’in <em>Remote Debugging</em> başlığı altında sunduğu iki adet çözüm var:
+Bunlardan ilki (bu yazıda üzerine konuşacağımız), karta fiziksel bir JTAG
+bağlantısı içeriyor. Fakat bu çözümde alışkın olduğumuz kurgunun aksine <strong>bir
+değil, iki adet bilgisayar var</strong> ve bu bilgisayarlar ağ üzerinden bağlı,
+detaylara geleceğiz. Diğer çözüm ise, karta fiziksel bir JTAG bağlantısı
+istemeyen, adeta karta doğrudan yapılan bir Ethernet bağlantısı üzerinden “sanal
+bir JTAG” bağlantısı oluşturulan Xilinx Virtual Cable (XVC) çözümü. <strong>Bu yazıda
+XVC’ye değinmeyeceğim.</strong></p>
+<p>Gelin aşağıdaki duruma bir bakalım:</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-1.png" src="../_images/remote-debugging-1.png" />
+</figure>
+<p>Yukarıdaki yapıda ağ üzerinden “bir şekilde” bağlı iki adet bilgisayar
+görüyoruz. Bu bilgisayarların bir tanesine Platform Cable (demo kartlar
+üzerindeki dahili JTAG gibi benzer bir donanım olabilir) ile kartın JTAG arayüzü
+bağlı. Bu bağlantıda kartın bağlı olduğu bilgisayara <strong>lab bilgisayarı</strong>,
+diğerine ise <strong>geliştirme bilgisayarı</strong> diyeceğiz.</p>
+<section id="peki-ama-neden">
+<h2>Peki Ama Neden?<a class="headerlink" href="#peki-ama-neden" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id1">
+<img alt="https://c.tenor.com/ou8FHfIO7EAAAAAd/tenor.gif" src="https://c.tenor.com/ou8FHfIO7EAAAAAd/tenor.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tenor.com/view/nacho-libre-why-but-gif-23595404">GIF</a></span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>İlk bakışta bu bağlantı çok da mantıklı gelmiyor değil mi?</p>
+<p><strong>Tek bir bilgisayar üzerinden bunu yapabilirken niye iki adet bilgisayar
+kullanalım?</strong></p>
+<p>Evet, haklısınız. Çoğu durum için tek bilgisayar yeterli. Ama
+iki bilgisayarlı setup’ın da kullanışlı olduğu durumlar var, gelin bir bakalım.</p>
+<section id="tasinabilirlik-gercek-anlamda">
+<h3>Taşınabilirlik (Gerçek Anlamda)<a class="headerlink" href="#tasinabilirlik-gercek-anlamda" title="Link to this heading"></a></h3>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-2.png" src="../_images/remote-debugging-2.png" />
+</figure>
+<p>Vivado ve Vitis’in yeni sürümleri çıktıkça ve entegreler de büyüdükçe bu
+yazılımların talep ettiği disk ve RAM boyutları hızla artıyor. <strong>Örneğin AMD
+Vitis 2023.2, 64 GB RAM öneriyor.</strong> Elbette tüm Vitis projeleri için bu kadar
+belleğe ihtiyaç yok ama basit projelerde bile 8-16 GB belleğin yetersiz
+kalabildiğini hemen görebiliyorsunuz. Bazı mühendisler, çalıştıkları kartı
+bilgisayarlarının yanında tutabilecek kadar şanslı ama birçok mühendis de bir
+sistem üzerindeki bir kartta çalışmak durumunda kalıyor. Örneğin bir sisteme
+entegre edilmiş bir kart, masanızdan veya labınızdan uzak bir yerde oluyor ve o
+sistemin yanına bir laptop ile gitmek gerekiyor. Görece güçlü laptoplar,
+masaüstü sistemler kadar yaygın değil. Bir seçenek Vitis’i doğrudan
+çalıştırabilecek güçlü laptoplar almak (maliyet açısından uygun olmayabilir,
+ağır olabilir, başkasının bilgisayarında çalışmanız gerekiyor olabilir). <strong>Diğer
+bir seçenek de basit bir laptop alıp, bunu hedef karta sadece JTAG bağlantısını
+almak için takmak ve ağ üzerinden daha güçlü bir bilgisayara bu JTAG
+bağlantısını Xilinx’in sağladığı Remote Debugging altyapısı ile açmak.</strong> Bu
+sayede uzaktaki güçlü masaüstü bilgisayar <strong>sanki USB’den Platform Cable
+takılıymış gibi</strong> kart üzerindeki entegreye erişebilecektir.</p>
+</section>
+<section id="guclu-uzak-bilgisayarlar">
+<h3>Güçlü Uzak Bilgisayarlar<a class="headerlink" href="#guclu-uzak-bilgisayarlar" title="Link to this heading"></a></h3>
+<p>Senaryomuzu biraz değiştirelim ve aşağıdaki duruma bakalım. Bu çizim üzerinden
+birden fazla olası durumu anlatacağım.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-3.png" src="../_images/remote-debugging-3.png" />
+</figure>
+<p>Diyelim ki sağda solda duran kartlarla uğraşmamıza gerek yok, masamızda
+çalışabiliyoruz. Eğer 10 kişilik bir takımsak herkese güçlü masaüstü
+bilgisayarlar almamız gerekecektir. Bunun yerine, uzaktan bağlantı ile (Windows
+Remote Desktop, VNC, X2Go vs.) geliştirme yapacağımız güçlü, workstation veya
+sunucu sınıfında bilgisayarlar kullanabilir, 10 adet giriş seviyesi masaüstü
+veya laptop bilgisayarı takıma dağıtabiliriz. Herkese güçlü bilgisayarlar
+verseydik, 10 x 64 GB = 640 GB’lık bir hafıza maliyetimiz olacaktı. Elbette
+uzaktaki ortak geliştirme bilgisayarının biraz güçlü olması gerekiyor, özellikle
+aynı anda birden fazla kişi çalışacaksa. Ama burada tepe kullanıma göre değil de
+ortalamaya göre bir kaynak ataması yapacak olursak, örneğin 256 GB’lık bir
+makina muhtemelen iş görecektir ve takıma da 16 GB’lık makinalar dağıtırsak
+256 + 10 x 16 = 416 GB ile işi hallettik, takımdaki bilgisayarlar adeta bir <em>thin
+client</em> oldu.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>💲 Fun fact:</em> Tepe kullanıma göre değil, istatistiksel bir kullanıma göre yatırım
+yaptığımız için adeta bulut bilişim sağlayıcıları (cloud provider) ve Internet
+servis sağlayıcıları (ISP) gibi “para kazandık.”</p>
+</div>
+</section>
+<section id="windows-ve-linux-beraber-calisma-cross-platform">
+<h3>Windows ve Linux Beraber Çalışma (Cross-Platform) 🐧 🥳 🪟<a class="headerlink" href="#windows-ve-linux-beraber-calisma-cross-platform" title="Link to this heading"></a></h3>
+<p>Vitis’in yanında PetaLinux ve Yocto gibi araçlar kullanıyor olabilirsiniz. Bu
+araçlar zaten Linux dağıtımları üzerinde çalışmaktadır. Üstteki senaryodan devam
+edecek olursak, takımın masasındaki bilgisayarlar Windows olabilir. Linux bir
+ortamda Windows üzerinde çalışmak için WSL ya da sanallaştırma gibi çözümler
+var. Fakat PetaLinux ve Yocto’nun görece güçlü geliştirme ve derleme ortamları
+istediğini düşünürsek yine uzaktan erişilebilen güçlü bir Linux bilgisayar
+mantıklı duruyor. Remote Debugging, farklı işletim sistemleri arasında da
+yapılabiliyor. Yani lab bilgisayarı ve geliştirme bilgisayarı dediğimiz
+bilgisayar Windows veya Linux olabilir biraz üstteki çizimde gösterdiğim gibi, 4
+kombinasyon da mümkün.</p>
+</section>
+<section id="birden-fazla-vitis-vivado">
+<h3>Birden Fazla Vitis/Vivado<a class="headerlink" href="#birden-fazla-vitis-vivado" title="Link to this heading"></a></h3>
+<p>Çalışılan proje sayısı arttıkça bilgisayarda birden fazla Vitis veya Vivado
+bulundurmak gerekiyor. Fakat ne yazık ki bu yazılımların istediği disk alanları
+az değil. <strong>Örneğin Vitis 2023.2, en az 200 GB’lık bir disk alanı istiyor.</strong>
+Sadece kurduğumuz programların kapladığı alanın, yaptığımız proje sayısı
+arttıkça terabyte mertebesine ulaşması çok zor değil. Onun yerine yine uzaktan
+erişilebilen ve kullanılan tüm araçların kurulu olduğu güçlü geliştirme
+bilgisayarları kullanılabilir. Bu durumda kendi bilgisayarımıza sadece <strong>Vivado
+Lab Solutions</strong> kurmamız yeterli oluyor. Bunun Vivado’nun sadece Hardware
+Manager’i içeren bir hali olarak düşünebiliriz. <strong>Örneğin Vivado Lab Solutions
+2022.1’in kurulmuş hali diskte sadece 6.1 GB yer kaplıyor.</strong> Böyle kısıtlı iş
+yapan bir yazılım için bence hala büyük ama Vivado’nun kendisine kıyasla oldukça
+az. Eğer uzaktan erişebileceğimiz güçlü bir bilgisayarımız var ise buna
+Vivado’ları kurabilir, kartı takacağımız bilgisayarlara ise sadece Lab
+Solutions’ları kurup ciddi bir disk tasarrufu elde edebiliriz.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Eğer birden fazla Vivado/Vitis versiyonu ile çalışıyorsanız her birinin ayrı Lab
+Solutions uygulamasını kurmanızı öneririm. Görece az yer kaplayan bu uygulamalar
+için disk cimriliği yapıp, tasarruf yapmaya bence çalışmayın. Yakın sürümde
+olanlar çalışabilse de (örn. lab bilgisayarında Vivado Lab Solutions 2022.1,
+geliştirme bilgisayarında ise Vivado 2022.2 durumu iş görebilir) risk almamak
+adına geliştirme ve lab bilgisayarındaki yazılım sürümlerinin aynı olmasını
+sağlayın. Çoğu durumda zaten çeşitli hata ve uyarılar alacaksınız.</p>
+</div>
+</section>
+</section>
+<section id="nasil-yapilir">
+<h2>Nasıl yapılır? 🤓<a class="headerlink" href="#nasil-yapilir" title="Link to this heading"></a></h2>
+<p>Bu sistemin çalışması için iki bilgisayarın ağ üzerinden birbirini (bir şekilde)
+görebilmesi gerekiyor. Önemli olan bu imkanın ne işe yarayabileceğini
+kavrayabilmek. Nasıl yapılacağı ile ilgili AMD’nin dokümanlarında veya başka
+internet sitelerinde bilgiler mevcut. Ben yine de tipik bir sistemi anlatacağım,
+ihtiyaçlarınıza göre değişiklikler yaparsınız.</p>
+<p>Lab bilgisayarında Hardware Server, <code class="docutils literal notranslate"><span class="pre">hw_server</span></code>, çalışıyor olması gerekiyor. Bu
+yazılımın yaptığı temel iş, bir TCP portunu (varsayılan 3121) dinlemek
+(server’lar bunu yapar, client’lar bağlantıyı başlatır) ve buraya bağlanan
+client’ların yaptırmak istediği işleri JTAG üzerinden yapmak. Bu yazılımı <em>JTAG
+↔ TCP converter</em> gibi hayal edebiliriz. <strong>Laf aramızda, tek bir
+bilgisayarda çalışırken de aslında olan şey bu.</strong> Yani arka planda <code class="docutils literal notranslate"><span class="pre">hw_server</span></code>
+ayağa kalkıyor, 3121 nolu portu dinliyor. Vivado, Vitis, SDK, XSCT gibi
+client’lar bu sunucuya 3121 portundan bağlanıyor. Tek bilgisayar durumunda bu
+bağlantı ağ üzerinden değil, doğrudan o bilgisayar üzerinde yapılıyor
+(<code class="docutils literal notranslate"><span class="pre">localhost</span></code>). Remote Debugging’te ise client ve server farklı bilgisayarlarda
+oluyor ve bağlantı <code class="docutils literal notranslate"><span class="pre">localhost</span></code> üzerinden değil de gerçekten de ağ üzerinden
+yapılıyor, işin özü bu. Eğer iki bilgisayar aynı LAN üzerinde ise ve firewall
+kaynaklı bir port kısıtlaması yok ise işimiz daha kolay olacak.</p>
+<section id="lab-bilgisayari">
+<h3>Lab Bilgisayarı<a class="headerlink" href="#lab-bilgisayari" title="Link to this heading"></a></h3>
+<p>İlk olarak lab bilgisayarında Hardware Server çalıştırmamız gerekiyor. Masaüstü
+ortamında yapmanın en kolay yolu o bilgisayardaki Vivado’yu (Lab Solutions veya
+full Vivado olabilir) açmak ve Hardware Manager ile “bildiğimiz yoldan” JTAG
+bağlantısını yapmak (<code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Target</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">Auto</span> <span class="pre">Connect</span></code>). Ama elbette doğrudan komut
+satırından da <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> çalıştırabilirsiniz.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-4.png" src="../_images/remote-debugging-4.png" />
+</figure>
+<p>Burada <code class="docutils literal notranslate"><span class="pre">Tcl</span> <span class="pre">Console</span></code>’a bastırılan logları okursanız zaten arka planda otomatik
+olarak 3121 nolu TCP portunu dinleyen bir <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> başlatıldığını
+görebilirsiniz.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-5.png" src="../_images/remote-debugging-5.png" />
+</figure>
+<p>Dilerseniz Windows’un görev yöneticisinden <code class="docutils literal notranslate"><span class="pre">hw_server</span></code>’ın çalıştığını
+doğrulayabilirsiniz. Linux üzerinde çalışıyorsanız <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">hw_server</span></code>
+gibi bir komutla kontrol edebilirsiniz.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-6.png" src="../_images/remote-debugging-6.png" />
+</figure>
+<p>“Yok kardeşim benim içim rahat etmedi” diyorsanız 3121 nolu portu dinleyen bu
+programı PowerShell üzerinden de bulabilirsiniz (Linux’çu aslanlar da bir yolunu
+bulup listeleyebilirler).</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Get-NetTCPConnection</span> <span class="n">-LocalPort</span> <span class="n">3121</span> <span class="n">-State</span> <span class="n">Listen</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">OwningProcess</span><span class="p">,</span> <span class="n">LocalAddress</span><span class="p">,</span> <span class="n">LocalPort</span><span class="p">,</span> <span class="p">@{</span><span class="n">n</span><span class="p">=</span><span class="s1">&#39;ProcessName&#39;</span><span class="p">;</span><span class="n">e</span><span class="p">={(</span><span class="nb">Get-Process</span> <span class="n">-Id</span> <span class="nv">$_</span><span class="p">.</span><span class="n">OwningProcess</span><span class="p">).</span><span class="n">ProcessName</span><span class="p">}}</span>
+</pre></div>
+</div>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-7.png" src="../_images/remote-debugging-7.png" />
+</figure>
+<p>Yani artık lab bilgisayarı üzerinde <code class="docutils literal notranslate"><span class="pre">hw_server</span></code>’ın çalıştığından eminiz. Şimdi
+yapmamız gereken şey, geliştirme bilgisayarından buradaki sunucu yazılıma
+(<code class="docutils literal notranslate"><span class="pre">hw_server</span></code>) bağlantı yapmak.</p>
+</section>
+</section>
+<section id="gelistirme-bilgisayari">
+<h2>Geliştirme Bilgisayarı<a class="headerlink" href="#gelistirme-bilgisayari" title="Link to this heading"></a></h2>
+<p>Geliştirme bilgisayarında ise donanıma Remote Debugging ile bağlanmak
+istediğimiz zaman <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Target</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">New</span> <span class="pre">Target</span></code> diyoruz, <code class="docutils literal notranslate"><span class="pre">Auto</span> <span class="pre">Connect</span></code>
+<strong>demiyoruz:</strong></p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-8.png" src="../_images/remote-debugging-8.png" />
+</figure>
+<p>Daha sonra <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">server</span></code> seçeneğini seçiyoruz:</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-9.png" src="../_images/remote-debugging-9.png" />
+</figure>
+<p>Sonraki pencere <code class="docutils literal notranslate"><span class="pre">Hostname</span></code> kısmına lab bilgisayarının IP’sini ya da tam adını,
+<code class="docutils literal notranslate"><span class="pre">Port</span></code> kısmına da lab bilgisayarında koşan <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> ın dinlediği port
+numarasını yazıyoruz. Varsayılan olarak <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> 3121 nolu portu dinlediği
+için lab bilgisayarında <code class="docutils literal notranslate"><span class="pre">hw_server</span></code>’ı ayağa kaldırırken başka bir port numarası
+vermediyseniz bu değeri bu şekilde bırakın. Eğer bu noktada hata alıyorsanız
+yazının sonundaki <strong>Hata Ayıklama</strong> kısmına bakabilirsiniz.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-10.png" src="../_images/remote-debugging-10.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ben denemek için burada aynı bilgisayarda koşan <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> a bağlandım
+(<code class="docutils literal notranslate"><span class="pre">localhost</span></code>). Eğer ilerleyen ekran görüntülerinde bir yerlerde
+<code class="docutils literal notranslate"><span class="pre">localhost</span></code>görürseniz kafanız karışmasın lütfen. Sizde lab bilgisayarının adı
+veya IP adresi yazacaktır.</p>
+</div>
+<p>Sonraki pencerede lab bilgisayarında takılı olan JTAG cihazını ve konuştuğu
+FPGA’i görmemiz gerekiyor. <code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">server</span></code> kısmında lab bilgisayarının
+bilgileri olmalı.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-11.png" src="../_images/remote-debugging-11.png" />
+</figure>
+<p>Sonraki pencerede özet bilgileri gördükten sonra bağlantıyı kurulacaktır. Bundan
+sonra Vivado’da kart sanki o bilgisayara bağlıymış gibi çalışabiliriz:</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-12.png" src="../_images/remote-debugging-12.png" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-13.png" src="../_images/remote-debugging-13.png" />
+</figure>
+</section>
+<section id="ssh-tunel">
+<h2>SSH Tünel 🚇<a class="headerlink" href="#ssh-tunel" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id2">
+<img alt="https://c.tenor.com/zPTX9b_cfD0AAAAC/tenor.gif" src="https://c.tenor.com/zPTX9b_cfD0AAAAC/tenor.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tenor.com/view/cat-cute-fat-chonky-lawd-he-coming-gif-16205308">GIF</a></span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>İki bilgisayar arasında port kısıtlamaları olabilir, 3121 nolu (veya benzer)
+portu açamıyor, fakat <a class="reference external" href="https://tr.wikipedia.org/wiki/G%C3%BCvenli_kabuk">SSH</a>
+gibi çeşitli amaçlar ile iki bilgisayar arasında çeşitli portlardan (22 gibi)
+bağlantı kurabiliyor olabilirsiniz. <strong>Diyelim ki SSH bağlantısı kurabiliyorsunuz
+fakat 3121 gibi portları açamıyorsunuz. İşte bu durumda SSH Tünel kullanarak</strong>
+<code class="docutils literal notranslate"><span class="pre">hw_server</span></code> <strong>bağlantısını SSH üzerinden yapabiliriz.</strong> Bu durumu kısaca
+anlatayım.</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-14.png" src="../_images/remote-debugging-14.png" />
+</figure>
+<p>Yukarıdaki çizimde lab bilgisayarından, geliştirme bilgisayarına SSH bağlantısı
+yapıyoruz. Fakat SSH bağlantısını açarken, geliştirme bilgisayarının 3122 nolu
+portuna gelecek istekleri lab bilgisayarının 3121 nolu portuna “tünelleyecek”
+şekilde açıyoruz. Bunun için <strong>SSH Reverse Tunneling</strong> yapmalıyız. Elbette bu
+senaryoda geliştirme bilgisayarında bir SSH server çalıştığını varsaydık. Bu
+bilgisayar bir Linux bilgisayar ise SSH server kurmak zaten zor olmayacaktır. Bu
+arada 3122 değerinin özel bir değer olmadığını de belirtmekte fayda var, başka
+sayılar seçebilirsiniz. SSH bağlantısını, geliştirme bilgisayarından lab
+bilgisayarına doğru yapacaksanız “klasik” <strong>SSH Forward Tunneling</strong>
+yapmalısınız.</p>
+<p>Lab bilgisayarınız Windows ise <a class="reference external" href="https://www.putty.org/">Putty</a> ile tünel işlemi
+yapabilirsiniz. Putty’de bunu yapmak için <code class="docutils literal notranslate"><span class="pre">Connection</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">SSH</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">Tunnels</span></code>
+kısmına girip aşağıdaki ekran görüntüsündeki gibi ayarları yapıyoruz. SSH
+bağlantısı kurulduktan sonra artık <strong>geliştirme bilgisayarından 3122 nolu
+porta yapılacak bir bağlantı, lab bilgisayarının 3121 portuna
+yönlendirilecektir.</strong></p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-15.png" src="../_images/remote-debugging-15.png" />
+</figure>
+<p>Bağlantıyı yaptıktan sonra geliştirme bilgisayarında <code class="docutils literal notranslate"><span class="pre">telnet</span> <span class="pre">localhost</span> <span class="pre">3122</span></code>
+yazarak bağlantıyı doğrulayabiliriz. Eğer her şey yolunda ise geliştirme
+bilgisayarında çalıştırdığımız bu komut ile, SSH tünel üzerinden lab
+bilgisayarında 3121 portunda çalışan <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> a bağlanabilmemiz gerekir.
+Örnek bir çıktı:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>alper@gelistirme-bilgisayari:~$ telnet localhost 3122
+Trying ::1...
+Connected to localhost.
+Escape character is &#39;^]&#39;.
+ELocatorHello[&quot;ZeroCopy&quot;,&quot;MicroPython&quot;,&quot;JtagFpga&quot;,&quot;DebugCore&quot;,&quot;XicomEverest&quot;,...
+</pre></div>
+</div>
+<p>Gelen cevap, <code class="docutils literal notranslate"><span class="pre">hw_server</span></code> ile iletişim kurabildiğimizi göstermektedir. Geliştirme
+bilgisayarınız Linux ise ve Türkçe klavye kullanıyorsanız <code class="docutils literal notranslate"><span class="pre">telnet</span></code> ten <code class="docutils literal notranslate"><span class="pre">CTRL-ü</span></code>
+yaparak çıkabilirsiniz. Daha sonra <code class="docutils literal notranslate"><span class="pre">telnet&gt;</span></code> e düştüğünüz zaman <code class="docutils literal notranslate"><span class="pre">quit</span></code> yazıp
+Enter’a basabilirsiniz.</p>
+<p>Bu noktadan sonra her şey aynı aslında aynı. Sadece geliştirme bilgisayarında
+<code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">server</span></code> bağlantısı yaparken, <code class="docutils literal notranslate"><span class="pre">Host</span> <span class="pre">name</span></code> yerine <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, <code class="docutils literal notranslate"><span class="pre">Port</span></code>
+yerine de <code class="docutils literal notranslate"><span class="pre">3122</span></code> yazacaksınız. SSH bağlantısı kopmadığı sürece bir problem
+yaşamamanız gerekir.</p>
+<p>Lab bilgisayarı olarak Linux kullanan <em>Linux’çu aslanlar</em> SSH bağlantısı
+yaparken <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-R</span></code> kullanabilirler, Linux’çulara komutu söyleyecek değilim, onlar
+bulurlar… 😉</p>
+</section>
+<section id="vivado-vitis-sdk-xsct-program-flash">
+<h2>Vivado, Vitis, SDK, XSCT, <code class="docutils literal notranslate"><span class="pre">program_flash</span></code><a class="headerlink" href="#vivado-vitis-sdk-xsct-program-flash" title="Link to this heading"></a></h2>
+<p>Xilinx’in bildiğim kadarıyla tüm araçları, ister SSH tünel ile olsun ister
+doğrudan olsun, remote JTAG yani remote debugging bağlantısını destekliyor.</p>
+<p>Örneğin <code class="docutils literal notranslate"><span class="pre">program_flash</span></code> komutu ile kalıcı kod atarken <code class="docutils literal notranslate"><span class="pre">-url</span> <span class="pre">tcp:&lt;lab</span> <span class="pre">bilgisayarı</span> <span class="pre">IP&gt;:&lt;port&gt;</span></code> (normal bağlantıda <code class="docutils literal notranslate"><span class="pre">-url</span> <span class="pre">tcp:1.2.3.4:3121</span></code> SSH tünelde <code class="docutils literal notranslate"><span class="pre">-url</span> <span class="pre">tcp:localhost:3122</span></code> gibi) parametresini geçirebilirsiniz diğer parametrelerin
+yanına.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>program_flash -f BOOT.bin -fsbl fsbl.elf -url tcp:1.2.3.4:3121
+</pre></div>
+</div>
+<p>gibi</p>
+<p>Benzer şekilde Vitis ile hata ayıklama yaparken <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Target</span> <span class="pre">Connection</span></code> diyerek
+ilgili IP ve port bilgilerini girerek uzaktaki JTAG cihazına bağlanabilirsiniz:</p>
+<figure class="align-center">
+<img alt="../_images/remote-debugging-16.png" src="../_images/remote-debugging-16.png" />
+</figure>
+<p>Detaylar için Vitis dokümantasyonuna bakabilirsiniz.</p>
+<p>Benzer şekilde <code class="docutils literal notranslate"><span class="pre">xsct</span></code> ile çalışıyorsanız <code class="docutils literal notranslate"><span class="pre">connect</span></code> komutuna ilgili parametreleri
+geçerek de uzak bağlantı yapabilirsiniz. Aşağıdaki örnekte SSH tünel üzerinden
+bağlanıyorum:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xsct% connect -host localhost -port 3122
+tcfchan#0
+xsct% targets
+  1  xc7s25
+     2  MicroBlaze Debug Module at USER2
+        3  MicroBlaze #0 (Running)
+xsct%
+</pre></div>
+</div>
+<p>Diğer Xilinx araçları için de kendi dokümantasyonlarına bakabilirsiniz.</p>
+</section>
+<section id="hata-ayiklama">
+<h2>Hata Ayıklama 🐛<a class="headerlink" href="#hata-ayiklama" title="Link to this heading"></a></h2>
+<p>Karşılaşabileceğiniz hataların bir kısmından bahsetmeye çalışacağım. Yapmaya
+çalıştığımız iş temel olarak iki bilgisayar arasında ağ üzerinden bir TCP
+bağlantısı oluşturmak. Bu yüzden ağ erişim problemlerinde nasıl hata ayıklamalar
+yapıyorsanız o taktikleri burada da kullanabilirsiniz, burada hepsini listelemem
+zor. Benim tecrübeme göre çıkan hataların tamamına yakını Xilinx araçları
+kaynaklı değil, ağ kaynaklı oluyor. Ağ kaynaklı erişim problemlerinin çoğu
+portları kapatan güvenlik duvarlarından veya bilgisayardaki güvenlik
+yazılımlarından (Windows Firewall, Antivirüs gibi) kaynaklanıyor.</p>
+<ul class="simple">
+<li><p>İlk olarak geliştirme bilgisayarından, lab bilgisayarına <code class="docutils literal notranslate"><span class="pre">ping</span></code> atmayı
+deneyin. Ağ erişimini kısıtlayan çoğu donanım/yazılım genelde <code class="docutils literal notranslate"><span class="pre">ping</span></code> e izin
+verecek şekilde konfigüre edilmektedir. <code class="docutils literal notranslate"><span class="pre">ping</span></code> atabiliyor olmanız iki
+bilgisayar arasında bir iletişim kurulabildiğini göstermektedir. Eğer lab
+bilgisayarının IP adresini değil de domaindeki adını yazıyorsanız, <code class="docutils literal notranslate"><span class="pre">ping</span></code>
+işleminin başarılı olması DNS çözümlemesinin de çalıştığını gösterecektir.</p></li>
+<li><p>ping atabiliyorsanız ama 3121 portuna uzaktan bağlantı yapamıyorsanız lab
+bilgisayarına koşan bir güvenlik yazılımı bunu engelliyor olabilir. Kurumsal
+bir şirkette iseniz bilgi işlem, ağ üzerindeki trafiği port tabanlı engelliyor
+olabilir, kendileri ile durumu konuşun.</p></li>
+<li><p>SSH bağlantısı var fakat 3121 gibi “garip” portlara bağlantı yapamıyorsanız
+anlattığım SSH Tünel yöntemini deneyebilirsiniz.</p></li>
+<li><p>Günün sonunda temelde bu bir soket haberleşmesi olduğu için işin içinden
+çıkamıyorsanız kullandığınız işletim sisteminin ağ bağlantıları için sunduğu
+hata ayıklama araçlarını (çeşitli komutlar gibi) veya
+<a class="reference external" href="https://www.wireshark.org/">Wireshark</a> gibi yazılımları kullanabilirsiniz.</p></li>
+</ul>
+</section>
+<section id="arkadaslariniza-saka-yapin">
+<h2>Arkadaşlarınıza Şaka Yapın! 😜<a class="headerlink" href="#arkadaslariniza-saka-yapin" title="Link to this heading"></a></h2>
+<p>Ben bu özelliği zamanında çalışma arkadaşlarıma “tatlı” şakalar yapmak için
+kullanıyordum. Labta çalıştığını bildiğim bir arkadaşın bilgisayarının
+<code class="docutils literal notranslate"><span class="pre">hw_server</span></code> ına kendi bilgisayarımdaki Vivado’dan bağlanıp FPGA’e zamansız
+resetler atarak labtan gelen <em>Ya kart durup duruken reset atıyor, ne alaka
+ya???</em> serzenişlerini dinliyordum. 😈 Yine de siz kararını kaçırmayın. 😇</p>
+</section>
+</section>
+
+
+           </div>
+             <div class="articleComments">
+
+
+<div class="gicus_comments" style="border-top: 2px dashed; margin-top: 10px;">
+  <h2>💭 Comments</h2>
+  <p><small>Comments are provided by <a href="https://giscus.app/">giscus.</a>
+    You need to use and authenticate your <a href="https://github.com/">GitHub</a> account to post a comment.
+    Comments are stored on the <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions.</a></small></p>
+  <script src="https://giscus.app/client.js"
+        data-repo="alperyazar/ayazar.dev"
+        data-repo-id="R_kgDOKRKm6w"
+        data-category="Comments"
+        data-category-id="DIC_kwDOKRKm684Ce1FN"
+        data-mapping="specific"
+        data-term="a993e68b-6e51-4dab-8c05-cffe1b3ea138"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+<p><code>a993e68b-6e51-4dab-8c05-cffe1b3ea138</code></p>
+</div>
+
+
+
+             </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="✖️ Xilinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="petalinux-offline.html" class="btn btn-neutral float-right" title="Running PetaLinux on an offline machine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2011-2025, Alper Yazar. Licensed under CC BY-SA 4.0.
+      <span class="lastupdated">Last updated on 2024-06-12 UTC.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+<div id="progressBar" class="progress-bar"></div>
+
+<script>
+  // Listen for scroll events on the window
+window.onscroll = function() {
+  // Call the function to update the progress bar
+  updateProgressBar();
+};
+
+function updateProgressBar() {
+  // Get the total height of the page
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  // Get the current scroll position
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // Calculate the scroll percentage
+  var scrollPercentage = (scrollTop / scrollHeight) * 100;
+  // Update the width of the progress bar
+  document.getElementById("progressBar").style.width = scrollPercentage + "%";
+}
+</script>
+<!-- Default Statcounter code for ayazar.dev
+https://ayazar.dev -->
+<script type="text/javascript">
+  var sc_project=12886228;
+  var sc_invisible=1;
+  var sc_security="027dedf0";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12886228/0/027dedf0/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+
+
+</body>
+</html>

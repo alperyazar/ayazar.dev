@@ -51,8 +51,8 @@ Site, [Sphinx](https://www.sphinx-doc.org) aracı ile, ufak değişiklikler
 yaptığım ile [Read the Docs](https://github.com/readthedocs/sphinx_rtd_theme)
 teması ile derlenen [statik bir
 websitesidir.](https://en.wikipedia.org/wiki/Static_web_page) Altyapıda [Github
-Pages](https://pages.github.com/) ve [Cloudflare](https://www.cloudflare.com)
-kullanılmaktadır.
+Pages](https://pages.github.com/), [giscus](https://giscus.app/) ve
+[Cloudflare](https://www.cloudflare.com) kullanılmaktadır.
 
 ---
 

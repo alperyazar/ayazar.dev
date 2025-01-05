@@ -6,7 +6,7 @@
 
 ```{toctree}
 ---
-maxdepth: 1
+maxdepth: 2
 glob: true
 ---
 giris.md
@@ -27,6 +27,16 @@ soft-hard-link.md
 dot-and-dot-dot.md
 ozel-izinler.md
 dac-acl-mac.md
+```
+
+---
+
+```{toctree}
+---
+maxdepth: 2
+glob: true
+---
+zaman-paylasimli-calisma.md
 ```
 
 ## 📚 Kaynaklar

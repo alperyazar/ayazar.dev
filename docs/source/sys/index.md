@@ -37,6 +37,7 @@ maxdepth: 2
 glob: true
 ---
 zaman-paylasimli-calisma.md
+sayfalama.md
 ```
 
 ## 📚 Kaynaklar

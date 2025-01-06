@@ -10,8 +10,9 @@ Linux Sistem Programlama ile ilgili olduğunu düşündüğüm çeşitli kaynakl
 
 - Kaan Aslan tarafından hazırlanmış
   [notlar.](https://github.com/CSD-1993/KursNotlari) Kendisinden aldığım
-  *Unix/Linux Sistem Programlama* dersindeki notlarımı da sıklıkla kullanıyorum.
-  🌟
+  *Unix/Linux Sistem Programlama* dersindeki kişisel notlarımı da sıklıkla
+  kullanıyorum. [Özet
+  Notlar](https://github.com/CSD-1993/KursNotlari/blob/master/Unix-Linux-SysProg-OzetNotlar-Ornekler.txt)🌟
 - Murat Demirten tarafından hazırlanmış [Linux Sistem
   Programlama](https://demirten.gitbooks.io/linux-sistem-programlama/content/)
   isimli açık online kitap.

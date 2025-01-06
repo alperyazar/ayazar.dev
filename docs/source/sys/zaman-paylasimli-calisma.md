@@ -456,7 +456,7 @@ yardım alıyorsak `user + sys` zamanını kullanmamız uygun olacaktır. [^3f]
 
 ## Kaynaklar
 
-[](kaynak.md), ağırlıklı CSD notları.
+[](kaynak.md) fakat ağırlıklı CSD notları.
 
 [^1f]: <https://en.wikipedia.org/wiki/O(1)_scheduler>
 [^2f]: <https://man7.org/linux/man-pages/man3/clock.3.html>

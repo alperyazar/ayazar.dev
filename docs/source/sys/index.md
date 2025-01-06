@@ -38,6 +38,7 @@ glob: true
 ---
 zaman-paylasimli-calisma.md
 sayfalama.md
+sanal-bellek.md
 ```
 
 ## 📚 Kaynaklar

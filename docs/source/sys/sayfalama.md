@@ -301,4 +301,70 @@ kullanır.** Bu alanlar bile bugün için çok büyüktür.
 Sayfa tablolarının gerçek organizasyonu için Intel'in, AMD'nin ve ARM
 işlemcilerinin orijinal dokümanlarına bakılmalıdır.
 
+## Ama neden?
+
+`35-39.20`
+
+**Pekiyi sayfalama (paging) mekanizmasının ne faydası vardır?** İşte sayfalama
+mekanizmasının iki önemli işlevi vardır:
+
+1. Sayfalama mekanizması programların fiziksel RAM'e ardışıl yüklenmesinin
+  zorunluluğunu ortadan kaldırır. Böylece **bölünme (fragmentation)** denilen
+  olgunun olumsuz etkisini azaltır.
+2. Sayfalama mekanizması **sanal bellek (virtual memory)** denilen olgunun
+  gerçekleştirimi için gerekmektedir.
+
+## Bölünme, Parçalanma, Fragmentation
+
+`35-1.02.55`
+
+**Bölünme (fragmentation)** bellek yönetimi konusunda önemli bir problemdir. Bir
+nesnenin belleğe yüklenmesi ardışıl bir biçimde yapılırsa zamanla yükleme
+boşaltma işlemlerinin sonucunda bellekte çok sayıda küçük alan oluşmaktadır. Bu
+küçük alanlar ardışıl olmadığı için genellikle bir işe yaramamaktadır. Küçük
+alanların toplamı oldukça büyük miktarlara varabilmekte ve toplam belleğin
+önemli miktarını kaplayabilmektedir. Bu olguya **bölünme (fragmentation)**
+denilmektedir.
+
+🚗 Bunu yol kenarına park eden arabalar arasında park ararken yaşamış
+olabilirsiniz. Aracınızın sığacağı kadar büyüklükte tek bir yer yok ama bütün
+boş yerlerin uzunluğunu toplarsanız aracınızdan çok daha uzun ediyor. Yani park
+etmiş arabaları bir şekilde sıkıştırsanız çok yer açılacak ama park alanı
+*fragmente* olduğu ve aradığınız büyüklükte bir yer olmadığı için arabanızı park
+edemiyorsunuz.
+
+Bölünmenin engellenmesi için ardışıl yükleme zorunluluğunun
+ortadan kaldırılması gerekir. Bu durumda bellek bloklara ayrılır. Yüklenecek
+nesne bloklara bölünerek ardışıl olmayacak biçimde boş bloklara atanır. Ancak
+nesnenin hangi parçasının hangi bloklarda olduğu da bir biçimde kaydedilir. Bu
+teknik hem RAM yönetiminde hem de disk yönetiminde benzer biçimde
+kullanılmaktadır.
+
+🚗 Araba park örneğinden devam edecek olursak belleği bloklara ayırmayı arabayı
+4 eşit parçaya bölüp parçaları ayrı ayrı park edebilmenin mümkün olması gibi
+düşünebilirsiniz. Böylece ufak tefek kalmış boş alanları kullanabiliriz.
+
+Ancak bloklama yöntemiyle bölünme ortadan kaldırılmaya çalışıldığında bu sefer
+başka bir problem ortaya çıkmaktadır. **Nesnelerin son bloklarında kullanılmayan
+alanlar kalabilmektedir.** Bu da bir çeşit bölünmedir. Bu bölünme durumuna
+**içsel bölünme (internal fragmentation)** denilmektedir. İçsel bölünmede
+yapılabilecek bir şey yoktur. Ancak içsel bölünmenin etkisi diğerine göre daha
+az olmaktadır.
+
+`35-1.20.00`
+
+```{note}
+50'li yıllarda işletim sistemleri sistemi anlık durdurup belleği sıkılaştırıyormuş,
+bölünmenin önüne geçmek için. Bazı sistemler de çeşitli yöntemlerle çalışma sırasında
+pointer adreslerini vs değiştirerek bellek parçalanmasını azaltmaya çalışıyormuş.
+Windows'ta eskiden bellek sıkıştırma gibi bir seçenek varmış. Bu kısım mış'lı
+oldu çünkü bu ifadeleri doğrulamış değilim.
+```
+
+`35-1.27.40`
+
+## Kaynaklar
+
+[](kaynak.md) fakat ağırlıklı CSD notları.
+
 [^1f]: <https://stackoverflow.com/q/59816941/1766391>

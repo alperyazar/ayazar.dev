@@ -79,6 +79,11 @@ https://docs.docker.com/engine/reference/commandline/login/#credential-stores
 Login Succeeded
 ```
 
+```{note}
+Docker config dosyası, `config.json`, `/root` yerine `$HOME` altında
+depolanıyorsa ilerleyen kısımlarda o dosyaya bakmanız gerekecektir.
+```
+
 Bu sayede `x` ve `token` kullanarak login olabildiğimizi gördük. Şimdi
 `/root/.docker/config.json` dosyasına bakalım:
 

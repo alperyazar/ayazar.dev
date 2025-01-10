@@ -71,7 +71,17 @@ kullanılabilmektedir. Kullanılacak swap disk alanının ya da dosyalarının t
 bazen önemli olabilir. Çünkü sistemin toplam sanal bellek kapasitesi bu swap
 dosyalarıyla da ilgilidir. Linux sistemlerinde o andaki toplam swap alanları
 `/proc/swaps` dosyasından elde edilebilir. Ya da `swapon -s` komutuyla aynı
-bilgi elde edilebilir.
+bilgi elde edilebilir. Örnek:
+
+```shell
+ay@2204:~$ cat /proc/swaps
+Filename                Type        Size        Used    Priority
+/swapfile                               file        2097148     0   -2
+
+ay@2204:~$ swapon -s
+Filename                Type        Size        Used        Priority
+/swapfile                               file        2097148     0       -2
+```
 
 **Pekiyi sistemin kullandığı swap alanı dolarsa ne olur?** İşte bu durumda
 sistemin sanal bellek limiti dolmuş kabul edilir. Yapılacak şey sisteme yeni

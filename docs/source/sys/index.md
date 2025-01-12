@@ -39,6 +39,7 @@ glob: true
 zaman-paylasimli-calisma.md
 sayfalama.md
 sanal-bellek.md
+sanal-bellek-deneyleri.md
 ```
 
 ## 📚 Kaynaklar

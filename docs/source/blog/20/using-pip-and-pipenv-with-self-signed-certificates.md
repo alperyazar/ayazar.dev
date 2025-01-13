@@ -32,10 +32,10 @@ For me, setting `REQUESTS_CA_BUNDLE` environment variable prior to calling
 can't remember the link). Of course, the certificate file pointed by the
 varible should include the self signed certificate.
 
-### Ubuntu
+### Debian/Ubuntu
 
-I tested on Ubuntu 16.04 but this may work on all Debian and Ubuntu derived
-distros.
+I tested on Ubuntu 16.04, Debian 12 but this may work on all Debian and
+Ubuntu derived distros.
 
 ```bash
 $ export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt

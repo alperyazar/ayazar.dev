@@ -94,6 +94,72 @@ Ben burada self-hosted kullanımı anlatmaya çalışacağım.
 İlk olarak [buraya](https://docs.asciinema.org/manual/server/self-hosting/quick-start)
 bir bakalım.
 
-```{todo}
-Henüz bitmedei buradayım.
+Docker ya da Podman (compose) kullanarak aşağıdaki
+`docker-compose.yml` dosyasını çalıştıralım:
+
+```yml
+services:
+  asciinema:
+    image: ghcr.io/asciinema/asciinema-server:latest
+    ports:
+      - '4000:4000'
+    volumes:
+      - asciinema_data:/var/opt/asciinema
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: docker.io/library/postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 2s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  asciinema_data:
+  postgres_data:
 ```
+
+Güncel compose dosyası için lütfen resmi dokümana bakınız. Ben podman'de
+çalıştırdım. YML dosyasının bulunduğu dizinde `podman-compose up` ya da
+`podman compose up` ya da `docker compose up` yazın. Her şey yolunda ise
+<http://localhost:4000> adresinde görebilmeniz lazım.
+
+```{important}
+asciinema sunucusu ve login sistemi mail üzerinden çalışacak şekilde tasarlanmış.
+Kayıt ve giriş işlemleri hep mail üzerinden gelecek linklerle sağlanıyor,
+kullanıcı adı-şifre ile girilmiyor. O yüzden sisteminizde SMTP sunucus ve mail
+altyapısı yoksa asciinema'yı istediğiniz gibi kullanamayabilirsiniz.
+```
+
+### `asciinema` Aracının Self-Hosted Sunucu ile Kullanımı
+
+`asciinema` aracı varsayılan olarak <https://asciinema.org> adresine upload
+edecek şekilde çalışıyor. Self-hosted kullanmak için ilk olarak bir çevre
+değişken ayarlamamız gerekiyor. Self-hosted adresimiz `x` olsun, yukarıda
+`http://localhost:4000` idi örneğin. `asciinema` aracının buraya upload etmesi
+için `ASCIINEMA_API_URL=x` şeklinde bir environment variable tanımlamak gerekiyor.
+
+```shell
+$ export ASCIINEMA_API_URL=x
+$ asciinema
+```
+
+demek gerekiyor ya da BASH kullanıyorsanız `~/.bashrc` içerisine
+`export ASCIINEMA_API_URL=x` eklemek gerekiyor.
+
+`asciinema auth` ile de authentication yapabilirsiniz.
+
+### Self-Hosted ve Self-Signed Sertifika ile Kullanımı
+
+Self-hosted sunucunuz HTTPS üzerinden hizmet veriyorsa `asciinema` aracını
+kullandığınız bilgisayara da bu sertifikaları kurmanız lazım. Dağıtımınıza göre
+self-signed sertifika nasıl kurulur araştırabilirsiniz. Dağıtımınıza bunu
+eklediğiniz zaman `asciinema` da bu ayarları kullanıyor ve ek bir şey yapmanız
+gerekmiyor diye hatırlıyorum.

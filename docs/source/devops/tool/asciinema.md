@@ -97,7 +97,7 @@ bir bakalım.
 Docker ya da Podman (compose) kullanarak aşağıdaki
 `docker-compose.yml` dosyasını çalıştıralım:
 
-```yml
+```yaml
 services:
   asciinema:
     image: ghcr.io/asciinema/asciinema-server:latest

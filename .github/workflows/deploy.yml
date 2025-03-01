@@ -37,7 +37,7 @@ jobs:
         touch docs/build/.nojekyll
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.7.2
+      uses: JamesIves/github-pages-deploy-action@v4.7.3
       with:
         dry-run: false
         token: ${{ secrets.GITHUB_TOKEN }}

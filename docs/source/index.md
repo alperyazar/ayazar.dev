@@ -80,6 +80,7 @@ ldd/index.md
 sys/index.md
 xilinx/index.md
 xv6/index.md
+zephyr/index.md
 diger/index.md
 ```
 

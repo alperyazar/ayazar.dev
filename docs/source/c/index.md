@@ -14,6 +14,7 @@ properties.md
 resources.md
 derleme.md
 character-set.md
+cevirim-asamalari
 ```
 
 ## Diğer İçerikler

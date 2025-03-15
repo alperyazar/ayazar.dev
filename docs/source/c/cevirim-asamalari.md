@@ -2,7 +2,7 @@
 giscus: 1c100800-9bf7-4b6b-9cce-5eedb05d6c13
 ---
 
-# Çevirim Aşamaları
+# 🔨 Translation Phases - Çevirim Aşamaları
 
 Bu yazıda bir C programı *çevirilirken* olanlara biraz daha detaylı bakacağız.
 Okumadıysanız önce [](derleme.md) yazısını okumanızı öneririm.
@@ -31,7 +31,9 @@ aşağıdaki sıranın takip edildiğini varsayabiliriz.
 İlk olarak kaynak kodda bulunan byte'lar, ki bu kaynak kod bir metin dosyası
 olmaktadır tipik olarak ve UTF-8 gibi multibyte karakter kodlaması içerebilir,
 *source character set* te bulunan karakterlere "implementation-defined" olarak
-eşlenmektedir.
+eşlenmektedir. Yani daha anlaşılır anlatımla, kaynak kodun içerisindeki byte'lar
+karakter kodları olarak anlamlandırılır. Bu eşleşme, mapping, kullanılan
+karakter kodlama sisteminin bir sonucudur.
 
 Bknz: [](character-set.md)
 
@@ -166,11 +168,83 @@ preprocessing token* oluşturmamasıdır. Yani derleyici her herde `<>` görünc
 
 ## Faz 4
 
-```{todo}
-Buradayım
+Bu aşamada ilk olarak önişlemci yani **preprocessor** çalışır. Eğer `#include`
+önişlemci komutu ile dahil ettiğimiz dosyalar varsa her bir dosya için recursive
+olarak, `#include` edilen dosya başka dosyaları da `#include` ediyor olabilir,
+Faz 1-4 arası çalıştırılır.
+
+**Bu aşamanın sonunda kaynak kodda hiçbir önişlemci komutu yani `#` ile
+başlayanlar kalmaz.**
+
+## Faz 5
+
+Bu aşamada *source character set* ten, *execution character set* e çevrim
+yapılır.
+
+Bknz: [](character-set.md)
+
+Source charactet set, bizim kodu yazdığımız bilgisayarda kullanılan karakter
+seti iken execution character set, derlenmiş programın çalışacağı bilgisayarın
+karakter setidir. Günümüzde belki çok anlamlı olmasa da örneğin ASCII karakter
+kodlaması kullanılan bir bilgisayarda kodumuzu geliştiriyor ve derlenen kod
+[EBCDIC](https://en.wikipedia.org/wiki/EBCDIC) kodlamasını kullanan bir
+bilgisayarda çalışıyor olabilirdi. Kaynak kodda gördüğümüz yazıların, örneğin
+*string literal*ların, hedef bilgisayarda da kod çalışınca düzgün gözükmesi için
+bu çevrimin yapılması gerekmektedir.
+
+Bu çevrim karakter sabitlerinin, `'a'` gibi, ve string literallerin, `"alper"`
+gibi, içerisindeki karakterlerin ve *escape seqeunce*ların, `\n` gibi, tümünü
+kapsamaktadır.
+
+Execution character seti'nde bahsettiğimiz temel 96 karakterden oluşan, `<LF>` ?,
+*basic source character set* bulunmalı ve 1-byte ile ifade edilmelidir. Diğer
+karakterler UTF-8 gibi multi-byte olabilirler.
+
+Eğer *escape sequence* ile belirttiğimiz bir karakterin execution character
+set'te bir karşılığı yoksa bu çevrimin nasıl yapacağı implementation-defined
+bırakılmıştır. Fakat bu dönüşüm sonucunda *null character* elde edilmeyeceği
+garanti edilmiştir (sanıyorum wide karakterlerde de böyle)
+
+Bu çevrim, GCC ve Clang'in desteklediği `-finput-charset`, `-fexec-charset`,
+`-fwide-exec-charset` flagleri ile kontrol edilebilmektedir.
+
+## Faz 6
+
+Ard arda gelen *string literal*ler birleştirilir ve tek bir *string literal*e
+dönüştürülür.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    puts("Alper" "Yazar"); // Tek bir string literal "AlperYazar"
+    return 0;
+}
 ```
+
+Yukarıdaki kod bu sebebpten dolayı `puts("AlperYazar")` ile eşdeğerdir. Bu,
+garip bir özellik gibi gelebilir ama C'de idiomatic kod yazarken kullanışlı
+olduğu trickli yerler vardır.
+
+## Faz 7
+
+Derleme işlemi artık yapılır. Her bir kaynak kod, daha doğrusu *translation
+unit*, bağımsız olarak derlenir. String literallerin sonuna *terminating null
+character* konması ve string literallerin statik ömüre sahip isimsiz bir
+array olarak tutulması işlemi de bu aşamada yapılır. [^1f]
+
+## Faz 8
+
+Derleme işlemi bitip, elimizde obje code'lar oluştuktan sonra linker tüm
+bağımsız derlenmiş çıktıları birleştirir ve bir adet dosya oluşur.
+
+Özellikle Faz 7 ve 8 adımları [](derleme.md) yazısında daha detaylı
+anlatılmıştır.
 
 ## Kaynaklar
 
 - <https://en.cppreference.com/w/c/language/translation_phases>
 - <https://stackoverflow.com/q/18379848/1766391>
+
+[^1f]: <https://en.cppreference.com/w/c/language/string_literal>

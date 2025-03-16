@@ -13,7 +13,7 @@ hayatına devam etmektedir.
 
 ```{toctree}
 ---
-maxdepth: 1
+maxdepth: 2
 glob: true
 ---
 giris

@@ -4,6 +4,7 @@
 ---
 maxdepth: 1
 ---
+support.md
 disclaimer.md
 ```
 

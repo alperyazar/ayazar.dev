@@ -8,8 +8,10 @@
 <!-- Adsense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4580059638713287"
 crossorigin="anonymous"></script>
+{#
 <!-- Buy me a coffee -->
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="ayazar" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+#}
 {%- endif %}
 {% endblock %}
 
@@ -58,16 +60,19 @@ https://ayazar.dev -->
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
   <!-- End of Statcounter Code -->
 {%- endif %}
+
+<a href="{{ pathto('misc/support') }}" class="floating-icon-heart"><img src="{{ pathto('assets/icons8-heart-64.png', 1) }}"></a>
+
 {% endblock %}
 
 {%- block comments %}
 {% if meta %}
 {% if meta.giscus %}
 <div class="gicus_comments" style="border-top: 2px dashed; margin-top: 10px;">
-  <h2>💭 Comments</h2>
-  <p><small>Comments are provided by <a href="https://giscus.app/">giscus.</a>
-    You need to use and authenticate your <a href="https://github.com/">GitHub</a> account to post a comment.
-    Comments are stored on the <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions.</a></small></p>
+  <h2>💭 Yorumlar</h2>
+  <p><small>Yorum altyapısı <a href="https://giscus.app/">giscus</a> tarafından (<a href="https://www.youtube.com/watch?v=oBJjjvBAAhY" target="_blank" rel="nofollow">evet tarafından!</a>) sağlanmaktadır.
+    Yorum yazabilmek için <a href="https://github.com/">GitHub</a> hesabınız üzerinden giriş yapmanız gerekmektedir.
+    Yorumlar, <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions</a> üzerinde saklanmaktadır.</small></p>
   <script src="https://giscus.app/client.js"
         data-repo="alperyazar/ayazar.dev"
         data-repo-id="R_kgDOKRKm6w"
@@ -80,7 +85,7 @@ https://ayazar.dev -->
         data-emit-metadata="0"
         data-input-position="top"
         data-theme="preferred_color_scheme"
-        data-lang="en"
+        data-lang="tr"
         data-loading="lazy"
         crossorigin="anonymous"
         async>

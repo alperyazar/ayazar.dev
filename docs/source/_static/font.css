@@ -84,3 +84,36 @@ section>p {
   font-size: 115%;
 }
 */
+
+.floating-icon-heart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #e63946; /* Heart red */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  animation: heartbeat 60s infinite;
+  animation-delay: 10s; /* Initial delay before first heartbeat */
+}
+
+.floating-icon-heart:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+  transform: scale(1.1);
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  5% { transform: scale(1.2); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+}

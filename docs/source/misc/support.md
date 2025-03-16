@@ -20,7 +20,7 @@ yapıcı bir deneyim oluşturacaktır.
 
 ---
 
-🔀 İçerikte yanlış olduğunu düşündüğünüz noktaları da yine igili yazı altına
+🔀 İçerikte yanlış olduğunu düşündüğünüz noktaları da yine ilgili yazı altına
 yorum olarak iletebilirsiniz. Ama daha da güzeli eğer yapabiliyorsanız ilgili
 sayfanın kaynak kodunu düzeltmek ve bunu *Pull Request* ile Github üzerinden
 göndermek olur. Bu sayede doğrudan katkı vermiş de olursunuz. Her sayfanın
@@ -65,7 +65,7 @@ arkadaşlarımızın cebindeki parayı kendileri için harcamaları beni daha mu
 edecektir. Bana göndermek istediğiniz miktarı kendinize ayırın ve benden
 kendinize bir Udemy eğitimi, bir geliştirme kartı, bir dürüm ısmarlayın,
 ilerideki eğitiminiz için biriktirin. Bu beni gerçekten daha fazla mutlu
-edecektir. Benzer şekilde mezun olmuş ama gelir elde etmneye takipçi ve
+edecektir. Benzer şekilde mezun olmuş ama gelir elde etmeyen takipçi ve
 okuyucuların da böyle bir katkıda **bulunMAmasını** yine ısrarla rica ediyorum.
 Lütfen beni kırmayın…
 ```

@@ -104,7 +104,7 @@ section>p {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, transform 0.2s;
   animation: heartbeat 120s infinite;
-  animation-delay: 15s; /* Initial delay before first heartbeat */
+  animation-delay: 10s; /* Initial delay before first heartbeat */
   overflow: hidden; /* Ensures shine effect stays inside */
 }
 
@@ -119,7 +119,7 @@ section>p {
   background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
   transition: none;
   animation: shine 120s infinite;
-  animation-delay: 15s; /* Syncs with heartbeat */
+  animation-delay: 10s; /* Syncs with heartbeat */
 }
 
 /* Hover Effect */
@@ -131,18 +131,18 @@ section>p {
 /* Heartbeat Effect */
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  2% { transform: scale(1.07); }
-  4% { transform: scale(1); }
+  1% { transform: scale(1.15); }
+  2% { transform: scale(1); }
 }
 
 /* Shine animation that moves from left to right */
 @keyframes shine {
   0% { left: -150%; }
-  2% { left: 100%; }
-  4% { left: -150%; }
+  1% { left: 100%; }
+  2% { left: -150%; }
   50% { left: -150%; }
-  55% { left: 100%; }
-  60% { left: -150%; }
+  51% { left: 100%; }
+  52% { left: -150%; }
   100% { left: -150%; }
 }
 

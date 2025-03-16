@@ -87,10 +87,12 @@ section>p {
 
 .floating-icon-heart {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
+  bottom: 2vw; /* Adjust position relative to screen */
+  right: 2vw;
+  width: 5vw; /* Responsive size */
+  height: 5vw;
+  max-width: 64px; /* Prevent oversized icon */
+  max-height: 64px;
   background-color: #e63946; /* Heart red */
   color: white;
   border-radius: 50%;
@@ -101,19 +103,64 @@ section>p {
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, transform 0.2s;
-  animation: heartbeat 60s infinite;
-  animation-delay: 10s; /* Initial delay before first heartbeat */
+  animation: heartbeat 120s infinite;
+  animation-delay: 15s; /* Initial delay before first heartbeat */
+  overflow: hidden; /* Ensures shine effect stays inside */
 }
 
+/* The pseudo-element for the left-to-right shine effect */
+.floating-icon-heart::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  transition: none;
+  animation: shine 120s infinite;
+  animation-delay: 15s; /* Syncs with heartbeat */
+}
+
+/* Hover Effect */
 .floating-icon-heart:hover {
   background-color: #b71c1c; /* Darker red on hover */
   transform: scale(1.1);
 }
 
+/* Heartbeat Effect */
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  5% { transform: scale(1.2); }
-  10% { transform: scale(1); }
-  15% { transform: scale(1.1); }
-  20% { transform: scale(1); }
+  2% { transform: scale(1.15); }
+  4% { transform: scale(1); }
+}
+
+/* Shine animation that moves from left to right */
+@keyframes shine {
+  0% { left: -150%; }
+  2% { left: 100%; }
+  4% { left: -150%; }
+  50% { left: -150%; }
+  55% { left: 100%; }
+  60% { left: -150%; }
+  100% { left: -150%; }
+}
+
+/* Scale the <img> inside the button */
+.floating-icon-heart img {
+  width: 85%; /* Keep it within the button */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 64px; /* Prevent it from being too big */
+}
+
+/* Adjust size for very small screens */
+@media (max-width: 400px) {
+  .floating-icon-heart {
+      width: 10vw;
+      height: 10vw;
+  }
+  .floating-icon-heart img {
+      width: 70%; /* Slightly increase img size on small screens */
+      max-width: 35px;
+  }
 }

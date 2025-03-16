@@ -2,11 +2,11 @@
 giscus: bf5033f3-a820-4e36-b760-c3f71aabf7cc
 ---
 
-# Destek Olma ❤️
+# ❤️ Destek
 
 Bu sayfaya ulaştığınıza göre sunduğum içeriklerden en az birini beğendiğinizi
-düşünüyorum. Öncelikle bunun için mutlu olduğumu iletmek isterim. *Ya da ❤️
-ikonuna meraktan bastınız, o da olur, problem değil.*
+düşünüyorum. Öncelikle bunun için mutlu olduğumu iletmek isterim. *Ya da sağ
+alttaki ❤️ ikonuna meraktan bastınız, o da olur, problem değil.*
 
 Destek olmak için şunları yapabilirsiniz:
 

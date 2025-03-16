@@ -102,6 +102,15 @@ misc/index.md
 misc/disclaimer.md
 ```
 
+```{toctree}
+---
+caption: ---
+hidden: True
+---
+
+misc/support.md
+```
+
 ```{figure} cc-by-sa.png
 :align: center
 :figclass: thmbnl

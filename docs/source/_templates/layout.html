@@ -61,14 +61,14 @@ https://ayazar.dev -->
   <!-- End of Statcounter Code -->
 {%- endif %}
 
-<a href="{{ pathto('misc/support') }}" class="floating-icon-heart"><img src="{{ pathto('assets/icons8-heart-64.png', 1) }}"></a>
+<a href="{{ pathto('misc/support') }}" class="floating-icon-heart" width="48"><img src="{{ pathto('assets/icons8-heart-64.png', 1) }}"></a>
 
 {% endblock %}
 
 {%- block comments %}
 {% if meta %}
 {% if meta.giscus %}
-<div class="gicus_comments" style="border-top: 2px dashed; margin-top: 10px;">
+<div class="gicus_comments" style="border-top: 2px dashed; margin-top: 10px; padding-bottom: 10px;">
   <h2>💭 Yorumlar</h2>
   <p><small>Yorum altyapısı <a href="https://giscus.app/">giscus</a> tarafından (<a href="https://www.youtube.com/watch?v=oBJjjvBAAhY" target="_blank" rel="nofollow">evet tarafından!</a>) sağlanmaktadır.
     Yorum yazabilmek için <a href="https://github.com/">GitHub</a> hesabınız üzerinden giriş yapmanız gerekmektedir.

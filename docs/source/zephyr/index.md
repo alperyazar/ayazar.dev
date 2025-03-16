@@ -17,6 +17,7 @@ maxdepth: 1
 glob: true
 ---
 giris
+zephyr-kullanmali-miyim
 ```
 
 ## 📚 Kaynaklar

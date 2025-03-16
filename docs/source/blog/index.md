@@ -7,6 +7,7 @@ Ortaya karışık içerikler, blog.
 maxdepth: 2
 glob: true
 ---
+25/index.md
 24/index.md
 23/index.md
 22/index.md

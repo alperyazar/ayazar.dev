@@ -1,7 +1,3 @@
----
-og:description: Ben Alper, 12 yıllık bir elektronik mühendisiyim. ASELSAN'da çalışıyorum. Ağırlıklı gömülü sistemler ile ilgileniyorum.
----
-
 # 🏠 Ana Sayfa
 
 ```{figure} me.png
@@ -21,7 +17,7 @@ teknik konular üzerine notlarımı ve kişisel düşüncelerimi paylaşıyorum.
 - [👥 LinkedIn'de Takip Edin](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=alperyazar)
   Paylaşımlarımı genelde bu platformda yapıyorum.
 - [📺 YouTube](https://www.youtube.com/@ayazar)
-  Çok aktif değilim.
+  Arada video çekiyorum ve soru-cevap imkanı olan canlı yayınlar yapıyorum.
 - [🐦 X (Twitter) Profilim](https://twitter.com/alper_yazar)
 - [mastodon](https://mastodon.social/@ayazar)
 
@@ -115,7 +111,7 @@ misc/support.md
 :align: center
 :figclass: thmbnl
 
-License: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Lisans: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 ```
 
 ```{figure} free-cultural-works.png

@@ -149,6 +149,17 @@ olsak bile bu bizler için öğretici olur. Sonuçta birçok gömülü yazılım
 profesyonelinin katkı sunduğu bir proje ve iyi bir "kod okuma egzersizi"
 olabilir.
 
+---
+
+Zephyr'in avantajlı olabileceği bir noktada şu olabilir: Elinizdeki yazılımı
+birden fazla platformda aynı anda çalıştırmak istiyorsanız, farklı üreticilerin
+farklı MCU'ları gibi, ya da ileride görece daha kolay port etmek istiyorsanız
+Zephyr burada anlamlı olabilir. FreeRTOS gibi bir RTOS'a kıysla Zephyr donanımı
+daha fazla soyutladığı için birçok kütüphane *vendor independent* konumdadır.
+Üreticiye bağımlı kısımlar da genelde üreticiler tarafından resmi olarak
+Zephyr ekosistemine kazandırılmaktadır. Projenize göre bu, sizin için elzem
+bir ihtiyaç da olabilir.
+
 ## Zephyr ne zaman uygun olmayabilir?
 
 FreeRTOS'u düşündüğümüz zaman, kendisi aslında bare metal C projemize dahil

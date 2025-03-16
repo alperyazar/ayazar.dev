@@ -60,6 +60,7 @@ hidden: true
 about.md
 follow.md
 blog/index.md
+misc/support.md
 ```
 
 ```{toctree}
@@ -94,17 +95,9 @@ caption: ---
 hidden: True
 ---
 
+changelog/index.md
 misc/index.md
 misc/disclaimer.md
-```
-
-```{toctree}
----
-caption: ---
-hidden: True
----
-
-misc/support.md
 ```
 
 ```{figure} cc-by-sa.png

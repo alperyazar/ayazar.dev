@@ -7,6 +7,13 @@
 
 ---
 
+```{youtube} mIzPfenZWvo
+:align: center
+:width: 100%
+```
+
+---
+
 Asciinema, sloganı **terminal session recorder** olarak geçen bir araç. Linux
 üzerinde terminalde bir şeyler yapan ve bunları paylaşmak isteyen kişilere hitap
 ediyor. OBS gibi ekranı video olarak kaydeden bir yazılımla arasındaki temel

@@ -15,6 +15,7 @@ glob: true
 ---
 gomulu-embedded-c
 asciinema
+yapay-zeka-hizlandiricilari-sezgin-baloglu
 hard-soft-ip
 cross-compilation
 ```

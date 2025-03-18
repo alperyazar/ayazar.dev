@@ -8,5 +8,3 @@ giscus: 1ec46bc5-3641-41e6-95e6-ae237b05320c
 :align: center
 :width: 100%
 ```
-
----

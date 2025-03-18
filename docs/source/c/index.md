@@ -11,10 +11,10 @@ glob: true
 ---
 history.md
 properties.md
-resources.md
 derleme.md
 character-set.md
 cevirim-asamalari
+resources.md
 ```
 
 ## Diğer İçerikler
@@ -32,3 +32,8 @@ yoda-notation.md
 c-is-procedural
 c-is-imperative
 ```
+
+## 📹 Video
+
+- [](../video/gomulu-embedded-c.md)
+- [](../video/cross-compilation.md)

@@ -11,3 +11,8 @@ glob: true
 ---
 if/index.md
 ```
+
+📹 Video
+
+- [](../video/gomulu-embedded-c.md)
+- [](../video/cross-compilation.md)

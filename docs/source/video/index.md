@@ -16,4 +16,5 @@ glob: true
 gomulu-embedded-c
 asciinema
 hard-soft-ip
+cross-compilation
 ```

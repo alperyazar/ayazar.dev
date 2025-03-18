@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Alper Yazar'
-copyright = '2011-2024, Alper Yazar. Licensed under CC BY-SA 4.0'
-html_title = "Alper Yazar"
+project = 'Alper Yazar - ayazar.dev'
+copyright = '2011-2025, Alper Yazar. Licensed under CC BY-SA 4.0'
+html_title = "Alper Yazar - ayazar.dev"
 author = 'Alper Yazar'
 
 # The full version, including alpha/beta/rc tags
@@ -33,13 +33,15 @@ version = 'ayazar.dev'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['myst_parser',
+'sphinx_rtd_theme',
 'sphinx.ext.todo',
 'sphinx_last_updated_by_git',
 'sphinxcontrib.youtube',
 'sphinx_sitemap',
 'sphinx_copybutton',
 'sphinxext.opengraph',
-'sphinxcontrib.asciinema'
+'sphinxcontrib.asciinema',
+'sphinxcontrib.googleanalytics'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -63,7 +65,7 @@ html_baseurl = 'https://ayazar.dev/'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'furo'
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -71,13 +73,12 @@ html_theme = 'furo'
 html_static_path = ['_static']
 
 # https://stackoverflow.com/a/64106835
-html_css_files = ["custom.css"]
+html_css_files = ["colors.css","table.css","font.css","width.css"]
 
 # https://stackoverflow.com/a/54665517/1766391
 html_favicon = 'favicon.ico'
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_logo
-# https://pradyunsg.me/furo/customisation/logo/#same-logo-for-light-and-dark-mode
 html_logo = 'logo.png'
 
 # https://stackoverflow.com/a/53288958/1766391
@@ -88,30 +89,24 @@ html_copy_source = False
 
 # https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 html_theme_options = {
-#    'announcement': 'Web sitemi tekrar düzenliyorum. Eksik içerikler, çalışmayan bağlantılar olabilir. 😇',
-    'source_repository': 'https://github.com/alperyazar/ayazar.dev/',
-    'source_branch': 'master',
-    'source_directory': 'docs/source/',
-    "light_css_variables": {
-      "font-stack": "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
-      "font-stack--monospace": "\"Reddit Mono\", \"SFMono-Regular\", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
-      "color-brand-primary": "#111",
-      "color-brand-content": "#111",
-      "color-brand-visited": "#111",
-      "ayazardev-bold": "#fabfc8",
-      "ayazardev-em": "#c0eeff",
-      "ayazardev-article-color": "#111",
-      "ayazardev-aftera": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);"
-    },
-    "dark_css_variables": {
-      "color-brand-primary": "#d0d0d0",
-      "color-brand-content": "#d0d0d0",
-      "color-brand-visited": "#d0d0d0",
-      "ayazardev-bold": "#995d6d",
-      "ayazardev-em": "#266173",
-      "ayazardev-article-color": "#d0d0d0",
-      "ayazardev-aftera": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAP0lEQVQY042PSQoAMAgDO+L/v2xPhVITbG7RkIVlUFV1c9oBUOJ8n84xpthjEj8igJhEtovjLVoNs2MUUsUpbMPMLAXUjJjTAAAAAElFTkSuQmCC);"
-    }
+    # 'analytics_id': 'G-FHLWHCPSG0', Not valid in rtd-theme 3.0.2 anymore
+    # 'display_version': True, Not valid in rtd-theme 3.0.2 anymore
+    'style_external_links': True,
+    'prev_next_buttons_location': 'both',
+    'navigation_depth': 4,
+    'collapse_navigation': False
+}
+
+# sphinxcontrib.googleanalytics
+googleanalytics_id = 'G-FHLWHCPSG0'
+googleanalytics_enabled = True
+
+html_context = {
+    "display_github" : True,
+    "github_user": "alperyazar",
+    "github_repo": "ayazar.dev",
+    "github_version": "master",
+    "conf_py_path": "/docs/source/"
 }
 
 language = 'tr'
@@ -129,3 +124,10 @@ ogp_social_cards = {
     "enable": False #disabled. can be enabled after https://github.com/wpilibsuite/sphinxext-opengraph/pull/110 due to emoji
 }
 
+# https://pypi.org/project/sphinx-disqus/
+# disqus_shortname = "ayazardev"
+
+
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_last_updated_fmt
+html_last_updated_fmt = "%Y-%m-%d UTC"
+html_last_updated_use_utc = True

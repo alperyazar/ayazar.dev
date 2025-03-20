@@ -14,6 +14,7 @@ maxdepth: 2
 glob: true
 ---
 merhaba
+temel-kavramlar
 ```
 
 ## 📚 Kaynaklar
@@ -22,3 +23,4 @@ merhaba
 - CSD Python Kursu Notlarım
 - Dil hakkında referans: <https://docs.python.org/3/reference/>
 - Python standart kütüphanesi: <https://docs.python.org/3/library/>
+- 📖 Compilers: Principles, Techniques, and Tools

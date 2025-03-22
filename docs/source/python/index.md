@@ -17,6 +17,7 @@ merhaba
 temel-kavramlar
 basliyoruz
 token-keyword-expression-white-space
+temel-veri-turleri
 ```
 
 ## 📚 Kaynaklar

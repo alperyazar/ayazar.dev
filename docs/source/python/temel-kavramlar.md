@@ -2,7 +2,7 @@
 giscus: 76b2aa79-93f5-4e32-bec9-c7b6c2c1488b
 ---
 
-# Temel Kavramlar (BİTMEDİ)
+# Temel Kavramlar
 
 Bu bölümde, çoğu Python'dan bağımsız olan temel kavramlara bakacağız.
 
@@ -189,19 +189,110 @@ terminal?](https://www.reddit.com/r/learnpython/comments/u13qr2/can_someone_expl
 
 ## Mülkiyet Kavramı
 
-Yazılacak
+Programların bir kısmı firmalar tarafından ticari amaçlarla yazılmaktadır. Aynı
+durum programlama dilleri için de geçerli olmaktadır. Örneğin MATLAB dili,
+MathWorks firması tarafından geliştirilmiştir ve mülkiyeti bu firmaya aittir.
+Birçok popüler programlama dilin ise böyle değildir, bir firmaya ait değildir.
+Bunlara *proprietary* diller denmektedir. Python da, C ve C++ gibi dillerde
+olduğu gibi bir firmaya, özel bir gruba ait bir dil değildir. Bu tarz diller
+**non-proprietary** olarak adlandırılır. Böyle diller bir firmanın veya grubun
+özel amaçları için geliştirilmezler, daha çok topluluk tarafından
+ilerletilirler.
 
 ## Dil Olgusu
 
-Yazılacak
+Dil, çok da kolay tanımlanabilen bir olgu değildir. Türkçe gibi diller *native*
+yani `doğal 🇹🇷`; Python gibi programlama dilleri de *constructive*, `kurgusal
+🇹🇷` veya *artificial*, `yapay 🇹🇷` dil olarak kategorilendirilir.
+
+Diller üzerinde temel iki kavramdan bahsedebiliriz: *syntax* yani `sentaks 🇹🇷`
+ve *semantic* yani `semantik 🇹🇷`. Bu iki bileşen dilin gramerini oluşturur.
+Bir dili oluşturan en yalın ögelere *token* yani `sembol 🇹🇷` ya da `atom 🇹🇷`
+adı verilir. Doğal dillerdeki atomlar, sözcüklerdir.
+
+Geçerli sentaks, söz diziminin ve kelimelerin doğru olması iken geçerli semantik
+olması için oluşan cümlelerin de anlamlı olması gerekir.
+
+| Örnek | Sentaks | Semantik | Açıklama |
+| ----- | ------- | -------- | -------- |
+| Ali okula gidiyor. | ✅ | ✅ | Yazım hatası yok, dizilim doğru ve cümle anlamlı |
+| Kalem yemeğe gitti. | ✅ | ❌ | Yazım hatası yok, dizilim doğru fakat cümle anlamsız |
+| Ali gidiyor okul. | ❌ | - | Kelime sırası yanlış, sentaks hatası |
+| Herkez çok mutluydu. | ❌ | - | Kelimede yazım hatası var, sentaks hatası |
+
+Örneğin aşağıdaki C kodu da sentaks olarak doğru semantik olarak yanlıştır.
+
+```c
+double pi = 3.14159;
+printf("%d\n", pi);  // %d yi, double bir değişkenle eşlemek doğru değildir.
+```
+
+---
+
+Türkçe gibi doğal dillerde sentaks ve semantik kurallarını formülize etmek
+neredeyse imkansızdır. İnsanla beraber gelişen ve yıllar içerisinde evrilen
+bu tarz dillerde birçok istisna durum oluşmaktadır. Bunu en iyi başka bir yabancı
+dili öğrenirken hissederiz. Bu yüzden yeni bir dil öğrenmek bizleri zorlar.
+
+Bilgisayar bilimlerinde kullanılan dillere **computer language** yani
+`bilgisayar dilleri 🇹🇷` demekteyiz. Eğer bir bilgisayar dilinde bir akış varsa
+ona aynı zamanda **programming language** yani `programlama dili 🇹🇷` deriz.
+Örneğin HTML bir bilgisayar dilidir ama programlama dili değildir. Python ise
+programlama dilidir, aynı zamanda bilgisayar dili olmaktadır.
+
+Bilgisayar dilleri yapay diller oldukları için doğal dillerin aksine kuralları
+çok daha kolay formülize edilebilir. Burada en çok tercih edilen notasyon
+[BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) ve
+[EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form)
+notasyonu olmaktadır. Birçok programlama dilinin "resmi" dokümanlarında dilin
+grameri bu şekilde tariflenir. Elbette dili bu kurallara bakarak öğrnemek pek
+pratik değildir bu notasyonlar genelde dili öğrendikten sonra referans kaynak
+olarak, bir şeylerin detaylarına bakarken bizler için anlamlı olmaktadır.
 
 ## Programlama Dilleri Kategorileri
 
-Yazılacak
+Programlama dillerini birçok açıdan kategorilendirmek mümkündür. Bununla ilgili
+C özelinde yazdığım [](../c/properties.md) yazısında genel birçok açıklama da
+bulunmaktadır, ona da göz atabilirsiniz. Ayrıca [List of programming
+languages](https://en.wikipedia.org/wiki/List_of_programming_languages_by_type)
+by type başlıklı Wikipedia yazısında da birçok kategoriyi görebilirsiniz.
+
+[İlk yazıda](merhaba.md), programlama dillerindeki çeşitli paradigmalardan yani
+programlama modellerinden kısaca bahsetmiştim: procedural, object-oriented,
+functional ve multi-paradigm. Burada kısaca **object-oriented** ve
+**object-based** kavramlarını da karşılaştırmak isterim.
+
+Eğer bir dilde,
+
+- Sınıf kavramı
+- Türetme kavramı
+- Çok biçimlilik (polymorphism)
+
+varsa o dil **object-oriented** yani `nesne yönelimli 🇹🇷` dil olmaktadır. Sınıf
+kavramı var fakat çok biçimlilik yok ise o zaman **object-based** yani
+`nesen tabanlı 🇹🇷` bir dil olmaktadır. C++, Java, C#, Python gibi diller nesne
+yönelimli dillerdir.
 
 ## Python nerededir?
 
-Yazılacak
+Dilleri birçok açıdan kategorilendirmek mümkün ama Python'ı temel açılardan
+ele alacak olursak bu dilin:
+
+- Yüksek seviyeli
+- Genel amaçlı
+- Çok paradigmalı/modelli (multi-paradigm) (ağırlıklı prosedürel ve nesne
+  yönelimli olsa da fonksiyonel özellikleri de barındırıyor, impure functional language)
+- Implementasyona göre derlenen ve yorumlanan (birini seç deseler yorumlanan
+  kategorisine giriyor ama önceden de bahsettiğim gibi dilleri bu açıdan
+  kategorilendirmek çok da doğru değil)
+- Concurrent programlama destekleyen
+- Dynamically typed, dinamik tür sistemine sahip
+- Interaktif
+- Iterative
+- Reflective
+- Strongly typed
+
+bir dil olduğunu söyleyebiliriz.
 
 [^1f]: 📖 Compilers: Principles, Techniques, and Tools
 [^2f]: <https://stackoverflow.com/questions/41497761/what-exactly-is-the-jit-compiler-inside-a-jvm>

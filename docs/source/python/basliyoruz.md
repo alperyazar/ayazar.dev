@@ -2,12 +2,12 @@
 giscus: 21e43778-c171-4a44-8d13-75462c5292f9
 ---
 
-# Başlıyoruz! (BİTMEDİ)
+# Başlıyoruz!
 
 Önceki yazılarda genel programlama dili ilgili kavramlara ve Python diline geniş
 bir bakış açısı ile biraz baktık. Artık yavaştan dile geçebiliriz.
 
-## REPL
+## REPL Çalışma
 
 Python implementasyonlarının çoğunda, C derleyicisi gibi ortamlarda bulunmayan
 bir özellik bulunmaktadır: interaktif çalışma. Bu özellik aslında Python dilinin
@@ -82,4 +82,34 @@ In [3]:
 
 ## IDE
 
-Anaconda dağıtımı, spyder, Vscode, Pycharm vs bahset.
+IPython, Interactive Python, her ne kadar basit işlerimiz için yeterli olsa da
+Python projemiz büyüdükçe bizler için bu şekilde çalışmak yetersiz gelecektir.
+Burada genel olarak bir IDE, Integrated Development Environment, ile çalışmak
+işlerimizi kolaylaştıracaktır.
+
+Piyasada ücretli/ücretsiz birçok IDE vardır. CPython içerisinde kurulu gelen
+IDLE (Integrated Development and Learning Environment),
+[Anaconda](https://www.anaconda.com/) dağıtımı ile gelen fakat ayrıca da
+kurulabilen [Spyder IDE](https://www.spyder-ide.org/),
+[PyCharm](https://www.jetbrains.com/pycharm/), [Visual Studio
+Code](https://code.visualstudio.com/docs/languages/python),
+[PyDev](https://marketplace.eclipse.org/content/pydev-python-ide-eclipse)
+[Thonny](https://thonny.org/) hatta online çalışan [Online
+Python](https://www.online-python.com/),
+[Replit](https://replit.com/languages/python3) sayabileceğimiz IDE'ler
+arasındadır. Elbette yazılımların yetenekleri birbirlerinden faklıdır.
+
+Eğer ağırlıklı öğrenme amaçlı çalışıyorsak, **Spyder IDE**nin iyi bir tercih
+olabileceğini düşünüyorum. Spyder, *IDEcik* denilebilecek bir büyüklüktedir.
+Projelerimiz büyüdükçe PyCharm'ı tercih etmeyi düşünebiliriz örneğin. Spyder'ı
+Anaconda dağıtımı içerisinden de kurabilirsiniz ya da bağımsız da
+kurulabilmektedir. İçerisinde IPython da bulunur.
+
+```{figure} assets/spyder.png
+:align: center
+
+Spyder IDE şuna benziyor
+```
+
+Siz de istediğiniz IDE'yi kurabilirsiniz. Kurulum dokümanlarına da arama yaparak
+ulaşabilirsiniz.

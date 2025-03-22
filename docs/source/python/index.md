@@ -15,6 +15,7 @@ glob: true
 ---
 merhaba
 temel-kavramlar
+basliyoruz
 ```
 
 ## 📚 Kaynaklar

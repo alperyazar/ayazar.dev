@@ -19,6 +19,7 @@ basliyoruz
 token-keyword-expression-white-space
 temel-veri-turleri
 sabitlerin-turleri
+yorum-etkisiz-kod
 ```
 
 ## 📚 Kaynaklar

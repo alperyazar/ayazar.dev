@@ -186,7 +186,7 @@ değildir, latin-1/ISO 8859-1 (ASCII), UTF-8, UTF-16, UTF-32 vs.
 - <https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/>
 ```
 
-### Escape Sequences - Ters Bölü, `\`, Karakterleri
+## Escape Sequences - Ters Bölü, `\`, Karakterleri
 
 ASCII ve UNICODE tablodaki ilk 32 karakter ekranda görünmeyen kontrol
 karakterlerinden oluşmaktadır. Bu karakterleri yazdırınca ekranda bir şey
@@ -228,7 +228,7 @@ alpeyazar
 alper
 ```
 
-### `'` içinde `'`, `"` içinde `"`
+## `'` içinde `'`, `"` içinde `"`
 
 Yazı sabiti oluşturmak için `''` kullanıyorsak ve yazının içerisinde `'`
 karakteri geçiyorsa sorun yaşamaya başlayabiliriz. Aynısı `""` ve `"` için de
@@ -292,7 +292,7 @@ SyntaxError: invalid syntax
 'Kesinlikle "hemen" gelmelisin!'
 ```
 
-### Regular String, `r` ve `R`
+## Regular String, `r` ve `R`
 
 Bir string sabiti içerisinde ters bölü, `\`, karakterinin kendisini yazmak
 istiyoruz diyelim. Eğer bu karakterin sağındaki karakter, yukarıdaki tabloda
@@ -433,7 +433,7 @@ C:\temp\a.txt
 alper
 ```
 
-### String Concatenation
+## String Concatenation
 
 Python'daki yazıların tek satıra yazılması zorunludur:
 
@@ -471,10 +471,174 @@ yoksa bu iki string birleştirilir ve tek string gibi ele alınır.
 
 Arada bir boşluk olmadığına dikkat ediniz.
 
-### `"""` ve `'''` Kullanımı
+## `"""` ve `'''` Kullanımı
 
-Buradayım
+Python'da 3 adet tek ve çift tırnak yani `""""` ve `'''` ile de string sabitler
+oluşturulabilmektedir. Tek olanı gördük, 3 olanı var diyoruz fakat ikililer
+yoktur. Yani `""x""` ve `''x''` geçersizdir. Yine tekli olanda olduğu gibi
+3'lülerde de `"` ile `'` arasında fark yoktur.
 
+```text
+>>> x = """alper"""
+>>> x
+'alper'
+
+>>> y = '''yazar'''
+>>> y
+'yazar'
+>>>
+```
+
+Tekli ile üçlü tırnak(lar) arasında şu farklar vardır:
+
+1️⃣ Tek tırnak içerisindeki yazılar tek satırda yazılmak zorundadır, bunu
+yukarıda görmüştük. Üç tırnaklı yazılar ise farklı satırlara bölünebilir.
+
+2️⃣ Üç (çift) tırnak içerisinde tek (çift) tırnak bir sorun yol açmaz.
+
+Üçlü tırnaklarda ters bölü, `\`, karakterinin yorumlanması açısından teklilere
+göre bir fark yoktur. Yine burada da `r` ve `R` ile regular string
+oluşturabiliriz. Bunu yapmazsak yine `\` karakteri bir sekans oluşuyorsa
+"yorumlanacaktır."
+
+```text
+>>> x = '''Merhaba,
+... nasılsınız?'''
+
+>>> x
+'Merhaba,\nnasılsınız?'
+
+>>> print(x)
+Merhaba,
+nasılsınız?
+```
+
+Aşağıda rahatça `'''` arasına `'` yazabildik.
+
+```text
+>>> x = '''Ben giderim Batum'a'''
+>>> print(x)
+Ben giderim Batum'a
+```
+
+---
+
+Üç tek tırnağın ya da üç çift tırnağın içerisindeki tek tırnak ya da tek çift
+tırnak yazının başında olabilir **ama yazının sonunda olamaz.** Bunun sebebi,
+[](token-keyword-expression-white-space) başlıklı yazıda da bahsettiğim
+*maximal munch* kuralıdır.
+
+```text
+>>> x = """"Bugün" günlerden pazar."""
+>>> print(x)
+"Bugün" günlerden pazar.
+```
+
+Burada problem yok çünkü maximal munch kuralına göre atomlar şöyle ayrışıyor:
+
+```text
+x
+=
+""""Bugün" günlerden pazar."""
+```
+
+Ama şu sentaks hatasıdır:
+
+```text
+>>> x = """Bugün günlerden "pazar.""""
+  File "<stdin>", line 1
+    x = """Bugün günlerden "pazar.""""
+                                     ^
+SyntaxError: unterminated string literal (detected at line 1)
+```
+
+Çünkü yine aynı kurala göre atomlara ayırma şöyle olur:
+
+```text
+x
+=
+"""Bugün günlerden "pazar."""
+"
+```
+
+Tabi burada yine `\` imdadımıza yetişebilir.
+
+```text
+>>> x = """Bugün günlerden "pazar.\""""
+>>> print(x)
+Bugün günlerden "pazar."
+```
+
+Sonda bir boşluk karakteri olsaydı yine atomlar doğru ayrışacaktı. Çünkü `" """`
+görüldüğü zaman atomlar hayal ettiğimiz gibi oluşacaktır. Ama yazının sonunda
+ekrana basınca görmediğimiz bir boşluk karakteri vardır.
+
+```text
+>>> x = """Bugün günlerden "pazar." """
+>>> print(x)
+Bugün günlerden "pazar."
+```
+
+Bu durumların aynısı `'''x''''` içerisinde `'` kullanımı için de geçerlidir.
+
+Yukarıda bahsettiğimiz string concatenation burada da yapılabilir.
+
+```python
+s = 'Bugün' """hava
+güneşli."""
+
+print(s)
+```
+
+Çıktı:
+
+```text
+Bugünhava
+güneşli.
+```
+
+## Unicode Strings, `u` ve `U`
+
+Python 2'de anlamlı olan fakat Python 3 ile anlamı kalmamış bir kavramdır.
+Python 2'de karakter kodlaması için bir byte'lık ASCII kodlaması kullanılıyordu.
+ASCII ile de tüm karakteleri düşündüğümüz zaman çok kısıtlı bir karakter kümesini
+gösterebiliyoruz. Bu gibi durumlarda UNICODE string oluşturmak gerekebiliyordu.
+Bu, yazı sabitlerinin başına, `''` veya `""` olabilir `u` veya `U` getirerek
+oluşturulmaktadır.
+
+```python
+x = "çay"  # Python 3'te sorun değil
+x = u"çay" # Artık gerekli değil
+x = U"çay" # Artık gerekli değil
+```
+
+Unicode string'ler Python 3.0 - 3.2 arasında sentaks hatası verdiriyordu hatta
+dilden komple kaldırılmıştı. Python 3.3 ile geriye dönük uyumluluk için geri
+getirildi.
+
+İlginizi çekebilir:
+
+- <https://docs.python.org/2/tutorial/introduction.html#unicode-strings>
+- [What's the u prefix in a Python
+  string?](https://stackoverflow.com/q/2464959/1766391)
+
+## Bytes, `b` ve `B`
+
+Tek tırnakların (`'`, `"`) veya üç tırnakların (`'''`, `"""`) önüne `b` ve
+`B` getirirsek bu sefer **bytes** türünden bir şey oluşturmuş oluruz. Bu, `str`
+türü değildir. İleride buna değiniriz.
+
+```text
+>>> x = b'alper'
+>>> x
+b'alper'
+>>> type(x)
+<class 'bytes'>
+```
+
+## 5 - `complex` Türden Sabitler
+
+...
 
 [^1f]: <https://c-for-dummies.com/blog/?p=6173>
 [^2f]: <https://en.wikipedia.org/wiki/Page_break#Form_feed>

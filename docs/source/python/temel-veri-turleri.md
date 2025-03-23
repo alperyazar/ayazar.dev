@@ -148,6 +148,15 @@ Bool](https://tr.wikipedia.org/wiki/George_Boole)a dayanmaktadır. `True` ve
 <class 'bool'>
 ```
 
+Python'da `bool` türü aritmetik işlemlere sokulabilir. Bu durumda `True`, `1`
+olarak işleme girer, `False` ise `0` olarak işleme girer. İki `bool` değeri
+kendi aralarında işleme sokulursa sonuç `int` türden elde edilir.
+
+```python
+a = True
+b = 3 * a + 1  # 4
+```
+
 ## 4 - `str`
 
 `str`, String yani yazı türüdür. Sabit kısmına sonra bakacağız ama C'deki gibi

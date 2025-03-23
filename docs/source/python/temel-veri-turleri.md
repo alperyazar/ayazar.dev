@@ -157,12 +157,20 @@ a = True
 b = 3 * a + 1  # 4
 ```
 
+```text
+>>> x = True + True
+>>> x
+2
+>>> type(x)
+<class 'int'>
+```
+
 ## 4 - `str`
 
-`str`, String yani yazı türüdür. Sabit kısmına sonra bakacağız ama C'deki gibi
-`''` ile `""` arasında bir fark yoktur. Python'da `char` türü bulunmamaktadır.
-`'alper'` ile `"alper"` aynıdır. Peki hangisini kullanmalıyız? Fark etmez,
-Python dünyasında pek genel geçer bir kabul yoktur.
+`str`, String yani yazı türüdür. Sabit kısmına sonra bakacağız ama C'dekinin
+aksine `''` ile `""` arasında bir fark yoktur. Python'da `char` türü
+bulunmamaktadır. `'alper'` ile `"alper"` aynıdır. Peki hangisini kullanmalıyız?
+Fark etmez, Python dünyasında pek genel geçer bir kabul yoktur.
 
 ## 5 - `complex`
 

@@ -2,7 +2,7 @@
 giscus: c7024e58-1a48-4bed-9607-16ca199c83d7
 ---
 
-# Sabitlerin Türleri (BİTMEDİ)
+# Sabitlerin Türleri
 
 Programlama dillerini öğrenirken değişkenlerin türleri olduğunu genelde fark
 ederiz fakat sabitlerin, literals, bir türü yokmuş gibi düşünebiliriz. Fakat
@@ -395,16 +395,20 @@ gösterebilir. En basitinden:
 ```
 
 Biz interaktif terminalde değişkenin adını yazıp ENTER tuşuna bastığımızda
-Python shell'i aslında arka planda `repr()` fonksiyonunu çağırmaktadır.
-Bu da ileride konuşacağımız (muhtemelen) *dunder* yani *double underscore*
-method'ları ile ilgilidir, `__repr__()` vs.
+Python shell'i aslında arka planda ilgili objenin `__repr__()` metodunu
+çağırmaktadır. Bu da ileride konuşacağımız (muhtemelen) *dunder* yani *double
+underscore* method'ları ile ilgilidir.
 
 ```text
 >>> s = "\g"
 >>> s
 '\\g'
->>> print(s)
-\g
+>>> s
+'\\g'
+>>> print(s.__repr__())
+'\\g'
+>>> repr(s)
+"'\\\\g'"
 >>> print(repr(s))
 '\\g'
 ```
@@ -638,7 +642,59 @@ b'alper'
 
 ## 5 - `complex` Türden Sabitler
 
-...
+Python'da `j` harfine bitişik bir `int` veya`float` sabit kullandığımız zaman
+`complex` türden bir sabit oluşturmuş oluruz. Elbette `+` ya da `-` operatörleri
+ile de sayının reel kısmını oluşturabiliriz. Eğer sadece `j` yazarsak buradaki
+`j` değişken olarak yorumlanır ve bunu önlemek için `1j` yazmak gerekir.
+Örneğin:
+
+```text
+>>> x = j
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'j' is not defined
+
+>>> x = 1j
+```
+
+```python
+j = 5
+z = 3j + j
+print(z)  # Çıktı (5+3j)
+```
+
+Bir `complex` sayı `int` ya da `float` ile toplanır ya da çıkartılırsa sonuç
+`complex` türden olmaktadır.
+
+## 6 - `NoneType` Türden Sabitler
+
+Türü `NoneType` olan tek sabit `None`dır. `None` bir anahtar sözcüktür.
+`None` değeri REPL ortamında yani interaktif çalışma ortamında bir şey
+basmamaktadır.
+
+````{todo}
+🤔 Burada tam anlayamadığım bir şey var. Yukarıda bahsettiğim `repr()` ve
+`__repr__()` burada farklı davranmaktadır.
+
+```python
+>>> x = None
+>>> x
+>>> print(repr(x))
+None
+>>> repr(x)
+'None'
+>>> print(x.__repr__())
+None
+>>> print(None)
+None
+>>> None
+>>> type(None.__repr__())
+<class 'str'>
+```
+
+`x` yazıp ENTER deyince ekrana hiç bir şey basılmıyor ama `repr()` ile `None`
+kelimesini görebiliyoruz.
+````
 
 [^1f]: <https://c-for-dummies.com/blog/?p=6173>
 [^2f]: <https://en.wikipedia.org/wiki/Page_break#Form_feed>

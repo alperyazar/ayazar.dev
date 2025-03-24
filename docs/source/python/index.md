@@ -21,6 +21,7 @@ temel-veri-turleri
 sabitlerin-turleri
 yorum-etkisiz-kod
 degisken-isimlendirme
+degiskenler-nesneler
 ```
 
 ## 📚 Kaynaklar

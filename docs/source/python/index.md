@@ -22,6 +22,7 @@ sabitlerin-turleri
 yorum-etkisiz-kod
 degisken-isimlendirme
 degiskenler-nesneler
+immutable-mutable
 ```
 
 ## 📚 Kaynaklar

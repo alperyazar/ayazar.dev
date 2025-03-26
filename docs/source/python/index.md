@@ -23,6 +23,7 @@ yorum-etkisiz-kod
 degisken-isimlendirme
 degiskenler-nesneler
 immutable-mutable
+standart-kutuphane-moduller
 ```
 
 ## 📚 Kaynaklar

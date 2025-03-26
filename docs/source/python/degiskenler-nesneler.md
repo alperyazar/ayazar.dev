@@ -2,7 +2,7 @@
 giscus: dd416963-1697-4560-a77f-7ba78c22f3ce
 ---
 
-# Değişkenler ve Nesneler (BİTMEDİ)
+# Değişkenler ve Nesneler
 
 Python dilinin dinamik tür sistemine sahip olduğundan ve aynı değişkene
 birden fazla türden değerler atanabildiğinden bahsetmiştik, tabii aynı anda
@@ -194,8 +194,8 @@ c = a + b # adresler toplanmaz, nesnelerin içeriği toplanır. 30 olan nesne
 ```
 
 Yukarıdaki kodda `a` ve `b` nin tuttuğu adresler toplanmaz. `a` ve `b` nin
-değerleri toplanır, değeri `30` olan yeni bir `int` nesnesi yaratılır.
-`c` ise bu `30` değerli `int` nesnesini gösterir.
+gösterdiği nesnelerin içerdiği değerler toplanır, değeri `30` olan yeni bir
+`int` nesnesi yaratılır. `c` ise bu `30` değerli `int` nesnesini gösterir.
 
 Deneyelim:
 
@@ -218,8 +218,48 @@ print(id(c))
 
 Görüldüğü gibi 3 farklı nesne vardır.
 
-## Garbage Collector
+## Garbage Collector - Çöp Toplayıcı 🗑️
 
-Bahset...
+Aklımıza şu nokta şöyle bir soru takılabilir: Yaptığımız işlemler sonucu ortada,
+kontrolü pek de bizde olmayan bir şekilde, nesneler yaratılıyor içerisine
+değerler konuluyor. Programın çalışma sırasında yaratılan birçok nesne oluyor.
+Bunların, heap gibi bir alandan oluşturulduğunu düşünebiliriz. Peki bu
+sürdürülebilir bir şey mi? Yani sürekli bellekten alan tahsis edip kullansak ve
+hiç geri vermesek ve programımız da uzun süre çalışsa bellek tükenmez mi? İşte
+Python nasıl otomatik olarak nesneler yaratıyorsa yine otomatik olarak nesneleri
+silmektedir. Artık işi bitmiş, kullanım imkanı kalmamış olan nesnelerin otomatik
+olarak bellekten temizlenme işlemi kavramsal olarak **garbage collection**
+olarak geçmektedir. Programın bunu yapan parçasına da **garbage collector** adı
+verilir.
+
+Python standardı bu konuyu implementasyonlara oldukça geniş bir biçimde
+bırakmıştır [^2f]:
+
+> Objects are never explicitly destroyed; however, when they become unreachable
+> they may be garbage-collected. An implementation is allowed to postpone
+> garbage collection or omit it altogether — it is a matter of implementation
+> quality how garbage collection is implemented, as long as no objects are
+> collected that are still reachable.
+
+Gördüğümüz üzere erişilebilir bir nesne ortadan kaldırılmadığı sürece
+implementasyon bu konuda farklı çözümler sunabilir.
+
+Örneğin *CPython* **reference counting** ve **cyclic garbage collector** gibi
+mekanizmalar kullanırken, *PyPy* **tracing garbage collection** kullanır, yani
+nesnelerin silinmesi geciktirilebilir. *Jython* ve *IronPython* ise kendi
+platformları, sırası ile JVM ve .NET CLR, tarafından sunulan mekanizmaları
+kullanır. CPython, kullandığı mekanizma sebebi ile bir nesne erişilemez bir
+konuma geldiği zaman onu hemen bellekten kaldırmaktadır.
+
+```{note}
+Elbette yukarıdaki örnekte yaptığımız gibi küçük `int` sayılar gibi görece
+küçük nesneler farklı, daha verimli yöntemlerle de ele alınıyor olabilirler.
+Her bir nesne için arkada `malloc()/free()` çalışıyor gibi varsaymamıza gerek
+yok ama kabaca konuştuğumuz gibi hayal edebiliriz.
+```
+
+Garbage collector konusuna ilerleyen kısımlarda (ama daha var) tekrar
+değinebiliriz.
 
 [^1f]: <https://docs.python.org/3/library/functions.html#id>
+[^2f]: <https://docs.python.org/3/reference/datamodel.html#objects-values-and-types>

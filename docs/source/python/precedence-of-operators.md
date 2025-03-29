@@ -52,7 +52,7 @@ the readability of the code.
 ## The Operator Precedence Table
 
 We will create a table to identify operator precedence in Python. **A lower
-precedence number (higher rows) indicates higher precedence than a higher number
+precedence number (upper rows) indicates higher precedence than a higher number
 (lower rows).**
 
 *TABLE IS IN PROGRESS*

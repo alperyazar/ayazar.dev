@@ -61,7 +61,7 @@ https://ayazar.dev -->
   <!-- End of Statcounter Code -->
 {%- endif %}
 
-<a href="{{ pathto('misc/support') }}" class="floating-icon-heart" width="48"><img src="{{ pathto('assets/icons8-heart-64.png', 1) }}" alt="❤️ Destek" title="❤️ Destek"></a>
+<a href="{{ pathto('misc/support') }}" class="floating-icon-heart" width="48" target="_blank"><img src="{{ pathto('assets/icons8-heart-64.png', 1) }}" alt="❤️ Support" title="❤️ Support"></a>
 
 {% endblock %}
 
@@ -69,10 +69,9 @@ https://ayazar.dev -->
 {% if meta %}
 {% if meta.giscus %}
 <div class="gicus_comments" style="border-top: 2px dashed; margin-top: 10px; padding-top: 15px;">
-  <h2>💭 Yorumlar</h2>
-  <p><small>Yorum altyapısı <a href="https://giscus.app/">giscus</a> tarafından (<a href="https://www.youtube.com/watch?v=oBJjjvBAAhY" target="_blank" rel="nofollow">evet tarafından!</a>) sağlanmaktadır.
-    Yorum yazabilmek için <a href="https://github.com/">GitHub</a> hesabınız üzerinden giriş yapmanız gerekmektedir.
-    Yorumlar, <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions</a> üzerinde saklanmaktadır.</small></p>
+  <h2>💭 Comment(s)</h2>
+  <p><small>The comment system is powered by <a href="https://giscus.app/">giscus.</a> To leave a comment, you need to sign in with your <a href="https://github.com/">GitHub</a> account.
+    Comments are stored on <a href="https://github.com/alperyazar/ayazar.dev/discussions/categories/comments">Github Discussions</a>.</small></p>
   <script src="https://giscus.app/client.js"
         data-repo="alperyazar/ayazar.dev"
         data-repo-id="R_kgDOKRKm6w"
@@ -85,7 +84,7 @@ https://ayazar.dev -->
         data-emit-metadata="0"
         data-input-position="top"
         data-theme="preferred_color_scheme"
-        data-lang="tr"
+        data-lang="en"
         data-loading="lazy"
         crossorigin="anonymous"
         async>

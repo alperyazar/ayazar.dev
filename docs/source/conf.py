@@ -109,7 +109,7 @@ html_context = {
     "conf_py_path": "/docs/source/"
 }
 
-language = 'tr'
+language = 'en'
 
 todo_include_todos = True
 

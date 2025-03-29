@@ -1,54 +1,59 @@
-# 🏠 Ana Sayfa
+# 🏠 Home
 
 ```{figure} me.png
 :align: center
 :figclass: thmbnl
 ```
 
-Merhaba, ben Alper Yazar, 2012 yılından itibaren elektronik mühendisi olarak
-çalışmaktayım. Ağırlıklı olarak gömülü sistemler, Linux, sayısal tasarım, FPGA,
-elektronik tasarım gibi konular üzerine çalışıyorum. Geniş bir alanda çalıştığım
-için kendimi [Full Stack Elektronik Mühendisi](blog/23/full-stack-elektronik.md)
-olarak tanımlıyorum. Şu an ziyaret ettiğiniz kişisel sitemde ağırlıklı olarak
-teknik konular üzerine notlarımı ve kişisel düşüncelerimi paylaşıyorum.
+Hello, I’m **Alper Yazar**. I have been working as an electronics
+engineer since 2012.
 
----
+My main areas of expertise include **embedded systems, Linux, digital design,
+FPGAs, and electronics design**. Since I work in a wide range of fields, I
+describe myself as a ["Full Stack Electronics"
+Engineer](blog/23/full-stack-elektronik.md).
 
-- [👥 LinkedIn'de Takip Edin](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=alperyazar)
-  Paylaşımlarımı genelde bu platformda yapıyorum.
+On this personal website, I mostly share my **technical notes and personal
+thoughts**.
+
+## 🔗 Follow Me
+
+- [👥 Follow me on LinkedIn](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=alperyazar)
+  I mainly share my posts here.
 - [📺 YouTube](https://www.youtube.com/@ayazar)
-  Arada video çekiyorum ve soru-cevap imkanı olan canlı yayınlar yapıyorum.
-- [🐦 X (Twitter) Profilim](https://twitter.com/alper_yazar)
-- [mastodon](https://mastodon.social/@ayazar)
+  I occasionally create videos and host live Q&A sessions. The channel is in
+  Turkish 🇹🇷.
+- [🐦 X (Twitter)](https://twitter.com/alper_yazar)
+- [🐘 Mastodon](https://mastodon.social/@ayazar)
+- [🧑‍🤝‍🧑 On other platforms](follow.md)
 
-[Diğer profillerim](follow.md)
+## 📌 Content on This Website
 
----
+On this website, you can find content in **both Turkish 🇹🇷 and English**. You
+can navigate through the menus to explore different topics.
 
-Şu an ziyaret ettiğiniz kişisel sitemde Türkçe ve İngilizce içerikler
-bulabilirsiniz. İçeriklere menülerden ulaşabilirsiniz.
+You can also [follow me on other platforms](follow.md), contact me, or learn
+more about me on the [About](about.md) page.
 
-Beni diğer sitelerde [takip edebilir](follow.md), bana ulaşmak ve hakkımda daha
-çok bilgi edinmek için [hakkımda](about.md) sayfasına bakabilirsiniz.
+Enjoy your time here! 😊
 
-İyi gezintiler…
+## 🛠️ Website & Source Code
 
----
+This website is **open-source**, and you can access its source code on GitHub:
+[alperyazar/ayazar.dev](https://github.com/alperyazar/ayazar.dev)
 
-Bu site, açık kaynak kodlu bir sitedir ve kaynak koduna Github üzerinden
-erişilebilir: [alperyazar/ayazar.dev](https://github.com/alperyazar/ayazar.dev)
+You are free to use the content for your own projects. If you find any mistakes,
+feel free to **submit a Pull Request** (I’d really appreciate it). I just ask
+you to follow the [license
+terms](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
 
-İçeriği kendi çalışmalarınız için kullanabilirsiniz veya gördüğünüz hatalar için
-*Pull Request* açabilirsiniz (çok memnun olurum). Sadece [lisans
-şartlarına](https://creativecommons.org/licenses/by-sa/4.0/deed.tr) uymanızı
-rica ediyorum.
+This is a **static website**, built using:
 
-Site, [Sphinx](https://www.sphinx-doc.org) aracı ile, ufak değişiklikler
-yaptığım ile [Read the Docs](https://github.com/readthedocs/sphinx_rtd_theme)
-teması ile derlenen [statik bir
-websitesidir.](https://en.wikipedia.org/wiki/Static_web_page) Altyapıda [Github
-Pages](https://pages.github.com/), [giscus](https://giscus.app/) ve
-[Cloudflare](https://www.cloudflare.com) kullanılmaktadır.
+- [Sphinx](https://www.sphinx-doc.org)
+- [Read the Docs](https://github.com/readthedocs/sphinx_rtd_theme) theme
+- Hosted on **[GitHub Pages](https://pages.github.com/)**
+- Comments powered by **[giscus](https://giscus.app/)**
+- Uses **[Cloudflare](https://www.cloudflare.com/)** for delivery optimization
 
 ---
 
@@ -66,10 +71,10 @@ misc/support.md
 
 ```{toctree}
 ---
-caption: Notlarım
+caption: My Notes
 hidden: true
 ---
-not-hakkinda.md
+about-my-notes.md
 buildroot/index.md
 c/index.md
 cpp/index.md
@@ -107,7 +112,7 @@ misc/disclaimer.md
 :align: center
 :figclass: thmbnl
 
-Lisans: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+License: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 ```
 
 ```{figure} free-cultural-works.png

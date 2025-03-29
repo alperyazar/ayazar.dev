@@ -16,18 +16,20 @@ og:description: I am Alper Yazar, a "full stack electronics" engineer working ma
 *"Full Stack Electronics" Engineer*
 ```
 
-I got my BSc and MSc degrees from the same department,
+I earned my BSc and MSc degrees from the same department,
 [METU](https://www.metu.edu.tr/) EEE, in 2012 and 2015, respectively. My
-master's thesis was about statistical signal processing. In the past, I was
-working on FPGA accelerated cloud computing as PhD candidate. At the work, most
-of the time I work on FPGA/embedded related stuffs. I am also experienced in
-analog/digital circuit and PCB design.
+master's thesis focused on statistical signal processing. As a PhD candidate, I
+worked on FPGA-accelerated cloud computing.
 
-I love spending my time on electronics and computers since I was 10. I like
-doing projects, reading blogs/projects/codes, watching videos and attending
-courses/webinars, publishing papers and doing other geeky things. I am a big fan
-of free and open source projects and initiatives 🐧. Besides, I like music and
-musical instruments 🎵.
+At work, I mainly focus on FPGAs and embedded systems. I also have experience in
+analog/digital circuit design and PCB design.
+
+I've been passionate about electronics and computers since I was 10. I enjoy
+working on projects, reading blogs, exploring code, watching technical videos,
+attending courses and webinars, publishing papers, and engaging in other geeky
+activities. I'm a big supporter of free and open-source projects 🐧.
+
+Besides technology, I also love music and musical instruments 🎵.
 
 ## ✉️ Contact
 
@@ -64,7 +66,6 @@ OR send a message on
     - CGPA: 3.75/4.00
     - ℹ️ Began PhD studies in 2016, successfully passed the qualification exam,
       and progressed to the thesis stage before deciding to leave the program.
-
 - 2015, **MSc, Electrical and Electronics Engineering**. Middle East Technical
   University (METU), Ankara, Turkey.
     - Area of Study: Statistical Signal Processing
@@ -97,7 +98,7 @@ OR send a message on
 - 2010, **Intern / Bosch Rexroth**, Bursa, Turkey. [Company web
   site](https://www.aselsan.com.tr/en)
 
-## Publications
+## Publication
 
 [alperyazar.bib](dow/alperyazar.bib)
 

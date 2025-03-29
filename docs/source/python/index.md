@@ -28,6 +28,7 @@ print-input
 fonksiyon-kavrami
 is-is-not
 operator
+precedence-of-operators
 ```
 
 ## 📚 Kaynaklar

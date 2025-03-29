@@ -34,7 +34,8 @@ True
 ## `is not` Operatörü
 
 `is` in tersi `is not` operatörüdür, `not is` değil. Bu operatör, iki anahtar
-sözcükten oluşmaktadır: `is` ve `not`
+sözcükten oluşmaktadır: `is` ve `not`. `is` ve `not` ayrı birer atom olmasına
+rağmen, token, `is not` tek bir operatör oluşturmaktadır.
 
 ```python
 a = 10

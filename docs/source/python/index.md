@@ -27,6 +27,7 @@ standart-kutuphane-moduller
 print-input
 fonksiyon-kavrami
 is-is-not
+operator
 ```
 
 ## 📚 Kaynaklar

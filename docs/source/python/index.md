@@ -29,6 +29,7 @@ fonksiyon-kavrami
 is-is-not
 operator
 precedence-of-operators
+basic-arithmetic-operators
 ```
 
 ## 📚 Kaynaklar

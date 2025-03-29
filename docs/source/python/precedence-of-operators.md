@@ -64,6 +64,7 @@ precedence number (higher rows) indicates higher precedence than a higher number
 | 2          |             |                                                                   | left-to-right |
 |            | `*`         | Multiplication                                                    |               |
 |            | `/`         | Division                                                          |               |
+|            | `//`        | floordiv                                                          |               |
 | 3          |             |                                                                   | left-to-right |
 |            | `+`         | Addition                                                          |               |
 |            | `-`         | Subtraction                                                       |               |

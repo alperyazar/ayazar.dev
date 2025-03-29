@@ -25,6 +25,7 @@ degiskenler-nesneler
 immutable-mutable
 standart-kutuphane-moduller
 print-input
+fonksiyon-kavrami
 ```
 
 ## 📚 Kaynaklar

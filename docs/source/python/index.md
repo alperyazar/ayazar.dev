@@ -26,6 +26,7 @@ immutable-mutable
 standart-kutuphane-moduller
 print-input
 fonksiyon-kavrami
+is-is-not
 ```
 
 ## 📚 Kaynaklar

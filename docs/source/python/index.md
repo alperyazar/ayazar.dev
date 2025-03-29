@@ -24,6 +24,7 @@ degisken-isimlendirme
 degiskenler-nesneler
 immutable-mutable
 standart-kutuphane-moduller
+print-input
 ```
 
 ## 📚 Kaynaklar

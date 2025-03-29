@@ -60,3 +60,8 @@ yapmadık bunlar için.
 Built-in fonksiyon listesi için
 [tıklayınız.](https://docs.python.org/3/library/functions.html)
 ```
+
+Built-in fonksiyonlar, modüllerden `import` edilen fonksiyonlara göre tipik
+olarak biraz daha hızlı olabilirler. Bunlar genelde doğrudan implementasyonun
+içinde gömülü oluyorlar. Örneğin CPython gibi implementasyonlarda bu
+fonksiyonlar C'de yazılmaktadır.

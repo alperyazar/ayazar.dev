@@ -52,24 +52,25 @@ the readability of the code.
 ## The Operator Precedence Table
 
 We will create a table to identify operator precedence in Python. **A lower
-precedence number (upper rows) indicates higher precedence than a higher number
-(lower rows).**
+precedence number indicates higher precedence than a higher number.** Notice
+that, there are many operators sharing the same precedence number.
 
 *TABLE IS IN PROGRESS*
 
-| Precedence | Operator(s) | Description                                                       | Associativity |
-|------------|-------------|-------------------------------------------------------------------|---------------|
-| 1          |             |                                                                   | left-to-right |
-|            | `()`        | Represents both function call operator and precedence parentheses |               |
-| 2          |             |                                                                   | left-to-right |
-|            | `*`         | Multiplication                                                    |               |
-|            | `/`         | Division                                                          |               |
-|            | `//`        | floordiv                                                          |               |
-| 3          |             |                                                                   | left-to-right |
-|            | `+`         | Addition                                                          |               |
-|            | `-`         | Subtraction                                                       |               |
-| 4          |             |                                                                   | right-to-left |
-|            | `=`         | Assignment ‡                                                      |               |
+| Precedence  | Operator(s) | Description                                                       | Associativity |
+|-------------|-------------|-------------------------------------------------------------------|---------------|
+| 1 (highest) |             |                                                                   | left-to-right |
+|             | `()`        | Represents both function call operator and precedence parentheses |               |
+| 2           |             |                                                                   | left-to-right |
+|             | `*`         | Multiplication                                                    |               |
+|             | `/`         | Division                                                          |               |
+|             | `//`        | floordiv                                                          |               |
+|             | `%`         | Modulo Operator                                                   |               |
+| 3           |             |                                                                   | left-to-right |
+|             | `+`         | Addition                                                          |               |
+|             | `-`         | Subtraction                                                       |               |
+| 4           |             |                                                                   | right-to-left |
+|             | `=`         | Assignment ‡                                                      |               |
 
 ‡: Indeed, unlike languages like C, in Python assignment is not an expression
 but a statement. Therefore, including the `=` operator in the table doesn't make

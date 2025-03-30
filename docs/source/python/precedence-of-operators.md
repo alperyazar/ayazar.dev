@@ -61,15 +61,18 @@ that, there are many operators sharing the same precedence number.
 |-------------|-------------|-------------------------------------------------------------------|---------------|
 | 1 (highest) |             |                                                                   | left-to-right |
 |             | `()`        | Represents both function call operator and precedence parentheses |               |
-| 2           |             |                                                                   | left-to-right |
+| 2           |             |                                                                   | right-to-left |
+|             | `+`         | Unary plus operator                                               |               |
+|             | `-`         | Unary minus operator                                              |               |
+| 3           |             |                                                                   | left-to-right |
 |             | `*`         | Multiplication                                                    |               |
 |             | `/`         | Division                                                          |               |
 |             | `//`        | floordiv                                                          |               |
 |             | `%`         | Modulo Operator                                                   |               |
-| 3           |             |                                                                   | left-to-right |
+| 4           |             |                                                                   | left-to-right |
 |             | `+`         | Addition                                                          |               |
 |             | `-`         | Subtraction                                                       |               |
-| 4           |             |                                                                   | right-to-left |
+| 5           |             |                                                                   | right-to-left |
 |             | `=`         | Assignment ‡                                                      |               |
 
 ‡: Indeed, unlike languages like C, in Python assignment is not an expression

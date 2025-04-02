@@ -10,7 +10,7 @@ alttaki ❤️ ikonuna meraktan bastınız, o da olur, problem değil.*
 
 Destek olmak için şunları yapabilirsiniz:
 
----
+## Yorum bırakın
 
 💭 Ürettiğim içerikleri beğeniyor ve destek olmak istiyorsanız **beni en çok
 mutlu edecek şey varsa yorumlarınızı, düzeltmelerinizi ve görüşlerinizi ilgili
@@ -18,7 +18,7 @@ yazı altına yazmak olur.** Bu sayede sizlerin görüşlerini öğrenebilir ve 
 dönüşte bulunabilirim. Karşılıklı fikir paylaşımı, tüm taraflar için öğretici ve
 yapıcı bir deneyim oluşturacaktır.
 
----
+## Pull Request gönderin
 
 🔀 İçerikte yanlış olduğunu düşündüğünüz noktaları da yine ilgili yazı altına
 yorum olarak iletebilirsiniz. Ama daha da güzeli eğer yapabiliyorsanız ilgili
@@ -30,14 +30,14 @@ göndermek olur. Bu sayede doğrudan katkı vermiş de olursunuz. Her sayfanın
 çalışmayı öğrenmenizi şiddetle tavsiye ederim) de problem değil, yorum olarak
 görüşlerinizi iletmeniz yine çok değerlidir.
 
----
+## Arkadaşlarınızla paylaşın
 
 👥 Eğer içeriklerin faydalı olduğunu düşünüyorsanız **arkadaşlarınızla ya da
 bulunduğunuz bir sosyal platformda bu içerikleri paylaşmanız** da bana bir destek
 olacaktır. (Bunun bana doğrudan bir faydası yok ama emek verilen bir içeriğin
 daha fazla kişiye ulaşması kimin hoşuna gitmez ki…)
 
----
+## Finansal olarak destekleyin 💸
 
 💳 Bu içerikleri maddi bir beklenti ile yapmıyorum. Ama dilerseniz maddi
 destekte de bulunabilirsiniz. Belki kendime birkaç geliştirme kartı daha alırım

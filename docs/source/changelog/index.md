@@ -2,7 +2,7 @@
 giscus: 84d0a446-9f3d-4288-aaa1-2ed074de8249
 ---
 
-# 📜 Değişiklikler - Changelog
+# 📜 İlerleme Kaydı
 
 Bu başlık altında bu sitede yaptığım değişiklikler listelenmektedir.
 

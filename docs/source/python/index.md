@@ -28,7 +28,7 @@ print-input
 fonksiyon-kavrami
 is-is-not
 operator
-precedence-of-operators
+operator-oncelikleri
 basic-arithmetic-operators
 unary-plus-minus-operators
 ```

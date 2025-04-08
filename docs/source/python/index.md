@@ -29,7 +29,7 @@ fonksiyon-kavrami
 is-is-not
 operator
 operator-oncelikleri
-basic-arithmetic-operators
+temel-aritmetik-operatorler
 unary-plus-minus-operators
 ```
 

@@ -15,7 +15,7 @@ its operand unchanged. The unary `+` is primarily used for code readability.
 These unary operators have a higher precedence than basic arithmetic operators
 like addition and subtraction.
 
-> Check out: [](precedence-of-operators.md)
+> Check out: [](operator-oncelikleri.md)
 
 Consider the example:
 

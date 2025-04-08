@@ -30,7 +30,7 @@ is-is-not
 operator
 operator-oncelikleri
 temel-aritmetik-operatorler
-unary-plus-minus-operators
+isaret-arti-eksi-operatoru
 ```
 
 ## 📚 Kaynaklar

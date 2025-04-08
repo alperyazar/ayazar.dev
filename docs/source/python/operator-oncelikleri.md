@@ -78,8 +78,8 @@ Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 | 1 (en yüksek) |          |                                                                     | soldan sağa              |
 |               | `()`     | Hem fonksiyon çağrı operatörünü hem de öncelik parantezini gösterir |                          |
 | 2             |          |                                                                     | sağdan sola              |
-|               | `+`      | Unary artı operatörü                                                |                          |
-|               | `-`      | Unary eski operatörü                                                |                          |
+|               | `+`      | İşaret artı operatörü                                               |                          |
+|               | `-`      | İşaret eski operatörü                                               |                          |
 | 3             |          |                                                                     | soldan sağa              |
 |               | `*`      | Çarpma                                                              |                          |
 |               | `/`      | Bölme                                                               |                          |

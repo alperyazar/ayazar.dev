@@ -31,6 +31,8 @@ operator
 operator-oncelikleri
 temel-aritmetik-operatorler
 isaret-arti-eksi-operatoru
+us-operatoru
+karsilastirma-operatorleri
 ```
 
 ## 📚 Kaynaklar

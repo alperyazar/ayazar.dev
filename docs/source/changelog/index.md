@@ -10,6 +10,7 @@ Bu başlık altında bu sitede yaptığım değişiklikler listelenmektedir.
 ---
 maxdepth: 1
 glob: true
+reversed: true
 ---
 *
 ```

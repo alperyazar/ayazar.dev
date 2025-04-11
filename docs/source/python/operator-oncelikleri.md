@@ -78,17 +78,19 @@ Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 | 1 (en yüksek) |          |                                                                     | soldan sağa              |
 |               | `()`     | Hem fonksiyon çağrı operatörünü hem de öncelik parantezini gösterir |                          |
 | 2             |          |                                                                     | sağdan sola              |
+|               | `**`     | Üs alma operatörü                                                   |                          |
+| 3             |          |                                                                     | sağdan sola              |
 |               | `+`      | İşaret artı operatörü                                               |                          |
 |               | `-`      | İşaret eski operatörü                                               |                          |
-| 3             |          |                                                                     | soldan sağa              |
+| 4             |          |                                                                     | soldan sağa              |
 |               | `*`      | Çarpma                                                              |                          |
 |               | `/`      | Bölme                                                               |                          |
 |               | `//`     | floordiv                                                            |                          |
 |               | `%`      | Modulo (mod alma) operatörü                                         |                          |
-| 4             |          |                                                                     | soldan sağa              |
+| 5             |          |                                                                     | soldan sağa              |
 |               | `+`      | Toplama                                                             |                          |
 |               | `-`      | Çıkarma                                                             |                          |
-| 5             |          |                                                                     | sağdan sola              |
+| 6             |          |                                                                     | sağdan sola              |
 |               | `=`      | Atama ‡                                                             |                          |
 
 ‡: C gibi dillerin aksine Python'da atama operatörü, `=`, bir ifade oluşturmaz,

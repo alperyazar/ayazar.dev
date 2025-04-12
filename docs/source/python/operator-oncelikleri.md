@@ -73,25 +73,33 @@ kendi aralarında hangi sıra ile çalıştırılacağı operatörlerin *birleş
 Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 ```
 
-| Öncelik       | Operatör | Açıklama                                                            | Associativity (Birleşme) |
-|---------------|----------|---------------------------------------------------------------------|--------------------------|
-| 1 (en yüksek) |          |                                                                     | soldan sağa              |
-|               | `()`     | Hem fonksiyon çağrı operatörünü hem de öncelik parantezini gösterir |                          |
-| 2             |          |                                                                     | sağdan sola              |
-|               | `**`     | Üs alma operatörü                                                   |                          |
-| 3             |          |                                                                     | sağdan sola              |
-|               | `+`      | İşaret artı operatörü                                               |                          |
-|               | `-`      | İşaret eski operatörü                                               |                          |
-| 4             |          |                                                                     | soldan sağa              |
-|               | `*`      | Çarpma                                                              |                          |
-|               | `/`      | Bölme                                                               |                          |
-|               | `//`     | floordiv                                                            |                          |
-|               | `%`      | Modulo (mod alma) operatörü                                         |                          |
-| 5             |          |                                                                     | soldan sağa              |
-|               | `+`      | Toplama                                                             |                          |
-|               | `-`      | Çıkarma                                                             |                          |
-| 6             |          |                                                                     | sağdan sola              |
-|               | `=`      | Atama ‡                                                             |                          |
+| Öncelik       | Operatör                         | Açıklama                                                            | Associativity (Birleşme) |
+|---------------|----------------------------------|---------------------------------------------------------------------|--------------------------|
+| 1 (en yüksek) |                                  |                                                                     | soldan sağa              |
+|               | `()`                             | Hem fonksiyon çağrı operatörünü hem de öncelik parantezini gösterir |                          |
+| 2             |                                  |                                                                     | sağdan sola              |
+|               | `**`                             | Üs alma operatörü                                                   |                          |
+| 3             |                                  |                                                                     | sağdan sola              |
+|               | `+`                              | İşaret artı operatörü                                               |                          |
+|               | `-`                              | İşaret eski operatörü                                               |                          |
+| 4             |                                  |                                                                     | soldan sağa              |
+|               | `*`                              | Çarpma                                                              |                          |
+|               | `/`                              | Bölme                                                               |                          |
+|               | `//`                             | floordiv                                                            |                          |
+|               | `%`                              | Modulo (mod alma) operatörü                                         |                          |
+| 5             |                                  |                                                                     | soldan sağa              |
+|               | `+`                              | Toplama                                                             |                          |
+|               | `-`                              | Çıkarma                                                             |                          |
+| 6             |                                  |                                                                     | soldan sağa              |
+|               | `<`, `>`, `<=`, `>=`, `==`, `!=` | [Karşılaştırma Operatörleri](karsilastirma-operatorleri.md)         |                          |
+| 7             |                                  |                                                                     | sağdan sola              |
+|               | `not`                            | [Değil](mantiksal-operatorler.md)                                   |                          |
+| 8             |                                  |                                                                     | soldan sağa              |
+|               | `and`                            | [Ve](mantiksal-operatorler.md)                                      |                          |
+| 9             |                                  |                                                                     | soldan sağa              |
+|               | `or`                             | [Veya](mantiksal-operatorler.md)                                    |                          |
+| 10            |                                  |                                                                     | sağdan sola              |
+|               | `=`                              | Atama ‡                                                             |                          |
 
 ‡: C gibi dillerin aksine Python'da atama operatörü, `=`, bir ifade oluşturmaz,
 bir deyim oluşturur. Bu yüzden tabloda `=` operatörünün bulunması C gibi

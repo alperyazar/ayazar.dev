@@ -33,6 +33,9 @@ temel-aritmetik-operatorler
 isaret-arti-eksi-operatoru
 us-operatoru
 karsilastirma-operatorleri
+mantiksal-operatorler
+turlerin-mantiksal-olarak-yorumlanmasi
+atama-operatoru
 ```
 
 ## 📚 Kaynaklar

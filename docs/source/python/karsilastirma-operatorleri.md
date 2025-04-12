@@ -2,7 +2,7 @@
 giscus: aecfb6a3-ef4a-43b8-8c6d-a2c8dfc5412a
 ---
 
-# Karşılaştırma Operatörleri (YARIM)
+# ⚖️ Karşılaştırma Operatörleri
 
 `11-1.02.02`
 
@@ -66,7 +66,7 @@ karşılaştırılması biraz *gariptir.* Yani `True > False` karşılaştırmas
 çok anlamlı olmayabilir ama geçerlidir. Normalde bu tarz bool değerleri sadece
 `==` veya `!=` karşılaştırmak anlamlı olacaktır.
 
-## Chained Comparisons, Zincirleme Karşılaştırmalar
+## ⛓️ Chained Comparisons, Zincirleme Karşılaştırmalar
 
 `11-1.12.20`
 
@@ -85,7 +85,5 @@ ise yakında göreceğimiz *mantıksal operatörler* kullanılır. Bu, **Pythoni
 şeydir yani Python'da böyledir diğer dillerde ise çoğunluk böyle değildir.
 
 > [Python Ref](https://docs.python.org/3/reference/expressions.html#comparisons)
-
----
 
 `11-1.22.45`

@@ -99,7 +99,8 @@ Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 | 9             |                                  |                                                                     | soldan sağa              |
 |               | `or`                             | [Veya](mantiksal-operatorler.md)                                    |                          |
 | 10            |                                  |                                                                     | sağdan sola              |
-|               | `=`                              | Atama ‡                                                             |                          |
+|               | `=`                              | [Atama](atama-operatoru.md) ‡                                       |                          |
+|               | `:=`                             | [Walrus operatörü](walrus-operatoru.md)                             |                          |
 
 ‡: C gibi dillerin aksine Python'da atama operatörü, `=`, bir ifade oluşturmaz,
 bir deyim oluşturur. Bu yüzden tabloda `=` operatörünün bulunması C gibi

@@ -36,6 +36,8 @@ karsilastirma-operatorleri
 mantiksal-operatorler
 turlerin-mantiksal-olarak-yorumlanmasi
 atama-operatoru
+walrus-operatoru
+islemli-atama-operatorleri
 ```
 
 ## 📚 Kaynaklar

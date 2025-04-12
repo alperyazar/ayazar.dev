@@ -250,7 +250,6 @@ int uc(void) {
 
 int main(void)
 {
-    // Implicit conversion?
     printf("%d\n", bir() || iki() && uc()); // "bir"
 }
 ```

@@ -100,12 +100,17 @@ Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 |               | `or`                             | [Veya](mantiksal-operatorler.md)                                    |                          |
 | 10            |                                  |                                                                     | sağdan sola              |
 |               | `=`                              | [Atama](atama-operatoru.md) ‡                                       |                          |
-|               | `:=`                             | [Walrus operatörü](walrus-operatoru.md)                             |                          |
+|               | `:=`                             | [Walrus operatörü](walrus-operatoru.md)  ‡                          |                          |
+|               | `+=`, `-=`, `*=` vb. ¶           | [İşlemli Atama Operatörleri](islemli-atama-operatorleri.md)  ‡      |                          |
 
-‡: C gibi dillerin aksine Python'da atama operatörü, `=`, bir ifade oluşturmaz,
-bir deyim oluşturur. Bu yüzden tabloda `=` operatörünün bulunması C gibi
-dillerdekinin aksine çok da anlamlı değildir. Ama bütünsellik adına tabloda
-bulundurulmaktadır. [^1f] [^2f]
+‡: C gibi dillerin aksine Python'da atama operatörü `=`, ve benzeri operatörler
+bir ifade oluşturmaz, bir deyim oluşturur. Bu yüzden tabloda `=` operatörünün
+bulunması C gibi dillerdekinin aksine çok da anlamlı değildir. Ama bütünsellik
+adına tabloda bulundurulmaktadır. [^1f] [^2f]
+
+¶: Tüm işlemli atama operatörleri burada verilmemiştir. Tam liste için [Python
+dokümanlarına](https://docs.python.org/3/reference/simple_stmts.html#grammar-token-python-grammar-augmented_assignment_stmt)
+bakabilirsiniz.
 
 ## Tabloyu nasıl okumalıyız?
 

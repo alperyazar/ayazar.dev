@@ -38,6 +38,7 @@ turlerin-mantiksal-olarak-yorumlanmasi
 atama-operatoru
 walrus-operatoru
 islemli-atama-operatorleri
+print-fonksiyonunun-kullanimi
 ```
 
 ## 📚 Kaynaklar

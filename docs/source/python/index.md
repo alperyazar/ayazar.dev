@@ -39,7 +39,7 @@ atama-operatoru
 walrus-operatoru
 islemli-atama-operatorleri
 print-fonksiyonunun-kullanimi
-tur-donusum-kurallari
+tur-donusumleri
 ```
 
 ## 📚 Kaynaklar

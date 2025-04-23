@@ -43,6 +43,8 @@ tur-donusumleri
 farkli-tur-islem
 veri-yapisi-iterable-nesne
 liste-1
+liste-2
+liste-shallow-copy
 ```
 
 ## 📚 Kaynaklar

@@ -2,7 +2,7 @@
 giscus: e267304f-958d-4bd6-a0b7-81aa4f4c24a1
 ---
 
-# Liste, List Veri Yapısı - 1 (YARIM)
+# Liste, List Veri Yapısı - 1
 
 `13-1.40.50`
 
@@ -268,6 +268,15 @@ True
 
 Burada gördüğümüz üzere aslında `x[0]` ile `y[0]` aynı nesneyi göstermektedir.
 
+Bir liste dolaşıldığında tek tek elemanları elde edilir dedik. Aslında burada
+kastedilen şey *elemanlardaki adresler*dir. Üstteki `x` listesini dolaşınca
+aslında sırası ile `10`, `20` ve `30` değerli `int` nesnelerin adreslerini elde
+etmiş oluruz. Yani *listenin elemanları elde edilir* demek yerine *bu elemanları
+gösteren adresler elde edilir* demek daha doğru olabilir, sonuçta Python'daki
+tüm atamalar adres atamalarıdır demiştik. İşte o yüzden `x` ve `y` listelerinin
+elemanları aslında aynı nesneleri göstermekte ve `is` operatörüne soktuğumuzda
+`True` değerini almaktayız.
+
 ## `list` Nesnelerinin Bellek Orgranizasyonları
 
 `a = [10, 'alper', 3.14]` dersek her bir liste elemanı da bir adres tutmaktadır.
@@ -292,3 +301,44 @@ False
 ```
 
 `14.0.00.00`
+
+Yani özetle listenin bir elemanına değer atadığımızda o elemanın başka bir
+nesneyi göstermesini sağlamış oluruz.
+
+Örneğin:
+
+```text
+a = [10, 20, 30]
+
+a ---------> list_nesnesi
+              a[0] -----------------> 10 (int nesne)
+              a[1] -----------------> 20 (int nesne)
+              a[2] -----------------> 30 (int nesne)
+
+a[1] = 'ankara'
+
+a ---------> list_nesnesi
+              a[0] -----------------> 10 (int nesne)
+              a[1] -----------------> "ankara" (str nesnesi)
+              a[2] -----------------> 30 (int nesne)
+```
+
+## "`str` bir liste değildir."
+
+Yukarıda `str` nin dolaşılabilir yani iterable olduğundan bahsettik. `str`
+türünden yazılar bellekte liste gibi saklanmamaktadır, bu böyle bir algı
+yaratmasın.
+
+```python
+s = 'alper'
+```
+
+dediğimiz zaman `str` nesnesnin elemanları ayrı ayrı `'a'`, `'l'`, `'p'`,
+`'e'`, `'r'` harflerini saklamamaktadır. `str` nesneleri listelerdeki gibi
+tek tek harfleri gösteren bir yapıda değildir, doğrudan `'alper'` yazısı
+saklanmaktadır. Biz liste oluşturmak için `str` nesnesini dolaştığımızda
+arka planda aslında Python içeriğinde tek harf barındıran ayrı `str` nesneleri
+oluşturur ve `list` nesnesinin elemanlarına otomatik yaratılan nesnelerin
+adreslerini koyar.
+
+`14-0.23.00`

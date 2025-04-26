@@ -48,6 +48,7 @@ liste-shallow-copy
 list-sinifi-ve-metotlar
 reversed-sorted
 in-not-in
+del
 ```
 
 ## 📚 Kaynaklar

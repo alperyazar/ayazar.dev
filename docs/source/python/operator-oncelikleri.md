@@ -92,13 +92,15 @@ Tablo yarımdır. Notlarda ilerlendikçe tablo da genişletilmektedir.
 |               | `-`                              | Çıkarma                                                             |                          |
 | 6             |                                  |                                                                     | soldan sağa              |
 |               | `<`, `>`, `<=`, `>=`, `==`, `!=` | [Karşılaştırma Operatörleri](karsilastirma-operatorleri.md)         |                          |
-| 7             |                                  |                                                                     | sağdan sola              |
+| 7             |                                  |                                                                     | soldan sağa              |
+|               | `in`, `not in`                   | [in ve not in](in-not-in.md)                                        |                          |
+| 8             |                                  |                                                                     | sağdan sola              |
 |               | `not`                            | [Değil](mantiksal-operatorler.md)                                   |                          |
-| 8             |                                  |                                                                     | soldan sağa              |
-|               | `and`                            | [Ve](mantiksal-operatorler.md)                                      |                          |
 | 9             |                                  |                                                                     | soldan sağa              |
+|               | `and`                            | [Ve](mantiksal-operatorler.md)                                      |                          |
+| 10            |                                  |                                                                     | soldan sağa              |
 |               | `or`                             | [Veya](mantiksal-operatorler.md)                                    |                          |
-| 10            |                                  |                                                                     | sağdan sola              |
+| 11            |                                  |                                                                     | sağdan sola              |
 |               | `=`                              | [Atama](atama-operatoru.md) ‡                                       |                          |
 |               | `:=`                             | [Walrus operatörü](walrus-operatoru.md)  ‡                          |                          |
 |               | `+=`, `-=`, `*=` vb. ¶           | [İşlemli Atama Operatörleri](islemli-atama-operatorleri.md)  ‡      |                          |

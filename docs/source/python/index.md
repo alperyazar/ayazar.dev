@@ -49,6 +49,7 @@ list-sinifi-ve-metotlar
 reversed-sorted
 in-not-in
 del
+listelerin-toplanmasi
 ```
 
 ## 📚 Kaynaklar

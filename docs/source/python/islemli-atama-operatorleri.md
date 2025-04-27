@@ -74,6 +74,12 @@ a = a op b
 
 ile eşdeğer olmaktadır.
 
+```{important}
+Python'da `a op= b` ile `a = a op b` nin denk olmadığı bazı durumlar vardır,
+örneğin listelerin toplanması. Buradaki eşdeğerlik daha genel geçer bir
+kavramdır, istisna durumları vardır: Bknz: [](listelerin-toplanmasi.md)
+```
+
 Ben yukarıda tüm kombinasyonları yazmadım. Tam liste için [dilin referans
 açıklamasına](https://docs.python.org/3/reference/simple_stmts.html#grammar-token-python-grammar-augmented_assignment_stmt)
 bakabilirsiniz. Birçok operatörün bu formu bulunsa da örneğin `and`, `or`, `not`

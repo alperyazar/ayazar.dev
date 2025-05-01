@@ -63,4 +63,59 @@ boş bir liste elde edilir.
 []
 ```
 
+---
+
+`16-2.07.05`
+
+Peki `x` bir liste ise `x * 2 * 3` geçerli midir? Çarpma işlemi soldan-sağa
+öncelikli olduğu için önce `x * 2` yapılacak ve bir liste elde edilecek ve
+sonra bu yeni liste `3` ile çarpılacak, nihai liste elde edilecek. Ama günün
+sonunda efektif olarak `x * 6` etkisini göreceğiz aslında.
+
+Yani Python'da çarpmanın **değişme** yani **commutative**  ve **birleşme** yani
+**associative** özelliği korunmuştur. Yukarıdaki işlem `3 * 2 * x` ile
+eşdeğerdir.
+
+---
+
+`16-2.11.40`
+
+Listelerde `a = a * n` ile `a *= n` aynı anlama **gelmemektedir.** Toplamada da
+böyle değildi hatırlarsınız. `a = a * n` işleminde yeni bir liste yaratılır
+ve `a` bunu gösterir. Ama `a *= n` işleminde `n - 1` tane `a`, `a`nın sonuna
+yerleştirilir.
+
+```text
+>>> x = [1, 2]
+
+>>> id(x)
+133419689011904
+>>> x = x * 3
+
+>>> x
+[1, 2, 1, 2, 1, 2]
+
+>>> id(x) # farklı bir liste
+133419689170368
+```
+
+AMA
+
+```text
+>>> x = [1, 2]
+
+>>> id(x)
+133419689011904
+
+>>> x *= 3
+
+>>> x
+[1, 2, 1, 2, 1, 2]
+
+>>> id(x)  # aynı x listesi
+133419689011904
+```
+
+`16-2.16.30`
+
 `16-1.47.30`

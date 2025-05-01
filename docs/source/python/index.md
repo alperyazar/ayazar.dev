@@ -52,6 +52,8 @@ del
 listelerin-toplanmasi
 list-x-int
 list-optimizasyon-ic-ice
+list-comprehension
+demet-1
 ```
 
 ## 📚 Kaynaklar

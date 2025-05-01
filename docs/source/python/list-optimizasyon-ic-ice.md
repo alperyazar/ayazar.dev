@@ -2,7 +2,7 @@
 giscus: e36bf509-dee9-4030-8cd6-f7c0e6e1cb68
 ---
 
-# Listeler, Optimizasyon ve İç İçe Listeler (YARIM)
+# Listeler, Optimizasyon ve İç İçe Listeler
 
 `16-1.47.30`
 
@@ -80,8 +80,10 @@ Fakat aşağıdaki örnekte böyle değildir.
 133419689011904
 ```
 
-**Özetle her `[]` gördüğümüzde yeni bir `list` nesnesi oluşturuluyor gibi
-düşünebiliriz.**
+```{hint}
+Özetle her `[]` gördüğümüzde yeni bir `list` nesnesi oluşturuluyor gibi
+düşünebiliriz.
+```
 
 ---
 
@@ -93,6 +95,13 @@ düşünebiliriz.**
 
 >>> y
 [[], [], []]
+
+>>> id(y[0])
+133419689171648
+>>> id(y[1])
+133419689171648
+>>> id(y[2])
+133419689171648
 
 >>> x.append(10)
 
@@ -108,3 +117,30 @@ düşünebiliriz.**
 Burada `y` nin elemanları aynı listeyi yani `x`i göstermektedir. İlk başta `x`
 boş bir listedir. Biz `x`e `append()` metodu ile bir eleman eklediğimizde `y`
 nin tüm elemanları aynı `x`i gösterdiği için örnekteki gibi bir durum oluşur.
+
+---
+
+Peki `x = [[]] * 3` durumunu düşünelim. Çarpma işlemi aynı şeyi eklemekti.
+O yüzden her eleman yine aynı listeyi gösteriyor.
+
+```text
+>>> x = [[]] * 3
+
+>>> id(x[0])
+133419669508480
+>>> id(x[1])
+133419669508480
+>>> id(x[2])
+133419669508480
+
+>>> x = [[], [], []]  # Hepsi ayrı liste
+
+>>> id(x[0])
+133419689185280
+>>> id(x[1])
+133419669796480
+>>> id(x[2])
+133419669338688
+```
+
+`16-2.16.45`

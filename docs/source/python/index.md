@@ -50,6 +50,7 @@ reversed-sorted
 in-not-in
 del
 listelerin-toplanmasi
+list-x-int
 ```
 
 ## 📚 Kaynaklar

@@ -2,7 +2,7 @@
 giscus: 05661206-29e4-4a21-ba3d-f58556316edd
 ---
 
-# Listelerin Toplanması (YARIM)
+# Listelerin Toplanması
 
 `15-2.25.20`
 
@@ -182,3 +182,72 @@ eşdeğer olduğunu söylüyoruz. Fakat Python'da **bu denklik listeler için ge
 DEĞİLDİR.**
 
 `16-1.10.45`
+
+`a = a + b` dediğimizde aslında yeni bir liste oluşuyor ve `a` artık yeni
+bir listeyi göstermeye başlıyor. Örneğin:
+
+```text
+>>> a = [1, 2, 3]
+>>> b = [4, 5]
+
+>>> id(a)
+133419689172608
+
+>>> a = a + b
+
+>>> a
+[1, 2, 3, 4, 5]
+
+>>> id(a)   # ilk id(a) ile aynı değil
+133419689173952
+```
+
+`a += b` nin anlamı ise listelerde farklıdır. *`b` listesinin elemanlarının
+mevcut `a` listesinin sonuna eklenmesi* anlamı çıkmaktadır. Yani aslında
+`a.extend(b)` gibi bir etki yaratmaktadır. Örneğin:
+
+```text
+>>> a = [1, 2, 3]
+>>> b = [4, 5]
+
+>>> id(a)
+133419689170176
+
+>>> a += b
+
+>>> a
+[1, 2, 3, 4, 5]
+
+>>> id(a)  # a'nın id değeri değişmedi
+133419689170176
+```
+
+Yani konu listeler olunca `a = a + b` ile `a += b` aynı anlamda değildir.
+
+## `a.extend(b)`
+
+Python dokümanlarına göre [^1f] `a` bir `list` türden olmak üzere `a.extend(b)` ile
+`a += b` tamamen aynı anlamdadır. `extend()` metodun parametresinin herhangi
+bir dolaşılabilir nesne olabileceğini söylemiştik. Bu durum `a += b` için de
+geçerlidir.
+
+```text
+>>> a = [1, 2]
+
+>>> a
+[1, 2]
+
+>>> a += 'alper'
+
+>>> a
+[1, 2, 'a', 'l', 'p', 'e', 'r']
+
+>>> a.extend('yazar')
+
+>>> a
+[1, 2, 'a', 'l', 'p', 'e', 'r', 'y', 'a', 'z', 'a', 'r']
+```
+
+`16-1.27.30`
+
+[^1f]: <https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types>

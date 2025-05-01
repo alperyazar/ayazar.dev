@@ -1,0 +1,9 @@
+/* Ref: https://stackoverflow.com/a/33626140/1766391 */
+.wy-nav-content {
+  max-width: 1024px !important;
+  margin: auto;
+}
+
+.wy-nav-content-wrap {
+  background-color: #fcfcfc;
+}

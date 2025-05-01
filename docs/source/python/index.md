@@ -51,6 +51,7 @@ in-not-in
 del
 listelerin-toplanmasi
 list-x-int
+list-optimizasyon-ic-ice
 ```
 
 ## 📚 Kaynaklar

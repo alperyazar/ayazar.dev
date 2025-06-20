@@ -20,6 +20,6 @@ maxdepth: 1
 glob: false
 ---
 gomulu-embedded-c
-cross-compilation
+capraz-derleme
 hard-soft-ip
 ```

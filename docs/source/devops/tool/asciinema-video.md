@@ -2,7 +2,7 @@
 giscus: 06b10fe0-a643-4c1d-90d8-6d90de753219
 ---
 
-# Linux Terminalinizi Kaydedin ve Paylaşın! asciinema ile Tanışın!
+# 📹 Linux Terminalinizi Kaydedin ve Paylaşın! asciinema ile Tanışın!
 
 ```{youtube} mIzPfenZWvo
 :align: center
@@ -43,8 +43,8 @@ incleyebilirsiniz:
 - <https://github.com/alperyazar/ayazar.dev/blob/master/docs/source/conf.py#L43>
 - <https://github.com/divi255/sphinxcontrib.asciinema>
 
-[](../buildroot/ilk-derleme.md) adlı yazıda da nasıl durduğunu görebilirsiniz.
+[](../../buildroot/ilk-derleme.md) adlı yazıda da nasıl durduğunu görebilirsiniz.
 
 ## İlginizi Çekebilir
 
-[](../devops/tool/asciinema.md) yazısına bakabilirsiniz.
+[](asciinema) yazısına bakabilirsiniz.

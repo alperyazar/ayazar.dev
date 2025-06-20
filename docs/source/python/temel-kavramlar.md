@@ -137,7 +137,7 @@ gerek yoktur. Programcı bu sayede derlediği kodun "her yerde" çalışacağın
 emin olur ve her platform için tekrar derleme yapmaz.
 
 ```{tip}
-Konu ilginizi çektiyse [](../video/cross-compilation.md) isimli videoma
+Konu ilginizi çektiyse [](../embedded/cross-compilation.md) isimli videoma
 bakabilirsiniz.
 ```
 

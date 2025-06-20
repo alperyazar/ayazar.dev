@@ -2,7 +2,7 @@
 giscus: d0491b0f-0d81-46ae-aff5-6fc67917541e
 ---
 
-# Buildroot ile Tanşıyoruz
+# 📹 Buildroot ile Tanşıyoruz
 
 Bu bölümde Buildroot ile artık tanışıyoruz. Nedir? Kimler kullanır? Nasıl
 kullanılır? Nereden indirilir? ...

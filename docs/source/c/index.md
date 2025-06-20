@@ -32,8 +32,3 @@ yoda-notation.md
 c-is-procedural
 c-is-imperative
 ```
-
-## 📹 Video
-
-- [](../video/gomulu-embedded-c.md)
-- [](../video/cross-compilation.md)

@@ -2,7 +2,7 @@
 giscus: 64b85731-fdb9-4078-a184-92d14cf4da71
 ---
 
-# Hard ve Soft Processor (İşlemci) ve IP Kavramı, FPGA ve SoC'ler
+# 📹 Hard ve Soft Processor (İşlemci) ve IP Kavramı, FPGA ve SoC'ler
 
 ```{youtube} ZfILlT64EFA
 :align: center

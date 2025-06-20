@@ -2,7 +2,7 @@
 giscus: 1c6788a6-0721-44f2-8c32-4d64c052979e
 ---
 
-# Gömülü (Embedded) C ???
+# 📹 Gömülü (Embedded) C ???
 
 ```{youtube} 6U1jNb_Y8E4
 :align: center

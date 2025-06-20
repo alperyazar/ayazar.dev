@@ -4,7 +4,7 @@ giscus: 8f1b0c05-2e5b-450b-8d44-8ba0dd314520
 og:description: "Buildroot ile ilk derlememizi yapıyoruz. Elbette tahmin ettiğim gibi ilk seferde olmuyor, uğraşıyoruz.."
 ---
 
-# Buildroot ile ilk derleme!
+# 📹 Buildroot ile ilk derleme!
 
 ```{note}
 İçerik, bu sayfadaki yazıların üzerine anlatım yapılarak video olarak

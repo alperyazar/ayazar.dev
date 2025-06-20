@@ -12,7 +12,14 @@ glob: true
 if/index.md
 ```
 
-## 📹 Video
+## Temel Kavramlar
 
-- [](../video/gomulu-embedded-c.md)
-- [](../video/cross-compilation.md)
+```{toctree}
+---
+maxdepth: 1
+glob: false
+---
+gomulu-embedded-c
+cross-compilation
+hard-soft-ip
+```

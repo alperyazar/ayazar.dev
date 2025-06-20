@@ -2,7 +2,7 @@
 giscus: c17ab8a5-c588-4915-9f61-c76bc4f80ab6
 ---
 
-# Gömülü (Embedded) Linux nedir? Buildroot ve Yocto ne işe yarar?
+# 📹 Gömülü (Embedded) Linux nedir? Buildroot ve Yocto ne işe yarar?
 
 ```{youtube} Nv5_U1VWXlk
 :align: center

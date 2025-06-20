@@ -60,7 +60,6 @@ hidden: true
 about.md
 follow.md
 blog/index.md
-video/index.md
 misc/destek.md
 ```
 

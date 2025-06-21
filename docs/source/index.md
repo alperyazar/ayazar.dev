@@ -60,15 +60,15 @@ hidden: true
 about.md
 follow.md
 blog/index.md
-misc/destek.md
+misc/support.md
 ```
 
 ```{toctree}
 ---
-caption: Notlarım
+caption: Notebook
 hidden: true
 ---
-not-hakkinda.md
+notebook.md
 buildroot/index.md
 c/index.md
 cpp/index.md
@@ -85,7 +85,7 @@ diger/index.md
 
 ```{toctree}
 ---
-caption: Eski
+caption: Archive
 hidden: true
 ---
 log/index.md
@@ -96,8 +96,6 @@ log/index.md
 caption: ---
 hidden: True
 ---
-
-changelog/index.md
 misc/index.md
 misc/disclaimer.md
 ```
@@ -106,7 +104,7 @@ misc/disclaimer.md
 :align: center
 :figclass: thmbnl
 
-Lisans: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.tr)
+License: [Creative Commons Attribution Share Alike 4.0 International, CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.tr)
 ```
 
 ```{figure} free-cultural-works.png

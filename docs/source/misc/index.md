@@ -4,7 +4,7 @@
 ---
 maxdepth: 1
 ---
-destek.md
+support.md
 disclaimer.md
 ```
 

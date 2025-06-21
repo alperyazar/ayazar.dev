@@ -2,7 +2,7 @@
 giscus: 8cdd3b37-52f3-428f-abfb-b5e8ff215ac6
 ---
 
-# ⁉️ About My Notes
+# ⁉️ About My Notebook
 
 On this page, I want to provide various information about the notes I've shared
 on this site. It will be useful to check this page before reading my notes to

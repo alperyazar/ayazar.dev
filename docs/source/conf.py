@@ -94,7 +94,7 @@ html_theme_options = {
     'style_external_links': True,
     'prev_next_buttons_location': 'both',
     'navigation_depth': 4,
-    'collapse_navigation': True
+    'collapse_navigation': False
 }
 
 # sphinxcontrib.googleanalytics
@@ -109,7 +109,7 @@ html_context = {
     "conf_py_path": "/docs/source/"
 }
 
-language = 'en'
+language = 'tr'
 
 todo_include_todos = True
 

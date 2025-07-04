@@ -56,6 +56,8 @@ list-comprehension
 demet-1
 hash-kavrami
 demet-2
+unpacking
+range
 ```
 
 ## 📚 Kaynaklar

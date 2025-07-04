@@ -54,6 +54,8 @@ list-x-int
 list-optimizasyon-ic-ice
 list-comprehension
 demet-1
+hash-kavrami
+demet-2
 ```
 
 ## 📚 Kaynaklar

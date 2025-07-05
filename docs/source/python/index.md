@@ -59,6 +59,13 @@ demet-2
 unpacking
 range
 dolasilabilir-hatirlatma
+kume-1
+kume-2
+frozenset
+sozluk-1
+sozluk-2
+str-1
+str-2
 ```
 
 ## 📚 Kaynaklar

@@ -66,6 +66,15 @@ sozluk-1
 sozluk-2
 str-1
 str-2
+str-3
+str-4
+del-2
+farkli-tur-karsilastirma
+indentation
+deyim-1
+if
+while
+for
 ```
 
 ## 📚 Kaynaklar

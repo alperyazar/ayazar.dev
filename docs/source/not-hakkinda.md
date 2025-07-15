@@ -101,4 +101,6 @@ Ref: https://github.com/alperyazar/ayazar.dev/issues/16
 
 ---
 
+Ayrıca lütfen bakınız: [](misc/disclaimer.md)
+
 Şimdilik bu kadar. Aklıma bir şeyler gelirse yeni maddeler eklerim.

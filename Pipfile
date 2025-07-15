@@ -17,7 +17,7 @@ sphinx-sitemap = "*"
 sphinx-copybutton = "*"
 sphinxext-opengraph = "*"
 "sphinxcontrib.asciinema" = "==0.3.8"
-"sphinxcontrib.googleanalytics" = "==0.4"
+"sphinxcontrib.googleanalytics" = "==0.5"
 
 [dev-packages]
 

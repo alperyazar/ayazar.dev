@@ -49,5 +49,8 @@
   "MD049": { "style": "asterisk"},
 
   # We use ** ** for strong
-  "MD050": { "style": "asterisk"}
+  "MD050": { "style": "asterisk"},
+
+  # MD059 - Link text should be descriptive
+  "MD059": false,
 }

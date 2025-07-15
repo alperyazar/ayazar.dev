@@ -8,10 +8,11 @@ Looking for my e-mail address? Please visit the [About](about.md) page.
 Here the list of my profiles on some platforms:
 
 - [LinkedIn](https://www.linkedin.com/in/alperyazar)
-- [mastodon](https://mastodon.social/@ayazar)
-- [Twitter](https://twitter.com/alper_yazar), moving to [mastodon](https://mastodon.social/@ayazar)
-- [GitHub](https://github.com/alperyazar)
 - [YouTube (in Turkish)](https://www.youtube.com/@ayazar)
+- [mastodon](https://mastodon.social/@ayazar)
+- [Bluesky](https://bsky.app/profile/ayazar.bsky.social)
+- [Twitter](https://twitter.com/alper_yazar)
+- [GitHub](https://github.com/alperyazar)
 - [Reddit](https://www.reddit.com/user/ayazar/)
 - [Stack Exchange (Overflow)](https://stackexchange.com/users/1966184/alper-y)
 - [Hackaday](https://hackaday.io/ayazar)

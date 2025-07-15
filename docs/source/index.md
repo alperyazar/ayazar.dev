@@ -18,10 +18,8 @@ teknik konular üzerine notlarımı ve kişisel düşüncelerimi paylaşıyorum.
   Paylaşımlarımı genelde bu platformda yapıyorum.
 - [📺 YouTube](https://www.youtube.com/@ayazar)
   Arada video çekiyorum ve soru-cevap imkanı olan canlı yayınlar yapıyorum.
-- [🐦 X (Twitter) Profilim](https://twitter.com/alper_yazar)
-- [mastodon](https://mastodon.social/@ayazar)
 
-[Diğer profillerim](follow.md)
+[Diğer sosyal medya/internet profillerim](follow.md)
 
 ---
 

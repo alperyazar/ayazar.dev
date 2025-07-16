@@ -1,0 +1,21 @@
+/* https://stackoverflow.com/a/54304990 */
+/* https://stackoverflow.com/a/48281750 */
+
+/* Sidebar header (and topbar for mobile) */
+.wy-side-nav-search, .wy-nav-top {
+  /*
+  background: #43656e;
+  background: radial-gradient(circle,rgba(67, 101, 110, 1) 0%, rgba(133, 42, 54, 1) 100%);
+  */
+  background: rgb(182, 106, 139);
+  background: linear-gradient(100deg,rgb(182, 106, 139) 0%, rgb(91, 129, 172) 100%);
+}
+
+/* Sidebar */
+.wy-nav-side {
+  background: #343743;
+}
+
+a {
+  color: #b91d45;
+}

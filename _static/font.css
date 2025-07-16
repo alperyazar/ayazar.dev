@@ -1,0 +1,183 @@
+/* Ref: https://about.gitlab.com/blog/2023/01/17/new-typefaces-in-gitlab/ */
+body {
+  font-family: 'Inter', sans-serif;
+  text-rendering: geometricPrecision !important;
+}
+
+pre {
+  font-family: 'Source Code Pro', monospace !important;
+  font-size: 100% !important;
+  font-weight: bolder !important;
+}
+
+p b, p strong {
+  background-color: #fabfc8; /* Color of the marker */
+  font-weight: bold; /* Ensure the text is bold */
+  padding: 0.2em 0.4em; /* Adds padding around the text */
+  border-radius: 0.5em; /* Rounds the corners */
+  box-decoration-break: clone; /* Ensures the background and border-radius are applied to each line in multi-line text */
+  font-size: 1.10rem !important;
+}
+
+p a {
+  font-weight: bold;   /* Makes the text bold */
+}
+
+em {
+  font-size: 1.10rem !important;
+  font-weight: bolder;
+}
+
+p, li {
+  line-height: 1.8 !important;
+  font-size: 1.1rem !important;
+}
+
+/*
+.rst-content code {
+  font-size: 85% !important;
+}
+*/
+
+.rst-content img {
+  margin: 6px;
+  border: 2px dashed #404040; /* Solid black border, 2px thick */
+  border-radius: 10px;       /* Rounded corners */
+  padding: 4px;              /* Spacing between the image and the border */
+  display: inline-block;     /* Allows the padding and border to take effect properly */
+}
+
+.rst-content code {
+  font-size: 90% !important;
+}
+
+/* https://stackoverflow.com/a/5790911 */
+figure.thmbnl img {
+  border: 2px solid transparent
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: #f35a72;
+  z-index: 9999;
+  width: 0%;
+}
+
+/* https://stackoverflow.com/a/52058198/1766391 */
+article a[href^="http://"]:not([href^="http://ayazar.dev"])::after,
+article a[href^="https://"]:not([href^="https://ayazar.dev"])::after{
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
+}
+
+.section p,
+.simple li,
+section>p {
+  text-align:left
+}
+
+/*
+.document h1, .document h2, .document h3, .document h4, .document h5, .document h6 {
+  font-size: 115%;
+}
+*/
+
+.floating-icon-heart {
+  position: fixed;
+  bottom: 2vw; /* Adjust position relative to screen */
+  right: 2vw;
+  width: 5vw; /* Responsive size */
+  height: 5vw;
+  max-width: 64px; /* Prevent oversized icon */
+  max-height: 64px;
+  background-color: #e63946; /* Heart red */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  animation: heartbeat 120s infinite;
+  animation-delay: 10s; /* Initial delay before first heartbeat */
+  overflow: hidden; /* Ensures shine effect stays inside */
+}
+
+/* The pseudo-element for the left-to-right shine effect */
+.floating-icon-heart::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  transition: none;
+  animation: shine 120s infinite;
+  animation-delay: 10s; /* Syncs with heartbeat */
+}
+
+/* Hover Effect */
+.floating-icon-heart:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+  transform: scale(1.1);
+}
+
+/* Heartbeat Effect */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  1% { transform: scale(1.15); }
+  2% { transform: scale(1); }
+}
+
+/* Shine animation that moves from left to right */
+@keyframes shine {
+  0% { left: -150%; }
+  1% { left: 100%; }
+  2% { left: -150%; }
+  50% { left: -150%; }
+  51% { left: 100%; }
+  52% { left: -150%; }
+  100% { left: -150%; }
+}
+
+/* Scale the <img> inside the button */
+.floating-icon-heart img {
+  width: 85%; /* Keep it within the button */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 64px; /* Prevent it from being too big */
+}
+
+/* Adjust size for very small screens */
+@media (max-width: 400px) {
+  .floating-icon-heart {
+      width: 10vw;
+      height: 10vw;
+  }
+  .floating-icon-heart img {
+      width: 70%; /* Slightly increase img size on small screens */
+      max-width: 35px;
+  }
+}
+
+#special-flag {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 9999;
+  display: none;
+}
+
+#special-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scaleX(1) rotate(90deg);
+}

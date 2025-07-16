@@ -75,6 +75,7 @@ embedded/index.md
 ldd/index.md
 sys/index.md
 python/index.md
+dd/index.md
 xilinx/index.md
 xv6/index.md
 zephyr/index.md
